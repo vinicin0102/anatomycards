@@ -9,9 +9,9 @@ Arquivo único: **`index.html`**.
 
 | Item | Original | Agora |
 |---|---|---|
-| Preço no bloco promocional (hero) | R$ 9,99 | **R$ 4,99** |
-| Combo Essencial (front) | R$ 9,99 | **R$ 4,99** |
-| Combo Completo | R$ 29,99 | **R$ 14,99** |
+| Preço no bloco promocional (hero) | R$ 9,99 | R$ 9,99 (mantido) |
+| Combo Essencial (front) | R$ 9,99 | R$ 9,99 (mantido) |
+| Combo Completo | R$ 29,99 | **R$ 29,90** |
 | Seção "Feedback de Alunos" | não existia | **7 depoimentos + selo "+5 mil alunos"**, entre os Planos e o FAQ |
 
 Todo o resto foi mantido: textos, imagens, ordem das seções, cronômetro de
@@ -50,7 +50,6 @@ Foram mantidos como estão, mas vale revisar antes de publicar:
 1. **Meta Pixel** dispara `ViewContent` com `content_name: 'Farmacologia Fácil'`
    e `content_category: 'Material de Farmacologia'` — não bate com este produto.
 2. **Marca d'água `vetfacil.com`** sobre o mockup da coluna direita do hero.
-3. **Selo "50% OFF"** no bloco promocional: com o preço em R$ 4,99, o valor "de"
-   implícito passa a ser R$ 9,98.
+3. **Selo "50% OFF"** no bloco promocional, sem nenhum preço "de" exibido ao lado.
 4. **Depoimentos** usam avatar com a inicial do nome. Para as fotos reais,
    trocar a `div` do avatar por `<img>` na seção "FEEDBACK DE ALUNOS".
