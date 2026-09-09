@@ -1,386 +1,1237 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Resumos e Laboratórios | AnatomyCards</title>
-<meta name="description" content="Resumos e Laboratórios de Anatomia em material digital. Mais de 5 mil alunos aprovando. Acesso imediato a partir de R$ 4,99.">
-<meta property="og:title" content="Resumos e Laboratórios | AnatomyCards">
-<meta property="og:description" content="Material digital de Anatomia: resumos ilustrados e roteiros de laboratório. +5 mil alunos.">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminologia Médica Descomplicada | Domine a Linguagem da Saúde</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuração de Cores Customizadas -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        medical: {
+                            900: '#1e293b', /* Slate escuro */
+                            800: '#334155', 
+                        },
+                        dark: {
+                            950: '#0f172a',
+                            900: '#1e293b',
+                        },
+                        vibrant: {
+                            primary: '#6366f1', /* Indigo/Roxo (Combina com o fundo pastel) */
+                            primaryHover: '#4f46e5',
+                            yellow: '#facc15', /* Amarelo da imagem referência */
+                            danger: '#ef4444', /* Vermelho do botão/PDF da imagem */
+                            dangerHover: '#dc2626'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- UTMify -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      data-utmify-ignore-iframe
+      async
+      defer
+    ></script>
+    <!-- End UTMify -->
+
+    <!-- Meta Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {
+      if(f.fbq)return;
+
+      n=f.fbq=function(){
+        n.callMethod
+          ? n.callMethod.apply(n,arguments)
+          : n.queue.push(arguments);
+      };
+
+      if(!f._fbq)f._fbq=n;
+
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s);
+
+    }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '352488377782448');
+
+    /* Registra o carregamento da página */
+    fbq('track', 'PageView');
+
+    /* Registra a visualização da oferta, sem catálogo */
+    fbq('track', 'ViewContent', {
+      content_name: 'Farmacologia Fácil',
+      content_category: 'Material de Farmacologia'
+    });
+    </script>
+    <!-- End Meta Pixel -->
+
+    <!-- OpenAI Pixel -->
+    <script>
+    !function(w,d,s,u){
+      if(w.oaiq)return;
+
+      var q=function(){
+        q.q.push(arguments);
+      };
+
+      q.q=[];
+      w.oaiq=q;
+
+      var j=d.createElement(s);
+      j.async=1;
+      j.src=u;
+
+      var f=d.getElementsByTagName(s)[0];
+      f.parentNode.insertBefore(j,f);
+
+    }(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+
+    oaiq("init",{
+      pixelId:"3HCeA9rpHbt6QScsDvWBJD",
+      debug:true
+    });
+
+    /* Registra a visualização da página na OpenAI */
+    oaiq("measure","page_viewed",{
+      type:"contents",
+      contents:[
+        {
+          id:window.location.pathname || "/",
+          name:document.title || "Página do site",
+          content_type:"page"
+        }
+      ]
+    });
+
+    /* Registra na OpenAI o clique que inicia o checkout */
+    document.addEventListener("click",function(event){
+      var link=event.target.closest("a[href]");
+
+      if(!link || window.__oaiCheckoutRegistrado){
+        return;
+      }
+
+      var destino=link.href || "";
+
+      if(/cartpanda|checkout|pagamento/i.test(destino)){
+        window.__oaiCheckoutRegistrado=true;
+
+        oaiq("measure","checkout_started",{
+          type:"contents"
+        });
+      }
+    },true);
+    </script>
+    <!-- End OpenAI Pixel -->
+
+    <style>
+        /* Fundo Gradiente (Azul pastel para Lilás/Roxo) conforme a imagem */
+        .bg-print-theme {
+            background: linear-gradient(135deg, #e0efff 0%, #eaddff 100%);
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Animação de pulso para combinar com o botão vermelho da referência */
+        @keyframes btnPulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        .btn-pulse {
+            animation: btnPulse 2s infinite;
+        }
+
+        /* ================= ESTILOS DO TOAST DE COMPRAS ================= */
+        #toast-compras{
+          position: fixed;
+          left: 10px;
+          right: 10px;
+          bottom: 12px;
+          z-index: 99999;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 10px;
+          border-radius: 10px;
+          background: rgba(255,255,255,.95);
+          border: 1px solid rgba(0,0,0,.08);
+          box-shadow: 0 10px 25px rgba(0,0,0,.15);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          transform: translateY(150%);
+          opacity: 0;
+          transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+          pointer-events: none;
+        }
+
+        #toast-compras.show{
+          transform: translateY(0);
+          opacity: 1;
+        }
+
+        #toast-compras .icon{
+          width: 32px;
+          height: 32px;
+          border-radius: 8px;
+          background: rgba(22,163,74,.15);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        #toast-compras .icon svg{
+          width: 16px;
+          height: 16px;
+          fill: #16a34a;
+        }
+
+        #toast-compras .textos{
+          flex: 1;
+        }
+
+        #toast-compras .top{
+          display: flex;
+          justify-content: space-between;
+          gap: 6px;
+          margin-bottom: 2px;
+        }
+
+        #toast-compras .nome{
+          font-size: 13px;
+          font-weight: 600;
+          color: #111;
+          margin: 0;
+        }
+
+        #toast-compras .tempo{
+          font-size: 11px;
+          color: #6b7280;
+          margin: 0;
+        }
+
+        #toast-compras .msg{
+          font-size: 12px;
+          color: #374151;
+          margin: 0;
+          line-height: 1.2;
+        }
+
+        #toast-compras .badge{
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          font-size: 11px;
+          margin-top: 4px;
+          padding: 3px 8px;
+          border-radius: 999px;
+          background: rgba(16,185,129,.12);
+          color: #065f46;
+        }
+
+        #toast-compras .dot{
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #16a34a;
+        }
+
+        @media (min-width: 768px){
+          #toast-compras{
+            left: auto;
+            right: 20px;
+            bottom: 20px;
+            max-width: 340px;
+          }
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans text-gray-800 antialiased bg-print-theme min-h-screen pt-[36px] sm:pt-[40px]">
 
-<!-- ======================= BARRA DE TOPO ======================= -->
-<div class="topbar">
-  <span class="topbar__pulse"></span>
-  <p><strong>+5 MIL ALUNOS</strong> já estudam com o nosso material — acesso imediato</p>
-</div>
+    <!-- FAIXA DE URGÊNCIA -->
+    <div class="bg-vibrant-danger text-white py-2 px-2 text-center z-[999] fixed top-0 left-0 w-full shadow-md">
+        <p class="text-[11px] sm:text-sm font-black flex justify-center items-center gap-2 m-0 uppercase tracking-wider">
+            <span>Essa oferta termina em:</span>
+            <span class="bg-white/20 px-2 py-0.5 rounded text-xs sm:text-base tracking-widest font-mono font-bold" id="countdown-timer">00:09:59</span>
+        </p>
+    </div>
 
-<!-- ======================= HEADER ======================= -->
-<header class="header" id="topo">
-  <div class="container header__inner">
-    <a class="brand" href="#topo">
-      <span class="brand__mark">AC</span>
-      <span class="brand__text">Anatomy<em>Cards</em></span>
-    </a>
-    <nav class="nav" id="nav">
-      <a href="#conteudo">O material</a>
-      <a href="#previa">Prévia</a>
-      <a href="#planos">Planos</a>
-      <a href="#feedback">Feedback</a>
-      <a href="#faq">Dúvidas</a>
-    </nav>
-    <a href="#planos" class="btn btn--sm btn--primary header__cta">Quero o meu</a>
-    <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
+    <!-- 1. HERO SECTION -->
+    <header class="relative overflow-hidden border-b border-black/5">
+        <div class="container mx-auto px-4 pt-1 pb-10 sm:px-6 sm:pt-4 sm:pb-16 lg:pt-8 lg:pb-20 relative z-10 flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+            
+            <div class="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left sticky top-16 lg:top-24">
+                
+                <!-- BLOCO PROMOCIONAL -->
+                <div class="w-full max-w-[400px] bg-white rounded-2xl shadow-xl mb-6 sm:mb-8 relative z-20 mx-auto lg:mx-0 p-1 sm:p-1.5 font-sans">
+                    <div class="border-[2px] border-dashed border-gray-200 rounded-xl relative pb-3 sm:pb-6">
+                        
+                        <!-- Top Section -->
+                        <div class="flex justify-between items-start pt-3 pl-4 sm:pt-5 sm:pl-5 relative h-[60px] sm:h-[80px]">
+                            
+                            <div class="text-left z-10 pr-20 sm:pr-24">
+                                <span class="text-vibrant-danger text-[9px] sm:text-[11px] font-black tracking-widest uppercase mb-0.5 sm:mb-1 block">Benefício Exclusivo</span>
+                                <h3 class="text-medical-900 font-black text-sm sm:text-[17px] leading-tight uppercase">Cupom de Desconto Ativo</h3>
+                            </div>
+                            
+                            <!-- Tag Vermelha -->
+                            <div class="bg-vibrant-danger text-white w-[75px] h-[70px] sm:w-[90px] sm:h-[85px] absolute top-[-2px] right-[-2px] rounded-bl-2xl rounded-tr-xl flex flex-col justify-center items-center z-10 shadow-lg">
+                                <div class="absolute left-0 top-0 bottom-0 border-l-[3px] border-dashed border-white/40"></div>
+                                <div class="absolute -left-1.5 -top-1.5 sm:-left-2 sm:-top-2 w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full"></div>
+                                <div class="absolute -left-1.5 -bottom-1.5 sm:-left-2 sm:-bottom-2 w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full"></div>
 
-<!-- ======================= HERO ======================= -->
-<section class="hero">
-  <div class="hero__glow" aria-hidden="true"></div>
-  <div class="container hero__inner">
-    <div class="hero__copy">
-      <p class="eyebrow"><span class="dot"></span> Material digital • Anatomia Humana</p>
-      <h1 class="display">
-        RESUMOS <span class="txt-orange">E</span><br>
-        LABORATÓRIOS
-      </h1>
-      <p class="lead">
-        Todo o conteúdo de Anatomia organizado, ilustrado e direto ao ponto — do resumo teórico
-        ao roteiro de aula prática. Estude menos tempo e aprenda de verdade.
-      </p>
-      <ul class="hero__checks">
-        <li>Resumos ilustrados e coloridos</li>
-        <li>Roteiros completos de laboratório</li>
-        <li>Acesso imediato após a compra</li>
-        <li>Estude no celular, tablet ou computador</li>
-      </ul>
-      <div class="hero__actions">
-        <a href="#planos" class="btn btn--primary btn--lg">VER OS PLANOS</a>
-        <a href="#previa" class="btn btn--ghost btn--lg">Ver prévia do material</a>
+                                <span class="text-[26px] sm:text-[32px] font-black leading-none tracking-tighter mt-1">50%</span>
+                                <span class="text-[9px] sm:text-[11px] font-bold uppercase tracking-widest mt-0.5 sm:mt-1">OFF</span>
+                            </div>
+                        </div>
+
+                        <!-- Divider & Pill -->
+                        <div class="w-full h-px border-t border-solid border-gray-100 mt-3 mb-5 sm:mt-5 sm:mb-8 relative z-20">
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                <div class="bg-medical-900 text-white px-4 py-1.5 sm:px-5 sm:py-2 rounded-full text-[9px] sm:text-[11px] font-black uppercase tracking-wider whitespace-nowrap shadow-md">
+                                    Oferta Especial 2026
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="text-center px-4 sm:px-6">
+                            <p class="text-gray-400 text-[9px] sm:text-[11px] font-bold uppercase tracking-widest mb-0.5 sm:mb-1">Aproveite hoje por</p>
+                            <div class="flex items-start justify-center text-medical-900 h-[55px] sm:h-[72px]">
+                                <span class="text-lg sm:text-2xl font-bold mt-1.5 sm:mt-2 mr-1">R$</span>
+                                <span class="text-[60px] sm:text-[80px] font-black tracking-tighter leading-none">4,99</span>
+                            </div>
+                            
+                            <div class="w-[85%] mx-auto h-px bg-gray-200 mt-4 mb-2 sm:mt-8 sm:mb-4"></div>
+                            
+                            <p class="text-vibrant-danger font-bold text-xs sm:text-[15px]">
+                                Oferta válida somente hoje: <span id="data-atual" class="underline decoration-vibrant-danger"></span>
+                            </p>
+                            <p class="text-vibrant-primary font-black text-xs sm:text-[15px] mt-1 sm:mt-1.5 uppercase tracking-wide">
+                                Pagamento Via PIX
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- IMAGEM DOS DISPOSITIVOS (MOCKUP SLIDER) -->
+                <div class="w-full max-w-[320px] sm:max-w-[450px] mb-6 sm:mb-8 relative z-20 flex items-center justify-center floating mx-auto lg:mx-0">
+                    <!-- Imagem colocada como primeira conforme solicitado -->
+                    <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/capa-nova-tabelas.png" alt="Material 1" class="hero-slider-img w-full object-contain filter drop-shadow-2xl rounded-xl transition-opacity duration-1000 ease-in-out opacity-100 relative">
+                    <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/78.png" alt="Material 2" class="hero-slider-img w-full object-contain filter drop-shadow-2xl rounded-xl transition-opacity duration-1000 ease-in-out opacity-0 absolute inset-0 m-auto">
+                    <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/79.png" alt="Material 3" class="hero-slider-img w-full object-contain filter drop-shadow-2xl rounded-xl transition-opacity duration-1000 ease-in-out opacity-0 absolute inset-0 m-auto">
+                </div>
+
+                <!-- Botão de Ação -->
+                <div class="w-full flex flex-col items-center lg:items-start mb-8 sm:mb-10 z-20">
+                    <a href="#planos" class="btn-pulse w-[90%] sm:w-auto bg-white border-[3px] border-vibrant-danger text-vibrant-danger text-base sm:text-xl font-black py-4 sm:py-5 px-6 sm:px-10 rounded-xl text-center uppercase tracking-wider block shadow-xl shadow-red-500/20 hover:bg-red-50 transition-colors">
+                        Clique aqui p/ baixar
+                    </a>
+                    
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-3 mt-3 sm:mt-4 text-[10px] sm:text-xs font-bold text-gray-600">
+                        <div class="flex items-center gap-1.5 bg-white border border-gray-200 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md shadow-sm">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-vibrant-danger"></i>
+                            <span>+164 páginas em PDF</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 bg-white border border-gray-200 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md shadow-sm">
+                            <i data-lucide="check-square" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-vibrant-danger"></i>
+                            <span>+Tabelas Rápidas</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <h1 class="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight mb-4 sm:mb-6 text-medical-900 drop-shadow-sm text-center lg:text-left">
+                    Terminologia Médica <br>
+                    <span class="text-vibrant-primary">Descomplicada</span>
+                </h1>
+                
+                <p class="text-base sm:text-lg lg:text-xl text-gray-700 mb-6 leading-relaxed font-medium text-center lg:text-left">
+                    Domine a linguagem da medicina de forma rápida, visual e definitiva. Você não precisa decorar centenas de termos, apenas entender como as palavras são formadas.
+                </p>
+                
+                <p class="text-sm sm:text-md font-bold text-medical-900 mb-8 bg-white/50 backdrop-blur p-4 rounded-xl border border-white/60 flex items-center gap-3 shadow-sm mx-auto lg:mx-0 w-fit">
+                    <span class="bg-vibrant-primary text-white p-1 rounded-full"><i data-lucide="zap" class="w-4 h-4"></i></span>
+                    Transforme termos difíceis em algo lógico, visual e fácil de aprender.
+                </p>
+            </div>
+
+            <!-- Coluna Direita: Mockups e Bônus -->
+            <div class="w-full lg:w-1/2 relative flex flex-col items-center justify-center mt-12 lg:mt-0 z-10 pb-12">
+                <div class="text-center mb-6 w-full">
+                    <h2 class="text-2xl sm:text-4xl font-black text-medical-900 leading-tight">
+                        <span class="text-vibrant-primary">+164 Páginas</span> de Conteúdo
+                    </h2>
+                    <p class="text-base sm:text-lg text-gray-600 mt-1 uppercase tracking-widest font-bold">
+                        Estrutura lógica, prefixos, sufixos e <span class="text-vibrant-primary inline-block ml-1">Aplicação Clínica</span>
+                    </p>
+                </div>
+
+                <div class="relative w-full max-w-lg floating mb-16 bg-white p-2 sm:p-3 rounded-[2rem] shadow-xl border border-indigo-50 mx-auto">
+                    <div class="relative w-full rounded-2xl overflow-hidden">
+                        <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+                            <span class="text-medical-900/5 font-black text-3xl uppercase tracking-widest transform -rotate-45 select-none">
+                                vetfacil.com
+                            </span>
+                        </div>
+                        <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/1-4.png" alt="Conteúdo 1" class="slider-img w-full h-auto object-contain transition-opacity duration-1000 opacity-100 relative">
+                        <!-- Link atualizado anteriormente -->
+                        <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/capa-nova-tabelas.png" alt="Conteúdo 2" class="slider-img w-full h-full object-contain transition-opacity duration-1000 opacity-0 absolute inset-0">
+                    </div>
+                </div>
+
+                <!-- SEÇÃO: TABELAS DE CONSULTAS RÁPIDAS -->
+                <div class="text-center mb-4 w-full">
+                    <p class="text-vibrant-yellow font-black text-xs sm:text-sm uppercase tracking-widest mb-1 drop-shadow-sm text-medical-900">Acesso Rápido</p>
+                    <h2 class="text-2xl sm:text-3xl font-black text-vibrant-primary uppercase">
+                        Tabelas de consultas rápidas de terminologia
+                    </h2>
+                </div>
+                <div class="relative w-full max-w-lg floating mb-16" style="animation-delay: 0.5s;">
+                    <!-- Link atualizado anteriormente -->
+                    <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/capa-nova-tabelas.png" alt="Tabelas de Consultas Rápidas" class="w-full object-contain filter drop-shadow-xl rounded-2xl">
+                </div>
+
+                <!-- SEÇÃO: MEGA RESUMO -->
+                <div class="text-center mb-4 w-full">
+                    <p class="text-vibrant-yellow font-black text-xs sm:text-sm uppercase tracking-widest mb-1 drop-shadow-sm text-medical-900">Incluso no Combo Completo</p>
+                    <h2 class="text-xl sm:text-2xl font-black text-medical-900 leading-tight">
+                        Mega resumo de prefixos e sufixos médicos <br><span class="text-sm font-bold text-gray-500">(46 páginas)</span>
+                    </h2>
+                </div>
+                <div class="relative w-full max-w-lg floating mb-16" style="animation-delay: 1s;">
+                    <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/79.png" alt="Mega Resumo de Prefixos e Sufixos" class="w-full object-contain filter drop-shadow-xl rounded-2xl">
+                </div>
+
+                <!-- SEÇÃO: ANATOMIA TOPOGRÁFICA -->
+                <div class="text-center mb-4 w-full">
+                    <p class="text-vibrant-yellow font-black text-xs sm:text-sm uppercase tracking-widest mb-1 drop-shadow-sm text-medical-900">Incluso no Combo Completo</p>
+                    <h2 class="text-xl sm:text-2xl font-black text-medical-900 leading-tight">
+                        Anatomia topográfica completa <br><span class="text-sm font-bold text-gray-500">(32 páginas)</span>
+                    </h2>
+                </div>
+                <div class="relative w-full max-w-lg floating mb-16" style="animation-delay: 1.5s;">
+                    <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/anatomia-topografica.png" alt="Anatomia Topográfica Completa" class="w-full object-contain filter drop-shadow-xl rounded-2xl">
+                </div>
+
+                <!-- SEÇÃO: ANATOMIA CARDÍACA -->
+                <div class="text-center mb-4 w-full">
+                    <p class="text-vibrant-yellow font-black text-xs sm:text-sm uppercase tracking-widest mb-1 drop-shadow-sm text-medical-900">Incluso no Combo Completo</p>
+                    <h2 class="text-xl sm:text-2xl font-black text-medical-900 leading-tight">
+                        Anatomia cardíaca + ECG <br><span class="text-sm font-bold text-gray-500">(7 páginas)</span>
+                    </h2>
+                </div>
+                <div class="relative w-full max-w-lg floating mb-16" style="animation-delay: 2s;">
+                    <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/anatomia-e-fisiologia-1.png" alt="Anatomia Cardíaca e ECG" class="w-full object-contain filter drop-shadow-xl rounded-2xl">
+                </div>
+
+                <!-- SEÇÃO: FLASHCARDS ÓSSEA -->
+                <div class="text-center mb-4 w-full">
+                    <p class="text-vibrant-yellow font-black text-xs sm:text-sm uppercase tracking-widest mb-1 drop-shadow-sm text-medical-900">Incluso no Combo Completo</p>
+                    <h2 class="text-xl sm:text-2xl font-black text-medical-900 leading-tight">
+                        Flashcards de anatomia óssea <br><span class="text-sm font-bold text-gray-500">(12 páginas)</span>
+                    </h2>
+                </div>
+                <div class="relative w-full max-w-lg floating mb-16" style="animation-delay: 2.5s;">
+                    <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2025/05/flashcardsosseos-1.png" alt="Flashcards de Anatomia Óssea" class="w-full object-contain filter drop-shadow-xl rounded-2xl">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PROVA SOCIAL -->
+    <section class="bg-vibrant-primary py-8 shadow-inner">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/pessoas-alunas.png" alt="Alunos" class="w-48 sm:w-auto sm:h-10 md:h-12 object-contain mx-auto">
+                <p class="text-white font-bold text-base md:text-xl">
+                    Mais de <span class="bg-white text-vibrant-primary px-2 font-black rounded">20 mil estudantes e profissionais da saúde</span> já utilizam esse método.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section class="py-20 bg-white/40 backdrop-blur-sm border-b border-black/5">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-black text-medical-900 mb-4">Por que o Terminologia Médica Descomplicada é indispensável?</h2>
+                <p class="text-gray-500 text-lg">Mude completamente a forma como você estuda: entenda a lógica da medicina e reconheça padrões automaticamente.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-3xl border border-indigo-100 shadow-sm hover:shadow-xl hover:shadow-indigo-900/5 transition-all group">
+                    <div class="bg-indigo-50 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-indigo-100 group-hover:bg-vibrant-primary transition-colors">
+                        <i data-lucide="brain" class="w-7 h-7 text-vibrant-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-medical-900 mb-3">Lógica da Medicina</h3>
+                    <p class="text-gray-500 leading-relaxed">Entenda como as palavras são formadas em vez de apenas decorar centenas de termos médicos isolados.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-3xl border border-indigo-100 shadow-sm hover:shadow-xl hover:shadow-indigo-900/5 transition-all group">
+                    <div class="bg-indigo-50 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-indigo-100 group-hover:bg-vibrant-primary transition-colors">
+                        <i data-lucide="search" class="w-7 h-7 text-vibrant-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-medical-900 mb-3">Reconhecimento de Padrões</h3>
+                    <p class="text-gray-500 leading-relaxed">Aprenda a interpretar e traduzir qualquer palavra médica com facilidade, mesmo que você nunca a tenha visto antes.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-3xl border border-indigo-100 shadow-sm hover:shadow-xl hover:shadow-indigo-900/5 transition-all group">
+                    <div class="bg-indigo-50 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-indigo-100 group-hover:bg-vibrant-primary transition-colors">
+                        <i data-lucide="book-open" class="w-7 h-7 text-vibrant-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-medical-900 mb-3">Prefixos e Sufixos</h3>
+                    <p class="text-gray-500 leading-relaxed">Domínio completo das raízes, prefixos e sufixos usados diariamente na rotina hospitalar e diagnósticos.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-8 rounded-3xl border border-indigo-100 shadow-sm hover:shadow-xl hover:shadow-indigo-900/5 transition-all group">
+                    <div class="bg-indigo-50 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-indigo-100 group-hover:bg-vibrant-primary transition-colors">
+                        <i data-lucide="stethoscope" class="w-7 h-7 text-vibrant-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-medical-900 mb-3">Foco na Prática Clínica</h3>
+                    <p class="text-gray-500 leading-relaxed">Linguagem real usada em provas, exames físicos, procedimentos cirúrgicos e laudos do dia a dia.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-white p-8 rounded-3xl border border-indigo-100 shadow-sm hover:shadow-xl hover:shadow-indigo-900/5 transition-all group">
+                    <div class="bg-indigo-50 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-indigo-100 group-hover:bg-vibrant-primary transition-colors">
+                        <i data-lucide="zap" class="w-7 h-7 text-vibrant-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-medical-900 mb-3">Aprendizado Acelerado</h3>
+                    <p class="text-gray-500 leading-relaxed">Conteúdo estruturado de forma visual e direto ao ponto para você aprender mais rápido e não esquecer.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="bg-white p-8 rounded-3xl border border-indigo-100 shadow-sm hover:shadow-xl hover:shadow-indigo-900/5 transition-all group">
+                    <div class="bg-indigo-50 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-indigo-100 group-hover:bg-vibrant-primary transition-colors">
+                        <i data-lucide="users" class="w-7 h-7 text-vibrant-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-medical-900 mb-3">Para Toda a Área da Saúde</h3>
+                    <p class="text-gray-500 leading-relaxed">Perfeito para estudantes de medicina, enfermagem, fisioterapia, veterinária e qualquer profissional da saúde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO DETALHADO -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-black text-medical-900 mb-6">O que o Guia inclui?</h2>
+                    <p class="text-gray-600 text-lg mb-8">Um guia estruturado de forma progressiva para te dar domínio completo da terminologia médica, do básico ao avançado.</p>
+                    
+                    <!-- TÓPICOS ABORDADOS -->
+                    <h3 class="text-base sm:text-lg font-black text-medical-900 mb-4 uppercase tracking-widest flex items-center gap-2">
+                        <i data-lucide="book-open" class="w-5 h-5 text-vibrant-primary"></i> Tópicos Abordados
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-base text-gray-800 font-semibold">Terminologia médica fundamental</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-base text-gray-800 font-semibold">Prefixos médicos (a base de tudo)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-base text-gray-800 font-semibold">Sufixos médicos essenciais</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-base text-gray-800 font-semibold">Direção e posição anatômica</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-base text-gray-800 font-semibold">Propriedades físicas, quantidade e cores</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-base text-gray-800 font-semibold">Interpretação clínica de laudos e exames</span>
+                        </li>
+                    </ul>
+
+                    <!-- MÓDULOS DETALHADOS -->
+                    <div class="mt-8 pt-6 border-t border-gray-300">
+                        <h3 class="text-base sm:text-lg font-black text-medical-900 mb-4 uppercase tracking-widest flex items-center gap-2">
+                            <i data-lucide="layers" class="w-5 h-5 text-vibrant-primary"></i> Módulos Detalhados
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white text-gray-600 border border-gray-200 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Órgãos e sistemas (cardio, neuro, hepato...)</span>
+                            <span class="bg-white text-gray-600 border border-gray-200 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Doenças e condições (-ite, -patia, -oma)</span>
+                            <span class="bg-white text-gray-600 border border-gray-200 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Procedimentos (-ectomia, -tomia)</span>
+                            <span class="bg-white text-gray-600 border border-gray-200 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Diagnósticos (-scopia, -grafia)</span>
+                            <span class="bg-white text-gray-600 border border-gray-200 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Quantidade (uni, bi, poli, multi)</span>
+                            <span class="bg-white text-gray-600 border border-gray-200 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Cores clínicas (cianose, icterícia, eritema)</span>
+                            <span class="bg-white text-gray-600 border border-gray-200 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Estrutura anatômica profunda/superficial</span>
+                        </div>
+                    </div>
+
+                    <!-- PRÁTICA -->
+                    <div class="mt-8 pt-6 border-t border-gray-300">
+                        <h3 class="text-base sm:text-lg font-black text-medical-900 mb-4 uppercase tracking-widest flex items-center gap-2">
+                            <i data-lucide="stethoscope" class="w-5 h-5 text-vibrant-primary"></i> Aplicação na Prática
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-base text-gray-800 font-semibold">Interpretação de termos clínicos complexos</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-base text-gray-800 font-semibold">Entendimento de laudos e exames</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-base text-gray-800 font-semibold">Compreensão da estrutura lógica das palavras</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                                <span class="text-base text-vibrant-primary font-black">Ganho de confiança na rotina de estágios e hospital</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-1/2 flex justify-center mt-10 lg:mt-0 relative">
+                    <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/78.png" alt="Conteúdo do Guia" class="w-full max-w-lg object-contain filter drop-shadow-2xl floating rounded-2xl relative z-20">
+                    
+                    <!-- Decoração sutil de fundo -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-vibrant-primary/10 to-transparent rounded-full blur-3xl w-3/4 h-3/4 m-auto z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO DETALHADO - MEGA RESUMO -->
+    <section class="py-20 relative overflow-hidden bg-indigo-50/40 border-t border-indigo-100">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+                <div class="w-full lg:w-1/2">
+                    <div class="inline-block bg-vibrant-yellow text-black text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 shadow-sm">
+                        Incluso no Combo Completo
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-black text-medical-900 mb-6">Mega Resumo de Prefixos e Sufixos: <br><span class="text-vibrant-primary">Guia Prático</span></h2>
+                    <p class="text-gray-600 text-lg mb-8">Mais de 46 páginas combinando fundamentos estruturais com aplicação prática, abordando tudo o que você precisa para dominar a formação das palavras médicas e acelerar a memorização.</p>
+                    
+                    <!-- ÁREAS DIAGNÓSTICAS -->
+                    <h3 class="text-base sm:text-lg font-black text-medical-900 mb-4 uppercase tracking-widest flex items-center gap-2">
+                        <i data-lucide="book-open" class="w-5 h-5 text-vibrant-primary"></i> O que você vai encontrar
+                    </h3>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-base text-gray-800 font-semibold">Tabelas completas de Prefixos e Sufixos Médicos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-base text-gray-800 font-semibold">Associações anatômicas e sistemas do corpo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-base text-gray-800 font-semibold">Termos de doenças, condições e diagnósticos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-base text-gray-800 font-semibold">Sufixos e prefixos cirúrgicos e de procedimentos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-base text-gray-800 font-semibold">Morfologia, cores, direção e posição clínica</span>
+                        </li>
+                    </ul>
+
+                    <!-- ENFOQUE CLÍNICO -->
+                    <div class="mt-8 pt-6 border-t border-gray-300">
+                        <h3 class="text-base sm:text-lg font-black text-medical-900 mb-4 uppercase tracking-widest flex items-center gap-2">
+                            <i data-lucide="clipboard-check" class="w-5 h-5 text-vibrant-primary"></i> Enfoque Estratégico
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white text-gray-600 border border-gray-200 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Memorização Visual</span>
+                            <span class="bg-white text-gray-600 border border-gray-200 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Padrões Médicos</span>
+                            <span class="bg-white text-gray-600 border border-gray-200 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Interpretação Rápida</span>
+                            <span class="bg-white text-gray-600 border border-gray-200 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">Mapas Mentais</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-1/2 flex justify-center mt-10 lg:mt-0 relative">
+                    <img decoding="async" src="https://anatomycards.com.br/wp-content/uploads/2026/03/79.png" alt="Mega Resumo de Prefixos e Sufixos" class="w-full max-w-lg object-contain filter drop-shadow-2xl floating rounded-2xl relative z-20">
+                    
+                    <!-- Decoração sutil de fundo -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-vibrant-primary/10 to-transparent rounded-full blur-3xl w-3/4 h-3/4 m-auto z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section id="planos" class="py-24 bg-white/40 backdrop-blur border-t border-black/5">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-medical-900 mb-6">Acelere seu aprendizado</h2>
+                <p class="text-gray-600 text-lg">Acesso imediato e vitalício à plataforma.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8 max-w-6xl mx-auto">
+                
+                <!-- Plano Essencial -->
+                <div class="w-full md:w-1/2 lg:w-[400px] bg-white rounded-[2rem] shadow-xl hover:shadow-indigo-900/10 p-8 flex flex-col text-gray-800 border border-gray-200 transform transition hover:-translate-y-2">
+                    <h3 class="text-2xl font-bold text-medical-900 mb-2">Combo Essencial</h3>
+                    <p class="text-gray-500 mb-6 min-h-[48px] font-semibold">Bases e Aplicação da Terminologia</p>
+                    
+                    <div class="mb-6">
+                        <span class="text-5xl font-extrabold text-medical-900 tracking-tighter">R$ 4<span class="text-3xl">,99</span></span>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest font-bold">pagamento único</p>
+                    </div>
+
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-3 mb-6 inline-flex items-center gap-2 shadow-sm">
+                        <i data-lucide="file-text" class="w-5 h-5 text-medical-800"></i>
+                        <span class="font-bold text-medical-900">67 páginas em PDF</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8 flex-grow text-gray-600 font-medium">
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span>Guia Completo de Terminologia</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="check" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span>Tabelas de Consultas Rápidas</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="https://ebooksmed.mycartpanda.com/checkout/209004586:1" class="w-full block text-center bg-gray-100 hover:bg-gray-200 text-medical-900 font-bold py-4 px-6 rounded-2xl transition uppercase tracking-widest text-sm">
+                        Baixar Combo Essencial
+                    </a>
+                </div>
+
+                <!-- Plano Completo -->
+                <div class="w-full md:w-1/2 lg:w-[500px] bg-white rounded-[2rem] shadow-2xl p-8 flex flex-col text-gray-800 border-4 border-vibrant-primary relative transform transition hover:-translate-y-3 md:-mt-4 md:mb-4">
+                    
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-vibrant-yellow text-black text-[10px] font-black px-6 py-2 rounded-full uppercase tracking-widest shadow-lg whitespace-nowrap">
+                        ⭐ Mais escolhido
+                    </div>
+
+                    <h3 class="text-3xl font-black text-medical-900 mb-2 mt-2">Combo Completo</h3>
+                    <p class="text-vibrant-primary font-bold mb-6 min-h-[48px]">Tudo o que você precisa para dominar</p>
+                    
+                    <div class="mb-6">
+                        <span class="text-6xl font-extrabold text-vibrant-primary tracking-tighter">R$ 14<span class="text-3xl">,99</span></span>
+                        <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest font-bold">pagamento único</p>
+                    </div>
+
+                    <div class="bg-indigo-50 rounded-xl p-3 mb-6 inline-flex items-center gap-2 border border-indigo-100 shadow-sm">
+                        <i data-lucide="layers" class="w-5 h-5 text-vibrant-primary"></i>
+                        <span class="font-bold text-medical-900">164 páginas totais</span>
+                    </div>
+
+                    <ul class="space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                            <i data-lucide="check" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-medical-900 font-bold">Terminologia Médica e Tabelas (67 páginas)</span>
+                        </li>
+                        <li class="flex items-start bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                            <i data-lucide="check" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-medical-900 font-bold">Mega Resumo de Prefixos e Sufixos (46 páginas)</span>
+                        </li>
+                        <li class="flex items-start bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                            <i data-lucide="check" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-medical-900 font-bold">Anatomia Topográfica Completa (32 páginas)</span>
+                        </li>
+                        <li class="flex items-start bg-indigo-50 p-3 rounded-xl border border-indigo-100 shadow-sm">
+                            <i data-lucide="gift" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-vibrant-primary font-black">Flashcards de Anatomia Óssea (12 páginas)</span>
+                        </li>
+                        <li class="flex items-start bg-indigo-50 p-3 rounded-xl border border-indigo-100 shadow-sm">
+                            <i data-lucide="gift" class="w-5 h-5 text-vibrant-primary mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-vibrant-primary font-black">Anatomia Cardíaca + ECG (7 páginas)</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="https://ebooksmed.mycartpanda.com/checkout/209004542:1" class="w-full block text-center bg-vibrant-danger hover:bg-vibrant-dangerHover text-white text-lg font-black py-5 px-6 rounded-2xl shadow-xl transition transform hover:scale-[1.02] uppercase tracking-widest">
+                        Baixar Combo Completo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEEDBACK DE ALUNOS -->
+    <section class="py-20 bg-indigo-50/40 border-t border-indigo-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <p class="text-vibrant-primary font-black text-xs sm:text-sm uppercase tracking-widest mb-2">+5 mil alunos</p>
+                <h2 class="text-3xl md:text-4xl font-black text-medical-900 uppercase">Feedback de alunos</h2>
+                <p class="text-gray-500 text-lg mt-3">O que quem já baixou o material está falando.</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-5">
+
+                <!-- Depoimento 1 -->
+                <div class="w-full sm:w-[88%] sm:ml-auto bg-white rounded-[1.75rem] border-2 border-vibrant-primary/25 shadow-lg p-4 flex items-center gap-4">
+                    <div class="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-vibrant-primary to-indigo-800 text-white font-black text-xl flex items-center justify-center ring-4 ring-indigo-100">L</div>
+                    <div class="min-w-0">
+                        <p class="font-bold text-medical-900 text-sm">Lali</p>
+                        <p class="text-gray-700 text-sm sm:text-base leading-snug">“Muito bom eu já pedi o meu amei...”</p>
+                        <div class="flex items-center gap-0.5 mt-1">
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                        </div>
+                        <p class="text-[10px] italic text-gray-400 mt-0.5">@feliperodriguesacm</p>
+                    </div>
+                </div>
+
+                <!-- Depoimento 2 -->
+                <div class="w-full sm:w-[88%] sm:mr-auto bg-white rounded-[1.75rem] border-2 border-vibrant-primary/25 shadow-lg p-4 flex items-center gap-4">
+                    <div class="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-vibrant-primary to-indigo-800 text-white font-black text-xl flex items-center justify-center ring-4 ring-indigo-100">J</div>
+                    <div class="min-w-0">
+                        <p class="font-bold text-medical-900 text-sm">Jully Soares</p>
+                        <p class="text-gray-700 text-sm sm:text-base leading-snug">“Maravilhoso material pra estudo ,muito top👏👏”</p>
+                        <div class="flex items-center gap-0.5 mt-1">
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                        </div>
+                        <p class="text-[10px] italic text-gray-400 mt-0.5">@feliperodriguesacm</p>
+                    </div>
+                </div>
+
+                <!-- Depoimento 3 -->
+                <div class="w-full sm:w-[88%] sm:ml-auto bg-white rounded-[1.75rem] border-2 border-vibrant-primary/25 shadow-lg p-4 flex items-center gap-4">
+                    <div class="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-vibrant-primary to-indigo-800 text-white font-black text-xl flex items-center justify-center ring-4 ring-indigo-100">K</div>
+                    <div class="min-w-0">
+                        <p class="font-bold text-medical-900 text-sm">Kamila P.</p>
+                        <p class="text-gray-700 text-sm sm:text-base leading-snug">“Comprei e chegou certinho, gostei bastante do conteúdo”</p>
+                        <div class="flex items-center gap-0.5 mt-1">
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                        </div>
+                        <p class="text-[10px] italic text-gray-400 mt-0.5">@feliperodriguesacm</p>
+                    </div>
+                </div>
+
+                <!-- Depoimento 4 -->
+                <div class="w-full sm:w-[88%] sm:mr-auto bg-white rounded-[1.75rem] border-2 border-vibrant-primary/25 shadow-lg p-4 flex items-center gap-4">
+                    <div class="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-vibrant-primary to-indigo-800 text-white font-black text-xl flex items-center justify-center ring-4 ring-indigo-100">E</div>
+                    <div class="min-w-0">
+                        <p class="font-bold text-medical-900 text-sm">Evandro Arruda</p>
+                        <p class="text-gray-700 text-sm sm:text-base leading-snug">“ótimo material gostei muito do conteúdo, parabéns”</p>
+                        <div class="flex items-center gap-0.5 mt-1">
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                        </div>
+                        <p class="text-[10px] italic text-gray-400 mt-0.5">@feliperodriguesacm</p>
+                    </div>
+                </div>
+
+                <!-- Depoimento 5 -->
+                <div class="w-full sm:w-[88%] sm:ml-auto bg-white rounded-[1.75rem] border-2 border-vibrant-primary/25 shadow-lg p-4 flex items-center gap-4">
+                    <div class="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-vibrant-primary to-indigo-800 text-white font-black text-xl flex items-center justify-center ring-4 ring-indigo-100">R</div>
+                    <div class="min-w-0">
+                        <p class="font-bold text-medical-900 text-sm">Raysa Tuller</p>
+                        <p class="text-gray-700 text-sm sm:text-base leading-snug">“Muito legal o conteúdo, bem completo! Recomendo!!”</p>
+                        <div class="flex items-center gap-0.5 mt-1">
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                        </div>
+                        <p class="text-[10px] italic text-gray-400 mt-0.5">@feliperodriguesacm</p>
+                    </div>
+                </div>
+
+                <!-- Depoimento 6 -->
+                <div class="w-full sm:w-[88%] sm:mr-auto bg-white rounded-[1.75rem] border-2 border-vibrant-primary/25 shadow-lg p-4 flex items-center gap-4">
+                    <div class="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-vibrant-primary to-indigo-800 text-white font-black text-xl flex items-center justify-center ring-4 ring-indigo-100">N</div>
+                    <div class="min-w-0">
+                        <p class="font-bold text-medical-900 text-sm">Nicole Cardoso</p>
+                        <p class="text-gray-700 text-sm sm:text-base leading-snug">“Ótimo conteúdo, esta me ajudando muito na faculdade, super pratico!!”</p>
+                        <div class="flex items-center gap-0.5 mt-1">
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                        </div>
+                        <p class="text-[10px] italic text-gray-400 mt-0.5">@feliperodriguesacm</p>
+                    </div>
+                </div>
+
+                <!-- Depoimento 7 -->
+                <div class="w-full sm:w-[88%] sm:ml-auto bg-white rounded-[1.75rem] border-2 border-vibrant-primary/25 shadow-lg p-4 flex items-center gap-4">
+                    <div class="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-vibrant-primary to-indigo-800 text-white font-black text-xl flex items-center justify-center ring-4 ring-indigo-100">L</div>
+                    <div class="min-w-0">
+                        <p class="font-bold text-medical-900 text-sm">Larissa S.</p>
+                        <p class="text-gray-700 text-sm sm:text-base leading-snug">“Já comprei o meu, recomendo, fácil de entender e bem completo😍”</p>
+                        <div class="flex items-center gap-0.5 mt-1">
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 text-vibrant-yellow fill-current"></i>
+                        </div>
+                        <p class="text-[10px] italic text-gray-400 mt-0.5">@feliperodriguesacm</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex justify-center mt-12">
+                <a href="#planos" class="bg-vibrant-danger hover:bg-vibrant-dangerHover text-white text-base sm:text-lg font-black py-4 px-10 rounded-2xl shadow-xl transition transform hover:scale-[1.02] uppercase tracking-widest">
+                    Quero fazer parte
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 bg-white border-t border-gray-200">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-medical-900 mb-4 uppercase tracking-widest">Dúvidas Frequentes</h2>
+                <p class="text-gray-500">Tudo o que você precisa saber antes de adquirir seu material.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Pergunta 1 -->
+                <div class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:border-indigo-100 transition-colors">
+                    <button class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none transition-colors hover:bg-indigo-50/50" onclick="toggleFaq(1)">
+                        <span class="font-bold text-medical-900 text-lg">A compra é segura?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-1" class="w-5 h-5 text-vibrant-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-content-1" class="px-8 pb-6 text-gray-500 hidden leading-relaxed text-sm">
+                        Sim, a compra é intermediada pela Cartpanda, uma plataforma confiável presente no mercado há mais de 10 anos, especializada em produtos digitais e com sistemas avançados de segurança.
+                    </div>
+                </div>
+
+                <!-- Pergunta 2 -->
+                <div class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:border-indigo-100 transition-colors">
+                    <button class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none transition-colors hover:bg-indigo-50/50" onclick="toggleFaq(2)">
+                        <span class="font-bold text-medical-900 text-lg">Quando terei acesso aos materiais?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-2" class="w-5 h-5 text-vibrant-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-content-2" class="px-8 pb-6 text-gray-500 hidden leading-relaxed text-sm">
+                        O acesso é imediato após a confirmação do pagamento via PIX. Você receberá um e-mail automático contendo os links para download dos PDFs e instruções do App.
+                    </div>
+                </div>
+
+                <!-- Pergunta 3 -->
+                <div class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:border-indigo-100 transition-colors">
+                    <button class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none transition-colors hover:bg-indigo-50/50" onclick="toggleFaq(3)">
+                        <span class="font-bold text-medical-900 text-lg">Qual o formato dos materiais?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-3" class="w-5 h-5 text-vibrant-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-content-3" class="px-8 pb-6 text-gray-500 hidden leading-relaxed text-sm">
+                        Os mapas e guias são entregues em formato PDF de alta resolução, ideal para celulares, tablets ou impressão. Os flashcards são acessados por um App digital no smartphone.
+                    </div>
+                </div>
+
+                <!-- Pergunta 4 -->
+                <div class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:border-indigo-100 transition-colors">
+                    <button class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none transition-colors hover:bg-indigo-50/50" onclick="toggleFaq(4)">
+                        <span class="font-bold text-medical-900 text-lg">Para quem serve?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-4" class="w-5 h-5 text-vibrant-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-content-4" class="px-8 pb-6 text-gray-500 hidden leading-relaxed text-sm">
+                        Ideal para estudantes de medicina, enfermagem, fisioterapia, veterinária e profissionais da saúde animal ou humana que desejam dominar a terminologia médica de forma rápida, visual e eficiente.
+                    </div>
+                </div>
+
+                <!-- Pergunta 5 -->
+                <div class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:border-indigo-100 transition-colors">
+                    <button class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none transition-colors hover:bg-indigo-50/50" onclick="toggleFaq(5)">
+                        <span class="font-bold text-medical-900 text-lg">Quais as formas de pagamento?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-5" class="w-5 h-5 text-vibrant-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-content-5" class="px-8 pb-6 text-gray-500 hidden leading-relaxed text-sm">
+                        Aceitamos pagamento **exclusivamente via PIX**, o que garante a aprovação e a liberação imediata do seu material.
+                    </div>
+                </div>
+
+                <!-- Pergunta 6 -->
+                <div class="bg-gray-50 border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:border-indigo-100 transition-colors">
+                    <button class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none transition-colors hover:bg-indigo-50/50" onclick="toggleFaq(6)">
+                        <span class="font-bold text-medical-900 text-lg">Posso imprimir o material?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-6" class="w-5 h-5 text-vibrant-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-content-6" class="px-8 pb-6 text-gray-500 hidden leading-relaxed text-sm">
+                        Sim! Os guias e mapas são entregues em formato PDF de **altíssima resolução**, perfeitamente configurados para impressão.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-medical-900 py-16 text-center text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-2xl font-black mb-6 italic">Terminologia Médica Descomplicada<span class="text-vibrant-primary">.</span></h2>
+            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                &copy; 2026 Terminologia Médica Descomplicada. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- TOAST DE COMPRAS -->
+    <div id="toast-compras" aria-live="polite" aria-atomic="true">
+      <div class="icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </svg>
       </div>
-      <div class="hero__trust">
-        <div class="stars" aria-label="Avaliação 5 de 5">★★★★★</div>
-        <p><strong>+5 mil alunos</strong> · avaliação 5,0 · pagamento seguro Hotmart</p>
-      </div>
-    </div>
-
-    <div class="hero__art" aria-hidden="true">
-      <div class="card-stack">
-        <div class="card-stack__item card-stack__item--back"><span>SISTEMA<br>ESQUELÉTICO</span></div>
-        <div class="card-stack__item card-stack__item--mid"><span>SISTEMA<br>MUSCULAR</span></div>
-        <div class="card-stack__item card-stack__item--front">
-          <span class="card-stack__tag">LABORATÓRIO</span>
-          <span class="card-stack__title">ROTEIRO<br>DE AULA<br>PRÁTICA</span>
-          <span class="card-stack__foot">AnatomyCards</span>
+      <div class="textos">
+        <div class="top">
+          <p class="nome">Cliente</p>
+          <p class="tempo">há 1 minuto</p>
+        </div>
+        <p class="msg">acabou de baixar o resumo</p>
+        <div class="badge">
+          <span class="dot"></span>
+          <span class="pagamento">Pix</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ======================= BARRA DE BENEFÍCIOS ======================= -->
-<section class="strip">
-  <div class="container strip__inner">
-    <div class="strip__item"><b>Acesso imediato</b><span>Recebe no e-mail na hora</span></div>
-    <div class="strip__item"><b>100% digital</b><span>Sem frete, sem espera</span></div>
-    <div class="strip__item"><b>Compra segura</b><span>Processada pela Hotmart</span></div>
-    <div class="strip__item"><b>Acesso vitalício</b><span>Baixe e estude quando quiser</span></div>
-  </div>
-</section>
+    <script>
+        lucide.createIcons();
 
-<!-- ======================= O QUE VOCÊ RECEBE ======================= -->
-<section class="section" id="conteudo">
-  <div class="container">
-    <header class="section__head">
-      <p class="eyebrow"><span class="dot"></span> O que você recebe</p>
-      <h2 class="title">TUDO O QUE VOCÊ PRECISA<br><span class="txt-orange">PARA PASSAR EM ANATOMIA</span></h2>
-      <p class="section__sub">Um material construído a partir das dúvidas reais de quem está na faculdade agora.</p>
-    </header>
+        function toggleFaq(id) {
+            const content = document.getElementById(`faq-content-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
 
-    <div class="grid grid--3">
-      <article class="feature">
-        <h3>Resumos teóricos</h3>
-        <p>Todo o conteúdo de Anatomia resumido em linguagem simples, com destaque para o que mais cai na prova.</p>
-      </article>
-      <article class="feature">
-        <h3>Roteiros de laboratório</h3>
-        <p>Guias de aula prática com as estruturas que você precisa identificar em cada peça, na ordem certa.</p>
-      </article>
-      <article class="feature">
-        <h3>Ilustrações e esquemas</h3>
-        <p>Imagens limpas e legendadas para fixar origem, inserção, inervação e irrigação sem decoreba.</p>
-      </article>
-      <article class="feature">
-        <h3>Mapas mentais</h3>
-        <p>Revisão rápida antes da prova: um mapa por sistema, com as relações que os professores cobram.</p>
-      </article>
-      <article class="feature">
-        <h3>Tabelas comparativas</h3>
-        <p>Músculos, ossos, nervos e vasos lado a lado — o jeito mais rápido de não confundir na hora da prova.</p>
-      </article>
-      <article class="feature">
-        <h3>Checklists de estudo</h3>
-        <p>Saiba exatamente o que já dominou e o que ainda falta revisar antes da teórica e da prática.</p>
-      </article>
-    </div>
-  </div>
-</section>
+        function setTodayDate() {
+            const dateElement = document.getElementById('data-atual');
+            if (dateElement) {
+                const today = new Date();
+                dateElement.textContent = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+            }
+        }
 
-<!-- ======================= PRÉVIA ======================= -->
-<section class="section section--alt" id="previa">
-  <div class="container">
-    <header class="section__head">
-      <p class="eyebrow"><span class="dot"></span> Prévia</p>
-      <h2 class="title">DÊ UMA OLHADA <span class="txt-orange">POR DENTRO</span></h2>
-      <p class="section__sub">Algumas páginas do material — organização limpa, direta e fácil de revisar.</p>
-    </header>
+        function startTimer() {
+            const timerDisplay = document.getElementById('countdown-timer');
+            if (!timerDisplay) return;
+            const timeToCount = 15 * 60 * 1000;
+            const now = new Date().getTime();
+            let endTime = localStorage.getItem('histOfferEndTime');
+            if (!endTime || now > endTime) {
+                endTime = now + timeToCount;
+                localStorage.setItem('histOfferEndTime', endTime);
+            }
+            setInterval(() => {
+                const currentTime = new Date().getTime();
+                const distance = endTime - currentTime;
+                if (distance <= 0) {
+                    timerDisplay.innerHTML = "00:00:00";
+                    return;
+                }
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                timerDisplay.innerHTML = `00:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }, 1000);
+        }
 
-    <div class="preview">
-      <figure class="preview__item"><div class="preview__ph"><span>Osteologia</span></div><figcaption>Resumo ilustrado</figcaption></figure>
-      <figure class="preview__item"><div class="preview__ph"><span>Miologia</span></div><figcaption>Tabela comparativa</figcaption></figure>
-      <figure class="preview__item"><div class="preview__ph"><span>Neuroanatomia</span></div><figcaption>Mapa mental</figcaption></figure>
-      <figure class="preview__item"><div class="preview__ph"><span>Laboratório</span></div><figcaption>Roteiro de aula prática</figcaption></figure>
-    </div>
-    <!-- Troque os .preview__ph por <img src="assets/img/previa-01.jpg" alt="..."> quando subir as imagens reais -->
-  </div>
-</section>
+        function initHeroSlider() {
+            const slides = document.querySelectorAll('.hero-slider-img');
+            if (slides.length === 0) return;
+            let currentSlide = 0;
+            setInterval(() => {
+                slides[currentSlide].classList.replace('opacity-100', 'opacity-0');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.replace('opacity-0', 'opacity-100');
+            }, 3500);
+        }
 
-<!-- ======================= PLANOS ======================= -->
-<section class="section" id="planos">
-  <div class="container">
-    <header class="section__head">
-      <p class="eyebrow"><span class="dot"></span> Planos</p>
-      <h2 class="title">ESCOLHA O SEU <span class="txt-orange">ACESSO</span></h2>
-      <p class="section__sub">Pagamento único. Sem mensalidade, sem pegadinha.</p>
-    </header>
+        function initSlider() {
+            const slides = document.querySelectorAll('.slider-img');
+            if (slides.length === 0) return;
+            let currentSlide = 0;
+            setInterval(() => {
+                slides[currentSlide].classList.replace('opacity-100', 'opacity-0');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.replace('opacity-0', 'opacity-100');
+            }, 3500);
+        }
 
-    <div class="plans">
-      <!-- PLANO 1 -->
-      <article class="plan">
-        <header class="plan__head">
-          <h3 class="plan__name">RESUMOS</h3>
-          <p class="plan__desc">Para quem quer começar agora e garantir a teoria em dia.</p>
-        </header>
-        <div class="plan__price">
-          <span class="plan__currency">R$</span>
-          <span class="plan__value">4,99</span>
-        </div>
-        <p class="plan__note">Pagamento único · acesso imediato</p>
-        <ul class="plan__list">
-          <li>Resumos teóricos de Anatomia</li>
-          <li>Ilustrações e esquemas legendados</li>
-          <li>Tabelas comparativas</li>
-          <li>Acesso vitalício ao arquivo</li>
-          <li>Atualizações inclusas</li>
-        </ul>
-        <!-- TROQUE pelo link de checkout da Hotmart deste plano -->
-        <a href="#" class="btn btn--outline btn--block">QUERO ESSE</a>
-      </article>
+        window.addEventListener('load', () => {
+            startTimer();
+            setTodayDate();
+            initHeroSlider();
+            initSlider();
+        });
+    </script>
 
-      <!-- PLANO 2 - DESTAQUE -->
-      <article class="plan plan--featured">
-        <span class="plan__badge">MAIS VENDIDO</span>
-        <header class="plan__head">
-          <h3 class="plan__name">COMPLETO</h3>
-          <p class="plan__desc">Teoria + prática. O pacote que os alunos mais recomendam.</p>
-        </header>
-        <div class="plan__price">
-          <span class="plan__currency">R$</span>
-          <span class="plan__value">14,99</span>
-        </div>
-        <p class="plan__note">Pagamento único · acesso imediato</p>
-        <ul class="plan__list">
-          <li><b>Tudo do plano Resumos</b></li>
-          <li>Roteiros completos de laboratório</li>
-          <li>Mapas mentais por sistema</li>
-          <li>Checklists de estudo</li>
-          <li>Banco de questões comentadas</li>
-          <li>Acesso vitalício + atualizações</li>
-        </ul>
-        <!-- TROQUE pelo link de checkout da Hotmart deste plano -->
-        <a href="#" class="btn btn--primary btn--block">QUERO O COMPLETO</a>
-      </article>
-    </div>
+    <script>
+    /* ================= CONFIGURAÇÕES DO TOAST ================= */
+    const delayToastSeg = 0.5;      // Meio segundo após o toque/rolagem
+    const intervaloMinSeg = 7;      // intervalo mínimo entre notificações
+    const intervaloMaxSeg = 14;     // intervalo máximo
+    const duracaoToastMs = 3000;    // quanto tempo o toast fica visível
+    const quantidadeNomes = 10;     // quantos nomes gerar a cada carregamento
 
-    <div class="guarantee">
-      <div class="guarantee__seal"><b>7</b><span>dias</span></div>
-      <div>
-        <h3>Garantia incondicional de 7 dias</h3>
-        <p>Se não for para você, é só pedir o reembolso dentro de 7 dias pela própria Hotmart. Você recebe 100% do valor de volta, sem precisar explicar nada.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    /* ================= HELPERS ================= */
+    function randomNumber(min, max){
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
-<!-- ======================= FEEDBACK DE ALUNOS ======================= -->
-<section class="section feedback" id="feedback">
-  <div class="container">
-    <header class="section__head section__head--center">
-      <p class="feedback__kicker">+5 MIL ALUNOS</p>
-      <h2 class="feedback__title"><span class="txt-orange">FEEDBACK</span><br>DE ALUNOS</h2>
-    </header>
+    /* ================= GERADOR DE NOMES ================= */
+    function gerarCompras(qtd = 10){
+      const primeirosNomes = [
+        "Ana","Bruno","Camila","Diego","Eduarda","Felipe","Giovana","Henrique","Isabela","João",
+        "Karina","Lucas","Mariana","Natália","Otávio","Paula","Rafael","Sabrina","Thiago","Vanessa",
+        "Wesley","Yasmin","Caio","Larissa","Renato","Beatriz","Gustavo","Carolina","Fábio","Priscila",
+        "Luana","Gabriel","Patrícia","Rogério","Daniela","Vinícius","Helena","Juliane","Sérgio","Michele",
+        "Anderson","Leonardo","Tatiana","Maurício","Bianca","Marcos","Aline","Renato","Otávio","Diego"
+      ];
 
-    <div class="reviews">
-      <article class="review review--right">
-        <div class="review__avatar" data-initial="L"></div>
-        <div class="review__body">
-          <p class="review__name">Lali</p>
-          <p class="review__text">“Muito bom eu já pedi o meu amei...”</p>
-          <div class="review__stars" aria-label="5 de 5 estrelas">★★★★★</div>
-          <p class="review__handle">@feliperodriguesacm</p>
-        </div>
-      </article>
+      const iniciaisSobrenome = ["A.","B.","C.","D.","E.","F.","G.","H.","J.","K.","L.","M.","N.","O.","P.","R.","S.","T.","V."];
 
-      <article class="review review--left">
-        <div class="review__avatar" data-initial="J"></div>
-        <div class="review__body">
-          <p class="review__name">Jully Soares</p>
-          <p class="review__text">“Maravilhoso material pra estudo ,muito top👏👏”</p>
-          <div class="review__stars" aria-label="5 de 5 estrelas">★★★★★</div>
-          <p class="review__handle">@feliperodriguesacm</p>
-        </div>
-      </article>
+      const usados = new Set();
+      const lista = [];
 
-      <article class="review review--right">
-        <div class="review__avatar" data-initial="K"></div>
-        <div class="review__body">
-          <p class="review__name">Kamila P.</p>
-          <p class="review__text">“Comprei e chegou certinho, gostei bastante do conteúdo”</p>
-          <div class="review__stars" aria-label="5 de 5 estrelas">★★★★★</div>
-          <p class="review__handle">@feliperodriguesacm</p>
-        </div>
-      </article>
+      while (lista.length < qtd){
+        const nome = primeirosNomes[randomNumber(0, primeirosNomes.length - 1)];
+        const inic = iniciaisSobrenome[randomNumber(0, iniciaisSobrenome.length - 1)];
+        const completo = `${nome} ${inic}`;
 
-      <article class="review review--left">
-        <div class="review__avatar" data-initial="E"></div>
-        <div class="review__body">
-          <p class="review__name">Evandro Arruda</p>
-          <p class="review__text">“ótimo material gostei muito do conteúdo, parabéns”</p>
-          <div class="review__stars" aria-label="5 de 5 estrelas">★★★★★</div>
-          <p class="review__handle">@feliperodriguesacm</p>
-        </div>
-      </article>
+        if (usados.has(completo)) continue;
+        usados.add(completo);
 
-      <article class="review review--right">
-        <div class="review__avatar" data-initial="R"></div>
-        <div class="review__body">
-          <p class="review__name">Raysa Tuller</p>
-          <p class="review__text">“Muito legal o conteúdo, bem completo! Recomendo!!”</p>
-          <div class="review__stars" aria-label="5 de 5 estrelas">★★★★★</div>
-          <p class="review__handle">@feliperodriguesacm</p>
-        </div>
-      </article>
+        const minutos = randomNumber(1, 55);
 
-      <article class="review review--left">
-        <div class="review__avatar" data-initial="N"></div>
-        <div class="review__body">
-          <p class="review__name">Nicole Cardoso</p>
-          <p class="review__text">“Ótimo conteúdo, esta me ajudando muito na faculdade, super pratico!!”</p>
-          <div class="review__stars" aria-label="5 de 5 estrelas">★★★★★</div>
-          <p class="review__handle">@feliperodriguesacm</p>
-        </div>
-      </article>
+        lista.push({
+          nome: completo,
+          tempo: `${minutos} minuto${minutos > 1 ? "s" : ""}`,
+          pagamento: "Pix"
+        });
+      }
 
-      <article class="review review--right">
-        <div class="review__avatar" data-initial="L"></div>
-        <div class="review__body">
-          <p class="review__name">Larissa S.</p>
-          <p class="review__text">“Já comprei o meu, recomendo, fácil de entender e bem completo😍”</p>
-          <div class="review__stars" aria-label="5 de 5 estrelas">★★★★★</div>
-          <p class="review__handle">@feliperodriguesacm</p>
-        </div>
-      </article>
-    </div>
+      return lista;
+    }
 
-    <div class="feedback__cta">
-      <a href="#planos" class="btn btn--primary btn--lg">QUERO FAZER PARTE</a>
-    </div>
-  </div>
+    let compras = gerarCompras(quantidadeNomes);
 
-  <div class="scallop" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
-</section>
+    /* ================= LÓGICA DE EXECUÇÃO ================= */
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!Array.isArray(compras) || compras.length === 0){
+        compras = gerarCompras(quantidadeNomes);
+      }
 
-<!-- ======================= FAQ ======================= -->
-<section class="section section--alt" id="faq">
-  <div class="container container--narrow">
-    <header class="section__head">
-      <p class="eyebrow"><span class="dot"></span> Dúvidas frequentes</p>
-      <h2 class="title">AINDA COM <span class="txt-orange">DÚVIDA?</span></h2>
-    </header>
+      let ativado = false;
 
-    <div class="faq">
-      <details class="faq__item">
-        <summary>O material é físico ou digital?</summary>
-        <p>É 100% digital. Assim que o pagamento é aprovado, você recebe o acesso no e-mail cadastrado na compra e pode baixar o material no celular, tablet ou computador.</p>
-      </details>
-      <details class="faq__item">
-        <summary>Em quanto tempo recebo o acesso?</summary>
-        <p>Na hora. Pagamentos no cartão e no Pix liberam o acesso em poucos minutos. No boleto, a liberação acontece após a compensação bancária.</p>
-      </details>
-      <details class="faq__item">
-        <summary>Qual a diferença entre os planos?</summary>
-        <p>O plano <b>Resumos (R$ 4,99)</b> traz toda a parte teórica: resumos, ilustrações e tabelas. O plano <b>Completo (R$ 14,99)</b> inclui tudo isso e ainda os roteiros de laboratório, mapas mentais, checklists e o banco de questões comentadas.</p>
-      </details>
-      <details class="faq__item">
-        <summary>O pagamento é seguro?</summary>
-        <p>Sim. Toda a compra é processada pela Hotmart, uma das maiores plataformas de produtos digitais do Brasil. Nós não temos acesso aos dados do seu cartão.</p>
-      </details>
-      <details class="faq__item">
-        <summary>Serve para o meu curso?</summary>
-        <p>Sim. O material atende Medicina, Enfermagem, Fisioterapia, Odontologia, Biomedicina, Educação Física e demais cursos da área da saúde que estudam Anatomia Humana.</p>
-      </details>
-      <details class="faq__item">
-        <summary>E se eu não gostar?</summary>
-        <p>Você tem 7 dias de garantia. Basta solicitar o reembolso pela Hotmart dentro desse prazo e devolvemos 100% do valor pago.</p>
-      </details>
-    </div>
-  </div>
-</section>
+      const iniciarAoInteragir = () => {
+        if (!ativado) {
+          ativado = true;
+          
+          // Inicia quase imediatamente (0.5s) após o primeiro toque/clique/rolagem
+          setTimeout(() => mostrarToast(), delayToastSeg * 1000);
+          
+          // Remove os ouvintes para não sobrecarregar
+          window.removeEventListener('scroll', iniciarAoInteragir);
+          window.removeEventListener('touchstart', iniciarAoInteragir);
+          window.removeEventListener('mousedown', iniciarAoInteragir);
+        }
+      };
 
-<!-- ======================= CTA FINAL ======================= -->
-<section class="final">
-  <div class="container final__inner">
-    <h2 class="title">COMECE HOJE POR <span class="txt-orange">R$ 4,99</span></h2>
-    <p>Junte-se aos mais de 5 mil alunos que já estudam Anatomia de um jeito mais leve.</p>
-    <a href="#planos" class="btn btn--primary btn--lg">GARANTIR MEU MATERIAL</a>
-  </div>
-</section>
+      // Monitora qualquer sinal de vida do usuário
+      window.addEventListener('scroll', iniciarAoInteragir, { passive: true });
+      window.addEventListener('touchstart', iniciarAoInteragir, { passive: true });
+      window.addEventListener('mousedown', iniciarAoInteragir, { passive: true });
+    });
 
-<!-- ======================= RODAPÉ ======================= -->
-<footer class="footer">
-  <div class="container footer__inner">
-    <div>
-      <a class="brand" href="#topo">
-        <span class="brand__mark">AC</span>
-        <span class="brand__text">Anatomy<em>Cards</em></span>
-      </a>
-      <p class="footer__note">Material digital de estudo em Anatomia Humana.</p>
-    </div>
-    <nav class="footer__nav">
-      <a href="#conteudo">O material</a>
-      <a href="#planos">Planos</a>
-      <a href="#feedback">Feedback</a>
-      <a href="#faq">Dúvidas</a>
-    </nav>
-    <p class="footer__legal">© <span id="year">2026</span> AnatomyCards. Todos os direitos reservados.</p>
-  </div>
-</footer>
+    function mostrarToast(){
+      configurarToast();
+      const toast = document.getElementById('toast-compras');
+      if (!toast) return;
 
-<a href="#planos" class="sticky-cta" id="stickyCta">
-  <span>Plano completo</span>
-  <strong>R$ 14,99</strong>
-</a>
+      toast.classList.add('show');
 
-<script src="assets/js/main.js"></script>
+      // Tempo que fica visível
+      setTimeout(() => {
+        toast.classList.remove('show');
+        // Próxima notificação conforme o intervalo aleatório
+        setTimeout(() => {
+          mostrarToast();
+        }, randomNumber(intervaloMinSeg, intervaloMaxSeg) * 1000);
+      }, duracaoToastMs);
+    }
+
+    function configurarToast(){
+      const item = compras[0];
+      if (!item) return;
+
+      const elNome = document.querySelector('#toast-compras .nome');
+      const elTempo = document.querySelector('#toast-compras .tempo');
+      const elPag = document.querySelector('#toast-compras .pagamento');
+
+      if (elNome) elNome.innerText = item.nome;
+      if (elTempo) elTempo.innerText = `há ${item.tempo}`;
+      if (elPag) elPag.innerText = item.pagamento;
+
+      compras.push(compras.shift());
+    }
+    </script>
+
 </body>
 </html>
