@@ -99,9 +99,16 @@ if ($redirect !== '') {
 } elseif ($status === 0) {
     $teste['resultado'] = 'FALHA DE CONEXAO — o servidor não conseguiu alcançar a ZuckPay. '
         . 'Veja o error_log do PHP. Costuma ser firewall de saída ou DNS na hospedagem.';
-} elseif ($status === 401 || $status === 403) {
+} elseif ($status === 401) {
     $teste['resultado'] = 'NAO AUTORIZADO — client_id/client_secret errados, revogados, '
         . 'ou a chave não tem permissão para PIX.';
+} elseif ($status === 403) {
+    $teste['resultado'] = 'IP BLOQUEADO — as credenciais são válidas, mas o IP deste servidor '
+        . 'não está na IP Whitelist da ZuckPay. Libere-o no painel.';
+    $teste['ip_deste_servidor'] = trim((string) @file_get_contents('https://api.ipify.org')) ?: '(não foi possível descobrir)';
+} elseif ($status === 429) {
+    $teste['resultado'] = 'RATE LIMIT — limite de tentativas atingido (5 por 30 minutos). '
+        . 'Aguarde e rode de novo.';
 } elseif ($status === 404) {
     $teste['resultado'] = 'ENDPOINT NAO ENCONTRADO — confira o api_base.';
 } elseif ($status === 200 && !empty($resposta['transactionId'])) {

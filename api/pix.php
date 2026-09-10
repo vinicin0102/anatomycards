@@ -54,14 +54,26 @@ if ($erros !== []) {
     responder(422, ['erro' => 'Dados inválidos.', 'campos' => $erros]);
 }
 
-// Parâmetros de atribuição (UTMs, Meta, Google, TikTok). Opcionais.
+/**
+ * Idempotência: o navegador manda o mesmo "pedido" se o comprador clicar
+ * duas vezes ou recarregar. Com external_id_client repetido, a ZuckPay
+ * devolve a cobrança existente em vez de criar outra.
+ */
+$pedido = (string) ($corpo['pedido'] ?? '');
+$pedido = preg_replace('/[^A-Za-z0-9-]/', '', $pedido) ?? '';
+if (strlen($pedido) < 8 || strlen($pedido) > 60) {
+    $pedido = bin2hex(random_bytes(12));
+}
+
 $payload = [
-    'nome'     => $nome,
-    'cpf'      => $cpf,
-    'valor'    => $plano['valor'],
-    'email'    => $email,
-    'telefone' => $telefone,
-    'urlnoty'  => $config['webhook_url'],
+    'nome'               => $nome,
+    'cpf'                => $cpf,
+    'valor'              => $plano['valor'],
+    'email'              => $email,
+    'telefone'           => $telefone,
+    'urlnoty'            => $config['webhook_url'],
+    'descricao'          => $plano['nome'],
+    'external_id_client' => 'AC-' . $planoId . '-' . $pedido,
 ];
 
 // Vincula a venda ao produto cadastrado no painel (opcional na API).
@@ -72,7 +84,8 @@ if (!empty($plano['product_id'])) {
 $rastreio = is_array($corpo['rastreio'] ?? null) ? $corpo['rastreio'] : [];
 $permitidos = [
     'utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term',
-    'fbc', 'fbp', 'gclid', 'ttclid', 'click_id',
+    'fbc', 'fbp', 'fbclid', 'gclid', 'ttclid', 'wbraid', 'gbraid',
+    'kclid', 'click_id', 'src', 'sck',
 ];
 foreach ($permitidos as $chave) {
     $valor = $rastreio[$chave] ?? null;
@@ -82,6 +95,16 @@ foreach ($permitidos as $chave) {
 }
 
 [$status, $resposta] = chamarZuckpay($config, 'POST', '/qrcode', $payload);
+
+if ($status === 429) {
+    registrarErro('pix', 'rate limit da ZuckPay');
+    responder(429, ['erro' => 'Muitas tentativas em pouco tempo. Aguarde alguns minutos e tente de novo.']);
+}
+
+if ($status === 403) {
+    registrarErro('pix', 'HTTP 403 — provável IP whitelist bloqueando o servidor');
+    responder(502, ['erro' => 'Pagamento indisponível no momento. Já estamos verificando.']);
+}
 
 if ($status !== 200 || empty($resposta['transactionId'])) {
     $ref = substr(bin2hex(random_bytes(4)), 0, 8);
@@ -113,4 +136,5 @@ responder(200, [
     'expiracao'     => (int) ($resposta['calendar']['expiration'] ?? 1200),
     'valor'         => $plano['valor'],
     'plano'         => $plano['nome'],
+    'pedido'        => $pedido,
 ]);

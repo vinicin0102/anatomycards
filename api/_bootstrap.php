@@ -172,3 +172,74 @@ function assinaturaWebhookValida(string $header, string $corpoRaw, string $segre
 
     return [true, ''];
 }
+
+/** Diretório de estado (cache e registro de vendas). */
+function diretorioEstado(array $config): string
+{
+    $dir = dirname((string) ($config['log_path'] ?? __DIR__ . '/../storage/pagamentos.log'));
+    if (!is_dir($dir)) {
+        @mkdir($dir, 0770, true);
+    }
+    return $dir;
+}
+
+/**
+ * Cache curto das consultas de status.
+ *
+ * A ZuckPay aplica rate limit (429). Como a página consulta em intervalos
+ * curtos enquanto o comprador paga, várias abas ou recarregamentos poderiam
+ * estourar o limite. Guardamos a última resposta por alguns segundos.
+ *
+ * @return array|null resposta em cache, ou null se não houver/estiver velha
+ */
+function cacheStatusLer(array $config, string $transactionId, int $validadeSegundos = 8): ?array
+{
+    $arquivo = diretorioEstado($config) . '/status-' . sha1($transactionId) . '.json';
+
+    if (!is_file($arquivo) || (time() - (int) filemtime($arquivo)) > $validadeSegundos) {
+        return null;
+    }
+
+    $dados = json_decode((string) @file_get_contents($arquivo), true);
+    return is_array($dados) ? $dados : null;
+}
+
+function cacheStatusGravar(array $config, string $transactionId, array $dados): void
+{
+    $arquivo = diretorioEstado($config) . '/status-' . sha1($transactionId) . '.json';
+    @file_put_contents($arquivo, json_encode($dados, JSON_UNESCAPED_UNICODE), LOCK_EX);
+}
+
+/**
+ * Idempotência da entrega: diz se este transactionId já foi registrado.
+ *
+ * A ZuckPay reenvia a mesma notificação, então a entrega do produto precisa
+ * acontecer uma única vez. Usa um arquivo-marcador criado atomicamente:
+ * duas notificações simultâneas não conseguem passar as duas.
+ */
+function transacaoJaRegistrada(array $config, string $transactionId): bool
+{
+    $marcador = diretorioEstado($config) . '/pago-' . sha1($transactionId) . '.flag';
+
+    // 'x' falha se o arquivo já existir — é o teste e a criação num passo só.
+    $handle = @fopen($marcador, 'x');
+
+    if ($handle === false) {
+        return true;
+    }
+
+    fwrite($handle, date('c'));
+    fclose($handle);
+    return false;
+}
+
+/** Acrescenta a venda ao log de pagamentos. */
+function registrarPagamento(array $config, array $dados): void
+{
+    diretorioEstado($config);
+    @file_put_contents(
+        (string) $config['log_path'],
+        json_encode($dados, JSON_UNESCAPED_UNICODE) . PHP_EOL,
+        FILE_APPEND | LOCK_EX
+    );
+}

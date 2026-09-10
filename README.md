@@ -83,6 +83,8 @@ comando fica visível para outros processos e no histórico do shell.
    | Resultado | Causa provável |
    |---|---|
    | `REDIRECIONAMENTO` | `api_base` com o host errado (`www` sobrando ou faltando). O diagnóstico mostra o endereço certo em `va_para` e testa a variante em `alternativa`. |
+   | `IP BLOQUEADO` | Credenciais válidas, mas o IP do servidor não está na IP Whitelist da ZuckPay. O diagnóstico mostra o IP a liberar. |
+   | `RATE LIMIT` | 5 tentativas por 30 minutos. Aguarde. |
    | `FALHA DE CONEXAO` | A hospedagem bloqueia conexões de saída, ou DNS. |
    | `NAO AUTORIZADO` | `client_id`/`client_secret` errados, revogados ou sem permissão para PIX. |
    | `ENDPOINT NAO ENCONTRADO` | `api_base` incorreto. |
@@ -120,6 +122,23 @@ Estas escolhas são deliberadas — mudá-las abre brecha real:
   um `"status":"PAID"` forjado não libera nada.
 - **Entradas são validadas**: CPF com dígito verificador, e-mail, telefone e
   limite de tamanho. Parâmetros de atribuição passam por whitelist.
+- **A entrega roda uma vez só.** A ZuckPay reenvia notificações. Antes de
+  entregar, `webhook.php` cria um arquivo-marcador com `fopen(..., 'x')`, que
+  falha se já existir — duas notificações simultâneas não passam as duas.
+- **Cobranças não duplicam.** Cada abertura do checkout gera um `pedido`, usado
+  como `external_id_client`. Clicar duas vezes devolve a mesma cobrança em vez
+  de criar outra.
+
+## Rate limit
+
+A ZuckPay responde **429 após 5 tentativas em 30 minutos**. Por isso:
+
+- `status.php` guarda a última consulta por 8 segundos, então várias abas ou
+  recarregamentos não geram chamadas repetidas.
+- Quando a API devolve 429, a resposta pede à página para esperar 30s em vez
+  dos 5s normais; o front respeita esse intervalo.
+- `webhook.php` responde na hora a `payment_refused`, `payment_pending` e
+  `checkout_abandoned`, sem gastar uma chamada de verificação.
 
 ## Pendências
 

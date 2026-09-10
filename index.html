@@ -1055,6 +1055,7 @@
         let planoAtual = null;
         let poll = null;
         let contagem = null;
+        let pedido = null;   // id do pedido, estável entre tentativas (idempotência)
 
         /* ---------- atribuição (UTMs, Meta, Google, TikTok) ---------- */
         function lerCookie(nome) {
@@ -1096,6 +1097,10 @@
 
         function abrir(plano) {
             planoAtual = plano;
+            // Um id por abertura do modal: reenviar o formulário não gera
+            // uma segunda cobrança, a ZuckPay devolve a mesma.
+            pedido = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2))
+                     .replace(/[^a-zA-Z0-9-]/g, '');
             document.getElementById('checkout-plano').textContent = PLANOS[plano].nome;
             document.getElementById('checkout-valor').textContent = PLANOS[plano].valor;
             limparErros();
@@ -1111,7 +1116,7 @@
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             document.body.style.overflow = '';
-            clearInterval(poll); clearInterval(contagem);
+            clearTimeout(poll); clearInterval(contagem);
         }
 
         document.querySelectorAll('.js-comprar').forEach(b => {
@@ -1155,6 +1160,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         plano:    planoAtual,
+                        pedido:   pedido,
                         nome:     document.getElementById('cp-nome').value,
                         cpf:      document.getElementById('cp-cpf').value,
                         email:    document.getElementById('cp-email').value,
@@ -1196,26 +1202,46 @@
             clearInterval(contagem);
             contagem = setInterval(() => {
                 restante--;
-                if (restante <= 0) { clearInterval(contagem); clearInterval(poll); relogio.textContent = '(expirado)'; return; }
+                if (restante <= 0) { clearInterval(contagem); clearTimeout(poll); relogio.textContent = '(expirado)'; return; }
                 relogio.textContent = `(${String(Math.floor(restante / 60)).padStart(2,'0')}:${String(restante % 60).padStart(2,'0')})`;
             }, 1000);
 
-            clearInterval(poll);
-            poll = setInterval(() => verificar(dados.transactionId, dados), 4000);
+            clearTimeout(poll);
+            agendarConsulta(dados, 5);
         }
 
-        async function verificar(transactionId, dados) {
+        /**
+         * A ZuckPay limita requisições, então em vez de um intervalo fixo
+         * usamos o atraso que o servidor sugere (ele aumenta para 30s quando
+         * o rate limit é atingido).
+         */
+        function agendarConsulta(dados, segundos) {
+            clearTimeout(poll);
+            poll = setTimeout(() => verificar(dados), segundos * 1000);
+        }
+
+        async function verificar(dados) {
+            let proxima = 8;
             try {
-                const r = await fetch(`${API}/status.php?transactionId=${encodeURIComponent(transactionId)}`);
+                const r = await fetch(`${API}/status.php?transactionId=${encodeURIComponent(dados.transactionId)}`);
                 const s = await r.json();
+
                 if (r.ok && s.pago) {
-                    clearInterval(poll); clearInterval(contagem);
+                    clearTimeout(poll); clearInterval(contagem);
                     document.getElementById('pago-email').textContent = document.getElementById('cp-email').value;
                     mostrarEtapa('pago');
                     if (window.lucide) lucide.createIcons();
                     if (window.fbq) fbq('track', 'Purchase', { value: dados.valor, currency: 'BRL', content_name: dados.plano });
+                    return;
                 }
+
+                // Recusado, expirado ou estornado: não adianta continuar.
+                if (r.ok && s.final) { clearTimeout(poll); clearInterval(contagem); return; }
+
+                if (r.ok && s.proxima_consulta) proxima = s.proxima_consulta;
             } catch (_) { /* rede instável: a próxima tentativa resolve */ }
+
+            agendarConsulta(dados, proxima);
         }
 
         /* ---------- copiar ---------- */

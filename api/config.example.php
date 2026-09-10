@@ -10,14 +10,20 @@ return [
     'client_secret' => getenv('ZUCKPAY_CLIENT_SECRET') ?: 'seu_client_secret',
 
     /**
-     * Base da API. Use exatamente o host que aparece na sua tela de
-     * Credenciais API — com ou sem "www". Se estiver errado, a ZuckPay
-     * responde com um redirecionamento e o POST não chega: o
-     * api/diagnostico.php detecta isso e aponta a URL certa.
+     * Base da API.
      *
-     * Para testes: https://zuckpay.com.br/conta/dev/api/pix
+     * ATENÇÃO: as duas fontes da ZuckPay divergem. A documentação completa
+     * usa https://www.zuckpay.com.br; a tela de Credenciais API mostra
+     * https://zuckpay.com.br (sem www). Com o host errado a API responde um
+     * redirecionamento e o POST autenticado não é reenviado — a cobrança
+     * nunca chega.
+     *
+     * Rode o api/diagnostico.php: ele detecta o redirect e testa as duas
+     * variantes, dizendo qual funciona na sua conta.
+     *
+     * Para testes: https://www.zuckpay.com.br/conta/dev/api/pix
      */
-    'api_base' => 'https://zuckpay.com.br/conta/v3/pix',
+    'api_base' => 'https://www.zuckpay.com.br/conta/v3/pix',
 
     /**
      * Planos vendidos na página.
