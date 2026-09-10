@@ -645,10 +645,9 @@
                         </li>
                     </ul>
                     
-                    <!-- TROCAR pelo link de checkout do Pacote Básico -->
-                    <a href="#" class="w-full block text-center bg-gray-200 hover:bg-gray-300 text-medical-900 font-bold py-4 px-6 rounded-xl transition uppercase tracking-wide">
+                    <button type="button" data-plano="basico" class="js-comprar w-full block text-center bg-gray-200 hover:bg-gray-300 text-medical-900 font-bold py-4 px-6 rounded-xl transition uppercase tracking-wide">
                         COMPRAR PLANO BÁSICO
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Plano Recomendado / Premium -->
@@ -692,10 +691,9 @@
                         </li>
                     </ul>
 
-                    <!-- TROCAR pelo link de checkout do Pacote Premium -->
-                    <a href="#" class="btn-pulse w-full block text-center bg-brand-500 hover:bg-brand-600 text-white font-extrabold py-4 px-6 rounded-xl shadow-lg transition uppercase tracking-wider text-lg">
+                    <button type="button" data-plano="premium" class="js-comprar btn-pulse w-full block text-center bg-brand-500 hover:bg-brand-600 text-white font-extrabold py-4 px-6 rounded-xl shadow-lg transition uppercase tracking-wider text-lg">
                         QUERO O PACOTE PREMIUM 🚀
-                    </a>
+                    </button>
                 </div>
 
             </div>
@@ -868,6 +866,95 @@
         </div>
     </div>
 
+    <!-- MODAL DE CHECKOUT PIX -->
+    <div id="checkout" class="fixed inset-0 z-[1000] hidden items-center justify-center bg-medical-900/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="checkout-titulo">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl max-h-[92vh] overflow-y-auto">
+
+            <div class="flex items-start justify-between gap-4 p-6 pb-4 border-b border-gray-100">
+                <div>
+                    <h3 id="checkout-titulo" class="text-xl font-bold text-medical-900">Finalizar compra</h3>
+                    <p class="text-sm text-gray-500 mt-0.5"><span id="checkout-plano">—</span> · <strong class="text-medical-900" id="checkout-valor">—</strong></p>
+                </div>
+                <button type="button" id="checkout-fechar" class="text-gray-400 hover:text-medical-900 transition p-1 -m-1" aria-label="Fechar">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- ETAPA 1: DADOS -->
+            <form id="checkout-form" class="p-6 space-y-4" novalidate>
+                <div>
+                    <label for="cp-nome" class="block text-sm font-semibold text-medical-900 mb-1">Nome completo</label>
+                    <input id="cp-nome" name="nome" type="text" autocomplete="name" required
+                           class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-brand-500 focus:ring-2 focus:ring-brand-100 outline-none transition">
+                    <p class="text-xs text-brand-600 mt-1 hidden" data-erro="nome"></p>
+                </div>
+                <div>
+                    <label for="cp-cpf" class="block text-sm font-semibold text-medical-900 mb-1">CPF</label>
+                    <input id="cp-cpf" name="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" required
+                           class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-brand-500 focus:ring-2 focus:ring-brand-100 outline-none transition">
+                    <p class="text-xs text-brand-600 mt-1 hidden" data-erro="cpf"></p>
+                </div>
+                <div>
+                    <label for="cp-email" class="block text-sm font-semibold text-medical-900 mb-1">E-mail</label>
+                    <input id="cp-email" name="email" type="email" autocomplete="email" required
+                           class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-brand-500 focus:ring-2 focus:ring-brand-100 outline-none transition">
+                    <p class="text-xs text-gray-500 mt-1">É neste e-mail que o material será entregue.</p>
+                    <p class="text-xs text-brand-600 mt-1 hidden" data-erro="email"></p>
+                </div>
+                <div>
+                    <label for="cp-telefone" class="block text-sm font-semibold text-medical-900 mb-1">Telefone (com DDD)</label>
+                    <input id="cp-telefone" name="telefone" type="tel" inputmode="numeric" placeholder="(11) 99999-8888" required
+                           class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-brand-500 focus:ring-2 focus:ring-brand-100 outline-none transition">
+                    <p class="text-xs text-brand-600 mt-1 hidden" data-erro="telefone"></p>
+                </div>
+
+                <p id="checkout-erro-geral" class="hidden text-sm text-brand-600 bg-brand-50 border border-brand-200 rounded-xl p-3"></p>
+
+                <button type="submit" id="checkout-enviar"
+                        class="w-full bg-brand-500 hover:bg-brand-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-extrabold py-4 rounded-xl shadow-lg transition uppercase tracking-wider flex items-center justify-center gap-2">
+                    <span class="js-label">Gerar PIX</span>
+                    <i data-lucide="loader-circle" class="w-5 h-5 animate-spin hidden js-spinner"></i>
+                </button>
+                <p class="text-[11px] text-gray-400 text-center leading-relaxed">
+                    Seus dados são usados apenas para emitir a cobrança e entregar o material.
+                </p>
+            </form>
+
+            <!-- ETAPA 2: PAGAMENTO -->
+            <div id="checkout-pix" class="p-6 hidden text-center">
+                <p class="text-sm text-gray-600 mb-4">Abra o app do seu banco, escolha <strong>PIX Copia e Cola</strong> ou aponte para o QR Code.</p>
+
+                <img id="pix-imagem" src="" alt="QR Code do PIX" class="w-52 h-52 mx-auto rounded-xl border border-gray-200 bg-white object-contain">
+
+                <div class="mt-4 text-left">
+                    <label for="pix-codigo" class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">PIX copia e cola</label>
+                    <textarea id="pix-codigo" readonly rows="3"
+                              class="w-full text-xs font-mono rounded-xl border border-gray-300 p-3 bg-gray-50 resize-none"></textarea>
+                    <button type="button" id="pix-copiar"
+                            class="mt-2 w-full bg-medical-900 hover:bg-medical-800 text-white font-bold py-3 rounded-xl transition uppercase tracking-wide text-sm flex items-center justify-center gap-2">
+                        <i data-lucide="copy" class="w-4 h-4"></i> <span>Copiar código</span>
+                    </button>
+                </div>
+
+                <div class="mt-5 flex items-center justify-center gap-2 text-sm font-semibold text-gray-600">
+                    <i data-lucide="loader-circle" class="w-4 h-4 animate-spin text-brand-500"></i>
+                    Aguardando pagamento… <span id="pix-timer" class="font-mono text-medical-900"></span>
+                </div>
+                <p class="text-[11px] text-gray-400 mt-2">A confirmação é automática. Pode deixar esta página aberta.</p>
+            </div>
+
+            <!-- ETAPA 3: PAGO -->
+            <div id="checkout-pago" class="p-8 hidden text-center">
+                <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="check" class="w-8 h-8 text-green-600"></i>
+                </div>
+                <h4 class="text-2xl font-extrabold text-medical-900 mb-2">Pagamento confirmado!</h4>
+                <p class="text-gray-600">Enviamos o acesso para <strong id="pago-email" class="text-medical-900"></strong>. Se não achar, confira a caixa de spam.</p>
+            </div>
+
+        </div>
+    </div>
+
     <!-- SCRIPTS DINÂMICOS DA PÁGINA -->
     <script>
         // Inicializar Ícones do Lucide
@@ -944,5 +1031,204 @@
             setInterval(exibirToast, 12000);
         }, 4000);
     </script>
+
+    <!-- CHECKOUT PIX VIA ZUCKPAY -->
+    <script>
+    (function () {
+        'use strict';
+
+        // Caminho dos endpoints PHP. Ajuste se a pasta api/ não estiver na raiz do site.
+        const API = '/api';
+
+        const PLANOS = {
+            basico:  { nome: 'Pacote Básico',  valor: 'R$ 9,99'  },
+            premium: { nome: 'Pacote Premium', valor: 'R$ 29,90' }
+        };
+
+        const modal    = document.getElementById('checkout');
+        const form     = document.getElementById('checkout-form');
+        const telaPix  = document.getElementById('checkout-pix');
+        const telaPago = document.getElementById('checkout-pago');
+        const enviar   = document.getElementById('checkout-enviar');
+        const erroGeral = document.getElementById('checkout-erro-geral');
+
+        let planoAtual = null;
+        let poll = null;
+        let contagem = null;
+
+        /* ---------- atribuição (UTMs, Meta, Google, TikTok) ---------- */
+        function lerCookie(nome) {
+            const achado = document.cookie.split('; ').find(c => c.startsWith(nome + '='));
+            return achado ? decodeURIComponent(achado.split('=').slice(1).join('=')) : '';
+        }
+
+        function rastreio() {
+            const url = new URLSearchParams(location.search);
+            const dados = {};
+            ['utm_source','utm_campaign','utm_medium','utm_content','utm_term','gclid','ttclid','click_id']
+                .forEach(k => { const v = url.get(k); if (v) dados[k] = v; });
+            const fbc = lerCookie('_fbc'); if (fbc) dados.fbc = fbc;
+            const fbp = lerCookie('_fbp'); if (fbp) dados.fbp = fbp;
+            return dados;
+        }
+
+        /* ---------- máscaras ---------- */
+        function mascararCpf(v) {
+            return v.replace(/\D/g, '').slice(0, 11)
+                    .replace(/(\d{3})(\d)/, '$1.$2')
+                    .replace(/(\d{3})(\d)/, '$1.$2')
+                    .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        }
+        function mascararTelefone(v) {
+            const d = v.replace(/\D/g, '').slice(0, 11);
+            if (d.length <= 10) return d.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{4})(\d)/, '$1-$2');
+            return d.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2');
+        }
+        document.getElementById('cp-cpf').addEventListener('input', e => { e.target.value = mascararCpf(e.target.value); });
+        document.getElementById('cp-telefone').addEventListener('input', e => { e.target.value = mascararTelefone(e.target.value); });
+
+        /* ---------- abrir / fechar ---------- */
+        function mostrarEtapa(etapa) {
+            form.classList.toggle('hidden', etapa !== 'form');
+            telaPix.classList.toggle('hidden', etapa !== 'pix');
+            telaPago.classList.toggle('hidden', etapa !== 'pago');
+        }
+
+        function abrir(plano) {
+            planoAtual = plano;
+            document.getElementById('checkout-plano').textContent = PLANOS[plano].nome;
+            document.getElementById('checkout-valor').textContent = PLANOS[plano].valor;
+            limparErros();
+            mostrarEtapa('form');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            if (window.lucide) lucide.createIcons();
+            if (window.fbq) fbq('track', 'InitiateCheckout', { content_name: PLANOS[plano].nome });
+        }
+
+        function fechar() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+            clearInterval(poll); clearInterval(contagem);
+        }
+
+        document.querySelectorAll('.js-comprar').forEach(b => {
+            b.addEventListener('click', () => abrir(b.dataset.plano));
+        });
+        document.getElementById('checkout-fechar').addEventListener('click', fechar);
+        modal.addEventListener('click', e => { if (e.target === modal) fechar(); });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) fechar();
+        });
+
+        /* ---------- erros ---------- */
+        function limparErros() {
+            document.querySelectorAll('[data-erro]').forEach(p => { p.classList.add('hidden'); p.textContent = ''; });
+            erroGeral.classList.add('hidden'); erroGeral.textContent = '';
+        }
+        function mostrarErros(campos, geral) {
+            limparErros();
+            Object.entries(campos || {}).forEach(([campo, msg]) => {
+                const p = document.querySelector(`[data-erro="${campo}"]`);
+                if (p) { p.textContent = msg; p.classList.remove('hidden'); }
+            });
+            if (geral) { erroGeral.textContent = geral; erroGeral.classList.remove('hidden'); }
+        }
+
+        function carregando(estado) {
+            enviar.disabled = estado;
+            enviar.querySelector('.js-spinner').classList.toggle('hidden', !estado);
+            enviar.querySelector('.js-label').textContent = estado ? 'Gerando…' : 'Gerar PIX';
+        }
+
+        /* ---------- envio ---------- */
+        form.addEventListener('submit', async e => {
+            e.preventDefault();
+            limparErros();
+            carregando(true);
+
+            try {
+                const resposta = await fetch(API + '/pix.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        plano:    planoAtual,
+                        nome:     document.getElementById('cp-nome').value,
+                        cpf:      document.getElementById('cp-cpf').value,
+                        email:    document.getElementById('cp-email').value,
+                        telefone: document.getElementById('cp-telefone').value,
+                        rastreio: rastreio()
+                    })
+                });
+
+                const dados = await resposta.json().catch(() => ({}));
+
+                if (!resposta.ok) {
+                    mostrarErros(dados.campos, dados.campos ? null : (dados.erro || 'Não foi possível gerar o PIX.'));
+                    return;
+                }
+
+                exibirPix(dados);
+            } catch (_) {
+                mostrarErros(null, 'Falha de conexão. Verifique sua internet e tente de novo.');
+            } finally {
+                carregando(false);
+            }
+        });
+
+        /* ---------- pagamento ---------- */
+        function exibirPix(dados) {
+            document.getElementById('pix-codigo').value = dados.qrcode || '';
+            const img = document.getElementById('pix-imagem');
+            if (dados.qrcode_image) { img.src = dados.qrcode_image; img.classList.remove('hidden'); }
+            else { img.classList.add('hidden'); }
+
+            mostrarEtapa('pix');
+            if (window.lucide) lucide.createIcons();
+
+            let restante = dados.expiracao || 1200;
+            const relogio = document.getElementById('pix-timer');
+            clearInterval(contagem);
+            contagem = setInterval(() => {
+                restante--;
+                if (restante <= 0) { clearInterval(contagem); clearInterval(poll); relogio.textContent = '(expirado)'; return; }
+                relogio.textContent = `(${String(Math.floor(restante / 60)).padStart(2,'0')}:${String(restante % 60).padStart(2,'0')})`;
+            }, 1000);
+
+            clearInterval(poll);
+            poll = setInterval(() => verificar(dados.transactionId, dados), 4000);
+        }
+
+        async function verificar(transactionId, dados) {
+            try {
+                const r = await fetch(`${API}/status.php?transactionId=${encodeURIComponent(transactionId)}`);
+                const s = await r.json();
+                if (r.ok && s.pago) {
+                    clearInterval(poll); clearInterval(contagem);
+                    document.getElementById('pago-email').textContent = document.getElementById('cp-email').value;
+                    mostrarEtapa('pago');
+                    if (window.lucide) lucide.createIcons();
+                    if (window.fbq) fbq('track', 'Purchase', { value: dados.valor, currency: 'BRL', content_name: dados.plano });
+                }
+            } catch (_) { /* rede instável: a próxima tentativa resolve */ }
+        }
+
+        /* ---------- copiar ---------- */
+        document.getElementById('pix-copiar').addEventListener('click', async function () {
+            const campo = document.getElementById('pix-codigo');
+            const rotulo = this.querySelector('span');
+            try {
+                await navigator.clipboard.writeText(campo.value);
+            } catch (_) {
+                campo.select(); document.execCommand('copy');
+            }
+            rotulo.textContent = 'Copiado!';
+            setTimeout(() => { rotulo.textContent = 'Copiar código'; }, 2000);
+        });
+    })();
+    </script>
+
 </body>
 </html>

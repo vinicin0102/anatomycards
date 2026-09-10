@@ -1,76 +1,73 @@
-# Arritmias Cardíacas do Zero ao Diagnóstico — landing page
+# Arritmias Cardíacas do Zero ao Diagnóstico
 
-Landing page de vendas do material de **Arritmias Cardíacas**.
+Landing page de vendas com checkout PIX integrado à **ZuckPay**.
 
-Arquivo único: **`index.html`**.
-
-## Origem
-
-A estrutura vem da página `medment.site/ecgdozeroaodiagnostico/` (ECG do Zero
-ao Diagnóstico), extraída do widget HTML do Elementor como documento autônomo.
-Layout, seções, animações, cronômetro, cupom, sliders e toast de compras foram
-mantidos como no original — o que mudou foi a **matéria**, que passou de ECG
-para Arritmias Cardíacas.
-
-## Estrutura das seções
-
-1. Faixa de urgência com cronômetro de 15 min
-2. Hero — cupom 50% OFF (R$ 9,99), capas do e-book, CTA, headline
-3. Prova social rápida (faixa azul)
-4. "O que tem dentro do E-book?" — 6 cards
-5. 3 Bônus gratuitos
-6. Biblioteca de Resumos Clínicos (exclusivo do Premium)
-7. Planos
-8. Feedback de Alunos — 7 depoimentos
-9. Rodapé + toast de compras
-
-## Planos
-
-| Plano | Preço |
-|---|---|
-| Pacote Básico | R$ 9,99 |
-| Pacote Premium | R$ 29,90 |
-
-> A página de referência usava R$ 9,99 e R$ 19,90. Aqui o Premium está em
-> R$ 29,90, seguindo a definição de preço do projeto.
-
-## Conteúdo adaptado para Arritmias
-
-Os 6 cards de conteúdo cobrem: mecanismos da arritmia (automatismo, reentrada,
-atividade deflagrada), passo a passo do ritmo, taquiarritmias (FA, flutter, TSV,
-TV), ritmos de parada (FV, TV sem pulso, assistolia, AESP), bradiarritmias e
-bloqueios AV, e material de bolso. Os bônus e a biblioteca de resumos clínicos
-seguem a mesma composição da página de referência.
-
-## Pendências antes de publicar
-
-1. **Links de checkout** — os dois botões de plano estão com `href="#"` e um
-   comentário `<!-- TROCAR pelo link de checkout ... -->`. Os links da página
-   de referência apontam para o produto de ECG (`medmedic.mycartpanda.com`) e
-   **não** foram reaproveitados, para não vender o produto errado.
-2. **Imagens** — as capas do hero, as 3 prévias e as 4 capas de resumos ainda
-   apontam para `medment.site` (arte do e-book de ECG). Cada bloco tem um
-   comentário `<!-- TROCAR ... -->`. Substituir pela arte de Arritmias.
-3. **Depoimentos** — usam avatar com a inicial do nome. Para as fotos reais,
-   trocar a `div` do avatar por `<img>`.
-4. **Pixels** — Meta (`352488377782448`), OpenAI e UTMify são os do
-   AnatomyCards, herdados da página anterior. O `ViewContent` do Meta foi
-   atualizado para `content_name: 'Arritmias Cardíacas do Zero ao Diagnóstico'`
-   e `content_category: 'Material de Cardiologia'`.
-
-## Diferenças em relação à página de referência
-
-- Cor `medical.50` foi adicionada ao `tailwind.config`. A referência usa
-  `bg-medical-50` na seção de bônus, mas não definia esse tom — a classe não
-  gerava nada e a seção ficava sem fundo.
-- Seção "Feedback de Alunos" com os 7 depoimentos (não existe na referência).
-- Pixels do AnatomyCards no lugar do pixel da UTMify do medment.site.
-
-## Rodar localmente
-
-```bash
-python3 -m http.server 8000
-# http://localhost:8000
+```
+index.html               página de vendas + modal de checkout
+api/pix.php              cria a cobrança PIX
+api/status.php           consulta o status do pagamento
+api/webhook.php          recebe a notificação da ZuckPay
+api/_bootstrap.php       validação, CORS e chamada autenticada à API
+api/config.example.php   modelo de configuração
+storage/                 log de pagamentos (não versionado)
 ```
 
-Depende de CDN (Tailwind, Lucide Icons, Google Fonts), então precisa de internet.
+## Configuração
+
+```bash
+cp api/config.example.php api/config.php
+```
+
+Preencha `client_id`, `client_secret`, `webhook_url` e `allowed_origins`.
+`api/config.php` está no `.gitignore` — **nunca** versione esse arquivo.
+Em produção prefira variáveis de ambiente (`ZUCKPAY_CLIENT_ID` /
+`ZUCKPAY_CLIENT_SECRET`), que o `config.example.php` já lê.
+
+Requisitos: PHP 8+ com a extensão cURL. O front chama `/api`; se a pasta não
+ficar na raiz do site, ajuste a constante `API` no script de checkout do
+`index.html`.
+
+## Como funciona
+
+1. O visitante clica em um dos planos e preenche nome, CPF, e-mail e telefone.
+2. `api/pix.php` valida os dados e chama `POST /conta/v3/pix/qrcode`.
+3. A página mostra o QR Code e o copia-e-cola, e consulta `api/status.php`
+   a cada 4s até o pagamento ser confirmado.
+4. A ZuckPay chama `api/webhook.php`, que confirma o pagamento e registra a venda.
+
+Planos: **Básico R$ 9,99** e **Premium R$ 29,90**.
+
+## Decisões de segurança
+
+Estas escolhas são deliberadas — mudá-las abre brecha real:
+
+- **O `client_secret` nunca vai para o navegador.** A documentação da ZuckPay
+  mostra um exemplo em JavaScript com `btoa(clientId + ':' + clientSecret)`
+  rodando no front. Seguir aquele exemplo publica a credencial no código-fonte
+  da página: qualquer visitante poderia criar cobranças, listar transações e
+  consultar o saldo da conta. Por isso a chamada é feita em PHP, no servidor.
+- **O preço é definido no servidor.** `api/pix.php` recebe só o *id* do plano
+  (`basico` / `premium`) e busca o valor na constante `PLANOS`. Um `valor`
+  enviado pelo navegador é ignorado — sem isso, bastaria editar a requisição
+  para comprar o Premium por R$ 0,01.
+- **As respostas são filtradas.** A API devolve `amount_liquid`, e-mail do
+  comprador e outros campos internos; os endpoints repassam apenas o necessário.
+- **O webhook não confia no próprio payload.** A ZuckPay não assina a
+  requisição, então `webhook.php` extrai só o `transactionId` e reconsulta o
+  status na API. Um POST forjado dizendo `"status":"PAID"` não libera nada.
+- **Entradas são validadas**: CPF com dígito verificador, e-mail, telefone e
+  limite de tamanho. Parâmetros de atribuição passam por whitelist.
+
+## Pendências
+
+1. **Entrega do produto** — `api/webhook.php` tem um `TODO` no ponto onde entra
+   o envio do e-mail com os PDFs ou a liberação da área de membros. A ZuckPay
+   pode reenviar a mesma notificação, então grave o `transactionId` e só
+   entregue uma vez.
+2. **Imagens** — capas do hero, as 3 prévias e as 4 capas de resumos ainda
+   apontam para `medment.site` (arte do e-book de ECG). Cada bloco tem um
+   comentário `<!-- TROCAR -->`.
+3. **Depoimentos** — usam avatar com a inicial do nome; trocar por `<img>` se
+   tiver as fotos.
+4. **Rate limiting** — não há limite de requisições em `api/pix.php`. Vale pôr
+   um limite por IP para evitar geração de cobranças em massa.

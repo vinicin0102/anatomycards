@@ -2,3 +2,7 @@
 Thumbs.db
 node_modules/
 *.log
+
+# credenciais — nunca versionar
+api/config.php
+storage/
