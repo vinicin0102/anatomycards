@@ -8,6 +8,7 @@ api/pix.php              cria a cobrança PIX
 api/status.php           consulta o status do pagamento
 api/webhook.php          recebe a notificação da ZuckPay
 api/diagnostico.php      checagem da integração (protegido por token)
+tools/testar-webhook.php testa a validação de assinatura do webhook (CLI)
 api/_bootstrap.php       validação, CORS e chamada autenticada à API
 api/config.example.php   modelo de configuração
 storage/                 log de pagamentos (não versionado)
@@ -48,6 +49,27 @@ Planos: **Básico R$ 9,99** e **Premium R$ 29,90**. Ambos ficam em
 `config.php`, junto com o `product_id` do produto cadastrado no painel da
 ZuckPay (atualmente `593187` nos dois — se cada plano tiver produto próprio,
 use um id diferente em cada).
+
+## Conferir o webhook
+
+Depois de configurar o `webhook_secret`, rode **no servidor**:
+
+```bash
+php tools/testar-webhook.php
+```
+
+Ele monta POSTs assinados como a ZuckPay faz e confere que o endpoint aceita
+o legítimo e recusa assinatura falsa, replay e requisição sem header:
+
+```
+[ok]   assinatura válida        (esperado: 200) -> HTTP 200
+[ok]   assinatura falsa         (esperado: 401) -> HTTP 401
+[ok]   replay de 10 minutos     (esperado: 401) -> HTTP 401
+[ok]   sem header de assinatura (esperado: 401) -> HTTP 401
+```
+
+O segredo é lido do `config.php`; nunca passe por argumento, porque a linha de
+comando fica visível para outros processos e no histórico do shell.
 
 ## Se o PIX não gerar
 
