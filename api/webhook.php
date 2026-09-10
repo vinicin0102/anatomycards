@@ -4,10 +4,15 @@ declare(strict_types=1);
 /**
  * Recebe as notificações da ZuckPay (campo urlnoty da cobrança).
  *
- * A ZuckPay não assina o corpo da requisição, então o payload recebido
- * NÃO é tratado como fonte de verdade: pegamos apenas o transactionId e
- * confirmamos o pagamento consultando a própria API. Assim um POST forjado
- * por terceiros não consegue liberar acesso.
+ * Duas camadas de verificação:
+ *
+ * 1. Assinatura HMAC do header X-ZuckPay-Signature, quando há um
+ *    webhook_secret configurado. Prova que o POST veio mesmo da ZuckPay.
+ * 2. Reconsulta do status na API. Prova que o pagamento está realmente pago
+ *    agora, independente do que o corpo do POST diz.
+ *
+ * Sem webhook_secret configurado, sobra apenas a camada 2 — funciona, mas
+ * gere o segredo no painel (Integrações > Webhook Secret) e configure-o.
  */
 
 require __DIR__ . '/_bootstrap.php';
@@ -18,7 +23,26 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     responder(405, ['erro' => 'Método não permitido.']);
 }
 
-$corpo = corpoJson();
+// O corpo cru precisa ser lido antes de qualquer parse: o HMAC é calculado
+// sobre os bytes exatos que chegaram.
+$corpoRaw = (string) file_get_contents('php://input');
+
+$segredo = (string) ($config['webhook_secret'] ?? '');
+if ($segredo !== '') {
+    $header = (string) ($_SERVER['HTTP_X_ZUCKPAY_SIGNATURE'] ?? '');
+    [$valida, $motivo] = assinaturaWebhookValida($header, $corpoRaw, $segredo);
+
+    if (!$valida) {
+        registrarErro('webhook', 'assinatura recusada: ' . $motivo);
+        responder(401, ['erro' => 'Assinatura inválida.']);
+    }
+} else {
+    registrarErro('webhook', 'webhook_secret não configurado — validando só pela API');
+}
+
+$corpo = json_decode($corpoRaw, true);
+$corpo = is_array($corpo) ? $corpo : [];
+
 $transactionId = (string) ($corpo['transactionId'] ?? $corpo['transaction_id'] ?? '');
 
 if ($transactionId === '' || !preg_match('/^[A-Za-z0-9._-]{8,128}$/', $transactionId)) {

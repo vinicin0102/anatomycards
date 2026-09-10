@@ -75,7 +75,12 @@ function cpfValido(string $cpf): bool
  * Chamada autenticada à API da ZuckPay.
  * O client_secret nunca sai daqui — não é devolvido ao navegador em hipótese alguma.
  *
- * @return array{0:int,1:array} [status http, corpo decodificado]
+ * Redirecionamentos NÃO são seguidos de propósito: seguir um 3xx num POST
+ * autenticado reenviaria o Authorization para o host de destino, e o corpo
+ * costuma ser descartado no caminho. Em vez disso devolvemos o Location para
+ * que o api_base seja corrigido.
+ *
+ * @return array{0:int,1:array,2:string} [status http, corpo decodificado, destino do redirect]
  */
 function chamarZuckpay(array $config, string $metodo, string $caminho, ?array $payload = null): array
 {
@@ -99,23 +104,71 @@ function chamarZuckpay(array $config, string $metodo, string $caminho, ?array $p
     }
 
     $opcoes[CURLOPT_HTTPHEADER] = $cabecalhos;
+    $opcoes[CURLOPT_HEADER] = true;
     curl_setopt_array($ch, $opcoes);
 
-    $resposta = curl_exec($ch);
+    $bruto    = curl_exec($ch);
     $status   = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $tamCab   = (int) curl_getinfo($ch, CURLINFO_HEADER_SIZE);
     $erroCurl = curl_error($ch);
     curl_close($ch);
 
-    if ($resposta === false) {
+    if ($bruto === false) {
         registrarErro('curl', $erroCurl);
-        return [0, []];
+        return [0, [], ''];
     }
 
-    $decodificado = json_decode((string) $resposta, true);
+    $cabecalhosResposta = substr((string) $bruto, 0, $tamCab);
+    $resposta           = substr((string) $bruto, $tamCab);
+
+    $destino = '';
+    if ($status >= 300 && $status < 400
+        && preg_match('/^Location:\s*(.+)$/mi', $cabecalhosResposta, $m)) {
+        $destino = trim($m[1]);
+        registrarErro('redirect', 'HTTP ' . $status . ' -> ' . $destino);
+    }
+
+    $decodificado = json_decode($resposta, true);
     if (!is_array($decodificado)) {
         registrarErro('resposta', 'HTTP ' . $status . ' com corpo não-JSON');
-        return [$status, []];
+        return [$status, [], $destino];
     }
 
-    return [$status, $decodificado];
+    return [$status, $decodificado, $destino];
+}
+
+/**
+ * Valida o header X-ZuckPay-Signature.
+ *
+ * Formato: t=<timestamp>,v1=<hmac_sha256_hex>
+ * Cálculo:  HMAC-SHA256("<timestamp>.<corpo_raw>", webhook_secret)
+ *
+ * @return array{0:bool,1:string} [válida, motivo da recusa]
+ */
+function assinaturaWebhookValida(string $header, string $corpoRaw, string $segredo): array
+{
+    if ($header === '') {
+        return [false, 'header X-ZuckPay-Signature ausente'];
+    }
+
+    parse_str(strtr($header, ',', '&'), $partes);
+    $ts = (string) ($partes['t'] ?? '');
+    $v1 = (string) ($partes['v1'] ?? '');
+
+    if ($ts === '' || $v1 === '' || !ctype_digit($ts)) {
+        return [false, 'header malformado'];
+    }
+
+    // Anti-replay: rejeita assinaturas velhas ou com data no futuro.
+    if (abs(time() - (int) $ts) > 300) {
+        return [false, 'timestamp fora da janela de 5 minutos'];
+    }
+
+    $esperado = hash_hmac('sha256', $ts . '.' . $corpoRaw, $segredo);
+
+    if (!hash_equals($esperado, $v1)) {
+        return [false, 'assinatura não confere'];
+    }
+
+    return [true, ''];
 }

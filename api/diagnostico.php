@@ -48,6 +48,9 @@ $checagens['client_id']     = mascarar((string) ($config['client_id'] ?? ''));
 $checagens['client_secret'] = mascarar((string) ($config['client_secret'] ?? ''));
 $checagens['api_base']      = (string) ($config['api_base'] ?? '');
 $checagens['webhook_url']   = (string) ($config['webhook_url'] ?? '');
+$checagens['webhook_secret'] = ($config['webhook_secret'] ?? '') !== ''
+    ? mascarar((string) $config['webhook_secret'])
+    : '(vazio) — gere em Integrações > Webhook Secret para validar a assinatura dos postbacks';
 
 foreach (['client_id', 'client_secret'] as $campo) {
     $valor = (string) ($config[$campo] ?? '');
@@ -84,11 +87,16 @@ if ($planoTeste !== null && !empty($config['planos'][$planoTeste]['product_id'])
     $payload['product_id'] = (int) $config['planos'][$planoTeste]['product_id'];
 }
 
-[$status, $resposta] = chamarZuckpay($config, 'POST', '/qrcode', $payload);
+[$status, $resposta, $redirect] = chamarZuckpay($config, 'POST', '/qrcode', $payload);
 
 $teste = ['http' => $status];
 
-if ($status === 0) {
+if ($redirect !== '') {
+    $teste['resultado'] = 'REDIRECIONAMENTO — a API respondeu ' . $status . ' apontando para outro '
+        . 'endereço. Um POST autenticado não é reenviado no redirect, então a cobrança nunca chega. '
+        . 'Corrija o api_base no config.php.';
+    $teste['va_para'] = $redirect;
+} elseif ($status === 0) {
     $teste['resultado'] = 'FALHA DE CONEXAO — o servidor não conseguiu alcançar a ZuckPay. '
         . 'Veja o error_log do PHP. Costuma ser firewall de saída ou DNS na hospedagem.';
 } elseif ($status === 401 || $status === 403) {
@@ -107,8 +115,32 @@ if ($status === 0) {
 $teste['resposta_da_api'] = $resposta;
 $teste['enviado'] = array_diff_key($payload, ['cpf' => 1, 'email' => 1, 'telefone' => 1]);
 
+/**
+ * Se a chamada acima não funcionou, testa a variante com/sem "www" para
+ * dizer qual host o api_base deve usar.
+ */
+$alternativa = null;
+if ($status !== 200) {
+    $base = (string) $config['api_base'];
+    $outra = str_contains($base, '://www.')
+        ? str_replace('://www.', '://', $base)
+        : str_replace('://', '://www.', $base);
+
+    if ($outra !== $base) {
+        [$st2, $resp2, $red2] = chamarZuckpay(['api_base' => $outra] + $config, 'POST', '/qrcode', $payload);
+        $alternativa = [
+            'url'  => $outra,
+            'http' => $st2,
+            'veredito' => ($st2 === 200 && !empty($resp2['transactionId']))
+                ? 'FUNCIONA — troque o api_base do config.php por este endereço.'
+                : ($red2 !== '' ? 'também redireciona para ' . $red2 : 'também não funcionou'),
+        ];
+    }
+}
+
 responder(200, [
-    'atencao'   => 'Endpoint de diagnóstico. Desative ou apague após resolver.',
-    'checagens' => $checagens,
-    'teste'     => $teste,
+    'atencao'     => 'Endpoint de diagnóstico. Desative ou apague após resolver.',
+    'checagens'   => $checagens,
+    'teste'       => $teste,
+    'alternativa' => $alternativa,
 ]);

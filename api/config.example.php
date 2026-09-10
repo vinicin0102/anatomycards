@@ -9,8 +9,15 @@ return [
     'client_id'     => getenv('ZUCKPAY_CLIENT_ID')     ?: 'seu_client_id',
     'client_secret' => getenv('ZUCKPAY_CLIENT_SECRET') ?: 'seu_client_secret',
 
-    // Produção. Para testes use: https://www.zuckpay.com.br/conta/dev/api/pix
-    'api_base' => 'https://www.zuckpay.com.br/conta/v3/pix',
+    /**
+     * Base da API. Use exatamente o host que aparece na sua tela de
+     * Credenciais API — com ou sem "www". Se estiver errado, a ZuckPay
+     * responde com um redirecionamento e o POST não chega: o
+     * api/diagnostico.php detecta isso e aponta a URL certa.
+     *
+     * Para testes: https://zuckpay.com.br/conta/dev/api/pix
+     */
+    'api_base' => 'https://zuckpay.com.br/conta/v3/pix',
 
     /**
      * Planos vendidos na página.
@@ -36,7 +43,19 @@ return [
     ],
 
     // URL pública que a ZuckPay chama quando o pagamento muda de status.
+    // Cadastre-a também em Integrações > Webhooks no painel.
     'webhook_url' => 'https://SEU-DOMINIO.com.br/api/webhook.php',
+
+    /**
+     * Webhook Secret — gerado no painel em Integrações > Webhook Secret.
+     * É DIFERENTE do client_secret.
+     *
+     * Com ele preenchido, api/webhook.php valida o header
+     * X-ZuckPay-Signature e recusa qualquer POST que não venha da ZuckPay.
+     * Vazio, os postbacks continuam chegando sem assinatura e a validação
+     * fica só por reconsulta à API.
+     */
+    'webhook_secret' => '',
 
     // Origens autorizadas a chamar estes endpoints (CORS).
     'allowed_origins' => [

@@ -19,7 +19,15 @@ storage/                 log de pagamentos (não versionado)
 cp api/config.example.php api/config.php
 ```
 
-Preencha `client_id`, `client_secret`, `webhook_url` e `allowed_origins`.
+Preencha `client_id`, `client_secret`, `webhook_url`, `webhook_secret` e
+`allowed_origins`. O **Webhook Secret** é gerado no painel em
+*Integrações > Webhook Secret* e é diferente do Client Secret; sem ele os
+postbacks chegam sem assinatura e só resta a verificação por reconsulta.
+
+O `api_base` precisa usar **exatamente o host da sua tela de Credenciais API**
+(com ou sem `www`). Com o host errado a ZuckPay responde um redirecionamento,
+e um POST autenticado não é reenviado no redirect — a cobrança nunca chega.
+Este é o motivo mais comum de "o PIX não gera".
 `api/config.php` está no `.gitignore` — **nunca** versione esse arquivo.
 Em produção prefira variáveis de ambiente (`ZUCKPAY_CLIENT_ID` /
 `ZUCKPAY_CLIENT_SECRET`), que o `config.example.php` já lê.
@@ -52,6 +60,7 @@ use um id diferente em cada).
 
    | Resultado | Causa provável |
    |---|---|
+   | `REDIRECIONAMENTO` | `api_base` com o host errado (`www` sobrando ou faltando). O diagnóstico mostra o endereço certo em `va_para` e testa a variante em `alternativa`. |
    | `FALHA DE CONEXAO` | A hospedagem bloqueia conexões de saída, ou DNS. |
    | `NAO AUTORIZADO` | `client_id`/`client_secret` errados, revogados ou sem permissão para PIX. |
    | `ENDPOINT NAO ENCONTRADO` | `api_base` incorreto. |
@@ -81,9 +90,12 @@ Estas escolhas são deliberadas — mudá-las abre brecha real:
   para comprar o Premium por R$ 0,01.
 - **As respostas são filtradas.** A API devolve `amount_liquid`, e-mail do
   comprador e outros campos internos; os endpoints repassam apenas o necessário.
-- **O webhook não confia no próprio payload.** A ZuckPay não assina a
-  requisição, então `webhook.php` extrai só o `transactionId` e reconsulta o
-  status na API. Um POST forjado dizendo `"status":"PAID"` não libera nada.
+- **O webhook é verificado em duas camadas.** Primeiro a assinatura HMAC do
+  header `X-ZuckPay-Signature` (`HMAC-SHA256("<timestamp>.<corpo_raw>",
+  webhook_secret)`), com janela anti-replay de 5 minutos — prova que o POST
+  veio da ZuckPay. Depois o `transactionId` é reconsultado na API — prova que
+  o pagamento está pago agora. O corpo do POST nunca é a fonte da verdade, então
+  um `"status":"PAID"` forjado não libera nada.
 - **Entradas são validadas**: CPF com dígito verificador, e-mail, telefone e
   limite de tamanho. Parâmetros de atribuição passam por whitelist.
 
