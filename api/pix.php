@@ -18,22 +18,19 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
 }
 
 /**
- * O preço é definido AQUI, no servidor, a partir do id do plano.
+ * Os planos (e principalmente o preço) vêm do config.php, no servidor.
  * O valor enviado pelo navegador é ignorado de propósito: se ele fosse
  * aceito, qualquer pessoa poderia editar o request e pagar R$ 0,01.
  */
-const PLANOS = [
-    'basico'  => ['nome' => 'Pacote Básico — Arritmias Cardíacas',  'valor' => 9.99],
-    'premium' => ['nome' => 'Pacote Premium — Arritmias Cardíacas', 'valor' => 29.90],
-];
+$planos = is_array($config['planos'] ?? null) ? $config['planos'] : [];
 
 $corpo = corpoJson();
 
 $planoId = is_string($corpo['plano'] ?? null) ? $corpo['plano'] : '';
-if (!isset(PLANOS[$planoId])) {
+if (!isset($planos[$planoId])) {
     responder(400, ['erro' => 'Plano inválido.']);
 }
-$plano = PLANOS[$planoId];
+$plano = $planos[$planoId];
 
 $nome     = trim((string) ($corpo['nome'] ?? ''));
 $cpf      = preg_replace('/\D/', '', (string) ($corpo['cpf'] ?? '')) ?? '';
@@ -67,6 +64,11 @@ $payload = [
     'urlnoty'  => $config['webhook_url'],
 ];
 
+// Vincula a venda ao produto cadastrado no painel (opcional na API).
+if (!empty($plano['product_id'])) {
+    $payload['product_id'] = (int) $plano['product_id'];
+}
+
 $rastreio = is_array($corpo['rastreio'] ?? null) ? $corpo['rastreio'] : [];
 $permitidos = [
     'utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term',
@@ -82,8 +84,24 @@ foreach ($permitidos as $chave) {
 [$status, $resposta] = chamarZuckpay($config, 'POST', '/qrcode', $payload);
 
 if ($status !== 200 || empty($resposta['transactionId'])) {
-    registrarErro('pix', 'HTTP ' . $status . ' ' . json_encode($resposta, JSON_UNESCAPED_UNICODE));
-    responder(502, ['erro' => 'Não foi possível gerar o PIX agora. Tente novamente em instantes.']);
+    $ref = substr(bin2hex(random_bytes(4)), 0, 8);
+    registrarErro('pix', 'ref=' . $ref . ' HTTP ' . $status . ' ' . json_encode($resposta, JSON_UNESCAPED_UNICODE));
+
+    $saida = [
+        'erro' => 'Não foi possível gerar o PIX agora. Tente novamente em instantes.',
+        'ref'  => $ref,
+    ];
+
+    // Com debug ligado, devolve o motivo real para facilitar a investigação.
+    if (!empty($config['debug'])) {
+        $saida['debug'] = [
+            'http'     => $status,
+            'resposta' => $resposta,
+            'enviado'  => array_diff_key($payload, ['cpf' => 1, 'email' => 1, 'telefone' => 1]),
+        ];
+    }
+
+    responder(502, $saida);
 }
 
 // Devolve só o que o navegador precisa. Nada de credencial, nada de valor líquido.

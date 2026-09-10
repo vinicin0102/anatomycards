@@ -7,6 +7,7 @@ index.html               página de vendas + modal de checkout
 api/pix.php              cria a cobrança PIX
 api/status.php           consulta o status do pagamento
 api/webhook.php          recebe a notificação da ZuckPay
+api/diagnostico.php      checagem da integração (protegido por token)
 api/_bootstrap.php       validação, CORS e chamada autenticada à API
 api/config.example.php   modelo de configuração
 storage/                 log de pagamentos (não versionado)
@@ -35,7 +36,35 @@ ficar na raiz do site, ajuste a constante `API` no script de checkout do
    a cada 4s até o pagamento ser confirmado.
 4. A ZuckPay chama `api/webhook.php`, que confirma o pagamento e registra a venda.
 
-Planos: **Básico R$ 9,99** e **Premium R$ 29,90**.
+Planos: **Básico R$ 9,99** e **Premium R$ 29,90**. Ambos ficam em
+`config.php`, junto com o `product_id` do produto cadastrado no painel da
+ZuckPay (atualmente `593187` nos dois — se cada plano tiver produto próprio,
+use um id diferente em cada).
+
+## Se o PIX não gerar
+
+1. Defina um `debug_token` no `config.php` e abra:
+   `https://seu-dominio.com.br/api/diagnostico.php?token=SEU_TOKEN`
+
+   Ele confere PHP, cURL, credenciais (mascaradas), planos e faz uma cobrança
+   de teste de R$ 1,00, mostrando a resposta real da ZuckPay. Os diagnósticos
+   possíveis:
+
+   | Resultado | Causa provável |
+   |---|---|
+   | `FALHA DE CONEXAO` | A hospedagem bloqueia conexões de saída, ou DNS. |
+   | `NAO AUTORIZADO` | `client_id`/`client_secret` errados, revogados ou sem permissão para PIX. |
+   | `ENDPOINT NAO ENCONTRADO` | `api_base` incorreto. |
+   | `OK` | A integração funciona — o problema está no front ou no caminho `/api`. |
+
+2. Se der `OK` no diagnóstico mas o botão da página continuar falhando, o
+   problema é o caminho: abra o console do navegador (F12) e veja se o
+   `POST /api/pix.php` retorna 404. Nesse caso a pasta `api/` não está onde o
+   front espera — ajuste a constante `API` no script de checkout do `index.html`.
+
+3. Ligue `'debug' => true` no `config.php` para que a página mostre o motivo
+   real da falha em vez da mensagem genérica. **Desligue depois**, junto com o
+   `debug_token`.
 
 ## Decisões de segurança
 
@@ -71,3 +100,5 @@ Estas escolhas são deliberadas — mudá-las abre brecha real:
    tiver as fotos.
 4. **Rate limiting** — não há limite de requisições em `api/pix.php`. Vale pôr
    um limite por IP para evitar geração de cobranças em massa.
+5. **Desativar o diagnóstico** — depois de resolver, apague `api/diagnostico.php`
+   ou deixe `debug_token` vazio (assim ele responde 404).

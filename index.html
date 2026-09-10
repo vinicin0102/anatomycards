@@ -1166,7 +1166,10 @@
                 const dados = await resposta.json().catch(() => ({}));
 
                 if (!resposta.ok) {
-                    mostrarErros(dados.campos, dados.campos ? null : (dados.erro || 'Não foi possível gerar o PIX.'));
+                    if (dados.debug) console.error('[zuckpay] detalhe do erro:', dados.debug);
+                    const msg = (dados.erro || 'Não foi possível gerar o PIX.')
+                              + (dados.ref ? ` (código ${dados.ref})` : '');
+                    mostrarErros(dados.campos, dados.campos ? null : msg);
                     return;
                 }
 
