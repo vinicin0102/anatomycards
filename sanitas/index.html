@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="es-PY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Policlínica Sanitas | Atención Médica en Lambaré</title>
+<meta name="description" content="Policlínica Sanitas en Lambaré, Paraguay. Atención médica, ginecología, pediatría, cardiología, psicología, nutrición, traumatología, laboratorio y más. Agendá tu consulta.">
+<meta name="theme-color" content="#06395C">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://policlinicasanitas.com.py/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_PY">
+<meta property="og:site_name" content="Policlínica Sanitas">
+<meta property="og:title" content="Policlínica Sanitas | Atención Médica en Lambaré">
+<meta property="og:description" content="Cuidamos de vos y de tu familia. Especialidades médicas, estudios, laboratorio y atención a domicilio en zonas cercanas de Lambaré.">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2306395C'/%3E%3Cpath d='M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z' fill='%23fff'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap"></noscript>
+
+<style>
+/* ============================================================
+   POLICLÍNICA SANITAS — design tokens
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --ink:#0A1B2C; --ink-soft:#33485C; --muted:#6B8298;
+  --blue-950:#032740; --blue-900:#06395C; --blue-800:#084A77;
+  --blue-700:#0B5E97; --blue-600:#0F74B8; --blue-500:#1A8AD4;
+  --blue-300:#7CC1EC; --blue-200:#B9DCF5;
+  --sky-50:#F3F8FD; --sky-100:#E3EFFA;
+  --mint:#159D8B; --mint-50:#E9F7F4;
+  --accent:#E3455F;
+  --line:#E3EAF2; --line-soft:#EFF4F9;
+  --white:#fff; --alt:#F7FAFD;
+  --wa:#25D366; --wa-700:#1EBE5A;
+  --r-sm:12px; --r:18px; --r-lg:26px; --r-xl:34px;
+  --sh-1:0 1px 2px rgba(9,30,54,.05), 0 10px 26px -14px rgba(9,30,54,.20);
+  --sh-2:0 2px 6px rgba(9,30,54,.06), 0 26px 50px -26px rgba(9,30,54,.30);
+  --sh-3:0 46px 90px -36px rgba(6,57,92,.45);
+  --maxw:1180px; --nav-h:84px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth; scroll-padding-top:96px; overflow-x:clip}
+body{
+  margin:0; background:var(--white); color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16.5px; line-height:1.65; letter-spacing:-.005em;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden; overflow-x:clip;
+}
+img,svg{max-width:100%}
+img{height:auto; display:block}
+a{color:inherit; text-decoration:none}
+button{font:inherit; color:inherit}
+h1,h2,h3,h4{font-family:Manrope,Inter,system-ui,sans-serif; margin:0; line-height:1.1; letter-spacing:-.032em; font-weight:800; color:var(--ink)}
+p{margin:0}
+::selection{background:var(--blue-200); color:var(--blue-950)}
+:focus-visible{outline:3px solid var(--blue-500); outline-offset:3px; border-radius:6px}
+
+/* ---------- layout ---------- */
+.wrap{width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:20px}
+.sec{padding-block:clamp(68px,8.5vw,124px); position:relative}
+.sec--alt{background:var(--alt)}
+.sec--sky{background:linear-gradient(180deg,#fff 0%,var(--sky-50) 40%,#fff 100%)}
+.grid{display:grid; gap:clamp(16px,2vw,24px)}
+.center{text-align:center}
+.sec-head{max-width:760px; margin-inline:auto; text-align:center; margin-bottom:clamp(36px,4.5vw,60px)}
+.sec-head.left{margin-inline:0; text-align:left}
+
+/* ---------- type ---------- */
+.eyebrow{
+  display:inline-flex; align-items:center; gap:9px; font-family:Manrope,sans-serif;
+  font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--blue-700); margin-bottom:18px;
+}
+.eyebrow::before{content:""; width:22px; height:2px; border-radius:2px; background:linear-gradient(90deg,var(--blue-500),var(--mint))}
+.cta-final .eyebrow::after,
+.sec-head.center .eyebrow::after{content:""; width:22px; height:2px; border-radius:2px; background:linear-gradient(90deg,var(--mint),var(--blue-500))}
+h1{font-size:clamp(2.35rem,5.6vw,4.05rem); letter-spacing:-.04em}
+h2{font-size:clamp(1.85rem,3.7vw,2.85rem)}
+h3{font-size:clamp(1.08rem,1.5vw,1.24rem); letter-spacing:-.022em; font-weight:700}
+.lead{font-size:clamp(1.02rem,1.35vw,1.16rem); color:var(--ink-soft); line-height:1.72}
+.muted{color:var(--muted)}
+.small{font-size:.895rem; line-height:1.6}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  font-family:Manrope,sans-serif; font-weight:700; font-size:.95rem; letter-spacing:.01em;
+  padding:16px 26px; border-radius:999px; border:1px solid transparent; cursor:pointer;
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease), background .25s, color .25s, border-color .25s;
+  white-space:nowrap; min-height:54px;
+}
+.btn svg{width:19px; height:19px; flex:none}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn--wa{background:linear-gradient(160deg,var(--wa) 0%,var(--wa-700) 100%); color:#fff; box-shadow:0 10px 26px -10px rgba(37,211,102,.75)}
+.btn--wa:hover{box-shadow:0 16px 34px -12px rgba(37,211,102,.85)}
+.btn--blue{background:linear-gradient(160deg,var(--blue-700),var(--blue-900)); color:#fff; box-shadow:0 12px 30px -14px rgba(6,57,92,.85)}
+.btn--blue:hover{box-shadow:0 18px 38px -16px rgba(6,57,92,.9)}
+.btn--ghost{background:#fff; color:var(--blue-900); border-color:var(--line)}
+.btn--ghost:hover{border-color:var(--blue-300); background:var(--sky-50)}
+.btn--light{background:#fff; color:var(--blue-900); box-shadow:0 14px 34px -14px rgba(2,20,36,.6)}
+.btn--outline-light{background:rgba(255,255,255,.06); color:#fff; border-color:rgba(255,255,255,.35)}
+.btn--outline-light:hover{background:rgba(255,255,255,.14)}
+.btn--lg{padding:19px 34px; font-size:1.02rem; min-height:62px}
+.btn--block{width:100%}
+.btn-row{display:flex; flex-wrap:wrap; gap:14px}
+
+/* ---------- icons ---------- */
+svg{fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round}
+.ill{stroke:none}
+.ico{width:24px; height:24px}
+.itile{
+  width:52px; height:52px; border-radius:15px; display:grid; place-items:center; flex:none;
+  background:linear-gradient(150deg,var(--sky-100),#fff); color:var(--blue-700);
+  border:1px solid var(--line); box-shadow:inset 0 1px 0 #fff, 0 6px 14px -10px rgba(9,30,54,.5);
+  transition:transform .35s var(--ease), color .3s, background .3s, border-color .3s;
+}
+.itile .ico{width:25px; height:25px}
+.itile--mint{background:linear-gradient(150deg,var(--mint-50),#fff); color:var(--mint)}
+.itile--accent{background:linear-gradient(150deg,#FDECEF,#fff); color:var(--accent)}
+.itile--dark{background:linear-gradient(150deg,var(--blue-800),var(--blue-950)); color:#fff; border-color:transparent}
+
+/* ---------- cards ---------- */
+.card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--r-lg); padding:28px;
+  box-shadow:var(--sh-1); position:relative; overflow:hidden;
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .3s;
+}
+.card::after{
+  content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0;
+  background:radial-gradient(420px 180px at 12% -10%, rgba(26,138,212,.10), transparent 70%);
+  transition:opacity .4s;
+}
+.card:hover{transform:translateY(-6px); box-shadow:var(--sh-2); border-color:var(--blue-200)}
+.card:hover::after{opacity:1}
+.card:hover .itile{transform:translateY(-2px) scale(1.05)}
+.card h3{margin:18px 0 8px}
+.card p{color:var(--ink-soft); font-size:.95rem; line-height:1.62}
+.card-link{
+  display:inline-flex; align-items:center; gap:7px; margin-top:18px; font-family:Manrope,sans-serif;
+  font-weight:700; font-size:.855rem; color:var(--blue-700); letter-spacing:.01em;
+}
+.card-link svg{width:16px; height:16px; transition:transform .3s var(--ease)}
+.card:hover .card-link svg{transform:translateX(4px)}
+
+/* ---------- header ---------- */
+.hdr{
+  position:fixed; inset:0 0 auto 0; z-index:90; height:var(--nav-h);
+  display:flex; align-items:center; border-bottom:1px solid transparent;
+  background:rgba(255,255,255,.70); backdrop-filter:blur(16px) saturate(1.5); -webkit-backdrop-filter:blur(16px) saturate(1.5);
+  transition:height .35s var(--ease), background .35s, border-color .35s, box-shadow .35s;
+}
+.hdr.stuck{height:66px; background:rgba(255,255,255,.88); border-color:var(--line-soft); box-shadow:0 10px 34px -26px rgba(9,30,54,.8)}
+.hdr .wrap{display:flex; align-items:center; justify-content:space-between; gap:18px}
+.logo{display:flex; align-items:center; gap:11px; font-family:Manrope,sans-serif; font-weight:800; letter-spacing:-.03em}
+.logo-mark{
+  width:38px; height:38px; border-radius:11px; display:grid; place-items:center; flex:none;
+  background:linear-gradient(150deg,var(--blue-700),var(--blue-950));
+  box-shadow:0 8px 18px -10px rgba(6,57,92,.9), inset 0 1px 0 rgba(255,255,255,.25);
+  transition:transform .35s var(--ease);
+}
+.logo:hover .logo-mark{transform:rotate(-6deg) scale(1.05)}
+.logo-mark svg{width:20px; height:20px; color:#fff}
+.logo-txt{line-height:1.05}
+.logo-txt b{display:block; font-size:1.14rem}
+.logo-txt span{display:block; font-family:Inter,sans-serif; font-size:9.5px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--blue-600)}
+.nav{display:flex; align-items:center; gap:4px}
+.nav a{
+  font-size:.9rem; font-weight:500; color:var(--ink-soft); padding:9px 13px; border-radius:999px;
+  transition:color .25s, background .25s;
+}
+.nav a:hover{color:var(--blue-900); background:var(--sky-50)}
+.hdr-cta{display:flex; align-items:center; gap:10px}
+.hdr .btn{padding:12px 20px; min-height:46px; font-size:.88rem}
+.burger{
+  display:none; width:46px; height:46px; border-radius:13px; border:1px solid var(--line);
+  background:#fff; align-items:center; justify-content:center; cursor:pointer;
+}
+.burger .ico{width:22px; height:22px}
+.mnav{
+  position:fixed; inset:var(--nav-h) 0 auto 0; z-index:85; background:rgba(255,255,255,.97);
+  backdrop-filter:blur(18px); border-bottom:1px solid var(--line); padding:14px 20px 24px;
+  transform:translateY(-14px); opacity:0; pointer-events:none; transition:opacity .3s, transform .3s var(--ease);
+  box-shadow:0 30px 60px -34px rgba(9,30,54,.6); max-height:calc(100dvh - var(--nav-h)); overflow:auto;
+}
+.mnav.open{opacity:1; transform:none; pointer-events:auto}
+.mnav a{display:block; padding:14px 6px; font-family:Manrope,sans-serif; font-weight:600; border-bottom:1px solid var(--line-soft)}
+.mnav .btn{margin-top:18px}
+</style>
+<style>
+/* ============================================================
+   HERO + composición 3D
+   ============================================================ */
+.hero{position:relative; padding-top:calc(var(--nav-h) + clamp(28px,4vw,58px)); padding-bottom:clamp(56px,7vw,96px); overflow:hidden}
+.hero::before{
+  content:""; position:absolute; inset:-20% -10% auto -10%; height:120%; z-index:-2;
+  background:
+    radial-gradient(58% 46% at 78% 18%, rgba(26,138,212,.16), transparent 68%),
+    radial-gradient(42% 38% at 12% 6%, rgba(21,157,139,.10), transparent 70%),
+    linear-gradient(180deg,#FBFDFF 0%,#fff 72%);
+}
+.hero::after{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.5;
+  background-image:radial-gradient(rgba(11,94,151,.13) 1px, transparent 1px);
+  background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(60% 55% at 50% 30%, #000, transparent 72%);
+  mask-image:radial-gradient(60% 55% at 50% 30%, #000, transparent 72%);
+}
+.hero-grid{display:grid; grid-template-columns:1.04fr .96fr; gap:clamp(24px,4vw,56px); align-items:center}
+.badge{
+  display:inline-flex; align-items:center; gap:9px; padding:8px 16px 8px 10px; border-radius:999px;
+  background:rgba(255,255,255,.8); border:1px solid var(--line); box-shadow:var(--sh-1);
+  font-family:Manrope,sans-serif; font-size:11.5px; font-weight:800; letter-spacing:.15em; text-transform:uppercase; color:var(--blue-900);
+  backdrop-filter:blur(8px);
+}
+.badge .dot{width:8px; height:8px; border-radius:50%; background:var(--mint); position:relative; flex:none}
+.badge .dot::after{content:""; position:absolute; inset:-5px; border-radius:50%; border:1.5px solid rgba(21,157,139,.45); animation:ping 2.6s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(.6); opacity:1}80%,100%{transform:scale(1.5); opacity:0}}
+.hero h1{margin:22px 0 20px}
+.hero h1 .u{
+  -webkit-box-decoration-break:clone; box-decoration-break:clone;
+  background-image:linear-gradient(90deg,rgba(26,138,212,.30),rgba(21,157,139,.28));
+  background-repeat:no-repeat; background-position:0 88%; background-size:0 .18em;
+  animation:swipe .9s .5s var(--ease) forwards;
+}
+@keyframes swipe{to{background-size:100% .18em}}
+.hero-sub{font-size:clamp(1.04rem,1.4vw,1.2rem); color:var(--ink-soft); max-width:52ch; line-height:1.7}
+.hero-note{margin-top:14px; color:var(--muted); font-size:.96rem; max-width:50ch}
+.hero .btn-row{margin-top:32px}
+.hero-mini{display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:30px; padding-top:26px; border-top:1px solid var(--line)}
+.hero-mini span{display:inline-flex; align-items:center; gap:8px; font-size:.86rem; color:var(--ink-soft); font-weight:500}
+.hero-mini svg{width:17px; height:17px; color:var(--mint); flex:none}
+
+/* --- escena 3D --- */
+.scene{position:relative; width:100%; aspect-ratio:1/1.02; perspective:1400px; perspective-origin:52% 42%}
+.scene-in{position:absolute; inset:0; transform-style:preserve-3d; transition:transform .9s var(--ease); will-change:transform}
+.glow{
+  position:absolute; left:50%; top:47%; width:78%; aspect-ratio:1; transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 50% 45%, rgba(26,138,212,.30), rgba(26,138,212,.07) 52%, transparent 70%);
+  filter:blur(8px);
+}
+.ring{
+  position:absolute; left:50%; top:46%; border-radius:50%; border:1.5px solid rgba(11,94,151,.30);
+  transform-style:preserve-3d;
+}
+.ring i{
+  position:absolute; width:10px; height:10px; border-radius:50%; top:-5px; left:calc(50% - 5px);
+  background:radial-gradient(circle at 35% 30%, #fff, var(--blue-500));
+  box-shadow:0 0 14px rgba(26,138,212,.9);
+}
+.ring--a{width:92%; aspect-ratio:1; transform:translate(-50%,-50%) rotateX(74deg); animation:spinZ 28s linear infinite}
+.ring--b{width:72%; aspect-ratio:1; border-color:rgba(21,157,139,.34); transform:translate(-50%,-50%) rotateX(74deg) rotateY(28deg); animation:spinZ 20s linear infinite reverse}
+.ring--c{width:110%; aspect-ratio:1; border-style:dashed; border-color:rgba(11,94,151,.14); transform:translate(-50%,-50%) rotateX(78deg); animation:spinZ 46s linear infinite}
+@keyframes spinZ{to{transform:translate(-50%,-50%) rotateX(74deg) rotateZ(360deg)}}
+.ring--b{animation-name:spinZb}
+@keyframes spinZb{from{transform:translate(-50%,-50%) rotateX(74deg) rotateY(28deg) rotateZ(0)}to{transform:translate(-50%,-50%) rotateX(74deg) rotateY(28deg) rotateZ(360deg)}}
+.ring--c{animation-name:spinZc}
+@keyframes spinZc{from{transform:translate(-50%,-50%) rotateX(78deg) rotateZ(0)}to{transform:translate(-50%,-50%) rotateX(78deg) rotateZ(360deg)}}
+
+.pedestal{
+  position:absolute; left:50%; top:58%; width:56%; aspect-ratio:2.6/1; transform:translate(-50%,-50%) rotateX(74deg);
+  border-radius:50%; background:radial-gradient(ellipse at 50% 50%, rgba(6,57,92,.22), transparent 66%); filter:blur(10px);
+}
+.heart-wrap{
+  position:absolute; left:50%; top:40%; width:42%; transform:translate(-50%,-50%) translateZ(80px);
+  animation:bob 7s ease-in-out infinite; transform-style:preserve-3d;
+}
+@keyframes bob{0%,100%{transform:translate(-50%,-50%) translateZ(80px) translateY(0)}50%{transform:translate(-50%,-50%) translateZ(80px) translateY(-14px)}}
+.heart-wrap svg{filter:drop-shadow(0 26px 34px rgba(160,20,50,.30)); animation:beat 2.4s ease-in-out infinite}
+@keyframes beat{0%,72%,100%{transform:scale(1)}12%{transform:scale(1.055)}24%{transform:scale(.99)}34%{transform:scale(1.035)}}
+
+.ecg-card{
+  position:absolute; left:50%; top:72%; width:58%; transform:translate(-50%,-50%) translateZ(34px) rotateX(6deg);
+  background:rgba(255,255,255,.78); border:1px solid rgba(255,255,255,.9); border-radius:20px;
+  box-shadow:0 30px 60px -30px rgba(6,57,92,.55), inset 0 1px 0 #fff;
+  backdrop-filter:blur(14px) saturate(1.3); -webkit-backdrop-filter:blur(14px) saturate(1.3);
+  padding:14px 18px; animation:bob2 9s ease-in-out infinite;
+}
+@keyframes bob2{0%,100%{transform:translate(-50%,-50%) translateZ(34px) rotateX(6deg) translateY(0)}50%{transform:translate(-50%,-50%) translateZ(34px) rotateX(6deg) translateY(9px)}}
+.ecg-card .lbl{display:flex; justify-content:space-between; align-items:center; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue-700); margin-bottom:6px; font-family:Manrope,sans-serif}
+.ecg-card .lbl em{font-style:normal; color:var(--mint); display:inline-flex; align-items:center; gap:5px}
+.ecg-card .lbl em::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--mint); animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.ecg-card svg{width:100%; height:auto; display:block}
+.ecg-line{stroke:var(--accent); stroke-width:2.4; fill:none; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:340; stroke-dashoffset:340; animation:trace 3.4s linear infinite}
+@keyframes trace{to{stroke-dashoffset:-340}}
+
+.chip3d{
+  position:absolute; display:flex; align-items:center; gap:10px; padding:11px 16px 11px 11px; border-radius:16px;
+  background:rgba(255,255,255,.84); border:1px solid rgba(255,255,255,.95);
+  box-shadow:0 24px 46px -26px rgba(6,57,92,.55), 0 1px 0 rgba(255,255,255,.9) inset;
+  backdrop-filter:blur(14px) saturate(1.4); -webkit-backdrop-filter:blur(14px) saturate(1.4);
+  font-family:Manrope,sans-serif; font-weight:700; font-size:.815rem; color:var(--blue-950); white-space:nowrap;
+}
+.chip3d small{display:block; font-family:Inter,sans-serif; font-weight:500; font-size:.7rem; color:var(--muted); letter-spacing:0}
+.chip3d .b{width:34px; height:34px; border-radius:11px; display:grid; place-items:center; flex:none; background:linear-gradient(150deg,var(--sky-100),#fff); color:var(--blue-700); border:1px solid var(--line-soft)}
+.chip3d .b .ico{width:18px; height:18px}
+.chip3d--1{top:3%; left:-4%; transform:translateZ(120px); animation:float1 8s ease-in-out infinite}
+.chip3d--2{top:24%; right:-6%; transform:translateZ(150px); animation:float2 10s ease-in-out infinite}
+.chip3d--3{top:52%; left:-8%; transform:translateZ(140px); animation:float2 9s ease-in-out infinite .6s}
+.chip3d--4{bottom:6%; right:-3%; transform:translateZ(110px); animation:float1 11s ease-in-out infinite .4s}
+@keyframes float1{0%,100%{translate:0 0}50%{translate:0 -13px}}
+@keyframes float2{0%,100%{translate:0 0}50%{translate:0 12px}}
+.particles i{position:absolute; border-radius:50%; background:var(--blue-500); opacity:.35; animation:drift 12s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(6px,-22px,40px)}}
+
+/* ============================================================
+   COMPONENTES
+   ============================================================ */
+/* barra de confianza */
+.trust{margin-top:clamp(-10px,0vw,0px)}
+.trust-grid{grid-template-columns:repeat(4,1fr)}
+.trust .card{padding:26px 24px}
+.trust .card h3{font-size:1.02rem; margin:16px 0 7px}
+.trust .card p{font-size:.885rem}
+
+/* sobre */
+.split{display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,70px); align-items:center}
+.media{position:relative}
+.media-frame{
+  position:relative; border-radius:var(--r-xl); overflow:hidden; aspect-ratio:4/3.4;
+  background:linear-gradient(155deg,var(--blue-800) 0%,var(--blue-950) 60%,#021C2E 100%);
+  box-shadow:var(--sh-3); border:1px solid rgba(255,255,255,.1);
+}
+.media-frame img{width:100%; height:100%; object-fit:cover}
+.media-frame .ph{position:absolute; inset:0; display:grid; place-items:center; overflow:hidden}
+.media-frame .ph::before{
+  content:""; position:absolute; inset:-30%;
+  background:
+    radial-gradient(38% 34% at 26% 22%, rgba(26,138,212,.55), transparent 70%),
+    radial-gradient(34% 30% at 78% 74%, rgba(21,157,139,.42), transparent 72%);
+}
+.media-frame .ph .grid-lines{position:absolute; inset:0; opacity:.22;
+  background-image:linear-gradient(rgba(255,255,255,.35) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.35) 1px,transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent 78%); mask-image:radial-gradient(70% 70% at 50% 50%,#000,transparent 78%)}
+.media-frame .ph .emblem{position:relative; width:40%; color:rgba(255,255,255,.92); filter:drop-shadow(0 20px 40px rgba(0,0,0,.35))}
+.float-card{
+  position:absolute; background:rgba(255,255,255,.86); border:1px solid rgba(255,255,255,.95); border-radius:20px;
+  padding:16px 20px; box-shadow:0 30px 60px -30px rgba(6,57,92,.6); backdrop-filter:blur(16px) saturate(1.4);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+}
+.float-card b{font-family:Manrope,sans-serif; font-size:1.5rem; display:block; letter-spacing:-.03em; line-height:1.1; color:var(--blue-900)}
+.float-card span{font-size:.78rem; color:var(--muted); font-weight:500}
+.float-card--br{right:-6%; bottom:8%; animation:float1 9s ease-in-out infinite}
+.float-card--tl{left:-7%; top:9%; display:flex; align-items:center; gap:12px; animation:float2 11s ease-in-out infinite}
+.checklist{display:grid; gap:13px; margin-top:28px}
+.checklist li{display:flex; gap:12px; align-items:flex-start; list-style:none; color:var(--ink-soft); font-size:.95rem}
+.checklist svg{width:21px; height:21px; flex:none; color:var(--mint); margin-top:1px}
+ul.checklist{padding:0; margin-left:0}
+
+/* especialidades */
+.esp-grid{grid-template-columns:repeat(3,1fr)}
+.esp-cta{grid-column:span 2}
+@media (max-width:760px){.esp-cta{grid-column:auto}}
+.esp-grid .card{display:flex; flex-direction:column}
+.esp-grid .card p{flex:1}
+
+/* procedimientos */
+.proc-list{display:grid; gap:12px}
+.proc{
+  display:flex; align-items:center; gap:16px; padding:18px 22px; border-radius:var(--r);
+  background:#fff; border:1px solid var(--line); box-shadow:var(--sh-1);
+  transition:transform .35s var(--ease), border-color .3s, box-shadow .35s;
+}
+.proc:hover{transform:translateX(6px); border-color:var(--blue-200); box-shadow:var(--sh-2)}
+.proc .itile{width:44px; height:44px; border-radius:13px}
+.proc .itile .ico{width:21px; height:21px}
+.proc b{font-family:Manrope,sans-serif; font-weight:700; font-size:1rem; letter-spacing:-.02em}
+.proc span{display:block; font-size:.84rem; color:var(--muted)}
+
+/* laboratorio / franja oscura */
+.dark{position:relative; background:linear-gradient(150deg,var(--blue-900) 0%,var(--blue-950) 55%,#021B2D 100%); color:#fff; overflow:hidden}
+.dark h2,.dark h3{color:#fff}
+.dark p{color:rgba(226,239,250,.82)}
+.dark .eyebrow{color:var(--blue-300)}
+.dark .eyebrow::before,.dark .eyebrow::after{background:linear-gradient(90deg,var(--blue-300),var(--mint))}
+.dark::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(46% 52% at 84% 12%, rgba(26,138,212,.34), transparent 66%),
+    radial-gradient(40% 44% at 8% 92%, rgba(21,157,139,.22), transparent 70%);
+}
+.dark::after{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.28;
+  background-image:linear-gradient(rgba(255,255,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.10) 1px,transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(80% 70% at 50% 40%,#000,transparent 78%); mask-image:radial-gradient(80% 70% at 50% 40%,#000,transparent 78%);
+}
+.dark .wrap{position:relative; z-index:1}
+.glass{
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); border-radius:var(--r-lg);
+  padding:26px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  transition:transform .4s var(--ease), background .3s, border-color .3s;
+}
+.glass:hover{transform:translateY(-5px); background:rgba(255,255,255,.11); border-color:rgba(255,255,255,.28)}
+.glass .itile{background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.18); color:#fff}
+.glass h3{margin:16px 0 8px; font-size:1.05rem}
+.glass p{font-size:.9rem}
+</style>
+<style>
+/* servicios más solicitados */
+.feat-grid{grid-template-columns:repeat(3,1fr)}
+.feat{
+  position:relative; border-radius:var(--r-lg); overflow:hidden; padding:30px; min-height:270px;
+  display:flex; flex-direction:column; justify-content:flex-end; color:#fff; isolation:isolate;
+  background:linear-gradient(160deg,var(--blue-700),var(--blue-950));
+  box-shadow:var(--sh-2); transition:transform .45s var(--ease), box-shadow .45s;
+}
+.feat:nth-child(2){background:linear-gradient(160deg,#12708F,#053347)}
+.feat:nth-child(3){background:linear-gradient(160deg,#15806F,#043B35)}
+.feat::before{
+  content:""; position:absolute; inset:0; z-index:-1; opacity:.9;
+  background:radial-gradient(58% 52% at 78% 6%, rgba(255,255,255,.22), transparent 64%);
+}
+.feat .num{position:absolute; top:22px; right:26px; font-family:Manrope,sans-serif; font-weight:800; font-size:3.4rem; color:rgba(255,255,255,.13); letter-spacing:-.05em; line-height:1}
+.feat .itile{background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.2); color:#fff; margin-bottom:auto}
+.feat h3{color:#fff; margin:22px 0 8px}
+.feat p{color:rgba(230,242,252,.85); font-size:.92rem}
+.feat:hover{transform:translateY(-7px); box-shadow:var(--sh-3)}
+
+/* etapas de la vida */
+.stages-grid{grid-template-columns:repeat(4,1fr)}
+.lab-grid{grid-template-columns:1fr 1fr}
+.stage{position:relative; border-radius:var(--r-lg); overflow:hidden; border:1px solid var(--line); background:#fff; box-shadow:var(--sh-1); transition:transform .4s var(--ease), box-shadow .4s, border-color .3s}
+.stage:hover{transform:translateY(-6px); box-shadow:var(--sh-2); border-color:var(--blue-200)}
+.stage .photo{position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--sky-100)}
+.stage .photo img{width:100%; height:100%; object-fit:cover; transition:transform .7s var(--ease)}
+.stage:hover .photo img{transform:scale(1.06)}
+.stage .photo .ph{position:absolute; inset:0; display:grid; place-items:center; color:#fff}
+.stage .photo .ph::before{content:""; position:absolute; inset:0}
+.stage:nth-child(1) .photo .ph::before{background:linear-gradient(150deg,#1A8AD4,#06395C)}
+.stage:nth-child(2) .photo .ph::before{background:linear-gradient(150deg,#12708F,#053347)}
+.stage:nth-child(3) .photo .ph::before{background:linear-gradient(150deg,#15806F,#04382F)}
+.stage:nth-child(4) .photo .ph::before{background:linear-gradient(150deg,#2C6FBF,#082B4C)}
+.stage .photo .ph svg{position:relative; width:64px; height:64px; opacity:.95; filter:drop-shadow(0 12px 22px rgba(0,0,0,.3))}
+.stage .photo .ph .rings{position:absolute; inset:0; opacity:.3;
+  background-image:radial-gradient(circle at 50% 50%, transparent 28%, rgba(255,255,255,.35) 28.5%, transparent 29.5%, transparent 42%, rgba(255,255,255,.25) 42.5%, transparent 43.5%)}
+.stage .body{padding:22px 24px 26px}
+.stage h3{margin-bottom:7px}
+.stage p{color:var(--ink-soft); font-size:.92rem}
+
+/* motivos */
+.motivos{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+.motivo{
+  display:flex; align-items:center; gap:14px; padding:17px 20px; border-radius:16px; background:#fff;
+  border:1px solid var(--line); font-family:Manrope,sans-serif; font-weight:700; font-size:.95rem;
+  letter-spacing:-.015em; transition:transform .35s var(--ease), border-color .3s, box-shadow .35s, background .3s;
+  position:relative; overflow:hidden;
+}
+.motivo .b{width:40px; height:40px; border-radius:12px; display:grid; place-items:center; flex:none;
+  background:var(--sky-50); color:var(--blue-700); border:1px solid var(--line-soft); transition:transform .4s var(--ease), background .3s, color .3s}
+.motivo .b .ico{width:20px; height:20px}
+.motivo .arw{margin-left:auto; width:17px; height:17px; color:var(--blue-300); opacity:0; transform:translateX(-6px); transition:.35s var(--ease)}
+.motivo:hover{transform:translateY(-4px); border-color:var(--blue-200); box-shadow:var(--sh-2)}
+.motivo:hover .b{background:linear-gradient(150deg,var(--blue-600),var(--blue-900)); color:#fff; transform:rotate(-6deg) scale(1.06)}
+.motivo:hover .arw{opacity:1; transform:none}
+
+/* psicología */
+.psico-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px}
+.tag{
+  display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px;
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); font-size:.875rem; font-weight:500;
+  color:#EAF3FB; transition:background .3s, transform .3s var(--ease), border-color .3s;
+}
+.tag:hover{background:rgba(255,255,255,.16); transform:translateY(-2px); border-color:rgba(255,255,255,.34)}
+.tag svg{width:16px; height:16px; color:var(--blue-300)}
+
+/* domicilio — casa 3D */
+.house-scene{position:relative; aspect-ratio:1/.9; perspective:1100px; display:grid; place-items:center}
+.house-in{position:relative; width:76%; transform-style:preserve-3d; animation:bob 8s ease-in-out infinite; transition:transform .8s var(--ease)}
+@keyframes bobH{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.house-in{animation-name:bobH}
+.house-in svg{filter:drop-shadow(0 40px 50px rgba(6,57,92,.35))}
+.house-scene .shadow{position:absolute; bottom:8%; width:52%; aspect-ratio:3.4/1; border-radius:50%; background:radial-gradient(ellipse,rgba(6,57,92,.26),transparent 68%); filter:blur(9px)}
+.house-scene .chip3d--h1{top:6%; left:2%}
+.house-scene .chip3d--h2{bottom:14%; right:0}
+
+/* equipo */
+.team-grid{grid-template-columns:repeat(4,1fr)}
+.team-card{background:#fff; border:1px solid var(--line); border-radius:var(--r-lg); padding:26px 24px; text-align:center; box-shadow:var(--sh-1); transition:transform .4s var(--ease), box-shadow .4s, border-color .3s}
+.team-card:hover{transform:translateY(-6px); box-shadow:var(--sh-2); border-color:var(--blue-200)}
+.team-card .av{width:72px; height:72px; margin:0 auto 18px; border-radius:50%; display:grid; place-items:center;
+  background:linear-gradient(150deg,var(--sky-100),#fff); border:1px solid var(--line); color:var(--blue-700); box-shadow:inset 0 1px 0 #fff}
+.team-card .av .ico{width:30px; height:30px}
+.team-card h3{font-size:1rem; margin-bottom:6px}
+.team-card p{font-size:.88rem; color:var(--ink-soft)}
+
+/* mapa */
+.map-card{border-radius:var(--r-xl); overflow:hidden; border:1px solid var(--line); box-shadow:var(--sh-2); background:var(--sky-100); position:relative; min-height:390px; height:100%}
+.map-card iframe{width:100%; height:100%; min-height:390px; border:0; display:block}
+.map-ph{position:absolute; inset:0; display:grid; place-items:center; align-content:center; gap:10px; color:var(--blue-700);
+  text-align:center; font-size:.86rem; font-weight:600; padding:20px; background-color:#E9F2FA;
+  background-image:
+    linear-gradient(rgba(11,94,151,.09) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(11,94,151,.09) 1px,transparent 1px);
+  background-size:34px 34px,34px 34px}
+.info-rows{display:grid; gap:2px; margin:26px 0 30px}
+.info-row{display:flex; gap:16px; align-items:flex-start; padding:18px 2px; border-bottom:1px solid var(--line)}
+.info-row:last-child{border-bottom:0}
+.info-row .itile{width:44px; height:44px; border-radius:13px}
+.info-row .itile .ico{width:21px; height:21px}
+.info-row b{display:block; font-family:Manrope,sans-serif; font-size:.78rem; letter-spacing:.11em; text-transform:uppercase; color:var(--blue-700); margin-bottom:4px; font-weight:700}
+.info-row p{font-size:.98rem; color:var(--ink); font-weight:500; line-height:1.5}
+.info-row a{color:var(--blue-700); text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px}
+.cover-note{margin-top:30px; padding:22px 24px; border-radius:var(--r); background:var(--sky-50); border:1px solid var(--line)}
+.cover-note b{font-family:Manrope,sans-serif; display:block; margin-bottom:6px; font-size:1rem}
+.cover-note p{font-size:.9rem; color:var(--ink-soft)}
+.cover-pills{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.pill{padding:7px 14px; border-radius:999px; background:#fff; border:1px solid var(--line); font-size:.8rem; font-weight:600; color:var(--blue-800)}
+
+/* CTA final */
+.cta-final{position:relative; text-align:center; overflow:hidden}
+.cta-final .wrap{max-width:820px}
+.cta-final h2{font-size:clamp(2rem,4.4vw,3.2rem); margin-bottom:18px}
+.cta-final .btn-row{justify-content:center; margin-top:34px}
+.cta-num{display:inline-flex; align-items:center; gap:10px; margin-top:24px; font-family:Manrope,sans-serif; font-weight:700; font-size:1.3rem; letter-spacing:-.02em; color:#fff}
+.cta-num svg{width:20px; height:20px; color:var(--wa)}
+.cta-orbs{position:absolute; inset:0; pointer-events:none}
+.cta-orbs .o{position:absolute; border-radius:50%; border:1px solid rgba(255,255,255,.12)}
+.cta-cross{position:absolute; opacity:.16; color:#fff; animation:bobH 10s ease-in-out infinite}
+
+/* footer */
+.ftr{background:#02202F; color:#B9CEDF; padding-block:clamp(52px,6vw,78px) 0; font-size:.92rem}
+.ftr a{transition:color .25s}
+.ftr a:hover{color:#fff}
+.ftr-grid{display:grid; grid-template-columns:1.6fr 1fr 1.3fr; gap:clamp(28px,5vw,64px)}
+.ftr .logo-txt b{color:#fff}
+.ftr .logo-txt span{color:var(--blue-300)}
+.ftr h4{font-family:Manrope,sans-serif; font-size:.8rem; letter-spacing:.13em; text-transform:uppercase; color:#fff; margin-bottom:18px; font-weight:700}
+.ftr ul{list-style:none; padding:0; margin:0; display:grid; gap:11px}
+.ftr-claim{margin:20px 0 0; max-width:34ch; color:#93AEC4}
+.ftr-contact{display:grid; gap:14px}
+.ftr-contact div{display:flex; gap:12px; align-items:flex-start}
+.ftr-contact svg{width:19px; height:19px; color:var(--blue-300); flex:none; margin-top:2px}
+.ftr-bottom{margin-top:clamp(38px,5vw,56px); border-top:1px solid rgba(255,255,255,.1); padding-block:22px; display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; font-size:.82rem; color:#7C99B0}
+
+/* WhatsApp flotante + barra mobile */
+.wa-float{
+  position:fixed; right:24px; bottom:24px; z-index:95; display:flex; align-items:center; gap:12px;
+  padding:14px; border-radius:999px; background:linear-gradient(160deg,var(--wa),var(--wa-700)); color:#fff;
+  box-shadow:0 18px 38px -14px rgba(16,132,72,.7); transition:transform .35s var(--ease), box-shadow .35s;
+}
+.wa-float svg{width:30px; height:30px; flex:none}
+.wa-float .lbl{
+  max-width:0; overflow:hidden; white-space:nowrap; font-family:Manrope,sans-serif; font-weight:700; font-size:.9rem;
+  transition:max-width .45s var(--ease), padding .45s var(--ease), opacity .3s; opacity:0; padding-right:0;
+}
+.wa-float:hover{transform:translateY(-3px) scale(1.02); box-shadow:0 24px 46px -16px rgba(16,132,72,.8)}
+.wa-float:hover .lbl,.wa-float:focus-visible .lbl{max-width:190px; opacity:1; padding-right:10px}
+.wa-float::after{content:""; position:absolute; inset:0; border-radius:999px; border:2px solid rgba(37,211,102,.55); animation:ping 3s var(--ease) infinite}
+.wa-bar{
+  position:fixed; left:16px; right:16px; z-index:95; display:none;
+  bottom:calc(16px + env(safe-area-inset-bottom,0px));
+}
+.wa-bar .btn{box-shadow:0 16px 34px -12px rgba(16,132,72,.85)}
+
+/* revelado */
+[data-reveal]{opacity:0; transform:translateY(24px); transition:opacity .75s var(--ease), transform .75s var(--ease); transition-delay:var(--d,0ms)}
+[data-reveal].in{opacity:1; transform:none}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1080px){
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .esp-grid{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .motivos{grid-template-columns:repeat(2,1fr)}
+  .stages-grid{grid-template-columns:repeat(2,1fr)}
+  .nav{display:none}
+  .burger{display:flex}
+}
+@media (max-width:900px){
+  :root{--nav-h:72px}
+  .hero-grid{grid-template-columns:1fr; gap:40px}
+  .hero .scene{max-width:460px; margin-inline:auto; aspect-ratio:1/1}
+  .split{grid-template-columns:1fr}
+  .split.rev>*:first-child{order:2}
+  .feat-grid{grid-template-columns:1fr}
+  .ftr-grid{grid-template-columns:1fr 1fr; gap:34px}
+  .chip3d{font-size:.75rem; padding:9px 13px 9px 9px}
+  .chip3d .b{width:30px; height:30px}
+  .float-card--tl{left:-2%}
+  .float-card--br{right:-2%}
+}
+@media (max-width:760px){
+  body{font-size:16px; padding-bottom:96px}
+  .wa-float{display:none}
+  .wa-bar{display:block}
+  .hdr-cta .btn{display:none}
+  .sec{padding-block:clamp(54px,11vw,76px)}
+  .trust-grid,.esp-grid,.team-grid,.motivos,.stages-grid,.lab-grid{grid-template-columns:1fr}
+  .btn{width:100%}
+  .btn-row{gap:11px}
+  .hdr .btn{width:auto}
+  .hero-mini{gap:9px 18px}
+  .ftr-grid{grid-template-columns:1fr}
+  .ftr-bottom{flex-direction:column; text-align:left}
+  .info-row{padding:15px 0}
+  .card{padding:24px}
+}
+@media (max-width:760px){
+  .chip3d--1,.chip3d--3,.chip3d--h1{left:0}
+  .chip3d--2,.chip3d--4,.chip3d--h2{right:0}
+  .ring--c{width:98%}
+  .float-card--tl{left:0}
+  .float-card--br{right:0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important; transition-duration:.01ms!important}
+  [data-reveal]{opacity:1; transform:none}
+}
+@media print{.hdr,.wa-float,.wa-bar,.mnav{display:none!important}}
+</style>
+</head>
+<body>
+
+<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+
+<!-- ===== Sprite de íconos (inline: cero requests externos) ===== -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+<defs>
+  <symbol id="i-cross" viewBox="0 0 24 24"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.81 11.81 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.82 11.82 0 0 0 20.885 3.4"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+  <symbol id="i-stetho" viewBox="0 0 24 24"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 12 0V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 12 0v-4"/><circle cx="20" cy="10" r="2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m20 6-11 11-5-5"/></symbol>
+  <symbol id="i-check-c" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.4 12.2 2.4 2.4 4.8-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 2v7.3M14 9.3V2M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.6 16.5h12.8"/></symbol>
+  <symbol id="i-micro" viewBox="0 0 24 24"><path d="M6 18h8M3 22h18"/><path d="M14 22a7 7 0 0 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></symbol>
+  <symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01"/><path d="M8.6 14.3a4.6 4.6 0 0 0 6.8 0"/></symbol>
+  <symbol id="i-venus" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.2"/><path d="M12 14.2V21M9 18h6"/></symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24"><path d="M12 7.4c-1.5-2-4-2.6-5.6-1.2C4.4 7.6 4.6 11.2 6 14.2c1 2.2 2.6 4 4 4 .9 0 1.3-.4 2-.4s1.1.4 2 .4c1.4 0 3-1.8 4-4 1.4-3 1.6-6.6-.4-8.2-1.6-1.4-4.1-.8-5.6 1.4Z"/><path d="M12 7.4c0-1.8.7-3.1 2.6-3.9"/></symbol>
+  <symbol id="i-bone" viewBox="0 0 24 24"><path d="M8.6 15.4 15.4 8.6"/><circle cx="6.4" cy="15.6" r="2.5"/><circle cx="8.4" cy="17.6" r="2.5"/><circle cx="15.6" cy="6.4" r="2.5"/><circle cx="17.6" cy="8.4" r="2.5"/></symbol>
+  <symbol id="i-mind" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16.8s-3.4-2.1-3.4-4.3a1.9 1.9 0 0 1 3.4-1.2 1.9 1.9 0 0 1 3.4 1.2c0 2.2-3.4 4.3-3.4 4.3Z"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5a4.2 4.2 0 0 1-.6-8.36 5.6 5.6 0 0 1 10.8-1.1A4.2 4.2 0 0 1 17 18.5Z"/></symbol>
+  <symbol id="i-wind" viewBox="0 0 24 24"><path d="M4 8h9.5a2.8 2.8 0 1 0-2.8-2.8"/><path d="M4 12h13a2.8 2.8 0 1 1-2.8 2.8"/><path d="M4 16h6.5"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="m2.5 9 9.5-4.6L21.5 9 12 13.6z"/><path d="M6.5 11.2V16c0 1.6 2.5 2.8 5.5 2.8s5.5-1.2 5.5-2.8v-4.8"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9.5 18.5h5M10.5 21.5h3"/><path d="M12 2.5a6.3 6.3 0 0 0-3.7 11.4c.5.4.8 1 .9 1.6h5.6c.1-.6.4-1.2.9-1.6A6.3 6.3 0 0 0 12 2.5Z"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><path d="M9 4H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/><rect x="9" y="2.5" width="6" height="4" rx="1.4"/><path d="M9 12h6M9 16h4"/></symbol>
+  <symbol id="i-syringe" viewBox="0 0 24 24"><path d="m17 3 4 4"/><path d="m19.5 5.5-9 9"/><path d="m14 6 4 4"/><path d="M12.5 7.5 6 14a2 2 0 0 0 0 2.8l1.2 1.2a2 2 0 0 0 2.8 0l6.5-6.5"/><path d="m7 17-4 4"/></symbol>
+  <symbol id="i-cast" viewBox="0 0 24 24"><rect x="1.6" y="8" width="20.8" height="8" rx="4" transform="rotate(-45 12 12)"/><path d="M10.8 10.8h.01M13.2 13.2h.01M13.2 10.8h.01M10.8 13.2h.01"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="3"/><path d="M8.5 21h7M12 17v4"/><path d="M6 10.8h2.4L10 7.8l2 6 1.5-3H18"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 2.8s6.2 6.6 6.2 10.4a6.2 6.2 0 0 1-12.4 0C5.8 9.4 12 2.8 12 2.8Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.8 4.5 5.8v5.7c0 4.5 3.2 8.5 7.5 9.7 4.3-1.2 7.5-5.2 7.5-9.7V5.8z"/><path d="m8.9 11.8 2.3 2.3 4-4.3"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h3.4l1.8 4.4-2.2 1.6a13 13 0 0 0 6.9 6.9l1.6-2.2L21 15.5V19a2 2 0 0 1-2.2 2A17.2 17.2 0 0 1 3 5.2 2 2 0 0 1 5 3Z"/></symbol>
+  <symbol id="i-nav" viewBox="0 0 24 24"><path d="m3 11 18-8-8 18-2.2-7.8z"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v15"/><path d="M15 9h3a2 2 0 0 1 2 2v10"/><path d="M2 21h20M8 8h3M8 12h3M8 16h3"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M4.5 19.5C4.5 11.5 9.8 5.4 20 4.5c0 10.8-5.9 15.9-13 15.9H4.5Z"/><path d="M5.5 18.5c3-5 6.2-7.2 10.5-8.5"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="m11 3 1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9z"/><path d="m18 15.5.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M11 17H8.6a3 3 0 0 1-2.1-.9L3 12.6l1.2-1.2a2 2 0 0 1 2.6-.2L8.5 12.5V5.8a1.7 1.7 0 0 1 3.4 0V11"/><path d="M18.5 6.6a2.3 2.3 0 0 0-3.3 0L14 7.8l-1.2-1.2a2.3 2.3 0 1 0-3.3 3.3L14 14.4l4.5-4.5a2.3 2.3 0 0 0 0-3.3Z"/></symbol>
+</defs>
+</svg>
+
+<!-- ===================== HEADER ===================== -->
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a href="#inicio" class="logo" aria-label="Policlínica Sanitas — inicio">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cross"/></svg></span>
+      <span class="logo-txt"><b>SANITAS</b><span>Policlínica</span></span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#especialidades">Especialidades</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="hdr-cta">
+      <a class="btn btn--blue" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+        <svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg> Agendar consulta
+      </a>
+      <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mnav">
+        <svg class="ico" id="burger-i" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mnav" id="mnav">
+  <a href="#inicio">Inicio</a>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#especialidades">Especialidades</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#ubicacion">Ubicación</a>
+  <a href="#contacto">Contacto</a>
+  <a class="btn btn--wa btn--block" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+    <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Agendar una consulta
+  </a>
+</div>
+
+<main id="inicio">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="wrap hero-grid">
+
+    <div class="hero-copy">
+      <span class="badge" data-reveal><i class="dot"></i> Policlínica Sanitas</span>
+
+      <h1 data-reveal style="--d:80ms">Cuidamos de <span class="u">vos y de tu familia.</span></h1>
+
+      <p class="hero-sub" data-reveal style="--d:160ms">
+        Atención médica integral, profesionales de distintas especialidades y servicios de salud en un solo lugar.
+      </p>
+      <p class="hero-note" data-reveal style="--d:220ms">
+        Estamos en Lambaré para brindarte una atención cercana, profesional y humana.
+      </p>
+
+      <div class="btn-row" data-reveal style="--d:280ms">
+        <a class="btn btn--wa btn--lg" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+          <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Agendar una consulta
+        </a>
+        <a class="btn btn--ghost btn--lg" href="#especialidades">
+          Ver especialidades <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-mini" data-reveal style="--d:340ms">
+        <span><svg aria-hidden="true"><use href="#i-check-c"/></svg> Atención profesional</span>
+        <span><svg aria-hidden="true"><use href="#i-check-c"/></svg> Todas las edades</span>
+        <span><svg aria-hidden="true"><use href="#i-check-c"/></svg> Lunes a domingo, 09:00 a 20:00 hs</span>
+      </div>
+    </div>
+
+    <!-- composición 3D -->
+    <div class="scene" id="scene" aria-hidden="true">
+      <div class="scene-in" id="sceneIn">
+        <div class="glow"></div>
+        <div class="ring ring--c"></div>
+        <div class="ring ring--a"><i></i></div>
+        <div class="ring ring--b"><i></i></div>
+        <div class="pedestal"></div>
+
+        <div class="heart-wrap">
+          <svg class="ill" viewBox="0 0 200 190">
+            <defs>
+              <radialGradient id="hg" cx="34%" cy="26%" r="82%">
+                <stop offset="0" stop-color="#FF97A8"/>
+                <stop offset=".42" stop-color="#EE4A64"/>
+                <stop offset="1" stop-color="#9E1236"/>
+              </radialGradient>
+              <linearGradient id="hs" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#fff" stop-opacity=".85"/>
+                <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#hg)" d="M100 178C58 146 14 116 14 72 14 44 36 22 63 22c15 0 29 7 37 19 8-12 22-19 37-19 27 0 49 22 49 50 0 44-44 74-86 106Z"/>
+            <ellipse cx="70" cy="58" rx="26" ry="17" fill="url(#hs)" transform="rotate(-24 70 58)" opacity=".75"/>
+            <path d="M100 178C58 146 14 116 14 72 14 44 36 22 63 22c15 0 29 7 37 19" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="3"/>
+          </svg>
+        </div>
+
+        <div class="ecg-card">
+          <div class="lbl"><span>Ritmo cardíaco</span><em>en línea</em></div>
+          <svg viewBox="0 0 340 44">
+            <path class="ecg-line" d="M0 30h48l10-18 12 30 10-26 9 14h30l10-16 12 28 10-24 9 12h34l10-18 12 30 10-26 9 14h84"/>
+          </svg>
+        </div>
+
+        <div class="chip3d chip3d--1">
+          <span class="b"><svg class="ico" aria-hidden="true"><use href="#i-stetho"/></svg></span>
+          <span>7 especialidades<small>médicas en un solo lugar</small></span>
+        </div>
+        <div class="chip3d chip3d--2">
+          <span class="b"><svg class="ico" aria-hidden="true"><use href="#i-flask"/></svg></span>
+          <span>Laboratorio<small>estudios y controles</small></span>
+        </div>
+        <div class="chip3d chip3d--3">
+          <span class="b"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg></span>
+          <span>Atención a domicilio<small>zonas cercanas de Lambaré</small></span>
+        </div>
+        <div class="chip3d chip3d--4">
+          <span class="b"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg></span>
+          <span>09:00 — 20:00 hs<small>de lunes a domingo</small></span>
+        </div>
+
+        <div class="particles">
+          <i style="width:7px;height:7px;top:16%;left:22%;animation-delay:0s"></i>
+          <i style="width:5px;height:5px;top:64%;left:14%;animation-delay:1.6s"></i>
+          <i style="width:8px;height:8px;top:78%;left:72%;animation-delay:3.1s;background:#159D8B"></i>
+          <i style="width:5px;height:5px;top:24%;left:82%;animation-delay:2.2s"></i>
+          <i style="width:6px;height:6px;top:46%;left:6%;animation-delay:4.4s;background:#159D8B"></i>
+          <i style="width:4px;height:4px;top:88%;left:40%;animation-delay:.8s"></i>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== BARRA DE CONFIANZA ===================== -->
+<section class="sec trust" style="padding-top:clamp(10px,2vw,26px)">
+  <div class="wrap">
+    <div class="grid trust-grid">
+      <article class="card" data-reveal>
+        <span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-stetho"/></svg></span>
+        <h3>Atención integral</h3>
+        <p>Especialidades para diferentes necesidades de salud.</p>
+      </article>
+      <article class="card" data-reveal style="--d:90ms">
+        <span class="itile itile--accent"><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg></span>
+        <h3>Cuidado familiar</h3>
+        <p>Niños, adultos y adultos mayores.</p>
+      </article>
+      <article class="card" data-reveal style="--d:180ms">
+        <span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg></span>
+        <h3>En Lambaré</h3>
+        <p>Ubicación accesible para pacientes de la zona.</p>
+      </article>
+      <article class="card" data-reveal style="--d:270ms">
+        <span class="itile itile--mint"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg></span>
+        <h3>Atención a domicilio</h3>
+        <p>Disponible en zonas cercanas de Lambaré.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOBRE SANITAS ===================== -->
+<section class="sec sec--alt" id="nosotros">
+  <div class="wrap split">
+    <div data-reveal>
+      <span class="eyebrow">Sobre Sanitas</span>
+      <h2>Tu salud merece una atención cercana y completa.</h2>
+      <p class="lead" style="margin-top:22px">
+        La Policlínica Sanitas es una institución dedicada al cuidado de vos y de tu familia. Contamos con diferentes
+        especialidades médicas y servicios pensados para ofrecer una atención práctica, profesional y cercana.
+      </p>
+      <p class="lead" style="margin-top:16px">
+        Además de nuestra atención en la policlínica, contamos con atención a domicilio en zonas cercanas de Lambaré.
+      </p>
+      <ul class="checklist">
+        <li><svg aria-hidden="true"><use href="#i-check-c"/></svg> Varias especialidades médicas en un mismo lugar</li>
+        <li><svg aria-hidden="true"><use href="#i-check-c"/></svg> Atención para diferentes edades y etapas de la vida</li>
+        <li><svg aria-hidden="true"><use href="#i-check-c"/></svg> Estudios, procedimientos y servicio de laboratorio</li>
+        <li><svg aria-hidden="true"><use href="#i-check-c"/></svg> Atención de 09:00 a 20:00 hs</li>
+      </ul>
+      <div class="btn-row" style="margin-top:32px">
+        <a class="btn btn--blue" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+          <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Agendar una consulta
+        </a>
+      </div>
+    </div>
+
+    <!-- MEDIA: reemplazá el bloque .ph por <img src="fotos/policlinica.jpg" alt="..." loading="lazy" decoding="async" width="900" height="760"> -->
+    <div class="media" data-reveal style="--d:120ms">
+      <div class="media-frame">
+        <div class="ph">
+          <span class="grid-lines"></span>
+          <svg class="emblem ill" viewBox="0 0 120 120" aria-hidden="true">
+            <defs>
+              <linearGradient id="eg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#9FD2F2"/>
+              </linearGradient>
+            </defs>
+            <rect x="18" y="18" width="84" height="84" rx="24" fill="none" stroke="url(#eg)" stroke-width="2" opacity=".55"/>
+            <path d="M50 30h20v20h20v20H70v20H50V70H30V50h20z" fill="url(#eg)"/>
+          </svg>
+        </div>
+      </div>
+      <div class="float-card float-card--br">
+        <b>09:00 — 20:00</b><span>Horario de atención</span>
+      </div>
+      <div class="float-card float-card--tl">
+        <span class="itile itile--mint" style="width:44px;height:44px;border-radius:13px"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg></span>
+        <span><b style="font-size:1rem">Lambaré</b><span>Barrio Valle Apua</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ESPECIALIDADES ===================== -->
+<section class="sec" id="especialidades">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <span class="eyebrow">Nuestras áreas</span>
+      <h2>Especialidades médicas</h2>
+      <p class="lead" style="margin-top:16px">Encontrá atención especializada para diferentes necesidades de salud.</p>
+    </div>
+
+    <div class="grid esp-grid">
+      <article class="card" data-reveal>
+        <span class="itile itile--accent"><svg class="ico" aria-hidden="true"><use href="#i-venus"/></svg></span>
+        <h3>Ginecología y Obstetricia</h3>
+        <p>Atención y seguimiento de la salud femenina y embarazo.</p>
+        <a class="card-link" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20Ginecolog%C3%ADa%20y%20Obstetricia%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">Agendar consulta <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="card" data-reveal style="--d:70ms">
+        <span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-bone"/></svg></span>
+        <h3>Traumatología</h3>
+        <p>Atención de lesiones, traumatismos y problemas musculoesqueléticos.</p>
+        <a class="card-link" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20Traumatolog%C3%ADa%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">Agendar consulta <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="card" data-reveal style="--d:140ms">
+        <span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-stetho"/></svg></span>
+        <h3>Clínica General</h3>
+        <p>Evaluación médica, controles clínicos y orientación integral.</p>
+        <a class="card-link" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20Cl%C3%ADnica%20General%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">Agendar consulta <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="card" data-reveal style="--d:70ms">
+        <span class="itile itile--mint"><svg class="ico" aria-hidden="true"><use href="#i-mind"/></svg></span>
+        <h3>Psicología</h3>
+        <p>Apoyo psicológico para niños, adultos y adultos mayores.</p>
+        <a class="card-link" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20atenci%C3%B3n%20psicol%C3%B3gica%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">Agendar consulta <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="card" data-reveal style="--d:140ms">
+        <span class="itile itile--mint"><svg class="ico" aria-hidden="true"><use href="#i-apple"/></svg></span>
+        <h3>Nutrición</h3>
+        <p>Orientación nutricional para diferentes etapas y necesidades.</p>
+        <a class="card-link" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20Nutrici%C3%B3n%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">Agendar consulta <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="card" data-reveal style="--d:210ms">
+        <span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-smile"/></svg></span>
+        <h3>Pediatría</h3>
+        <p>Cuidados y seguimiento de la salud de niños.</p>
+        <a class="card-link" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20Pediatr%C3%ADa%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">Agendar consulta <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="card" data-reveal style="--d:280ms">
+        <span class="itile itile--accent"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></span>
+        <h3>Cardiología</h3>
+        <p>Evaluación y seguimiento de la salud cardiovascular.</p>
+        <a class="card-link" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20Cardiolog%C3%ADa%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">Agendar consulta <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <!-- CTA dentro de la grilla -->
+      <article class="card esp-cta" data-reveal style="--d:350ms;background:linear-gradient(160deg,var(--blue-800),var(--blue-950));border-color:transparent;color:#fff">
+        <span class="itile itile--dark" style="background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.2)"><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+        <h3 style="color:#fff">¿No sabés a qué especialidad ir?</h3>
+        <p style="color:rgba(226,239,250,.85)">Escribinos y te orientamos sobre la atención que necesitás.</p>
+        <a class="btn btn--wa btn--block" style="margin-top:20px" href="https://wa.me/595982420735?text=Hola%2C%20necesito%20orientaci%C3%B3n%20sobre%20qu%C3%A9%20especialidad%20consultar%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+          <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Consultar por WhatsApp
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ESTUDIOS Y PROCEDIMIENTOS ===================== -->
+<section class="sec sec--sky" id="servicios">
+  <div class="wrap split">
+    <div data-reveal>
+      <span class="eyebrow">En la policlínica</span>
+      <h2>Estudios y procedimientos</h2>
+      <p class="lead" style="margin-top:16px;margin-bottom:32px">Servicios médicos realizados en la Policlínica Sanitas.</p>
+
+      <div class="proc-list">
+        <div class="proc"><span class="itile itile--accent"><svg class="ico" aria-hidden="true"><use href="#i-pulse"/></svg></span><div><b>Electrocardiograma</b><span>Registro de la actividad eléctrica del corazón</span></div></div>
+        <div class="proc"><span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-monitor"/></svg></span><div><b>Ecocardiograma</b><span>Estudio por imágenes del corazón</span></div></div>
+        <div class="proc"><span class="itile itile--mint"><svg class="ico" aria-hidden="true"><use href="#i-venus"/></svg></span><div><b>Papanicolaou (PAP)</b><span>Control de la salud femenina</span></div></div>
+        <div class="proc"><span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-syringe"/></svg></span><div><b>Infiltraciones</b><span>Procedimiento realizado en consultorio</span></div></div>
+        <div class="proc"><span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-cast"/></svg></span><div><b>Colocación de férulas y yesos</b><span>Inmovilización de lesiones</span></div></div>
+        <div class="proc"><span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-clip"/></svg></span><div><b>Procedimientos menores de consultorio</b><span>Consultá disponibilidad por WhatsApp</span></div></div>
+      </div>
+    </div>
+
+    <div class="media" data-reveal style="--d:120ms">
+      <div class="scene" style="aspect-ratio:1/1;max-width:480px;margin-inline:auto" aria-hidden="true">
+        <div class="scene-in" data-tilt>
+          <div class="glow"></div>
+          <div class="ring ring--a" style="border-color:rgba(227,69,95,.22)"><i style="background:radial-gradient(circle at 35% 30%,#fff,#E3455F);box-shadow:0 0 14px rgba(227,69,95,.9)"></i></div>
+          <div class="ring ring--b"></div>
+          <div class="pedestal"></div>
+          <div class="heart-wrap" style="width:44%">
+            <svg class="ill" viewBox="0 0 200 190">
+              <path fill="url(#hg)" d="M100 178C58 146 14 116 14 72 14 44 36 22 63 22c15 0 29 7 37 19 8-12 22-19 37-19 27 0 49 22 49 50 0 44-44 74-86 106Z"/>
+              <ellipse cx="70" cy="58" rx="26" ry="17" fill="url(#hs)" transform="rotate(-24 70 58)" opacity=".75"/>
+            </svg>
+          </div>
+          <div class="ecg-card" style="top:74%">
+            <div class="lbl"><span>Electrocardiograma</span><em>registro</em></div>
+            <svg viewBox="0 0 340 44">
+              <path class="ecg-line" style="stroke:var(--blue-600)" d="M0 30h48l10-18 12 30 10-26 9 14h30l10-16 12 28 10-24 9 12h34l10-18 12 30 10-26 9 14h84"/>
+            </svg>
+          </div>
+          <div class="chip3d chip3d--2" style="top:20%"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-monitor"/></svg></span><span>Ecocardiograma<small>estudio por imágenes</small></span></div>
+          <div class="chip3d chip3d--3" style="top:44%;left:-6%"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg></span><span>Controles preventivos<small>seguimiento clínico</small></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LABORATORIO ===================== -->
+<section class="sec dark">
+  <div class="wrap split">
+    <div data-reveal>
+      <span class="eyebrow">Servicio</span>
+      <h2>Laboratorio</h2>
+      <p class="lead" style="margin-top:20px;color:rgba(226,239,250,.85)">
+        Contamos con servicio de laboratorio para acompañar diferentes necesidades de evaluación y control de salud.
+      </p>
+      <div class="btn-row" style="margin-top:32px">
+        <a class="btn btn--wa btn--lg" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20el%20servicio%20de%20laboratorio%20de%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+          <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Consultar por WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="grid lab-grid" data-reveal style="--d:120ms">
+      <div class="glass"><span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-flask"/></svg></span><h3>Estudios de laboratorio</h3><p>Para acompañar controles y evaluaciones indicadas en la consulta.</p></div>
+      <div class="glass"><span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-micro"/></svg></span><h3>Análisis clínicos</h3><p>Consultá por los estudios disponibles y la preparación necesaria.</p></div>
+      <div class="glass"><span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-drop"/></svg></span><h3>Controles de rutina</h3><p>Seguimiento de tu salud junto al profesional que te atiende.</p></div>
+      <div class="glass"><span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg></span><h3>Horario amplio</h3><p>Atención de 09:00 a 20:00 hs para adaptarse a tu rutina.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICIOS MÁS SOLICITADOS ===================== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <span class="eyebrow">Más buscados</span>
+      <h2>Algunos de nuestros servicios más solicitados</h2>
+    </div>
+    <div class="grid feat-grid">
+      <article class="feat" data-reveal>
+        <span class="num">01</span>
+        <span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-pulse"/></svg></span>
+        <h3>Electrocardiograma</h3>
+        <p>Estudio realizado en la policlínica para evaluar la actividad eléctrica del corazón.</p>
+      </article>
+      <article class="feat" data-reveal style="--d:110ms">
+        <span class="num">02</span>
+        <span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-venus"/></svg></span>
+        <h3>Papanicolaou (PAP)</h3>
+        <p>Control ginecológico de rutina para el cuidado de la salud femenina.</p>
+      </article>
+      <article class="feat" data-reveal style="--d:220ms">
+        <span class="num">03</span>
+        <span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-mind"/></svg></span>
+        <h3>Atención psicológica infantil</h3>
+        <p>Atención psicológica para niños con estrés, dificultades emocionales, depresión y necesidades relacionadas con la motricidad fina.</p>
+      </article>
+    </div>
+    <div class="center" style="margin-top:34px" data-reveal>
+      <a class="btn btn--blue btn--lg" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+        <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Agendar una consulta
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ETAPAS DE LA VIDA ===================== -->
+<section class="sec sec--alt">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <span class="eyebrow">Para quién es Sanitas</span>
+      <h2>Atención para diferentes etapas de la vida</h2>
+      <p class="lead" style="margin-top:16px">Acompañamos a cada integrante de la familia con la atención que necesita.</p>
+    </div>
+
+    <!-- FOTOS: reemplazá cada <div class="ph"> por <img src="fotos/ninos.jpg" alt="..." loading="lazy" decoding="async" width="640" height="480"> -->
+    <div class="grid stages-grid">
+      <article class="stage" data-reveal>
+        <div class="photo"><div class="ph"><span class="rings"></span><svg aria-hidden="true"><use href="#i-smile"/></svg></div></div>
+        <div class="body"><h3>Niños</h3><p>Pediatría y atención psicológica infantil.</p></div>
+      </article>
+      <article class="stage" data-reveal style="--d:90ms">
+        <div class="photo"><div class="ph"><span class="rings"></span><svg aria-hidden="true"><use href="#i-user"/></svg></div></div>
+        <div class="body"><h3>Adultos</h3><p>Controles clínicos, ginecológicos, cardiovasculares y otras especialidades.</p></div>
+      </article>
+      <article class="stage" data-reveal style="--d:180ms">
+        <div class="photo"><div class="ph"><span class="rings"></span><svg aria-hidden="true"><use href="#i-leaf"/></svg></div></div>
+        <div class="body"><h3>Adultos mayores</h3><p>Controles, acompañamiento psicológico y recuperación cognitiva.</p></div>
+      </article>
+      <article class="stage" data-reveal style="--d:270ms">
+        <div class="photo"><div class="ph"><span class="rings"></span><svg aria-hidden="true"><use href="#i-users"/></svg></div></div>
+        <div class="body"><h3>Familias</h3><p>Atención integral para diferentes necesidades de salud.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MOTIVOS DE CONSULTA ===================== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <span class="eyebrow">Motivos de consulta</span>
+      <h2>¿Qué necesitás consultar?</h2>
+      <p class="lead" style="margin-top:16px">Elegí el motivo que más se acerque a tu necesidad y escribinos por WhatsApp.</p>
+    </div>
+
+    <div class="motivos">
+      <a class="motivo" data-reveal href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20controles%20cl%C3%ADnicos%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-stetho"/></svg></span> Controles clínicos <svg class="arw" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="motivo" data-reveal style="--d:50ms" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20controles%20ginecol%C3%B3gicos%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-venus"/></svg></span> Controles ginecológicos <svg class="arw" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="motivo" data-reveal style="--d:100ms" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20un%20traumatismo%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-bone"/></svg></span> Traumatismos <svg class="arw" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="motivo" data-reveal style="--d:150ms" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20una%20inspecci%C3%B3n%20m%C3%A9dica%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-clip"/></svg></span> Inspección médica <svg class="arw" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="motivo" data-reveal style="--d:200ms" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20apoyo%20escolar%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-cap"/></svg></span> Apoyo escolar <svg class="arw" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="motivo" data-reveal style="--d:250ms" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20ansiedad%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-wind"/></svg></span> Ansiedad <svg class="arw" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="motivo" data-reveal style="--d:300ms" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20estr%C3%A9s%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-sparkle"/></svg></span> Estrés <svg class="arw" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="motivo" data-reveal style="--d:350ms" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20depresi%C3%B3n%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-cloud"/></svg></span> Depresión <svg class="arw" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="motivo" data-reveal style="--d:400ms" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20recuperaci%C3%B3n%20cognitiva%20en%20adultos%20mayores%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span> Recuperación cognitiva <svg class="arw" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ATENCIÓN PSICOLÓGICA ===================== -->
+<section class="sec dark">
+  <div class="wrap split">
+    <div data-reveal>
+      <span class="eyebrow">Salud emocional</span>
+      <h2>Cuidar la salud emocional también es cuidar la salud.</h2>
+      <p class="lead" style="margin-top:20px;color:rgba(226,239,250,.85)">
+        En Sanitas ofrecemos atención psicológica para acompañar a niños y adultos en diferentes situaciones
+        emocionales y etapas de la vida.
+      </p>
+      <div class="psico-tags">
+        <span class="tag"><svg class="ico" aria-hidden="true"><use href="#i-sparkle"/></svg> Estrés</span>
+        <span class="tag"><svg class="ico" aria-hidden="true"><use href="#i-wind"/></svg> Ansiedad</span>
+        <span class="tag"><svg class="ico" aria-hidden="true"><use href="#i-cloud"/></svg> Depresión</span>
+        <span class="tag"><svg class="ico" aria-hidden="true"><use href="#i-smile"/></svg> Apoyo psicológico infantil</span>
+        <span class="tag"><svg class="ico" aria-hidden="true"><use href="#i-hand"/></svg> Motricidad fina</span>
+        <span class="tag"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg> Recuperación cognitiva en adultos mayores</span>
+      </div>
+      <div class="btn-row" style="margin-top:34px">
+        <a class="btn btn--wa btn--lg" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20atenci%C3%B3n%20psicol%C3%B3gica%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+          <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Quiero consultar
+        </a>
+      </div>
+    </div>
+
+    <div data-reveal style="--d:120ms">
+      <div class="scene" style="aspect-ratio:1/.92" aria-hidden="true">
+        <div class="scene-in" data-tilt>
+          <div class="glow" style="background:radial-gradient(circle at 50% 45%, rgba(21,157,139,.34), rgba(21,157,139,.08) 52%, transparent 70%)"></div>
+          <div class="ring ring--a" style="border-color:rgba(255,255,255,.2)"><i></i></div>
+          <div class="ring ring--c" style="border-color:rgba(255,255,255,.12)"></div>
+          <div class="heart-wrap" style="width:46%;top:46%">
+            <svg class="ill" viewBox="0 0 200 200">
+              <defs>
+                <radialGradient id="mg" cx="34%" cy="26%" r="82%">
+                  <stop offset="0" stop-color="#8FE3D6"/><stop offset=".45" stop-color="#20B09B"/><stop offset="1" stop-color="#0B5A52"/>
+                </radialGradient>
+              </defs>
+              <circle cx="100" cy="100" r="76" fill="url(#mg)"/>
+              <ellipse cx="74" cy="66" rx="28" ry="18" fill="#fff" opacity=".32" transform="rotate(-25 74 66)"/>
+              <path d="M100 138s-26-16-26-33a14.5 14.5 0 0 1 26-8.8A14.5 14.5 0 0 1 126 105c0 17-26 33-26 33Z" fill="#fff" opacity=".92"/>
+            </svg>
+          </div>
+          <div class="chip3d chip3d--1" style="top:6%;left:6%"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-smile"/></svg></span><span>Niños<small>acompañamiento emocional</small></span></div>
+          <div class="chip3d chip3d--4" style="bottom:6%"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-leaf"/></svg></span><span>Adultos mayores<small>recuperación cognitiva</small></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ATENCIÓN A DOMICILIO ===================== -->
+<section class="sec sec--sky">
+  <div class="wrap split rev">
+    <div class="media" data-reveal>
+      <div class="house-scene">
+        <span class="shadow"></span>
+        <div class="house-in" data-tilt>
+          <svg class="ill" viewBox="0 0 220 200" aria-hidden="true">
+            <defs>
+              <linearGradient id="roofA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2A9BE0"/><stop offset="1" stop-color="#0B5E97"/></linearGradient>
+              <linearGradient id="roofB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B5E97"/><stop offset="1" stop-color="#04304F"/></linearGradient>
+              <linearGradient id="wallA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E3EFFA"/></linearGradient>
+              <linearGradient id="wallB" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C3DAEE"/><stop offset="1" stop-color="#A2C4E0"/></linearGradient>
+            </defs>
+            <!-- lateral -->
+            <path d="M150 100l32-18v80l-32 18z" fill="url(#wallB)"/>
+            <!-- frente -->
+            <path d="M55 100h95v80H55z" fill="url(#wallA)"/>
+            <!-- techo lateral -->
+            <path d="M160 102 102.5 55l32-18L192 84z" fill="url(#roofB)"/>
+            <!-- techo frontal -->
+            <path d="M45 102 102.5 55 160 102z" fill="url(#roofA)"/>
+            <!-- ventanas -->
+            <rect x="68" y="120" width="21" height="21" rx="4" fill="#1A8AD4" opacity=".26"/>
+            <rect x="116" y="120" width="21" height="21" rx="4" fill="#1A8AD4" opacity=".18"/>
+            <rect x="159" y="105" width="14" height="20" rx="4" fill="#06395C" opacity=".16"/>
+            <!-- puerta -->
+            <path d="M92 180v-26a10.5 10.5 0 0 1 21 0v26z" fill="#06395C" opacity=".22"/>
+            <!-- cruz -->
+            <path d="M97 69h11v9h9v11h-9v9H97v-9h-9V78h9z" fill="#E3455F"/>
+            <!-- piso -->
+            <path d="M40 180h145" stroke="#06395C" stroke-opacity=".18" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="chip3d chip3d--h1"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-stetho"/></svg></span><span>Atención a domicilio<small>zonas cercanas de Lambaré</small></span></div>
+        <div class="chip3d chip3d--h2"><span class="b"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg></span><span>Consultá tu zona<small>disponibilidad según ubicación</small></span></div>
+      </div>
+    </div>
+
+    <div data-reveal style="--d:120ms">
+      <span class="eyebrow">A domicilio</span>
+      <h2>También podemos acercarnos a vos.</h2>
+      <p class="lead" style="margin-top:20px">
+        Sanitas ofrece atención a domicilio en zonas cercanas de Lambaré, brindando mayor comodidad a nuestros pacientes.
+      </p>
+      <ul class="checklist">
+        <li><svg aria-hidden="true"><use href="#i-check-c"/></svg> Mayor comodidad para pacientes con dificultad para trasladarse</li>
+        <li><svg aria-hidden="true"><use href="#i-check-c"/></svg> Disponible en zonas cercanas de Lambaré</li>
+        <li><svg aria-hidden="true"><use href="#i-check-c"/></svg> Consultá disponibilidad según tu zona</li>
+      </ul>
+      <div class="btn-row" style="margin-top:32px">
+        <a class="btn btn--wa btn--lg" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20por%20la%20atenci%C3%B3n%20a%20domicilio%20de%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+          <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Consultar atención a domicilio
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EQUIPO ===================== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <span class="eyebrow">Nuestro equipo</span>
+      <h2>Profesionales dedicados a tu salud</h2>
+      <p class="lead" style="margin-top:16px">
+        Un equipo multidisciplinario preparado para acompañarte en diferentes necesidades de salud.
+      </p>
+    </div>
+
+    <div class="grid team-grid">
+      <article class="team-card" data-reveal>
+        <span class="av"><svg class="ico" aria-hidden="true"><use href="#i-stetho"/></svg></span>
+        <h3>Área clínica</h3>
+        <p>Clínica general, cardiología y traumatología.</p>
+      </article>
+      <article class="team-card" data-reveal style="--d:90ms">
+        <span class="av"><svg class="ico" aria-hidden="true"><use href="#i-venus"/></svg></span>
+        <h3>Salud de la mujer</h3>
+        <p>Ginecología y obstetricia.</p>
+      </article>
+      <article class="team-card" data-reveal style="--d:180ms">
+        <span class="av"><svg class="ico" aria-hidden="true"><use href="#i-smile"/></svg></span>
+        <h3>Salud infantil</h3>
+        <p>Pediatría y atención psicológica infantil.</p>
+      </article>
+      <article class="team-card" data-reveal style="--d:270ms">
+        <span class="av"><svg class="ico" aria-hidden="true"><use href="#i-mind"/></svg></span>
+        <h3>Salud emocional y nutrición</h3>
+        <p>Psicología y orientación nutricional.</p>
+      </article>
+    </div>
+
+    <!-- ============================================================================
+         ESTRUCTURA LISTA PARA CARGAR PROFESIONALES REALES.
+         Cuando la policlínica entregue fotos, nombres, especialidad, registro
+         profesional, formación y experiencia, descomentá este bloque y repetí la
+         tarjeta por cada profesional. No completar con datos inventados.
+
+    <div class="grid team-grid" style="margin-top:24px">
+      <article class="team-card">
+        <img class="av" src="fotos/equipo/nombre.jpg" alt="Retrato de [Nombre]" loading="lazy" decoding="async" width="144" height="144" style="object-fit:cover">
+        <h3>[Nombre y apellido]</h3>
+        <p><b>[Especialidad]</b></p>
+        <p class="small muted">Reg. Prof. [número] · [Formación] · [Experiencia]</p>
+      </article>
+    </div>
+    ============================================================================ -->
+
+    <div class="center" style="margin-top:34px" data-reveal>
+      <a class="btn btn--blue btn--lg" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+        <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Agendar una consulta
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== UBICACIÓN ===================== -->
+<section class="sec sec--alt" id="ubicacion">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <span class="eyebrow">Ubicación</span>
+      <h2>Encontranos en Lambaré</h2>
+      <p class="lead" style="margin-top:16px">Estamos en el Barrio Valle Apua, con acceso simple para pacientes de la zona.</p>
+    </div>
+
+    <div class="split" style="align-items:stretch">
+      <div data-reveal>
+        <div class="info-rows">
+          <div class="info-row">
+            <span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg></span>
+            <div><b>Dirección</b><p>Fulgencio Yegros 872 casi Río Bermejo<br>Barrio Valle Apua — Lambaré, Paraguay</p></div>
+          </div>
+          <div class="info-row">
+            <span class="itile itile--mint"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg></span>
+            <div><b>Horario de atención</b><p>Lunes a domingo, de 09:00 a 20:00 hs</p></div>
+          </div>
+          <div class="info-row">
+            <span class="itile itile--accent"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span>
+            <div><b>WhatsApp</b><p><a href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">0982 420 735</a></p></div>
+          </div>
+          <div class="info-row">
+            <span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-building"/></svg></span>
+            <div><b>Institución</b><p>Policlínica Sanitas — atención médica integral</p></div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn btn--blue btn--lg" id="btn-como-llegar"
+             href="https://www.google.com/maps/dir/?api=1&destination=Fulgencio%20Yegros%20872%20casi%20R%C3%ADo%20Bermejo%2C%20Barrio%20Valle%20Apua%2C%20Lambar%C3%A9%2C%20Paraguay"
+             target="_blank" rel="noopener">
+            <svg class="ico" aria-hidden="true"><use href="#i-nav"/></svg> Cómo llegar
+          </a>
+          <a class="btn btn--ghost btn--lg" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+            <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Agendar una consulta
+          </a>
+        </div>
+
+        <!-- Cobertura -->
+        <div class="cover-note">
+          <b>Pacientes de Lambaré y zonas cercanas</b>
+          <p>Atendemos principalmente pacientes de Lambaré y zonas cercanas. También hemos recibido pacientes provenientes de Limpio, Mariano Roque Alonso y San Lorenzo.</p>
+          <div class="cover-pills">
+            <span class="pill">Lambaré</span>
+            <span class="pill">Limpio</span>
+            <span class="pill">Mariano Roque Alonso</span>
+            <span class="pill">San Lorenzo</span>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal style="--d:120ms">
+        <!-- El mapa se carga sólo al acercarse a la vista (mejor LCP). -->
+        <div class="map-card" id="mapCard">
+          <div class="map-ph">
+            <svg class="ico" style="width:30px;height:30px" aria-hidden="true"><use href="#i-pin"/></svg>
+            Cargando el mapa de la Policlínica Sanitas…
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section class="sec dark cta-final" id="contacto">
+  <div class="cta-orbs" aria-hidden="true">
+    <span class="o" style="width:420px;height:420px;top:-140px;left:-90px"></span>
+    <span class="o" style="width:640px;height:640px;bottom:-280px;right:-160px"></span>
+    <svg class="cta-cross" style="width:90px;top:16%;right:9%" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cross"/></svg>
+    <svg class="cta-cross" style="width:52px;bottom:14%;left:8%;animation-delay:1.4s" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cross"/></svg>
+  </div>
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Estamos para ayudarte</span>
+    <h2 data-reveal style="--d:70ms">¿Necesitás una consulta?</h2>
+    <p class="lead" data-reveal style="--d:140ms;color:rgba(226,239,250,.85);max-width:600px;margin-inline:auto">
+      Nuestro equipo está listo para orientarte y ayudarte a encontrar la atención que necesitás.
+    </p>
+    <div class="btn-row" data-reveal style="--d:210ms">
+      <a class="btn btn--wa btn--lg" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+        <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Agendar por WhatsApp
+      </a>
+    </div>
+    <div data-reveal style="--d:280ms">
+      <a class="cta-num" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#i-wa"/></svg> 0982 420 735
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <a href="#inicio" class="logo" aria-label="Policlínica Sanitas — inicio">
+          <span class="logo-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cross"/></svg></span>
+          <span class="logo-txt"><b>SANITAS</b><span>Policlínica</span></span>
+        </a>
+        <p class="ftr-claim">“Cuidamos de vos y de tu familia.”</p>
+      </div>
+
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#especialidades">Especialidades</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
+          <li><a href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contacto</h4>
+        <div class="ftr-contact">
+          <div><svg aria-hidden="true"><use href="#i-pin"/></svg><span>Fulgencio Yegros 872 casi Río Bermejo<br>Barrio Valle Apua — Lambaré, Paraguay</span></div>
+          <div><svg aria-hidden="true"><use href="#i-clock"/></svg><span>Horario de atención: 09:00 a 20:00 hs</span></div>
+          <div><svg aria-hidden="true"><use href="#i-wa"/></svg><span><a href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">0982 420 735</a></span></div>
+        </div>
+        <a class="btn btn--wa" style="margin-top:22px" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20agendar%20una%20consulta%20en%20la%20Policl%C3%ADnica%20Sanitas." target="_blank" rel="noopener">
+          <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Agendar una consulta
+        </a>
+      </div>
+    </div>
+
+    <div class="ftr-bottom">
+      <span>© 2026 Policlínica Sanitas. Todos los derechos reservados.</span>
+      <span>Lambaré, Paraguay</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== WHATSAPP FLOTANTE + BARRA MOBILE ===================== -->
+<a class="wa-float" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20sobre%20una%20atenci%C3%B3n%20en%20la%20Policl%C3%ADnica%20Sanitas."
+   target="_blank" rel="noopener" aria-label="Agendá tu consulta por WhatsApp">
+  <svg aria-hidden="true"><use href="#i-wa"/></svg>
+  <span class="lbl">Agendá tu consulta</span>
+</a>
+
+<div class="wa-bar">
+  <a class="btn btn--wa btn--lg btn--block" href="https://wa.me/595982420735?text=Hola%2C%20quiero%20consultar%20sobre%20una%20atenci%C3%B3n%20en%20la%20Policl%C3%ADnica%20Sanitas."
+     target="_blank" rel="noopener">
+    <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Agendar por WhatsApp
+  </a>
+</div>
+
+<!-- ===================== SEO: datos estructurados ===================== -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"MedicalClinic",
+  "name":"Policlínica Sanitas",
+  "slogan":"Cuidamos de vos y de tu familia.",
+  "description":"Policlínica en Lambaré, Paraguay. Atención médica integral, especialidades, estudios, laboratorio y atención a domicilio en zonas cercanas.",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"Fulgencio Yegros 872 casi Río Bermejo, Barrio Valle Apua",
+    "addressLocality":"Lambaré",
+    "addressCountry":"PY"
+  },
+  "areaServed":"Lambaré, Paraguay",
+  "telephone":"+595982420735",
+  "openingHoursSpecification":[{
+    "@type":"OpeningHoursSpecification",
+    "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens":"09:00","closes":"20:00"
+  }],
+  "availableService":[
+    {"@type":"MedicalSpecialty","name":"Ginecología y Obstetricia"},
+    {"@type":"MedicalSpecialty","name":"Traumatología"},
+    {"@type":"MedicalSpecialty","name":"Clínica General"},
+    {"@type":"MedicalSpecialty","name":"Psicología"},
+    {"@type":"MedicalSpecialty","name":"Nutrición"},
+    {"@type":"MedicalSpecialty","name":"Pediatría"},
+    {"@type":"MedicalSpecialty","name":"Cardiología"},
+    {"@type":"MedicalTest","name":"Electrocardiograma"},
+    {"@type":"MedicalTest","name":"Ecocardiograma"},
+    {"@type":"MedicalTest","name":"Papanicolaou (PAP)"},
+    {"@type":"MedicalTest","name":"Laboratorio"}
+  ]
+}
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- header sticky con reducción de altura ---- */
+  var hdr = document.getElementById('hdr'), ticking = false;
+  function onScroll(){
+    if(ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      hdr.classList.toggle('stuck', window.scrollY > 24);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* ---- menú mobile ---- */
+  var burger = document.getElementById('burger'),
+      mnav = document.getElementById('mnav'),
+      bIcon = document.getElementById('burger-i');
+  function setMenu(open){
+    mnav.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    bIcon.innerHTML = '<use href="#' + (open ? 'i-close' : 'i-menu') + '"/>';
+  }
+  burger.addEventListener('click', function(){ setMenu(!mnav.classList.contains('open')); });
+  mnav.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setMenu(false); });
+
+  /* ---- scroll reveal ---- */
+  var items = document.querySelectorAll('[data-reveal]');
+  if(reduce || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.12});
+    items.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---- parallax 3D suave con el mouse ---- */
+  if(!reduce && window.matchMedia('(pointer:fine)').matches){
+    document.querySelectorAll('.scene').forEach(function(scene){
+      var inner = scene.querySelector('.scene-in');
+      if(!inner) return;
+      scene.addEventListener('mousemove', function(e){
+        var r = scene.getBoundingClientRect(),
+            x = (e.clientX - r.left) / r.width - .5,
+            y = (e.clientY - r.top) / r.height - .5;
+        inner.style.transition = 'transform .18s linear';
+        inner.style.transform = 'rotateY(' + (x * 11).toFixed(2) + 'deg) rotateX(' + (-y * 9).toFixed(2) + 'deg)';
+      });
+      scene.addEventListener('mouseleave', function(){
+        inner.style.transition = 'transform .9s cubic-bezier(.22,1,.36,1)';
+        inner.style.transform = '';
+      });
+    });
+  }
+
+  /* ---- mapa diferido (no penaliza el LCP) ---- */
+  var mapCard = document.getElementById('mapCard');
+  function loadMap(){
+    if(!mapCard || mapCard.dataset.loaded) return;
+    mapCard.dataset.loaded = '1';
+    var f = document.createElement('iframe');
+    f.src = 'https://maps.google.com/maps?q=' +
+            encodeURIComponent('Policlínica Sanitas, Fulgencio Yegros 872 casi Río Bermejo, Barrio Valle Apua, Lambaré, Paraguay') +
+            '&z=16&output=embed';
+    f.title = 'Mapa con la ubicación de la Policlínica Sanitas en Lambaré';
+    f.loading = 'lazy';
+    f.referrerPolicy = 'no-referrer-when-downgrade';
+    f.allowFullscreen = true;
+    f.addEventListener('load', function(){
+      var ph = mapCard.querySelector('.map-ph');
+      if(ph) ph.style.display = 'none';
+    });
+    mapCard.appendChild(f);
+  }
+  if(mapCard){
+    if('IntersectionObserver' in window){
+      var mio = new IntersectionObserver(function(en){
+        if(en[0].isIntersecting){ loadMap(); mio.disconnect(); }
+      }, {rootMargin:'320px'});
+      mio.observe(mapCard);
+    } else { loadMap(); }
+  }
+
+  /* ---- link activo en el menú ---- */
+  var secs = ['inicio','nosotros','especialidades','servicios','ubicacion','contacto']
+    .map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  if('IntersectionObserver' in window && secs.length){
+    var links = document.querySelectorAll('.nav a');
+    var sio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        links.forEach(function(a){
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          a.style.color = on ? 'var(--blue-900)' : '';
+          a.style.background = on ? 'var(--sky-50)' : '';
+        });
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(function(s){ sio.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
