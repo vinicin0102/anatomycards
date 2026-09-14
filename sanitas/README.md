@@ -81,13 +81,19 @@ window.SANITAS_PROFESIONALES = [
 
 ## Mapa
 
-El mapa se inserta con una consulta por dirección (`maps.google.com/maps?q=…`),
-sin coordenadas inventadas y sin API key. Se carga recién cuando el usuario se
-acerca a la sección, para no penalizar el LCP.
+Coordenadas en uso: **-25.3465404, -57.6000046** (Calle Tte. Cnel. Fulgencio
+Yegros, Valle Apu'a II, Lambaré), provistas por el cliente. Alimentan tres
+cosas: el embed de Google Maps con el marcador rotulado «Policlínica Sanitas»,
+el destino del botón «Cómo llegar» y el campo `geo` de los datos
+estructurados.
 
-Cuando se confirme la geolocalización exacta, reemplazar el valor de `f.src` en
-el script por el embed con coordenadas y actualizar también el destino del
-botón «Cómo llegar».
+El embed no usa API key y se carga recién cuando el visitante se acerca a la
+sección, para no penalizar el LCP. Si el iframe no carga, el bloque muestra
+igual el nombre, la dirección y un enlace a Google Maps.
+
+El punto corresponde a la calle, no al número de puerta. Si el marcador no cae
+justo sobre la entrada, ajustá `LAT`/`LNG` buscando las tres apariciones de
+`-25.3465404` en `index.html`.
 
 ## Detalles técnicos
 

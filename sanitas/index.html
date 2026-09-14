@@ -1410,7 +1410,7 @@ ul.checklist{padding:0; margin-left:0}
 
         <div class="btn-row">
           <a class="btn btn--brand btn--lg" id="btn-como-llegar"
-             href="https://www.google.com/maps/dir/?api=1&destination=Fulgencio%20Yegros%20872%20casi%20R%C3%ADo%20Bermejo%2C%20Barrio%20Valle%20Apua%2C%20Lambar%C3%A9%2C%20Paraguay"
+             href="https://www.google.com/maps/dir/?api=1&destination=-25.3465404%2C-57.6000046"
              target="_blank" rel="noopener">
             <svg class="ico" aria-hidden="true"><use href="#i-nav"/></svg> Cómo llegar
           </a>
@@ -1439,7 +1439,7 @@ ul.checklist{padding:0; margin-left:0}
             <span class="itile"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg></span>
             <b>Policlínica Sanitas</b>
             <span>Fulgencio Yegros 872 casi Río Bermejo<br>Barrio Valle Apua — Lambaré, Paraguay</span>
-            <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Fulgencio%20Yegros%20872%20casi%20R%C3%ADo%20Bermejo%2C%20Barrio%20Valle%20Apua%2C%20Lambar%C3%A9%2C%20Paraguay" target="_blank" rel="noopener">
+            <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&amp;query=-25.3465404%2C-57.6000046" target="_blank" rel="noopener">
               <svg class="ico" aria-hidden="true"><use href="#i-nav"/></svg> Abrir en Google Maps
             </a>
           </div>
@@ -1547,8 +1547,12 @@ ul.checklist{padding:0; margin-left:0}
     "@type":"PostalAddress",
     "streetAddress":"Fulgencio Yegros 872 casi Río Bermejo, Barrio Valle Apua",
     "addressLocality":"Lambaré",
+    "addressRegion":"Central",
+    "postalCode":"110718",
     "addressCountry":"PY"
   },
+  "geo":{"@type":"GeoCoordinates","latitude":-25.3465404,"longitude":-57.6000046},
+  "hasMap":"https://www.google.com/maps/search/?api=1&query=-25.3465404%2C-57.6000046",
   "areaServed":"Lambaré, Paraguay",
   "telephone":"+595982420735",
   "openingHoursSpecification":[{
@@ -1641,8 +1645,8 @@ ul.checklist{padding:0; margin-left:0}
     mapCard.dataset.loaded = '1';
     var f = document.createElement('iframe');
     f.src = 'https://maps.google.com/maps?q=' +
-            encodeURIComponent('Policlínica Sanitas, Fulgencio Yegros 872 casi Río Bermejo, Barrio Valle Apua, Lambaré, Paraguay') +
-            '&z=16&output=embed';
+            encodeURIComponent('-25.3465404,-57.6000046 (Policlínica Sanitas)') +
+            '&z=17&output=embed';
     f.title = 'Mapa con la ubicación de la Policlínica Sanitas en Lambaré';
     f.loading = 'lazy';
     f.referrerPolicy = 'no-referrer-when-downgrade';
