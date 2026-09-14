@@ -97,10 +97,20 @@ if (strtoupper((string) $resposta['status']) !== 'PAID') {
 $jaProcessado = transacaoJaRegistrada($config, $transactionId);
 
 if (!$jaProcessado) {
+    $externalId = (string) ($transacao['external_id_client'] ?? ($corpo['external_id_client'] ?? ''));
+
+    // O que foi comprado (plano, matéria e order bumps) foi gravado por
+    // api/pix.php na criação da cobrança — é o que diz o que entregar.
+    $pedido = $externalId !== '' ? lerPedido($config, $externalId) : null;
+
     registrarPagamento($config, [
         'transactionId'      => $transactionId,
         'evento'             => $evento,
-        'external_id_client' => $transacao['external_id_client'] ?? ($corpo['external_id_client'] ?? null),
+        'external_id_client' => $externalId !== '' ? $externalId : null,
+        'plano'              => $pedido['plano'] ?? null,
+        'materia'            => $pedido['materia'] ?? null,
+        'bumps'              => $pedido['bumps'] ?? null,
+        'itens'              => $pedido['itens'] ?? null,
         'nome'               => $transacao['nome'] ?? null,
         'email'              => $transacao['email'] ?? ($resposta['email'] ?? null),
         'valor'              => $resposta['amount'] ?? ($transacao['amount'] ?? null),
@@ -114,6 +124,12 @@ if (!$jaProcessado) {
      * TODO — entrega do produto.
      * Aqui entra o envio do e-mail com o link dos PDFs / liberação da área de
      * membros. Este bloco roda uma única vez por transactionId.
+     *
+     * Para o Mapas ENEM, $pedido traz o que liberar:
+     *   $pedido['plano']   'materia' ou 'completo'
+     *   $pedido['materia'] id da matéria escolhida no plano de 1 matéria
+     *   $pedido['bumps']   ids dos order bumps pagos (outras matérias e/ou
+     *                      'redacao900')
      */
 }
 

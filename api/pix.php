@@ -4,8 +4,8 @@ declare(strict_types=1);
 /**
  * Cria uma cobrança PIX na ZuckPay.
  *
- * POST { plano, nome, cpf, email, telefone, rastreio? }
- * -> { transactionId, qrcode, qrcode_image, checkout_url, expiracao, valor }
+ * POST { plano, materia?, bumps?, nome, cpf, email, telefone, rastreio? }
+ * -> { transactionId, qrcode, qrcode_image, checkout_url, expiracao, valor, itens }
  */
 
 require __DIR__ . '/_bootstrap.php';
@@ -31,6 +31,74 @@ if (!isset($planos[$planoId])) {
     responder(400, ['erro' => 'Plano inválido.']);
 }
 $plano = $planos[$planoId];
+
+/**
+ * Matéria escolhida (planos que vendem o mini app de uma matéria só).
+ *
+ * Como o preço, a lista de matérias válidas mora no config.php. O navegador
+ * manda apenas o id — qualquer valor fora da lista é recusado.
+ */
+$materias  = is_array($config['materias'] ?? null) ? $config['materias'] : [];
+$materiaId = is_string($corpo['materia'] ?? null) ? $corpo['materia'] : '';
+
+if (!empty($plano['exige_materia'])) {
+    if (!isset($materias[$materiaId])) {
+        responder(422, [
+            'erro'   => 'Dados inválidos.',
+            'campos' => ['materia' => 'Escolha a matéria do seu mini app.'],
+        ]);
+    }
+} else {
+    $materiaId = '';
+}
+
+/**
+ * Order bumps.
+ *
+ * Mesmo princípio do plano: o navegador manda só os ids, e o valor de cada um
+ * vem do config.php. Bumps desconhecidos são ignorados em silêncio, assim uma
+ * requisição adulterada não cobra nem entrega nada a mais.
+ */
+$bumpsDisponiveis = is_array($config['bumps'] ?? null) ? $config['bumps'] : [];
+$bumpsEnviados    = is_array($corpo['bumps'] ?? null) ? $corpo['bumps'] : [];
+
+$bumps = [];
+foreach ($bumpsEnviados as $bumpId) {
+    if (!is_string($bumpId) || !isset($bumpsDisponiveis[$bumpId]) || isset($bumps[$bumpId])) {
+        continue;
+    }
+
+    $bump = $bumpsDisponiveis[$bumpId];
+    $ehMateria = ($bump['tipo'] ?? 'extra') === 'materia';
+
+    // Matéria que o plano já entrega (ou a própria escolhida) não vira item pago de novo.
+    if ($ehMateria && (!empty($plano['inclui_materias']) || $bumpId === $materiaId)) {
+        continue;
+    }
+
+    $bumps[$bumpId] = $bump;
+
+    if (count($bumps) >= 12) {
+        break;
+    }
+}
+
+$valorTotal = (float) $plano['valor'];
+foreach ($bumps as $bump) {
+    $valorTotal += (float) $bump['valor'];
+}
+$valorTotal = round($valorTotal, 2);
+
+/** Descrição legível da compra, usada na cobrança e no extrato. */
+$itens = [];
+$itens[] = $materiaId !== ''
+    ? $plano['nome'] . ' (' . $materias[$materiaId] . ')'
+    : $plano['nome'];
+foreach ($bumps as $bump) {
+    $itens[] = (string) $bump['nome'];
+}
+
+$descricao = mb_substr(implode(' + ', $itens), 0, 120);
 
 $nome     = trim((string) ($corpo['nome'] ?? ''));
 $cpf      = preg_replace('/\D/', '', (string) ($corpo['cpf'] ?? '')) ?? '';
@@ -65,15 +133,17 @@ if (strlen($pedido) < 8 || strlen($pedido) > 60) {
     $pedido = bin2hex(random_bytes(12));
 }
 
+$externalId = ((string) ($plano['prefixo'] ?? 'AC')) . '-' . $planoId . '-' . $pedido;
+
 $payload = [
     'nome'               => $nome,
     'cpf'                => $cpf,
-    'valor'              => $plano['valor'],
+    'valor'              => $valorTotal,
     'email'              => $email,
     'telefone'           => $telefone,
     'urlnoty'            => $config['webhook_url'],
-    'descricao'          => $plano['nome'],
-    'external_id_client' => 'AC-' . $planoId . '-' . $pedido,
+    'descricao'          => $descricao,
+    'external_id_client' => $externalId,
 ];
 
 // Vincula a venda ao produto cadastrado no painel (opcional na API).
@@ -127,6 +197,21 @@ if ($status !== 200 || empty($resposta['transactionId'])) {
     responder(502, $saida);
 }
 
+/**
+ * Registra o que foi comprado. O webhook recebe só o external_id_client, então
+ * é daqui que a entrega descobre qual matéria e quais bumps enviar.
+ */
+registrarPedido($config, $externalId, [
+    'transactionId' => (string) $resposta['transactionId'],
+    'plano'         => $planoId,
+    'materia'       => $materiaId !== '' ? $materiaId : null,
+    'bumps'         => array_keys($bumps),
+    'itens'         => $itens,
+    'valor'         => $valorTotal,
+    'email'         => $email,
+    'criado_em'     => date('c'),
+]);
+
 // Devolve só o que o navegador precisa. Nada de credencial, nada de valor líquido.
 responder(200, [
     'transactionId' => (string) $resposta['transactionId'],
@@ -134,7 +219,8 @@ responder(200, [
     'qrcode_image'  => (string) ($resposta['qrcode_image'] ?? ''),
     'checkout_url'  => (string) ($resposta['checkout_url'] ?? ''),
     'expiracao'     => (int) ($resposta['calendar']['expiration'] ?? 1200),
-    'valor'         => $plano['valor'],
-    'plano'         => $plano['nome'],
+    'valor'         => $valorTotal,
+    'plano'         => $descricao,
+    'itens'         => $itens,
     'pedido'        => $pedido,
 ]);

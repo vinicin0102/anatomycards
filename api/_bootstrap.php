@@ -233,6 +233,32 @@ function transacaoJaRegistrada(array $config, string $transactionId): bool
     return false;
 }
 
+/**
+ * Guarda a composição do pedido (plano, matéria e order bumps) no momento em
+ * que a cobrança é criada.
+ *
+ * O webhook só recebe o external_id_client; é aqui que fica registrado o que
+ * exatamente foi comprado, para a entrega saber quais materiais enviar.
+ */
+function registrarPedido(array $config, string $externalId, array $dados): void
+{
+    $arquivo = diretorioEstado($config) . '/pedido-' . sha1($externalId) . '.json';
+    @file_put_contents($arquivo, json_encode($dados, JSON_UNESCAPED_UNICODE), LOCK_EX);
+}
+
+/** Lê a composição gravada por registrarPedido(). */
+function lerPedido(array $config, string $externalId): ?array
+{
+    $arquivo = diretorioEstado($config) . '/pedido-' . sha1($externalId) . '.json';
+
+    if (!is_file($arquivo)) {
+        return null;
+    }
+
+    $dados = json_decode((string) @file_get_contents($arquivo), true);
+    return is_array($dados) ? $dados : null;
+}
+
 /** Acrescenta a venda ao log de pagamentos. */
 function registrarPagamento(array $config, array $dados): void
 {

@@ -1,9 +1,15 @@
-# Arritmias Cardíacas do Zero ao Diagnóstico
+# Páginas de vendas com checkout PIX
 
-Landing page de vendas com checkout PIX integrado à **ZuckPay**.
+Duas landing pages de vendas compartilhando o mesmo checkout PIX integrado à
+**ZuckPay**:
+
+- `index.html` — Arritmias Cardíacas do Zero ao Diagnóstico
+- `enem/index.html` — Mapas ENEM (mini app de mapas mentais, com order bumps)
 
 ```
-index.html               página de vendas + modal de checkout
+index.html               página de vendas Arritmias + modal de checkout
+enem/index.html          página de vendas Mapas ENEM + checkout com order bumps
+enem/img/                mockups do app e capas das matérias (SVG)
 api/pix.php              cria a cobrança PIX
 api/status.php           consulta o status do pagamento
 api/webhook.php          recebe a notificação da ZuckPay
@@ -45,10 +51,40 @@ ficar na raiz do site, ajuste a constante `API` no script de checkout do
    a cada 4s até o pagamento ser confirmado.
 4. A ZuckPay chama `api/webhook.php`, que confirma o pagamento e registra a venda.
 
-Planos: **Básico R$ 9,99** e **Premium R$ 29,90**. Ambos ficam em
-`config.php`, junto com o `product_id` do produto cadastrado no painel da
+Planos das Arritmias: **Básico R$ 9,99** e **Premium R$ 29,90**. Ambos ficam
+em `config.php`, junto com o `product_id` do produto cadastrado no painel da
 ZuckPay (atualmente `593187` nos dois — se cada plano tiver produto próprio,
 use um id diferente em cada).
+
+## Mapas ENEM (`enem/`)
+
+Página do mini app de mapas mentais. A oferta tem duas portas de entrada e
+order bumps no próprio checkout:
+
+| Item | Preço | O que é |
+|---|---|---|
+| Plano `materia` | R$ 9,90 | mapas de **1 matéria**, escolhida na etapa 1 do checkout |
+| Plano `completo` | R$ 19,90 | as 9 matérias + o questionário bônus |
+| Order bump de matéria | R$ 9,90 cada | as outras matérias, somadas ao pedido |
+| Order bump `redacao900` | R$ 15,99 | 10 Segredos da Redação 900+ (o destaque em dourado) |
+
+O checkout tem uma etapa a mais que o das Arritmias: antes dos dados, o
+comprador escolhe a matéria e marca os bumps, com o total atualizando na hora.
+Quem já marcou uma matéria extra vê um convite para trocar pelo plano completo.
+
+Preços, matérias e bumps ficam em `config.php` (`planos`, `materias`, `bumps`).
+Como no resto do projeto, **o navegador só manda ids** — o valor cobrado é
+sempre somado no servidor, então adulterar a requisição não muda o preço nem
+libera um bump que não foi pago. Bumps de matéria são ignorados no plano
+completo (que já inclui todas) e quando repetem a matéria escolhida.
+
+`api/pix.php` grava a composição do pedido (plano, matéria e bumps) em
+`storage/pedido-<hash>.json`, e `api/webhook.php` lê esse arquivo na hora da
+entrega — é ele que diz quais materiais liberar para cada comprador.
+
+As imagens do app são SVGs gerados em `enem/img/`: um mockup de celular por
+matéria, as capas usadas na grade e nos order bumps, a tela do questionário e a
+capa do guia de redação.
 
 ## Conferir o webhook
 
@@ -146,11 +182,16 @@ A ZuckPay responde **429 após 5 tentativas em 30 minutos**. Por isso:
    o envio do e-mail com os PDFs ou a liberação da área de membros. A ZuckPay
    pode reenviar a mesma notificação, então grave o `transactionId` e só
    entregue uma vez.
-2. **Imagens** — capas do hero, as 3 prévias e as 4 capas de resumos ainda
-   apontam para `medment.site` (arte do e-book de ECG). Cada bloco tem um
-   comentário `<!-- TROCAR -->`.
+2. **Imagens** — na página de Arritmias, as capas do hero, as 3 prévias e as 4
+   capas de resumos ainda apontam para `medment.site` (arte do e-book de ECG).
+   Cada bloco tem um comentário `<!-- TROCAR -->`. A página do ENEM usa os SVGs
+   de `enem/img/`; troque-os por prints reais do app quando ele existir.
 3. **Depoimentos** — usam avatar com a inicial do nome; trocar por `<img>` se
-   tiver as fotos.
+   tiver as fotos. Os da página do ENEM são de exemplo (marcados com
+   `<!-- TROCAR -->`): substitua por comentários reais antes de anunciar.
+
+6. **product_id do ENEM** — os dois planos novos estão com `product_id => 0` no
+   `config.example.php`; preencha com o id do produto cadastrado na ZuckPay.
 4. **Rate limiting** — não há limite de requisições em `api/pix.php`. Vale pôr
    um limite por IP para evitar geração de cobranças em massa.
 5. **Desativar o diagnóstico** — depois de resolver, apague `api/diagnostico.php`
