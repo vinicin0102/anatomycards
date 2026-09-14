@@ -11,7 +11,8 @@ cualquier hosting o CDN.
 | Header sticky | Logo, menú ancla, CTA «Agendar consulta», glassmorphism y reducción de altura al hacer scroll |
 | Hero | Titular, subtítulo, CTA de WhatsApp + «Ver especialidades» y composición 3D (corazón, anillos orbitales, tarjeta de ECG y cards flotantes) |
 | Barra de confianza | Atención integral · Cuidado familiar · En Lambaré · Atención a domicilio |
-| Sobre Sanitas | Texto institucional + composición visual con cards flotantes |
+| Sobre Sanitas | Texto institucional + foto del lugar y cards flotantes |
+| Conocé la policlínica | Galería de 5 fotos del local en grilla asimétrica |
 | Especialidades | 7 especialidades + tarjeta CTA de orientación |
 | Estudios y procedimientos | 6 servicios + escena 3D de cardiología |
 | Laboratorio | Franja oscura con 4 cards de vidrio y CTA |
@@ -20,7 +21,7 @@ cualquier hosting o CDN.
 | Motivos de consulta | 9 accesos directos a WhatsApp con mensaje contextual |
 | Atención psicológica | Sección dedicada con tags y CTA |
 | Atención a domicilio | Ilustración 3D de casa + aclaración de disponibilidad por zona |
-| Equipo profesional | Bloque institucional **sin datos inventados** + plantilla comentada para cargar profesionales reales |
+| Equipo profesional | Bloque institucional **sin datos inventados**; se convierte en grilla de profesionales al completar un array |
 | Ubicación | Datos de contacto, mapa de Google diferido, botón «Cómo llegar» y nota de cobertura |
 | CTA final | Franja azul profunda con el número de WhatsApp |
 | Footer | Datos, enlaces y aviso de derechos |
@@ -32,28 +33,51 @@ Todos los CTA abren `https://wa.me/595982420735` con un mensaje precargado
 distinto según la sección (especialidad, laboratorio, domicilio, etc.).
 Para cambiar el número, reemplazá `595982420735` en todo el archivo.
 
+## Identidad
+
+Rojo Sanitas sobre blanco. La paleta vive en el bloque `:root` de
+`index.html`: `--red-600` (#C41E33) es el color de marca, `--red-900` y
+`--red-950` sostienen las franjas oscuras, y los neutros están sesgados hacia
+el rojo para que nada se vea gris de catálogo. El grafito (`--graphite`)
+aporta variedad sin ensuciar la marca.
+
+El verde aparece en dos lugares y sólo con una función: los tildes de
+confirmación (`--ok`) y el botón flotante de WhatsApp, que se deja verde
+porque es el color con el que la gente reconoce ese canal. Todos los demás
+CTA son rojo de marca. Para volver a tener los CTA en verde, cambiá
+`btn--brand` por `btn--wa` en los botones.
+
 ## Fotografías
 
-La página se entrega **sin fotos de stock**: donde corresponde una imagen real
-hay una composición de marca (degradado + emblema) que funciona como
-placeholder definitivo hasta cargar el material propio de la policlínica.
+Las imágenes se cargan solas: cada lugar tiene un `<img>` apuntando a
+`fotos/…` y, detrás, una composición de marca. Si el archivo todavía no
+existe, el `<img>` se retira solo y queda la composición — la página nunca
+muestra un ícono roto.
 
-Puntos de reemplazo, marcados con comentarios en el HTML:
+Los nombres de archivo, qué mostrar en cada uno y los tamaños sugeridos están
+en **`fotos/README.md`**. Son 10 imágenes: 5 de la galería «Conocé la
+policlínica», 1 de la sección «Sobre Sanitas» y 4 de «Etapas de la vida».
 
-1. **Sobre Sanitas** — `<div class="ph">` dentro de `.media-frame`
-   → `<img src="fotos/policlinica.jpg" alt="..." loading="lazy" decoding="async" width="900" height="760">`
-2. **Etapas de la vida** — los cuatro `<div class="ph">` dentro de `.stage .photo`
-   → `<img src="fotos/ninos.jpg" alt="..." loading="lazy" decoding="async" width="640" height="480">`
-
-Usar imágenes propias, comprimidas (WebP/AVIF) y con `alt` descriptivo.
+**No usar bancos de imágenes** para pasar fotos de desconocidos por el local o
+por el equipo.
 
 ## Profesionales
 
-No se cargó ningún nombre, retrato, registro profesional ni años de
-experiencia porque esa información no fue provista. En
-`index.html` (sección «Profesionales dedicados a tu salud») hay un bloque
-comentado listo para completar con: foto, nombre, especialidad, registro
-profesional, formación y experiencia. **No completar con datos inventados.**
+No se cargó ningún nombre, retrato ni registro profesional porque esa
+información no fue provista. La sección muestra un bloque institucional y, en
+cuanto se complete el array `SANITAS_PROFESIONALES` de `index.html`, lo
+reemplaza por una grilla de tarjetas con foto, nombre, especialidad, registro,
+formación y un WhatsApp que ya menciona a ese profesional:
+
+```js
+window.SANITAS_PROFESIONALES = [
+  { foto:'fotos/equipo/ana-gimenez.jpg', nombre:'Dra. Ana Giménez',
+    especialidad:'Ginecología y Obstetricia', registro:'Reg. Prof. 12345',
+    formacion:'Universidad Nacional de Asunción' }
+];
+```
+
+**No completar con datos inventados.**
 
 ## Mapa
 
