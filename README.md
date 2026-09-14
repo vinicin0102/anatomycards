@@ -155,11 +155,3 @@ A ZuckPay responde **429 após 5 tentativas em 30 minutos**. Por isso:
    um limite por IP para evitar geração de cobranças em massa.
 5. **Desativar o diagnóstico** — depois de resolver, apague `api/diagnostico.php`
    ou deixe `debug_token` vazio (assim ele responde 404).
-
----
-
-## Outros projetos neste repositório
-
-- **`sanitas/`** — landing page da **Policlínica Sanitas** (Lambaré, Paraguai).
-  Página estática independente, sem relação com o checkout PIX acima.
-  Veja `sanitas/README.md`.
