@@ -29,7 +29,8 @@ return [
      * Planos vendidos na página.
      *
      * O preço fica AQUI, no servidor. O navegador envia apenas o id do plano
-     * ("basico" ou "premium") — um valor vindo do cliente é sempre ignorado.
+     * ("basico", "premium", "fe_basico" ou "fe_premium") — um valor vindo do
+     * cliente é sempre ignorado.
      *
      * product_id: id do produto cadastrado no painel da ZuckPay. É opcional
      * na API, mas preenchê-lo vincula a venda ao produto nos relatórios.
@@ -43,6 +44,20 @@ return [
         ],
         'premium' => [
             'nome'       => 'Pacote Premium — Arritmias Cardíacas',
+            'valor'      => 29.90,
+            'product_id' => 593187,
+        ],
+
+        // Planos da página /aventura-de-fe (livro infantil cristão).
+        // Ids próprios para que a cobrança e os relatórios não se misturem
+        // com os da página de Arritmias.
+        'fe_basico' => [
+            'nome'       => 'Livro Personalizado — Minha Aventura de Fé',
+            'valor'      => 9.99,
+            'product_id' => 593187,
+        ],
+        'fe_premium' => [
+            'nome'       => 'Coleção Completa — Minha Aventura de Fé',
             'valor'      => 29.90,
             'product_id' => 593187,
         ],

@@ -3,7 +3,8 @@
 Landing page de vendas com checkout PIX integrado à **ZuckPay**.
 
 ```
-index.html               página de vendas + modal de checkout
+index.html               página de vendas (Arritmias) + modal de checkout
+aventura-de-fe/index.html  página de vendas (Minha Aventura de Fé)
 api/pix.php              cria a cobrança PIX
 api/status.php           consulta o status do pagamento
 api/webhook.php          recebe a notificação da ZuckPay
@@ -13,6 +14,26 @@ api/_bootstrap.php       validação, CORS e chamada autenticada à API
 api/config.example.php   modelo de configuração
 storage/                 log de pagamentos (não versionado)
 ```
+
+## Páginas
+
+O repositório serve duas páginas de vendas, que compartilham o mesmo checkout
+PIX em `api/`:
+
+| Página | Produto | Ids de plano |
+|---|---|---|
+| `/index.html` | Arritmias Cardíacas do Zero ao Diagnóstico | `basico` · `premium` |
+| `/aventura-de-fe/index.html` | Minha Aventura de Fé (livro infantil cristão personalizado) | `fe_basico` · `fe_premium` |
+
+A segunda página foi montada a partir da estrutura da primeira: mesmas seções,
+mesmo modal de checkout, mesmos scripts de cronômetro, prova social e pixels —
+só mudam o tema visual (paleta roxo/âmbar, fonte *Baloo 2* nos títulos), os
+textos e os ids dos planos. Ela chama `/api` pelo caminho absoluto, então
+funciona a partir da subpasta sem ajuste.
+
+Cada página tem seus próprios ids de plano para que a descrição da cobrança e
+os relatórios da ZuckPay não misturem os dois produtos. Os quatro ids precisam
+existir em `config.php` (o `config.example.php` já vem com todos).
 
 ## Configuração
 
@@ -109,7 +130,8 @@ Estas escolhas são deliberadas — mudá-las abre brecha real:
   da página: qualquer visitante poderia criar cobranças, listar transações e
   consultar o saldo da conta. Por isso a chamada é feita em PHP, no servidor.
 - **O preço é definido no servidor.** `api/pix.php` recebe só o *id* do plano
-  (`basico` / `premium`) e busca o valor na constante `PLANOS`. Um `valor`
+  (`basico`, `premium`, `fe_basico` ou `fe_premium`) e busca o valor no
+  `config.php`. Um `valor`
   enviado pelo navegador é ignorado — sem isso, bastaria editar a requisição
   para comprar o Premium por R$ 0,01.
 - **As respostas são filtradas.** A API devolve `amount_liquid`, e-mail do
@@ -146,12 +168,19 @@ A ZuckPay responde **429 após 5 tentativas em 30 minutos**. Por isso:
    o envio do e-mail com os PDFs ou a liberação da área de membros. A ZuckPay
    pode reenviar a mesma notificação, então grave o `transactionId` e só
    entregue uma vez.
-2. **Imagens** — capas do hero, as 3 prévias e as 4 capas de resumos ainda
-   apontam para `medment.site` (arte do e-book de ECG). Cada bloco tem um
+2. **Imagens (Arritmias)** — capas do hero, as 3 prévias e as 4 capas de resumos
+   ainda apontam para `medment.site` (arte do e-book de ECG). Cada bloco tem um
    comentário `<!-- TROCAR -->`.
-3. **Depoimentos** — usam avatar com a inicial do nome; trocar por `<img>` se
+3. **Imagens (Aventura de Fé)** — as capas e as prévias são placeholders em SVG
+   desenhados no próprio HTML. Troque pelas artes reais nos blocos marcados com
+   `<!-- TROCAR -->` (mantenha a classe `hero-slider-img` nas duas capas do hero,
+   que é o que o slider usa).
+4. **Entrega personalizada** — a página promete um formulário de personalização
+   após o pagamento; esse formulário ainda não existe. O `TODO` do
+   `api/webhook.php` é onde entra o envio do link.
+5. **Depoimentos** — usam avatar com a inicial do nome; trocar por `<img>` se
    tiver as fotos.
-4. **Rate limiting** — não há limite de requisições em `api/pix.php`. Vale pôr
+6. **Rate limiting** — não há limite de requisições em `api/pix.php`. Vale pôr
    um limite por IP para evitar geração de cobranças em massa.
-5. **Desativar o diagnóstico** — depois de resolver, apague `api/diagnostico.php`
+7. **Desativar o diagnóstico** — depois de resolver, apague `api/diagnostico.php`
    ou deixe `debug_token` vazio (assim ele responde 404).
