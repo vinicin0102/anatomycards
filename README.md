@@ -53,27 +53,40 @@ use um id diferente em cada).
 
 ## Quem Sou Eu? — Personagens Bíblicos
 
-Segunda página de vendas, em `quem-sou-eu/index.html`. É um arquivo único
-(HTML, CSS e JS juntos) e usa o mesmo `/api` da raiz, então basta publicar a
+Segunda página de vendas, em `quem-sou-eu/index.html`. É um clone da landing
+da **Vet Fácil** (`vinicin0102/vetfacil` → `public/index.html`) com o conteúdo
+trocado para o nicho infantil cristão: mesma estrutura, mesmos componentes,
+mesmo Tailwind por CDN. Usa o mesmo `/api` da raiz, então basta publicar a
 pasta ao lado do `index.html` — a página fica em `seudominio.com.br/quem-sou-eu/`.
 
 Planos: **Kit Básico R$ 10,90** e **Kit Premium R$ 27,90**, com os ids
 `quem-sou-eu-basico` e `quem-sou-eu-premium` (já presentes no
-`config.example.php`). Preencha o `product_id` de cada um com o id do produto
-correspondente no painel da ZuckPay.
+`config.example.php`). Copie os dois para o seu `config.php` e preencha o
+`product_id` de cada um com o id do produto no painel da ZuckPay.
 
-O que ainda precisa da sua mão nessa página:
+### Imagens do produto (pendente)
 
-- **Termos de Uso e Política de Privacidade** — o rodapé aponta para
-  `quem-sou-eu/termos.html` e `quem-sou-eu/privacidade.html`, que ainda não
-  existem. Crie os dois arquivos ou troque os links.
-- **E-mail de contato** — está como `contato@seudominio.com.br` no rodapé.
-- **Depoimentos** — os seis do carrossel são exemplos e estão marcados com
-  "Exemplo de depoimento". Ao ter mensagens reais, troque o texto e remova a
-  marcação só dos que forem verdadeiros.
-- **Fotos reais** (opcional) — as ilustrações são SVG desenhado no próprio
-  arquivo. Onde houver foto da turma usando o material, os comentários
-  `<!-- TROCAR: ... -->` indicam o lugar.
+A página tem **10 espaços de imagem**. Enquanto o arquivo não existe, o lugar
+mostra um quadro tracejado com o nome esperado; assim que você subir a imagem
+com aquele nome em `quem-sou-eu/img/`, ela aparece sozinha:
+
+```
+img/capa-principal.png      capa do kit (hero)
+img/amostra-1.png … -4.png  slider de amostras
+img/atividades-extras.png   caça-palavras e memória
+img/bonus-premium.png       os 4 bônus juntos
+img/material-1.png          folha de cartas dentro do PDF
+img/material-2.png          página de regras
+img/dinamicas-biblicas.png  materiais bônus impressos
+```
+
+### Outros pendentes
+
+- **Depoimentos** — os seis são ilustrativos e atribuídos a funções
+  ("Professora de EBD"), não a pessoas inventadas. Ao ter mensagens reais,
+  troque o texto, ponha o nome e remova o aviso `#aviso-depoimentos`.
+- **Cronômetro de 15 min** — herdado da Vet Fácil. Se não houver prazo real,
+  remova a barra sticky no topo do `<body>`.
 
 ## Conferir o webhook
 
