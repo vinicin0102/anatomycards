@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quem Sou Eu? — Personagens Bíblicos | Jogo para aulas infantis</title>
+<meta name="description" content="Jogo de adivinhação com personagens bíblicos para EBD, ministério infantil e famílias. Material digital em PDF, pronto para imprimir e brincar.">
+<meta name="theme-color" content="#1E5FD6">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Quem Sou Eu? — Personagens Bíblicos">
+<meta property="og:description" content="Transforme sua aula bíblica em uma brincadeira que as crianças vão adorar.">
+<meta property="og:locale" content="pt_BR">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   QUEM SOU EU? — PERSONAGENS BÍBLICOS
+   A unidade de design é a CARTA: moldura amarela, janela em arco (vitral de
+   igreja), nome em caixa alta e selo de testamento. O resto da página é
+   discreto para que a carta seja a coisa lembrada.
+   ========================================================================== */
+
+/* -------- 1. TOKENS — trocar aqui troca na página inteira ---------------- */
+:root {
+    --tinta:        #14275C;
+    --tinta-suave:  #4A5E8C;
+    --azul:         #1E5FD6;
+    --azul-escuro:  #1748A8;
+    --azul-claro:   #E7F0FF;
+    --ceu:          #F3F8FF;
+    --sol:          #FFC22E;
+    --sol-claro:    #FFF3D1;
+    --brasa:        #FF6B1A;
+    --brasa-escura: #E05400;
+    --brasa-clara:  #FFEDE1;
+    --oliveira:     #17A45C;
+    --oliveira-clara:#E4F7ED;
+    --papel:        #FFFFFF;
+    --borda:        #DCE6F7;
+
+    --display: 'Baloo 2', 'Trebuchet MS', system-ui, sans-serif;
+    --texto:   'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    --t-etiqueta: clamp(.68rem, .62rem + .2vw, .78rem);
+    --t-corpo:    clamp(1rem, .96rem + .2vw, 1.09rem);
+    --t-lead:     clamp(1.05rem, 1rem + .45vw, 1.28rem);
+    --t-h3:       clamp(1.18rem, 1.1rem + .5vw, 1.48rem);
+    --t-h2:       clamp(1.7rem, 1.35rem + 1.8vw, 2.85rem);
+    --t-h1:       clamp(1.95rem, 1.5rem + 2.3vw, 3.2rem);
+
+    --r-p: 12px;
+    --r-m: 20px;
+    --r-g: 28px;
+    --sombra-b: 0 2px 6px rgba(20,39,92,.06);
+    --sombra-m: 0 10px 24px -8px rgba(20,39,92,.16);
+    --sombra-a: 0 24px 50px -18px rgba(20,39,92,.3);
+
+    --largura: 1160px;
+    --gutter: clamp(1.15rem, 4vw, 2.5rem);
+    --secao: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+/* -------- 2. BASE -------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+    margin: 0;
+    font-family: var(--texto);
+    font-size: var(--t-corpo);
+    line-height: 1.65;
+    color: var(--tinta);
+    background: var(--papel);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+h1, h2, h3, h4 {
+    font-family: var(--display);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -.015em;
+    margin: 0 0 .5em;
+    text-wrap: balance;
+}
+h1 { font-size: var(--t-h1); }
+h2 { font-size: var(--t-h2); }
+h3 { font-size: var(--t-h3); line-height: 1.2; }
+p { margin: 0 0 1em; text-wrap: pretty; }
+p:last-child { margin-bottom: 0; }
+img, svg { max-width: 100%; display: block; }
+a { color: var(--azul); }
+:focus-visible { outline: 3px solid var(--brasa); outline-offset: 3px; border-radius: 6px; }
+::selection { background: var(--sol); color: var(--tinta); }
+.oculto { display: none !important; }
+.so-leitor {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* -------- 3. ESTRUTURA --------------------------------------------------- */
+.envelope { width: 100%; max-width: var(--largura); margin-inline: auto; padding-inline: var(--gutter); }
+.envelope--estreito { max-width: 820px; }
+.secao { padding-block: var(--secao); position: relative; }
+.secao--ceu  { background: var(--ceu); }
+.secao--azul { background: var(--tinta); color: #fff; }
+.secao--sol  { background: var(--sol-claro); }
+.secao--azul h2, .secao--azul h3 { color: #fff; }
+.cabecalho-secao { max-width: 46rem; margin: 0 auto clamp(2rem, 4vw, 3.25rem); text-align: center; }
+.cabecalho-secao p { color: var(--tinta-suave); font-size: var(--t-lead); }
+.secao--azul .cabecalho-secao p { color: #BFD2F5; }
+
+.etiqueta {
+    display: inline-flex; align-items: center; gap: .45em;
+    font-size: var(--t-etiqueta); font-weight: 800; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--azul); background: var(--azul-claro);
+    border-radius: 999px; padding: .5em 1.05em; margin-bottom: 1rem;
+}
+.etiqueta--sol   { color: #8A5A00; background: var(--sol-claro); }
+.etiqueta--brasa { color: var(--brasa-escura); background: var(--brasa-clara); }
+.etiqueta--verde { color: #0B6E3C; background: var(--oliveira-clara); }
+.secao--azul .etiqueta { color: var(--sol); background: rgba(255,194,46,.15); }
+
+.grade { display: grid; gap: clamp(1rem, 2.2vw, 1.6rem); }
+.grade--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+.grade--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+.grade--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+
+/* -------- 4. BOTÕES ------------------------------------------------------ */
+.botao {
+    display: inline-flex; align-items: center; justify-content: center; gap: .6em;
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(1rem, .95rem + .3vw, 1.15rem);
+    text-align: center; text-decoration: none;
+    padding: .95em 1.9em; border: 0; border-radius: 999px; cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.botao:active { transform: translateY(1px) scale(.995); }
+.botao--brasa { background: var(--brasa); color: #fff; box-shadow: 0 10px 22px -8px rgba(255,107,26,.75), inset 0 -3px 0 rgba(0,0,0,.14); }
+.botao--brasa:hover { background: var(--brasa-escura); transform: translateY(-2px); }
+.botao--azul { background: var(--azul); color: #fff; box-shadow: 0 10px 22px -10px rgba(30,95,214,.7), inset 0 -3px 0 rgba(0,0,0,.16); }
+.botao--azul:hover { background: var(--azul-escuro); transform: translateY(-2px); }
+.botao--contorno { background: transparent; color: var(--tinta); border: 2px solid var(--borda); }
+.botao--contorno:hover { border-color: var(--azul); color: var(--azul); }
+.botao--largo { width: 100%; }
+.botao--grande { padding: 1.15em 2.4em; font-size: clamp(1.05rem, 1rem + .5vw, 1.35rem); }
+.botao[disabled] { opacity: .6; cursor: not-allowed; transform: none; }
+
+.selos-cta {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.25rem;
+    margin: 1.1rem 0 0; padding: 0; list-style: none;
+    font-size: .92rem; font-weight: 700; color: var(--tinta-suave);
+}
+.selos-cta li { display: flex; align-items: center; gap: .4em; }
+.selos-cta .tique { width: 1.1em; height: 1.1em; color: var(--oliveira); flex: none; }
+.secao--azul .selos-cta { color: #BFD2F5; }
+.hero .selos-cta, .selos-cta--esq { justify-content: flex-start; }
+
+/* -------- 5. A CARTA (assinatura) ---------------------------------------- */
+.carta {
+    position: relative; display: flex; flex-direction: column;
+    background: var(--papel); border: 3px solid var(--sol);
+    border-radius: var(--r-m); padding: .55rem .55rem .95rem;
+    box-shadow: var(--sombra-m); text-align: center; overflow: hidden;
+}
+.carta::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(20,39,92,.05) 1px, transparent 1px);
+    background-size: 9px 9px; opacity: .7;
+}
+.carta__janela {
+    position: relative; aspect-ratio: 1 / 1.02; display: grid; place-items: center;
+    background: var(--azul-claro); border-radius: 999px 999px var(--r-p) var(--r-p);
+    overflow: hidden;
+}
+.carta__janela > svg { width: 64%; height: 64%; }
+.carta--nt .carta__janela { background: var(--oliveira-clara); }
+.carta__nome {
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(1.05rem, .9rem + .7vw, 1.4rem);
+    line-height: 1.05; letter-spacing: .02em; text-transform: uppercase;
+    margin: .7rem .2rem .15rem; color: var(--tinta);
+}
+.carta__ref {
+    font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--tinta-suave); margin: 0;
+}
+.carta__selo {
+    position: absolute; top: .75rem; left: .75rem; z-index: 1;
+    font-size: .58rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    color: #fff; background: var(--azul); border-radius: 999px; padding: .25em .7em;
+}
+.carta--nt .carta__selo { background: var(--oliveira); }
+
+/* -------- 6. CARDS ------------------------------------------------------- */
+.card {
+    background: var(--papel); border: 1px solid var(--borda); border-radius: var(--r-g);
+    padding: clamp(1.4rem, 2.5vw, 1.9rem); box-shadow: var(--sombra-b);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--sombra-m); border-color: var(--sol); }
+.card h3 { margin-bottom: .35em; }
+.card p { color: var(--tinta-suave); margin: 0; }
+.card__icone {
+    display: grid; place-items: center; width: 3.1rem; height: 3.1rem;
+    font-size: 1.6rem; line-height: 1; border-radius: 16px;
+    background: var(--azul-claro); margin-bottom: 1rem;
+}
+.card__icone--sol   { background: var(--sol-claro); }
+.card__icone--brasa { background: var(--brasa-clara); }
+.card__icone--verde { background: var(--oliveira-clara); }
+.secao--azul .card { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); box-shadow: none; }
+.secao--azul .card p { color: #BFD2F5; }
+.secao--azul .card:hover { border-color: var(--sol); }
+
+/* -------- 7. CARROSSEL --------------------------------------------------- */
+.carrossel__trilho {
+    display: flex; gap: clamp(.9rem, 2vw, 1.4rem);
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    padding: .5rem var(--gutter) 1.5rem;
+    margin-inline: calc(var(--gutter) * -1);
+    scrollbar-width: none;
+}
+.carrossel__trilho::-webkit-scrollbar { display: none; }
+.carrossel__item { flex: 0 0 auto; scroll-snap-align: center; }
+.carrossel__controles { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+.carrossel__seta {
+    flex: none;
+    width: 2.9rem; height: 2.9rem; display: grid; place-items: center;
+    border-radius: 999px; border: 2px solid var(--borda); background: var(--papel);
+    color: var(--tinta); cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+.carrossel__seta:hover:not(:disabled) { background: var(--azul); border-color: var(--azul); color: #fff; }
+.carrossel__seta:disabled { opacity: .35; cursor: default; }
+.carrossel__seta svg { width: 1.2rem; height: 1.2rem; }
+.carrossel__pontos { display: flex; gap: 0; }
+.carrossel__ponto {
+    box-sizing: content-box;          /* o padding é só alvo de toque */
+    width: .55rem; height: .55rem;
+    padding: 12px; border: 0; border-radius: 999px;
+    background: var(--borda); background-clip: content-box;
+    cursor: pointer; transition: background-color .2s ease, width .2s ease;
+}
+.carrossel__ponto[aria-current='true'] { background: var(--brasa); width: 1.5rem; }
+@media (max-width: 520px) { .carrossel__ponto { padding-inline: 7.6px; } }
+.dica-arraste { text-align: center; font-size: .88rem; font-weight: 700; color: var(--tinta-suave); letter-spacing: .04em; margin-bottom: .75rem; }
+.secao--azul .carrossel__seta { background: transparent; border-color: rgba(255,255,255,.25); color: #fff; }
+.secao--azul .carrossel__seta:hover:not(:disabled) { background: var(--sol); border-color: var(--sol); color: var(--tinta); }
+.secao--azul .carrossel__ponto { background: rgba(255,255,255,.25); }
+.secao--azul .carrossel__ponto[aria-current='true'] { background: var(--sol); }
+.secao--azul .dica-arraste { color: #BFD2F5; }
+
+/* -------- 8. REVELAR AO ROLAR -------------------------------------------- */
+.revela { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s cubic-bezier(.22,1,.36,1); }
+.revela.visivel { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .revela { opacity: 1; transform: none; transition: none; }
+    *, *::before, *::after {
+        animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+}
+</style>
+
+<style>
+/* ==========================================================================
+   ESTILOS DE SEÇÃO
+   ========================================================================== */
+
+/* -------- HERO ----------------------------------------------------------- */
+.hero { position: relative; overflow: hidden; background: var(--ceu); padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 7vw, 5.5rem); }
+.hero::before {
+    content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(30,95,214,.09) 1.5px, transparent 1.5px);
+    background-size: 26px 26px;
+    -webkit-mask-image: radial-gradient(120% 90% at 70% 15%, #000 20%, transparent 75%);
+            mask-image: radial-gradient(120% 90% at 70% 15%, #000 20%, transparent 75%);
+}
+.hero__grade {
+    position: relative; z-index: 1;
+    display: grid; align-items: center;
+    gap: clamp(2.25rem, 5vw, 4rem);
+    grid-template-columns: 1fr;
+}
+@media (min-width: 900px) { .hero__grade { grid-template-columns: 1.05fr .95fr; } }
+.hero h1 { margin-bottom: .4em; }
+.hero h1 em { font-style: normal; color: var(--azul); position: relative; white-space: nowrap; }
+/* Sublinhado desenhado à mão, como giz de cera no quadro da sala */
+.hero h1 em::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -.06em; height: .16em;
+    background: var(--sol); border-radius: 999px; transform: rotate(-.7deg);
+}
+.hero__lead { font-size: var(--t-lead); color: var(--tinta-suave); max-width: 34rem; margin-bottom: 1.75rem; }
+.hero__acao { display: flex; flex-direction: column; align-items: flex-start; gap: .25rem; }
+.hero__entrega {
+    display: inline-flex; align-items: center; gap: .55rem;
+    margin-top: 1.4rem; padding: .7rem 1.05rem;
+    background: var(--papel); border: 1px dashed var(--borda); border-radius: var(--r-p);
+    font-size: .93rem; font-weight: 700; color: var(--tinta-suave);
+}
+
+/* Palco do hero: leque de cartas atrás da cena ilustrada */
+.hero__palco { position: relative; display: grid; place-items: center; }
+.hero__cena { width: min(100%, 30rem); filter: drop-shadow(0 26px 40px rgba(20,39,92,.18)); }
+
+/* -------- PASSOS (sequência real: 1 → 4) --------------------------------- */
+.passo { position: relative; text-align: center; padding-top: 1.25rem; }
+.passo__numero {
+    display: grid; place-items: center; width: 3rem; height: 3rem; margin: 0 auto .9rem;
+    font-family: var(--display); font-weight: 800; font-size: 1.4rem; line-height: 1;
+    color: #fff; background: var(--azul); border-radius: 999px;
+    box-shadow: 0 0 0 6px var(--azul-claro);
+}
+.passo__arte { width: 100%; max-width: 12rem; margin: 0 auto 1rem; }
+.passo h3 { margin-bottom: .3em; }
+.passo p { color: var(--tinta-suave); margin: 0; }
+/* Linha que costura os passos, só onde eles ficam lado a lado */
+@media (min-width: 1000px) {
+    .passos { position: relative; }
+    .passos::before {
+        content: ''; position: absolute; top: 2.75rem; left: 12%; right: 12%; height: 3px;
+        background: repeating-linear-gradient(90deg, var(--borda) 0 10px, transparent 10px 20px);
+        z-index: 0;
+    }
+    .passo { z-index: 1; }
+}
+
+/* -------- FLUXO IMPRIMA → SEPARE → BRINQUE → APRENDA --------------------- */
+.fluxo { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .6rem .5rem; padding: 0; margin: 0; list-style: none; }
+.fluxo li {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-family: var(--display); font-weight: 800; font-size: clamp(.85rem, .8rem + .3vw, 1.05rem);
+    letter-spacing: .06em; text-transform: uppercase;
+    background: var(--papel); color: var(--tinta);
+    border-radius: 999px; padding: .55em 1.1em; box-shadow: var(--sombra-b);
+}
+.fluxo li .emoji { font-size: 1.1em; }
+.fluxo__seta { color: var(--sol); font-weight: 800; }
+
+/* -------- DEMONSTRAÇÃO -------------------------------------------------- */
+.demo__moldura {
+    position: relative; border-radius: var(--r-g); overflow: hidden;
+    border: 5px solid var(--papel); box-shadow: var(--sombra-a);
+}
+.demo__moldura svg { width: 100%; height: auto; display: block; }
+
+/* -------- DEPOIMENTOS (bolhas de conversa) ------------------------------- */
+.zap {
+    width: min(86vw, 22rem);
+    background: var(--papel); border-radius: var(--r-m);
+    padding: 1.15rem 1.25rem 1rem; box-shadow: var(--sombra-m);
+    position: relative; text-align: left;
+}
+.zap::before {
+    content: ''; position: absolute; left: 1.8rem; bottom: -12px;
+    border: 7px solid transparent; border-top-color: var(--papel); border-bottom: 0;
+}
+.zap__topo { display: flex; align-items: center; gap: .7rem; margin-bottom: .7rem; }
+.zap__avatar {
+    width: 2.6rem; height: 2.6rem; flex: none; border-radius: 999px;
+    display: grid; place-items: center; font-size: 1.2rem;
+    background: var(--sol-claro);
+}
+.zap__nome { font-family: var(--display); font-weight: 700; font-size: 1rem; line-height: 1.1; margin: 0; }
+.zap__papel { font-size: .78rem; font-weight: 700; color: var(--tinta-suave); margin: 0; }
+.zap__msg { font-size: .96rem; color: var(--tinta); margin: 0 0 .6rem; }
+.zap__rodape { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.zap__aviso {
+    font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--tinta-suave); background: var(--ceu); border-radius: 999px; padding: .25em .7em;
+}
+.zap__estrelas { color: var(--sol); font-size: .85rem; letter-spacing: .08em; }
+
+/* -------- PLANOS --------------------------------------------------------- */
+.planos { display: grid; gap: clamp(1.5rem, 3vw, 2rem); align-items: start; grid-template-columns: 1fr; max-width: 62rem; margin-inline: auto; }
+@media (min-width: 880px) { .planos { grid-template-columns: 1fr 1.12fr; align-items: center; } }
+@media (max-width: 879px) { .plano--destaque { order: -1; } }
+
+.plano {
+    background: var(--papel); border-radius: var(--r-g); padding: clamp(1.6rem, 3vw, 2.3rem);
+    border: 2px solid var(--borda); display: flex; flex-direction: column; position: relative;
+}
+.plano--destaque {
+    border: 3px solid var(--sol);
+    box-shadow: 0 28px 60px -22px rgba(20,39,92,.45);
+    background:
+        radial-gradient(120% 60% at 50% 0%, var(--sol-claro) 0%, transparent 60%),
+        var(--papel);
+}
+.plano__selo {
+    position: absolute; top: -.95rem; left: 50%; translate: -50% 0;
+    font-family: var(--display); font-weight: 800; font-size: .78rem;
+    letter-spacing: .1em; text-transform: uppercase; white-space: nowrap;
+    color: var(--tinta); background: var(--sol);
+    border-radius: 999px; padding: .4em 1.1em; box-shadow: var(--sombra-b);
+}
+.plano__nome { margin-bottom: .1em; }
+.plano__resumo { font-size: .95rem; font-weight: 700; color: var(--tinta-suave); margin-bottom: 1.2rem; }
+.plano__de { font-size: 1rem; font-weight: 700; color: var(--tinta-suave); text-decoration: line-through; margin: 0; }
+.plano__preco { font-family: var(--display); font-weight: 800; font-size: clamp(2.5rem, 2rem + 2.5vw, 3.6rem); line-height: 1; color: var(--tinta); margin: .1em 0 0; }
+.plano__preco small { font-size: .45em; font-weight: 700; }
+.plano__nota { font-size: .87rem; font-weight: 700; color: var(--tinta-suave); margin: .35rem 0 1.4rem; }
+.plano__lista { list-style: none; padding: 0; margin: 0 0 1.75rem; display: grid; gap: .6rem; }
+.plano__lista li { display: flex; gap: .65rem; align-items: flex-start; font-size: .98rem; }
+.plano__lista .tique { width: 1.15rem; height: 1.15rem; flex: none; margin-top: .28rem; color: var(--oliveira); }
+.plano--destaque .plano__lista li { font-weight: 700; }
+.plano__economia {
+    display: inline-flex; align-items: center; gap: .4em; align-self: flex-start;
+    font-size: .8rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+    color: #0B6E3C; background: var(--oliveira-clara); border-radius: 999px;
+    padding: .35em .85em; margin-bottom: 1rem;
+}
+.plano__pagamento { text-align: center; font-size: .82rem; font-weight: 700; color: var(--tinta-suave); margin-top: .8rem; }
+
+/* -------- COMPARAÇÃO ----------------------------------------------------- */
+.comparacao-caixa { overflow-x: auto; }
+.comparacao {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    background: var(--papel); border: 1px solid var(--borda);
+    border-radius: var(--r-m); font-size: .97rem;
+}
+.comparacao thead th:first-child { border-top-left-radius: calc(var(--r-m) - 1px); }
+.comparacao thead th:last-child  { border-top-right-radius: calc(var(--r-m) - 1px); }
+.comparacao tr:last-child th:first-child { border-bottom-left-radius: calc(var(--r-m) - 1px); }
+.comparacao tr:last-child td:last-child  { border-bottom-right-radius: calc(var(--r-m) - 1px); }
+.comparacao th, .comparacao td { padding: .85rem 1rem; text-align: left; border-bottom: 1px solid var(--borda); }
+.comparacao thead th { font-family: var(--display); font-size: 1.02rem; background: var(--ceu); }
+.comparacao thead th:nth-child(3) { background: var(--sol-claro); }
+.comparacao tbody td:nth-child(3) { background: rgba(255,194,46,.09); font-weight: 700; }
+.comparacao td:not(:first-child), .comparacao th:not(:first-child) { text-align: center; width: 27%; }
+.comparacao tr:last-child th, .comparacao tr:last-child td { border-bottom: 0; }
+.comparacao .tique { width: 1.2rem; height: 1.2rem; color: var(--oliveira); margin-inline: auto; }
+.comparacao .traco { color: var(--tinta-suave); opacity: .5; }
+@media (max-width: 620px) { .comparacao th, .comparacao td { padding: .7rem .55rem; font-size: .88rem; } }
+
+/* -------- BÔNUS ---------------------------------------------------------- */
+.bonus { position: relative; text-align: center; }
+.bonus__valor { font-size: .92rem; font-weight: 700; color: var(--tinta-suave); text-decoration: line-through; margin: .6rem 0 .35rem; }
+.bonus__gratis {
+    display: inline-flex; font-family: var(--display); font-weight: 800; font-size: .78rem;
+    letter-spacing: .09em; text-transform: uppercase; color: #fff; background: var(--oliveira);
+    border-radius: 999px; padding: .35em .9em;
+}
+.bonus .card__icone { margin-inline: auto; }
+
+/* -------- BLOCO DE VALOR ------------------------------------------------- */
+.valor-caixa {
+    background: var(--papel); border: 3px dashed var(--sol); border-radius: var(--r-g);
+    padding: clamp(1.75rem, 4vw, 2.75rem); text-align: center; max-width: 40rem; margin-inline: auto;
+}
+.valor-linha { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .6rem 0; border-bottom: 1px dashed var(--borda); text-align: left; font-size: .97rem; }
+.valor-linha:last-of-type { border-bottom: 0; }
+.valor-linha b { font-family: var(--display); font-weight: 700; }
+.valor-total { font-family: var(--display); font-weight: 800; font-size: clamp(1.1rem, 1rem + .6vw, 1.4rem); color: var(--tinta-suave); margin-top: 1.2rem; }
+.valor-total s { opacity: .75; }
+.valor-hoje { font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem, 1.9rem + 2.6vw, 3.6rem); line-height: 1; color: var(--brasa-escura); margin: .2em 0 1.4rem; }
+
+/* -------- GARANTIA ------------------------------------------------------- */
+.garantia { display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; grid-template-columns: 1fr; }
+@media (min-width: 780px) { .garantia { grid-template-columns: auto 1fr; } }
+.garantia__selo { width: clamp(9rem, 22vw, 12.5rem); margin-inline: auto; }
+
+/* -------- TIMELINE DE ENTREGA -------------------------------------------- */
+.linha-tempo { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; max-width: 40rem; margin-inline: auto; }
+.linha-tempo li { display: grid; grid-template-columns: 3.4rem 1fr; gap: 1.1rem; padding-bottom: 1.6rem; position: relative; }
+.linha-tempo li:last-child { padding-bottom: 0; }
+.linha-tempo li::before {
+    content: ''; position: absolute; left: 1.7rem; top: 3.4rem; bottom: 0; width: 2px;
+    background: repeating-linear-gradient(180deg, var(--sol) 0 7px, transparent 7px 14px);
+}
+.linha-tempo li:last-child::before { display: none; }
+.linha-tempo__num {
+    width: 3.4rem; height: 3.4rem; display: grid; place-items: center;
+    font-family: var(--display); font-weight: 800; font-size: 1.15rem;
+    color: var(--tinta); background: var(--sol); border-radius: 999px; z-index: 1;
+}
+.linha-tempo h3 { margin-bottom: .1em; font-size: 1.12rem; }
+.linha-tempo p { color: var(--tinta-suave); margin: 0; font-size: .96rem; }
+.secao--azul .linha-tempo p { color: #BFD2F5; }
+
+/* -------- FAQ ------------------------------------------------------------ */
+.faq { max-width: 44rem; margin-inline: auto; display: grid; gap: .75rem; }
+.faq details {
+    background: var(--papel); border: 1px solid var(--borda); border-radius: var(--r-m);
+    overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease;
+}
+.faq details[open] { border-color: var(--sol); box-shadow: var(--sombra-b); }
+.faq summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.1rem 1.3rem; cursor: pointer; list-style: none;
+    font-family: var(--display); font-weight: 700; font-size: 1.05rem; color: var(--tinta);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+    content: ''; flex: none; width: .65rem; height: .65rem;
+    border-right: 3px solid var(--azul); border-bottom: 3px solid var(--azul);
+    rotate: 45deg; translate: 0 -3px; transition: rotate .2s ease;
+}
+.faq details[open] summary::after { rotate: -135deg; translate: 0 3px; }
+.faq__resposta { padding: 0 1.3rem 1.2rem; color: var(--tinta-suave); }
+
+/* -------- RODAPÉ --------------------------------------------------------- */
+.rodape { background: var(--tinta); color: #BFD2F5; padding-block: clamp(2.5rem, 5vw, 3.5rem) 8rem; font-size: .93rem; }
+@media (min-width: 780px) { .rodape { padding-bottom: clamp(2.5rem, 5vw, 3.5rem); } }
+.rodape h3 { color: #fff; font-size: 1.2rem; margin-bottom: .3em; }
+.rodape a { color: #fff; text-decoration: none; }
+.rodape a:hover { text-decoration: underline; }
+.rodape__links { list-style: none; display: flex; flex-wrap: wrap; gap: 0 1.5rem; padding: 0; margin: .9rem 0; font-weight: 700; }
+.rodape__links a { display: inline-block; padding-block: .45rem; }
+.rodape__legal { border-top: 1px solid rgba(255,255,255,.14); padding-top: 1.25rem; font-size: .84rem; opacity: .8; }
+
+/* -------- CTA FIXO NO CELULAR -------------------------------------------- */
+.cta-fixo {
+    position: fixed; inset: auto 0 0 0; z-index: 90;
+    padding: .6rem var(--gutter) calc(.6rem + env(safe-area-inset-bottom));
+    background: rgba(255,255,255,.93);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--borda);
+    translate: 0 110%; transition: translate .3s cubic-bezier(.22,1,.36,1);
+}
+.cta-fixo.visivel { translate: 0 0; }
+.cta-fixo .botao { padding-block: .8em; }
+.cta-fixo__preco { display: block; text-align: center; font-size: .76rem; font-weight: 700; color: var(--tinta-suave); margin-top: .35rem; }
+@media (min-width: 780px) { .cta-fixo { display: none; } }
+
+/* -------- MODAL DE CHECKOUT PIX ------------------------------------------ */
+.modal {
+    position: fixed; inset: 0; z-index: 1000;
+    display: none; align-items: center; justify-content: center;
+    padding: 1rem; background: rgba(20,39,92,.72);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+.modal.aberto { display: flex; }
+.modal__caixa {
+    width: 100%; max-width: 27rem; max-height: 92vh; overflow-y: auto;
+    background: var(--papel); border-radius: var(--r-g); box-shadow: var(--sombra-a);
+}
+.modal__topo { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1.35rem 1.5rem 1.1rem; border-bottom: 1px solid var(--borda); }
+.modal__topo h3 { margin: 0; font-size: 1.25rem; }
+.modal__topo p { margin: .15rem 0 0; font-size: .87rem; color: var(--tinta-suave); }
+.modal__fechar { background: none; border: 0; cursor: pointer; color: var(--tinta-suave); padding: .25rem; line-height: 0; border-radius: 8px; }
+.modal__fechar:hover { color: var(--tinta); }
+.modal__fechar svg { width: 1.4rem; height: 1.4rem; }
+.modal__corpo { padding: 1.5rem; }
+
+.campo { margin-bottom: 1rem; }
+.campo label { display: block; font-weight: 800; font-size: .88rem; margin-bottom: .35rem; }
+.campo input {
+    width: 100%; font: inherit; font-size: 1rem; color: var(--tinta);
+    padding: .8rem 1rem; border: 2px solid var(--borda); border-radius: var(--r-p);
+    background: var(--papel); transition: border-color .15s ease, box-shadow .15s ease;
+}
+.campo input:focus { outline: none; border-color: var(--azul); box-shadow: 0 0 0 4px var(--azul-claro); }
+.campo__ajuda { font-size: .79rem; color: var(--tinta-suave); margin: .3rem 0 0; }
+.campo__erro { font-size: .81rem; font-weight: 700; color: var(--brasa-escura); margin: .3rem 0 0; }
+.aviso-erro { font-size: .9rem; font-weight: 700; color: var(--brasa-escura); background: var(--brasa-clara); border-radius: var(--r-p); padding: .8rem 1rem; margin-bottom: 1rem; }
+.modal__rodape-nota { font-size: .76rem; color: var(--tinta-suave); text-align: center; margin: .8rem 0 0; }
+
+.pix { text-align: center; }
+.pix__qr { width: 13rem; height: 13rem; margin: 1rem auto; border: 2px solid var(--borda); border-radius: var(--r-p); background: #fff; object-fit: contain; }
+.pix__codigo { width: 100%; font-family: ui-monospace, monospace; font-size: .74rem; line-height: 1.5; padding: .8rem; border: 2px solid var(--borda); border-radius: var(--r-p); background: var(--ceu); resize: none; color: var(--tinta); }
+.pix__espera { display: flex; align-items: center; justify-content: center; gap: .5rem; font-weight: 700; font-size: .92rem; color: var(--tinta-suave); margin-top: 1.1rem; }
+.girando { animation: girar 1s linear infinite; width: 1.1rem; height: 1.1rem; color: var(--brasa); }
+@keyframes girar { to { rotate: 360deg; } }
+.pago { text-align: center; padding: .5rem 0 1rem; }
+.pago__marca { width: 4rem; height: 4rem; display: grid; place-items: center; border-radius: 999px; background: var(--oliveira-clara); color: var(--oliveira); margin: 0 auto 1rem; }
+.pago__marca svg { width: 2rem; height: 2rem; }
+
+/* -------- AJUSTES DE COMPONENTE ------------------------------------------ */
+/* Tique padrão: sem tamanho explícito um <svg> vazio ocupa a caixa inteira. */
+.tique { width: 1.1em; height: 1.1em; flex: none; }
+
+/* Cartas flutuando na cena do hero */
+.hero__mini { transform-box: view-box; animation: flutuar 7s ease-in-out infinite; }
+.hero__mini--b { animation-delay: -3.5s; }
+@keyframes flutuar { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+
+/* Carta na vitrine de amostras */
+.amostra { width: min(74vw, 15.5rem); }
+.carta__pistas {
+    list-style: none;
+    margin: .75rem .35rem 0;
+    padding: .7rem 0 0;
+    border-top: 1px dashed var(--borda);
+    display: grid; gap: .15rem;
+    font-size: .79rem; font-weight: 700; line-height: 1.35;
+    color: var(--tinta-suave); text-align: left;
+}
+.carta__pistas li::before { content: '•'; color: var(--sol); font-weight: 800; margin-right: .4em; }
+
+.carrossel__controles { margin-top: .25rem; }
+</style>
+</head>
+<body>
+
+<!-- ==========================================================================
+     SPRITE DE ILUSTRAÇÕES
+     Todas as artes são SVG desenhado à mão: leves, nítidas em qualquer tela e
+     fáceis de recolorir pelos tokens. Para trocar por arte própria, substitua
+     o conteúdo do <symbol> correspondente.
+     ========================================================================== -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- ÍCONES DE INTERFACE -->
+    <symbol id="i-tique" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6 9 17l-5-5"/>
+    </symbol>
+    <symbol id="i-seta-esq" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 19 8 12l7-7"/>
+    </symbol>
+    <symbol id="i-seta-dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 5 7 7-7 7"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+      <path d="M18 6 6 18M6 6l12 12"/>
+    </symbol>
+    <symbol id="i-girando" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
+      <path d="M21 12a9 9 0 1 1-6.2-8.6"/>
+    </symbol>
+    <symbol id="i-copiar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+    </symbol>
+    <symbol id="i-cadeado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+    </symbol>
+
+    <!-- PERSONAGENS -->
+    <symbol id="i-arca" viewBox="0 0 64 64">
+      <path d="M8 27a24 24 0 0 1 48 0" fill="none" stroke="#FF6B1A" stroke-width="4" stroke-linecap="round"/>
+      <path d="M15 27a17 17 0 0 1 34 0" fill="none" stroke="#FFC22E" stroke-width="4" stroke-linecap="round"/>
+      <path d="M22 27a10 10 0 0 1 20 0" fill="none" stroke="#17A45C" stroke-width="4" stroke-linecap="round"/>
+      <path d="M18 32 32 23l14 9z" fill="#14275C"/>
+      <rect x="22" y="32" width="20" height="12" rx="2" fill="#1E5FD6"/>
+      <rect x="28" y="36" width="8" height="8" rx="1.5" fill="#E7F0FF"/>
+      <path d="M5 44h54l-6.4 11a4 4 0 0 1-3.5 2H14.9a4 4 0 0 1-3.5-2z" fill="#A9682F"/>
+      <path d="M5 44h54l-1.8 3H6.8z" fill="#8A5327"/>
+    </symbol>
+
+    <symbol id="i-tabuas" viewBox="0 0 64 64">
+      <path d="M6 26a11 11 0 0 1 22 0v27a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3z" fill="#1E5FD6"/>
+      <path d="M36 26a11 11 0 0 1 22 0v27a3 3 0 0 1-3 3H39a3 3 0 0 1-3-3z" fill="#1748A8"/>
+      <g stroke="#E7F0FF" stroke-width="2.6" stroke-linecap="round">
+        <path d="M12 30h10M12 37h10M12 44h10M42 30h10M42 37h10M42 44h10"/>
+      </g>
+      <path d="M32 12v10M27 17h10" stroke="#FFC22E" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="i-harpa" viewBox="0 0 64 64">
+      <path d="M15 10c-9 11-9 30 3 40" fill="none" stroke="#FFC22E" stroke-width="6" stroke-linecap="round"/>
+      <path d="M49 10c9 11 9 30-3 40" fill="none" stroke="#FFC22E" stroke-width="6" stroke-linecap="round"/>
+      <g stroke="#1E5FD6" stroke-width="2.6" stroke-linecap="round">
+        <path d="M24 17v29M32 14v32M40 17v29"/>
+      </g>
+      <rect x="13" y="45" width="38" height="9" rx="4.5" fill="#A9682F"/>
+      <circle cx="15" cy="10" r="4" fill="#FF6B1A"/><circle cx="49" cy="10" r="4" fill="#FF6B1A"/>
+    </symbol>
+
+    <symbol id="i-leao" viewBox="0 0 64 64">
+      <g fill="#E8A500">
+        <circle cx="32" cy="9" r="7"/><circle cx="48" cy="16" r="7"/><circle cx="55" cy="32" r="7"/>
+        <circle cx="48" cy="48" r="7"/><circle cx="32" cy="55" r="7"/><circle cx="16" cy="48" r="7"/>
+        <circle cx="9" cy="32" r="7"/><circle cx="16" cy="16" r="7"/>
+      </g>
+      <circle cx="32" cy="32" r="22" fill="#FFC22E"/>
+      <circle cx="21" cy="21" r="5.5" fill="#E8A500"/><circle cx="43" cy="21" r="5.5" fill="#E8A500"/>
+      <circle cx="32" cy="33" r="15.5" fill="#FFF3D1"/>
+      <circle cx="26" cy="30" r="2.7" fill="#14275C"/><circle cx="38" cy="30" r="2.7" fill="#14275C"/>
+      <path d="M28.5 37h7L32 41z" fill="#14275C"/>
+      <path d="M32 41v3M32 44c-1.8 2.2-4.8 1.6-5.8-.4M32 44c1.8 2.2 4.8 1.6 5.8-.4" fill="none" stroke="#14275C" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="i-coroa" viewBox="0 0 64 64">
+      <path d="M9 45 5 19l14 9L32 12l13 16 14-9-4 26z" fill="#FFC22E"/>
+      <rect x="9" y="44" width="46" height="9" rx="3.5" fill="#E8A500"/>
+      <circle cx="19" cy="31" r="3.2" fill="#1E5FD6"/>
+      <circle cx="32" cy="27" r="3.8" fill="#FF6B1A"/>
+      <circle cx="45" cy="31" r="3.2" fill="#17A45C"/>
+      <circle cx="5" cy="19" r="3.4" fill="#FF6B1A"/><circle cx="59" cy="19" r="3.4" fill="#FF6B1A"/>
+      <circle cx="32" cy="10" r="3.4" fill="#FF6B1A"/>
+    </symbol>
+
+    <symbol id="i-peixe" viewBox="0 0 64 64">
+      <path d="M17 30c6-11 17-17 27-17s18 8 18 17-8 17-18 17-21-6-27-17z" fill="#1E5FD6"/>
+      <path d="M17 30 2 17v26z" fill="#1748A8"/>
+      <path d="M33 16c3-6 9-9 9-9s0 7-3 11z" fill="#1748A8"/>
+      <circle cx="49" cy="25" r="4" fill="#fff"/><circle cx="50" cy="25" r="2" fill="#14275C"/>
+      <path d="M2 55c5.5-4.5 10-4.5 15.5 0S27 59.5 32.5 55 42 50.5 47.5 55 57 59.5 62 55" fill="none" stroke="#7FB0FF" stroke-width="3.4" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="i-colunas" viewBox="0 0 64 64">
+      <g>
+        <rect x="6" y="9" width="21" height="7" rx="2.5" fill="#1E5FD6"/>
+        <rect x="10" y="16" width="13" height="33" fill="#E7F0FF"/>
+        <g stroke="#B9D0F5" stroke-width="1.8"><path d="M14 18v29M19.5 18v29"/></g>
+        <rect x="6" y="49" width="21" height="7" rx="2.5" fill="#1E5FD6"/>
+      </g>
+      <g transform="rotate(9 47 33)">
+        <rect x="37" y="9" width="21" height="7" rx="2.5" fill="#1748A8"/>
+        <rect x="41" y="16" width="13" height="33" fill="#E7F0FF"/>
+        <g stroke="#B9D0F5" stroke-width="1.8"><path d="M45 18v29M50.5 18v29"/></g>
+        <rect x="37" y="49" width="21" height="7" rx="2.5" fill="#1748A8"/>
+      </g>
+      <path d="M32 22l-4 8h6l-5 10" fill="none" stroke="#FFC22E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="i-espigas" viewBox="0 0 64 64">
+      <path d="M32 58V22" stroke="#A9682F" stroke-width="4" stroke-linecap="round"/>
+      <g fill="#FFC22E">
+        <path d="M31 24c-7-1-11-6-11-12 6 0 11 5 11 12z"/><path d="M33 24c7-1 11-6 11-12-6 0-11 5-11 12z"/>
+        <path d="M31 35c-7-1-11-6-11-12 6 0 11 5 11 12z"/><path d="M33 35c7-1 11-6 11-12-6 0-11 5-11 12z"/>
+        <path d="M31 46c-7-1-11-6-11-12 6 0 11 5 11 12z"/><path d="M33 46c7-1 11-6 11-12-6 0-11 5-11 12z"/>
+      </g>
+      <path d="M32 20c0-7 3-12 3-12s3 5 3 12" fill="#E8A500"/>
+      <path d="M32 50c-6 0-11 3-14 8h28c-3-5-8-8-14-8z" fill="#17A45C"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ==========================================================================
+     1. HERO — a primeira dobra explica a brincadeira inteira em uma imagem:
+     a criança com a carta na testa e os colegas dando as pistas.
+     ========================================================================== -->
+<header class="hero">
+  <div class="envelope hero__grade">
+
+    <div>
+      <span class="etiqueta">📖 Material especial para aulas bíblicas infantis</span>
+      <h1>Transforme sua aula bíblica em uma <em>brincadeira</em> que as crianças vão adorar!</h1>
+      <p class="hero__lead">
+        Um jogo simples e divertido para ajudar as crianças a conhecerem e lembrarem
+        dos principais personagens da Bíblia enquanto brincam e interagem.
+      </p>
+
+      <div class="hero__acao">
+        <a href="#planos" class="botao botao--brasa botao--grande js-rolar">Quero o “Quem Sou Eu?”</a>
+        <ul class="selos-cta">
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Compra segura</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Produto digital</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> 7 dias de garantia</li>
+        </ul>
+      </div>
+
+      <p class="hero__entrega">
+        <span aria-hidden="true">📩</span>
+        Você compra online, recebe por e-mail e pode imprimir o material.
+      </p>
+    </div>
+
+    <div class="hero__palco">
+      <!-- Cena ilustrada: a mecânica do jogo, não um mockup genérico. -->
+      <svg class="hero__cena" viewBox="0 0 560 520" role="img"
+           aria-label="Criança segurando uma carta com o nome NOÉ na testa enquanto os colegas dão pistas.">
+        <defs>
+          <clipPath id="arco-hero">
+            <path d="M30 260A250 250 0 0 1 530 260V470q0 30-30 30H60q-30 0-30-30Z"/>
+          </clipPath>
+          <filter id="sombra-suave" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#14275C" flood-opacity=".16"/>
+          </filter>
+        </defs>
+
+        <!-- Janela em arco: o motivo de vitral que se repete na página -->
+        <path d="M30 260A250 250 0 0 1 530 260V470q0 30-30 30H60q-30 0-30-30Z" fill="#E7F0FF"/>
+
+        <g clip-path="url(#arco-hero)">
+          <circle cx="120" cy="140" r="7" fill="#FFC22E"/>
+          <circle cx="455" cy="120" r="10" fill="#FFC22E" opacity=".7"/>
+          <circle cx="90" cy="250" r="5" fill="#1E5FD6" opacity=".35"/>
+          <circle cx="490" cy="230" r="6" fill="#17A45C" opacity=".45"/>
+          <path d="M60 470h440" stroke="#CBDCF8" stroke-width="10" stroke-linecap="round"/>
+          <ellipse cx="280" cy="474" rx="150" ry="18" fill="#CBDCF8"/>
+
+          <!-- Cartas espalhadas na mesa -->
+          <g class="hero__mini" transform="rotate(-13 96 430)">
+            <rect x="52" y="372" width="88" height="112" rx="12" fill="#fff" stroke="#FFC22E" stroke-width="5"/>
+            <path d="M66 408a30 30 0 0 1 60 0v22a6 6 0 0 1-6 6H72a6 6 0 0 1-6-6Z" fill="#E7F0FF"/>
+            <svg x="79" y="390" width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-harpa"/></svg>
+            <text x="96" y="464" text-anchor="middle" font-family="Baloo 2, sans-serif" font-size="17" font-weight="800" fill="#14275C">DAVI</text>
+          </g>
+          <g class="hero__mini hero__mini--b" transform="rotate(11 466 412)">
+            <rect x="422" y="356" width="88" height="112" rx="12" fill="#fff" stroke="#FFC22E" stroke-width="5"/>
+            <path d="M436 392a30 30 0 0 1 60 0v22a6 6 0 0 1-6 6h-48a6 6 0 0 1-6-6Z" fill="#E4F7ED"/>
+            <svg x="449" y="374" width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-coroa"/></svg>
+            <text x="466" y="448" text-anchor="middle" font-family="Baloo 2, sans-serif" font-size="17" font-weight="800" fill="#14275C">ESTER</text>
+          </g>
+
+          <!-- A criança -->
+          <rect x="222" y="372" width="116" height="130" rx="54" fill="#1E5FD6"/>
+          <path d="M252 372h56v28a28 28 0 0 1-56 0Z" fill="#1748A8"/>
+          <rect x="266" y="338" width="28" height="30" rx="12" fill="#E8B48A"/>
+          <circle cx="280" cy="300" r="52" fill="#F5C9A0"/>
+          <circle cx="228" cy="306" r="9" fill="#E8B48A"/><circle cx="332" cy="306" r="9" fill="#E8B48A"/>
+          <path d="M229 302a51 51 0 0 1 102 0q-51 17-102 0Z" fill="#4A3220"/>
+          <circle cx="263" cy="308" r="5" fill="#14275C"/><circle cx="299" cy="308" r="5" fill="#14275C"/>
+          <circle cx="252" cy="322" r="8" fill="#FF8F6B" opacity=".45"/>
+          <circle cx="310" cy="322" r="8" fill="#FF8F6B" opacity=".45"/>
+          <path d="M266 327q14 14 28 0" fill="none" stroke="#14275C" stroke-width="4" stroke-linecap="round"/>
+
+          <!-- A carta na testa: o público lê, quem joga não vê -->
+          <g transform="rotate(-6 280 190)" filter="url(#sombra-suave)">
+            <rect x="215" y="104" width="130" height="164" rx="16" fill="#fff" stroke="#FFC22E" stroke-width="7"/>
+            <path d="M234 168a46 46 0 0 1 92 0v32a8 8 0 0 1-8 8h-76a8 8 0 0 1-8-8Z" fill="#E7F0FF"/>
+            <svg x="255" y="140" width="50" height="50" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-arca"/></svg>
+            <rect x="228" y="116" width="46" height="15" rx="7.5" fill="#1E5FD6"/>
+            <text x="251" y="127" text-anchor="middle" font-family="Nunito, sans-serif" font-size="9" font-weight="800" letter-spacing="1" fill="#fff">ANTIGO</text>
+            <text x="280" y="243" text-anchor="middle" font-family="Baloo 2, sans-serif" font-size="30" font-weight="800" fill="#14275C">NOÉ</text>
+          </g>
+
+          <!-- Braços segurando a carta -->
+          <g fill="none" stroke="#F5C9A0" stroke-width="23" stroke-linecap="round">
+            <path d="M240 400c-32-26-38-92-16-140"/>
+            <path d="M320 400c32-26 38-92 16-140"/>
+          </g>
+          <circle cx="224" cy="256" r="15" fill="#F5C9A0"/>
+          <circle cx="336" cy="256" r="15" fill="#F5C9A0"/>
+        </g>
+
+        <!-- Pistas dos colegas -->
+        <g filter="url(#sombra-suave)">
+          <path d="M14 108h186q14 0 14 14v56q0 14-14 14h-44l-16 20-6-20H14q-14 0-14-14v-56q0-14 14-14Z" fill="#fff"/>
+          <text x="32" y="142" font-family="Nunito, sans-serif" font-size="19" font-weight="700" fill="#14275C">Ele construiu</text>
+          <text x="32" y="168" font-family="Nunito, sans-serif" font-size="19" font-weight="700" fill="#14275C">um barco enorme!</text>
+        </g>
+        <g filter="url(#sombra-suave)">
+          <path d="M546 224H360q-14 0-14 14v56q0 14 14 14h44l16 20 6-20h120q14 0 14-14v-56q0-14-14-14Z" fill="#fff"/>
+          <text x="376" y="258" font-family="Nunito, sans-serif" font-size="19" font-weight="700" fill="#14275C">Entrou um casal</text>
+          <text x="376" y="284" font-family="Nunito, sans-serif" font-size="19" font-weight="700" fill="#14275C">de cada animal!</text>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</header>
+
+<!-- ==========================================================================
+     2. IDENTIFICAÇÃO
+     ========================================================================== -->
+<section class="secao">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta etiqueta--brasa">O desafio de toda semana</span>
+      <h2>Sua aula precisa de mais interação?</h2>
+      <p>
+        Nem sempre é fácil encontrar uma atividade que consiga prender a atenção das
+        crianças e, ao mesmo tempo, continuar ensinando princípios e histórias da Bíblia.
+      </p>
+    </div>
+
+    <div class="grade grade--3 revela">
+      <article class="card">
+        <div class="card__icone card__icone--brasa" aria-hidden="true">😴</div>
+        <h3>Crianças distraídas</h3>
+        <p>Nem sempre apenas explicar uma história consegue manter todos envolvidos.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone card__icone--sol" aria-hidden="true">💡</div>
+        <h3>Falta de ideias</h3>
+        <p>Encontrar uma dinâmica diferente para cada aula pode consumir tempo.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone" aria-hidden="true">📚</div>
+        <h3>Material pronto</h3>
+        <p>Você precisa de uma atividade simples, organizada e fácil de aplicar.</p>
+      </article>
+    </div>
+
+    <p style="text-align:center;max-width:44rem;margin:clamp(2rem,4vw,3rem) auto 0;font-size:var(--t-lead);font-weight:700">
+      Foi pensando nisso que criamos o
+      <strong style="color:var(--azul)">Quem Sou Eu? — Personagens Bíblicos</strong>.
+    </p>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     3. COMO FUNCIONA — sequência real, por isso os números
+     ========================================================================== -->
+<section class="secao secao--ceu">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta">Como funciona</span>
+      <h2>Uma brincadeira simples que transforma a dinâmica da aula</h2>
+    </div>
+
+    <div class="grade grade--4 passos revela">
+      <article class="passo">
+        <div class="passo__numero">1</div>
+        <svg class="passo__arte" viewBox="0 0 160 110" role="img" aria-label="Mão pegando uma carta do baralho.">
+          <rect x="28" y="20" width="60" height="76" rx="9" fill="#fff" stroke="#DCE6F7" stroke-width="3" transform="rotate(-10 58 58)"/>
+          <rect x="44" y="14" width="60" height="76" rx="9" fill="#fff" stroke="#FFC22E" stroke-width="4"/>
+          <path d="M58 46a16 16 0 0 1 32 0v14a5 5 0 0 1-5 5H63a5 5 0 0 1-5-5Z" fill="#E7F0FF"/>
+          <svg x="62" y="34" width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><use href="#i-tabuas"/></svg>
+          <rect x="56" y="76" width="36" height="6" rx="3" fill="#DCE6F7"/>
+          <path d="M112 96c10-6 14-16 12-28" fill="none" stroke="#FF6B1A" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="124" cy="62" r="11" fill="#F5C9A0"/>
+        </svg>
+        <h3>Escolha uma carta</h3>
+        <p>Pegue uma das cartas de personagens bíblicos.</p>
+      </article>
+
+      <article class="passo">
+        <div class="passo__numero">2</div>
+        <svg class="passo__arte" viewBox="0 0 160 110" role="img" aria-label="Criança com a carta apoiada na testa.">
+          <rect x="52" y="60" width="56" height="48" rx="26" fill="#1E5FD6"/>
+          <circle cx="80" cy="56" r="25" fill="#F5C9A0"/>
+          <path d="M55 57a25 25 0 0 1 50 0q-25 9-50 0Z" fill="#4A3220"/>
+          <circle cx="72" cy="60" r="2.6" fill="#14275C"/><circle cx="88" cy="60" r="2.6" fill="#14275C"/>
+          <path d="M74 70q6 6 12 0" fill="none" stroke="#14275C" stroke-width="2.6" stroke-linecap="round"/>
+          <rect x="52" y="4" width="56" height="34" rx="7" fill="#fff" stroke="#FFC22E" stroke-width="4" transform="rotate(-5 80 21)"/>
+          <text x="80" y="27" text-anchor="middle" font-family="Baloo 2, sans-serif" font-size="15" font-weight="800" fill="#14275C" transform="rotate(-5 80 21)">?</text>
+          <path d="M112 40c8 4 12 10 12 18M48 40c-8 4-12 10-12 18" fill="none" stroke="#F5C9A0" stroke-width="10" stroke-linecap="round"/>
+        </svg>
+        <h3>Coloque na testa</h3>
+        <p>A criança segura a carta sem olhar qual personagem está nela.</p>
+      </article>
+
+      <article class="passo">
+        <div class="passo__numero">3</div>
+        <svg class="passo__arte" viewBox="0 0 160 110" role="img" aria-label="Colegas falando pistas em balões de conversa.">
+          <path d="M8 16h74q8 0 8 8v30q0 8-8 8H36l-12 14-2-14H8q-8 0-8-8V24q0-8 8-8Z" fill="#fff" stroke="#DCE6F7" stroke-width="3"/>
+          <g fill="#1E5FD6"><circle cx="30" cy="39" r="5"/><circle cx="48" cy="39" r="5"/><circle cx="66" cy="39" r="5"/></g>
+          <path d="M152 48H86q-8 0-8 8v26q0 8 8 8h38l12 12 2-12h14q8 0 8-8V56q0-8-8-8Z" fill="#FFF3D1" stroke="#FFC22E" stroke-width="3"/>
+          <g fill="#E8A500"><circle cx="104" cy="69" r="5"/><circle cx="122" cy="69" r="5"/><circle cx="140" cy="69" r="5"/></g>
+        </svg>
+        <h3>Receba as pistas</h3>
+        <p>Os outros participantes dão pistas para ajudá-la a descobrir.</p>
+      </article>
+
+      <article class="passo">
+        <div class="passo__numero">4</div>
+        <svg class="passo__arte" viewBox="0 0 160 110" role="img" aria-label="Criança comemorando ao acertar o personagem.">
+          <g stroke="#FFC22E" stroke-width="5" stroke-linecap="round">
+            <path d="M80 10v12M52 20l6 10M108 20l-6 10"/>
+          </g>
+          <rect x="52" y="64" width="56" height="44" rx="24" fill="#17A45C"/>
+          <circle cx="80" cy="58" r="25" fill="#F5C9A0"/>
+          <path d="M55 59a25 25 0 0 1 50 0q-25 9-50 0Z" fill="#4A3220"/>
+          <path d="M70 56l6 5-6 5M90 56l-6 5 6 5" fill="none" stroke="#14275C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M70 70q10 12 20 0Z" fill="#14275C"/>
+          <path d="M40 74c-8-4-14-12-14-22M120 74c8-4 14-12 14-22" fill="none" stroke="#F5C9A0" stroke-width="10" stroke-linecap="round"/>
+          <circle cx="26" cy="46" r="7" fill="#F5C9A0"/><circle cx="134" cy="46" r="7" fill="#F5C9A0"/>
+        </svg>
+        <h3>Descubra quem é!</h3>
+        <p>A criança tenta descobrir o personagem e todos participam da brincadeira.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     4. AMOSTRAS — demonstração visual do material
+     ========================================================================== -->
+<section class="secao">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta etiqueta--sol">Amostras do material</span>
+      <h2>Veja um pouco do material por dentro</h2>
+      <p>Você não precisa comprar no escuro. Veja como são algumas das cartas que você vai receber.</p>
+    </div>
+  </div>
+
+  <div class="carrossel" data-carrossel>
+    <p class="dica-arraste">← Arraste para ver mais →</p>
+    <div class="envelope">
+      <div class="carrossel__trilho" data-trilho tabindex="0" role="group" aria-label="Amostras de cartas do jogo">
+
+        <div class="carrossel__item">
+          <article class="carta amostra">
+            <span class="carta__selo">Antigo</span>
+            <div class="carta__janela"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-arca"/></svg></div>
+            <h3 class="carta__nome">Noé</h3>
+            <p class="carta__ref">Gênesis 6–9</p>
+            <ul class="carta__pistas"><li>Construiu uma arca</li><li>Choveu 40 dias</li><li>O arco-íris</li></ul>
+          </article>
+        </div>
+
+        <div class="carrossel__item">
+          <article class="carta amostra">
+            <span class="carta__selo">Antigo</span>
+            <div class="carta__janela"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-tabuas"/></svg></div>
+            <h3 class="carta__nome">Moisés</h3>
+            <p class="carta__ref">Êxodo 3–20</p>
+            <ul class="carta__pistas"><li>A sarça ardente</li><li>Abriu o mar</li><li>Recebeu as tábuas</li></ul>
+          </article>
+        </div>
+
+        <div class="carrossel__item">
+          <article class="carta amostra">
+            <span class="carta__selo">Antigo</span>
+            <div class="carta__janela"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-harpa"/></svg></div>
+            <h3 class="carta__nome">Davi</h3>
+            <p class="carta__ref">1 Samuel 16–17</p>
+            <ul class="carta__pistas"><li>Pastor de ovelhas</li><li>Venceu o gigante</li><li>Tocava harpa</li></ul>
+          </article>
+        </div>
+
+        <div class="carrossel__item">
+          <article class="carta amostra">
+            <span class="carta__selo">Antigo</span>
+            <div class="carta__janela"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-leao"/></svg></div>
+            <h3 class="carta__nome">Daniel</h3>
+            <p class="carta__ref">Daniel 6</p>
+            <ul class="carta__pistas"><li>Orava três vezes ao dia</li><li>Caiu numa cova</li><li>Os leões não o feriram</li></ul>
+          </article>
+        </div>
+
+        <div class="carrossel__item">
+          <article class="carta amostra">
+            <span class="carta__selo">Antigo</span>
+            <div class="carta__janela"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-coroa"/></svg></div>
+            <h3 class="carta__nome">Ester</h3>
+            <p class="carta__ref">Ester 2–8</p>
+            <ul class="carta__pistas"><li>Virou rainha</li><li>Era prima de Mardoqueu</li><li>Salvou seu povo</li></ul>
+          </article>
+        </div>
+
+        <div class="carrossel__item">
+          <article class="carta amostra">
+            <span class="carta__selo">Antigo</span>
+            <div class="carta__janela"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-peixe"/></svg></div>
+            <h3 class="carta__nome">Jonas</h3>
+            <p class="carta__ref">Jonas 1–3</p>
+            <ul class="carta__pistas"><li>Fugiu de barco</li><li>Um grande peixe o engoliu</li><li>Pregou em Nínive</li></ul>
+          </article>
+        </div>
+
+        <div class="carrossel__item">
+          <article class="carta amostra">
+            <span class="carta__selo">Antigo</span>
+            <div class="carta__janela"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-colunas"/></svg></div>
+            <h3 class="carta__nome">Sansão</h3>
+            <p class="carta__ref">Juízes 13–16</p>
+            <ul class="carta__pistas"><li>Muito forte</li><li>A força estava no cabelo</li><li>Derrubou as colunas</li></ul>
+          </article>
+        </div>
+
+        <div class="carrossel__item">
+          <article class="carta amostra">
+            <span class="carta__selo">Antigo</span>
+            <div class="carta__janela"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-espigas"/></svg></div>
+            <h3 class="carta__nome">Rute</h3>
+            <p class="carta__ref">Rute 1–4</p>
+            <ul class="carta__pistas"><li>“Aonde fores, irei”</li><li>Colhia nos campos</li><li>Bisavó de Davi</li></ul>
+          </article>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="carrossel__controles">
+      <button type="button" class="carrossel__seta" data-anterior aria-label="Carta anterior">
+        <svg aria-hidden="true"><use href="#i-seta-esq"/></svg>
+      </button>
+      <div class="carrossel__pontos" data-pontos></div>
+      <button type="button" class="carrossel__seta" data-proximo aria-label="Próxima carta">
+        <svg aria-hidden="true"><use href="#i-seta-dir"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="envelope" style="text-align:center;margin-top:1rem">
+    <p style="font-weight:700;color:var(--tinta-suave)">
+      Todas as cartas vêm em PDF, no tamanho certo para imprimir e recortar.
+    </p>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     5. O QUE VOCÊ VAI RECEBER
+     ========================================================================== -->
+<section class="secao secao--ceu">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta">O que está incluso</span>
+      <h2>Seu material pronto para usar</h2>
+      <p>Tudo organizado para você imprimir e começar a brincadeira.</p>
+    </div>
+
+    <div class="grade grade--3 revela">
+      <article class="card">
+        <div class="card__icone card__icone--sol" aria-hidden="true">🃏</div>
+        <h3>Cartas de personagens</h3>
+        <p>Cartas prontas para utilizar na dinâmica “Quem Sou Eu?”.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone" aria-hidden="true">📖</div>
+        <h3>Personagens bíblicos</h3>
+        <p>Personagens conhecidos do Antigo e do Novo Testamento.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone card__icone--brasa" aria-hidden="true">🖨️</div>
+        <h3>Material em PDF</h3>
+        <p>Arquivo digital organizado para baixar e imprimir.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone card__icone--verde" aria-hidden="true">🎯</div>
+        <h3>Regras do jogo</h3>
+        <p>Instruções simples explicando como aplicar a dinâmica.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone card__icone--sol" aria-hidden="true">👧👦</div>
+        <h3>Atividade para grupos</h3>
+        <p>Ideal para utilizar com várias crianças ao mesmo tempo.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone" aria-hidden="true">♾️</div>
+        <h3>Acesso digital</h3>
+        <p>Tenha acesso ao material para consultar e imprimir quando precisar.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     6. BENEFÍCIOS
+     ========================================================================== -->
+<section class="secao">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta etiqueta--verde">Por que funciona</span>
+      <h2>Por que as crianças gostam tanto dessa brincadeira?</h2>
+    </div>
+
+    <div class="grade grade--4 revela">
+      <article class="card">
+        <div class="card__icone card__icone--sol" aria-hidden="true">🎉</div>
+        <h3>Mais diversão</h3>
+        <p>A aula ganha uma dinâmica diferente e participativa.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone" aria-hidden="true">🧠</div>
+        <h3>Aprendizado brincando</h3>
+        <p>As crianças entram em contato com nomes e histórias bíblicas enquanto participam.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone card__icone--verde" aria-hidden="true">👥</div>
+        <h3>Interação em grupo</h3>
+        <p>Todos podem participar dando pistas e tentando descobrir os personagens.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone card__icone--brasa" aria-hidden="true">⚡</div>
+        <h3>Fácil de aplicar</h3>
+        <p>Não exige equipamentos complicados ou preparação demorada.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     7. DEMONSTRAÇÃO
+     ========================================================================== -->
+<section class="secao secao--azul">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta">Na prática</span>
+      <h2>Olha como pode ficar sua próxima aula!</h2>
+    </div>
+
+    <!-- TROCAR: se você tiver fotos reais da turma usando o material, substitua
+         este <svg> por <img src="fotos/turma.jpg" alt="..."> mantendo a moldura. -->
+    <div class="demo__moldura revela">
+      <svg viewBox="0 0 900 420" role="img" aria-label="Roda de crianças em uma sala de aula brincando com as cartas.">
+        <rect width="900" height="420" fill="#F3F8FF"/>
+        <path d="M0 300h900v120H0z" fill="#E7F0FF"/>
+        <g fill="#DCE6F7">
+          <path d="M120 96a70 70 0 0 1 140 0v96H120z"/>
+          <path d="M640 96a70 70 0 0 1 140 0v96H640z"/>
+        </g>
+        <g stroke="#C3D7F6" stroke-width="5">
+          <path d="M190 40v152M120 130h140M710 40v152M640 130h140"/>
+        </g>
+        <rect x="380" y="92" width="140" height="96" rx="10" fill="#fff" stroke="#DCE6F7" stroke-width="5"/>
+        <text x="450" y="132" text-anchor="middle" font-family="Baloo 2, sans-serif" font-size="26" font-weight="800" fill="#1E5FD6">QUEM</text>
+        <text x="450" y="166" text-anchor="middle" font-family="Baloo 2, sans-serif" font-size="26" font-weight="800" fill="#FF6B1A">SOU EU?</text>
+
+        <!-- Crianças em roda -->
+        <g>
+          <rect x="120" y="290" width="92" height="112" rx="42" fill="#FF6B1A"/>
+          <circle cx="166" cy="266" r="40" fill="#C98A5E"/>
+          <path d="M126 268a40 40 0 0 1 80 0q-40 13-80 0Z" fill="#2E2018"/>
+          <circle cx="154" cy="272" r="4" fill="#14275C"/><circle cx="178" cy="272" r="4" fill="#14275C"/>
+          <path d="M156 288q10 10 20 0" fill="none" stroke="#14275C" stroke-width="3.4" stroke-linecap="round"/>
+          <rect x="128" y="176" width="76" height="52" rx="9" fill="#fff" stroke="#FFC22E" stroke-width="5" transform="rotate(-6 166 202)"/>
+          <text x="166" y="210" text-anchor="middle" font-family="Baloo 2, sans-serif" font-size="20" font-weight="800" fill="#14275C" transform="rotate(-6 166 202)">JONAS</text>
+        </g>
+        <g>
+          <rect x="384" y="296" width="100" height="110" rx="46" fill="#17A45C"/>
+          <circle cx="434" cy="272" r="42" fill="#F5C9A0"/>
+          <path d="M392 274a42 42 0 0 1 84 0q-42 14-84 0Z" fill="#8A5327"/>
+          <circle cx="421" cy="278" r="4" fill="#14275C"/><circle cx="447" cy="278" r="4" fill="#14275C"/>
+          <path d="M424 294q10 10 20 0" fill="none" stroke="#14275C" stroke-width="3.4" stroke-linecap="round"/>
+        </g>
+        <g>
+          <rect x="648" y="290" width="92" height="112" rx="42" fill="#1E5FD6"/>
+          <circle cx="694" cy="266" r="40" fill="#F0B98A"/>
+          <path d="M654 268a40 40 0 0 1 80 0q-40 13-80 0Z" fill="#5C3A1E"/>
+          <circle cx="682" cy="272" r="4" fill="#14275C"/><circle cx="706" cy="272" r="4" fill="#14275C"/>
+          <path d="M684 288q10 10 20 0" fill="none" stroke="#14275C" stroke-width="3.4" stroke-linecap="round"/>
+        </g>
+        <!-- Professora -->
+        <g>
+          <rect x="792" y="274" width="86" height="128" rx="42" fill="#FFC22E"/>
+          <circle cx="835" cy="250" r="38" fill="#E8B48A"/>
+          <ellipse cx="799" cy="266" rx="10" ry="30" fill="#3B2A1E"/>
+          <ellipse cx="871" cy="266" rx="10" ry="30" fill="#3B2A1E"/>
+          <path d="M795 254a38 38 0 0 1 76 0q-38 13-76 0Z" fill="#3B2A1E"/>
+          <circle cx="824" cy="254" r="4" fill="#14275C"/><circle cx="846" cy="254" r="4" fill="#14275C"/>
+          <path d="M826 270q9 9 18 0" fill="none" stroke="#14275C" stroke-width="3.4" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+
+    <ul class="fluxo revela" style="margin-top:2rem">
+      <li><span class="emoji" aria-hidden="true">🖨️</span> Imprima</li>
+      <li class="fluxo__seta" aria-hidden="true">→</li>
+      <li><span class="emoji" aria-hidden="true">✂️</span> Separe</li>
+      <li class="fluxo__seta" aria-hidden="true">→</li>
+      <li><span class="emoji" aria-hidden="true">🎲</span> Brinque</li>
+      <li class="fluxo__seta" aria-hidden="true">→</li>
+      <li><span class="emoji" aria-hidden="true">📖</span> Aprenda</li>
+    </ul>
+
+    <div style="text-align:center;margin-top:2.25rem">
+      <a href="#planos" class="botao botao--brasa botao--grande js-rolar">Quero levar para minha turma</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     8. PROVA SOCIAL
+     ATENÇÃO: os depoimentos abaixo são EXEMPLOS de demonstração e estão
+     marcados como tal. Ao receber mensagens reais, troque o texto, o nome e a
+     função e REMOVA a linha <span class="zap__aviso">Exemplo de depoimento</span>
+     apenas dos depoimentos que forem verdadeiros.
+     ========================================================================== -->
+<section class="secao">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta etiqueta--verde">Quem já conheceu</span>
+      <h2>Veja quem já está usando o material</h2>
+      <p>Confira alguns comentários e experiências de quem já conheceu a proposta.</p>
+    </div>
+  </div>
+
+  <div class="carrossel" data-carrossel>
+    <p class="dica-arraste">← Arraste para ver mais →</p>
+    <div class="envelope">
+      <div class="carrossel__trilho" data-trilho tabindex="0" role="group" aria-label="Depoimentos de exemplo">
+
+        <div class="carrossel__item">
+          <blockquote class="zap">
+            <div class="zap__topo">
+              <div class="zap__avatar" aria-hidden="true">👩‍🏫</div>
+              <div><p class="zap__nome">Professora de EBD</p><p class="zap__papel">Turma de 7 a 10 anos</p></div>
+            </div>
+            <p class="zap__msg">“As crianças pediram para repetir na semana seguinte. Foi a aula em que todo mundo quis falar.”</p>
+            <div class="zap__rodape">
+              <span class="zap__estrelas" aria-label="5 de 5">★★★★★</span>
+              <span class="zap__aviso">Exemplo de depoimento</span>
+            </div>
+          </blockquote>
+        </div>
+
+        <div class="carrossel__item">
+          <blockquote class="zap">
+            <div class="zap__topo">
+              <div class="zap__avatar" aria-hidden="true">⛪</div>
+              <div><p class="zap__nome">Líder de ministério infantil</p><p class="zap__papel">Encontro de sábado</p></div>
+            </div>
+            <p class="zap__msg">“Imprimi na sexta à noite e usei no dia seguinte. Não precisei preparar mais nada.”</p>
+            <div class="zap__rodape">
+              <span class="zap__estrelas" aria-label="5 de 5">★★★★★</span>
+              <span class="zap__aviso">Exemplo de depoimento</span>
+            </div>
+          </blockquote>
+        </div>
+
+        <div class="carrossel__item">
+          <blockquote class="zap">
+            <div class="zap__topo">
+              <div class="zap__avatar" aria-hidden="true">👨‍👩‍👧</div>
+              <div><p class="zap__nome">Mãe</p><p class="zap__papel">Brincadeira em casa</p></div>
+            </div>
+            <p class="zap__msg">“Viramos um culto doméstico em jogo. Meu filho agora sabe quem foi Gideão.”</p>
+            <div class="zap__rodape">
+              <span class="zap__estrelas" aria-label="5 de 5">★★★★★</span>
+              <span class="zap__aviso">Exemplo de depoimento</span>
+            </div>
+          </blockquote>
+        </div>
+
+        <div class="carrossel__item">
+          <blockquote class="zap">
+            <div class="zap__topo">
+              <div class="zap__avatar" aria-hidden="true">🙋‍♀️</div>
+              <div><p class="zap__nome">Voluntária</p><p class="zap__papel">Primeira vez dando aula</p></div>
+            </div>
+            <p class="zap__msg">“Eu tinha medo de não segurar a turma. As pistas nas cartas me ajudaram a conduzir.”</p>
+            <div class="zap__rodape">
+              <span class="zap__estrelas" aria-label="5 de 5">★★★★★</span>
+              <span class="zap__aviso">Exemplo de depoimento</span>
+            </div>
+          </blockquote>
+        </div>
+
+        <div class="carrossel__item">
+          <blockquote class="zap">
+            <div class="zap__topo">
+              <div class="zap__avatar" aria-hidden="true">📖</div>
+              <div><p class="zap__nome">Coordenadora</p><p class="zap__papel">Três turmas na igreja</p></div>
+            </div>
+            <p class="zap__msg">“Dei uma via impressa para cada professora. Usamos em todas as salas no mesmo domingo.”</p>
+            <div class="zap__rodape">
+              <span class="zap__estrelas" aria-label="5 de 5">★★★★★</span>
+              <span class="zap__aviso">Exemplo de depoimento</span>
+            </div>
+          </blockquote>
+        </div>
+
+        <div class="carrossel__item">
+          <blockquote class="zap">
+            <div class="zap__topo">
+              <div class="zap__avatar" aria-hidden="true">🎈</div>
+              <div><p class="zap__nome">Professora</p><p class="zap__papel">Turma agitada</p></div>
+            </div>
+            <p class="zap__msg">“Funcionou até com os mais tímidos: dar pista é mais fácil do que responder pergunta.”</p>
+            <div class="zap__rodape">
+              <span class="zap__estrelas" aria-label="5 de 5">★★★★★</span>
+              <span class="zap__aviso">Exemplo de depoimento</span>
+            </div>
+          </blockquote>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="carrossel__controles">
+      <button type="button" class="carrossel__seta" data-anterior aria-label="Depoimento anterior">
+        <svg aria-hidden="true"><use href="#i-seta-esq"/></svg>
+      </button>
+      <div class="carrossel__pontos" data-pontos></div>
+      <button type="button" class="carrossel__seta" data-proximo aria-label="Próximo depoimento">
+        <svg aria-hidden="true"><use href="#i-seta-dir"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     9. PARA QUEM É
+     ========================================================================== -->
+<section class="secao secao--ceu">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta">Para quem é</span>
+      <h2>Feito para quem ensina crianças</h2>
+    </div>
+
+    <div class="grade grade--4 revela">
+      <article class="card">
+        <div class="card__icone" aria-hidden="true">👩‍🏫</div>
+        <h3>Professoras de EBD</h3>
+        <p>Para deixar as aulas mais interativas.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone card__icone--sol" aria-hidden="true">⛪</div>
+        <h3>Ministério infantil</h3>
+        <p>Para encontros e atividades em grupo.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone card__icone--brasa" aria-hidden="true">👨‍👩‍👧</div>
+        <h3>Pais</h3>
+        <p>Para brincar e conversar sobre personagens bíblicos em casa.</p>
+      </article>
+      <article class="card">
+        <div class="card__icone card__icone--verde" aria-hidden="true">👥</div>
+        <h3>Líderes e voluntários</h3>
+        <p>Para ter uma dinâmica pronta sempre que precisar.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     10. FÁCIL DE APLICAR
+     ========================================================================== -->
+<section class="secao">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta etiqueta--sol">Simples de usar</span>
+      <h2>Você não precisa ser especialista em dinâmicas</h2>
+      <p>O material foi pensado para ser simples.</p>
+    </div>
+
+    <ol class="linha-tempo revela">
+      <li><div class="linha-tempo__num">1</div><div><h3>Compre</h3><p>Escolha o kit e finalize pelo PIX.</p></div></li>
+      <li><div class="linha-tempo__num">2</div><div><h3>Receba por e-mail</h3><p>O acesso chega no e-mail que você informar.</p></div></li>
+      <li><div class="linha-tempo__num">3</div><div><h3>Baixe o PDF</h3><p>Arquivo único, organizado e pronto.</p></div></li>
+      <li><div class="linha-tempo__num">4</div><div><h3>Imprima</h3><p>Impressora comum e papel A4 já resolvem.</p></div></li>
+      <li><div class="linha-tempo__num">5</div><div><h3>Comece a brincadeira</h3><p>Recorte as cartas e chame a turma.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     11. OFERTA
+     Os preços exibidos aqui são apenas o rótulo. O valor que realmente é
+     cobrado vem de api/config.php, no servidor (planos "quem-sou-eu-basico" e
+     "quem-sou-eu-premium"). Ao mudar o preço, mude nos dois lugares.
+     ========================================================================== -->
+<section class="secao secao--sol" id="planos">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta etiqueta--brasa">🔥 Oferta especial</span>
+      <h2>Escolha seu kit</h2>
+      <p>Tenha acesso ao material e transforme sua próxima aula em uma experiência diferente.</p>
+    </div>
+
+    <div class="planos revela">
+
+      <article class="plano">
+        <h3 class="plano__nome">Kit Básico</h3>
+        <p class="plano__resumo">O jogo completo, pronto para a próxima aula.</p>
+        <p class="plano__preco">R$ 10<small>,90</small></p>
+        <p class="plano__nota">Pagamento único · acesso digital</p>
+        <ul class="plano__lista">
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Cartas do “Quem Sou Eu?”</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Personagens bíblicos</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Regras do jogo</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Material em PDF</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Pronto para imprimir</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Garantia de 7 dias</li>
+        </ul>
+        <button type="button" class="botao botao--contorno botao--largo js-comprar" data-plano="quem-sou-eu-basico">
+          Quero o Kit Básico
+        </button>
+        <p class="plano__pagamento">Pagamento via PIX</p>
+      </article>
+
+      <article class="plano plano--destaque">
+        <span class="plano__selo">⭐ Mais escolhido</span>
+        <h3 class="plano__nome">Kit Premium</h3>
+        <p class="plano__resumo">O jogo completo + os materiais extras para o ano inteiro.</p>
+        <span class="plano__economia">Economize R$ 40,00</span>
+        <p class="plano__de">De R$ 67,90</p>
+        <p class="plano__preco">R$ 27<small>,90</small></p>
+        <p class="plano__nota">Pagamento único · acesso digital</p>
+        <ul class="plano__lista">
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> <strong>Tudo do Kit Básico</strong></li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Mais personagens bíblicos</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Cartas adicionais</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Desafios bíblicos extras</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Atividades complementares</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Dinâmicas para crianças</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Materiais extras para impressão</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Acesso digital</li>
+          <li><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg> Garantia de 7 dias</li>
+        </ul>
+        <button type="button" class="botao botao--brasa botao--largo js-comprar" data-plano="quem-sou-eu-premium">
+          Quero o Kit Premium
+        </button>
+        <p class="plano__pagamento">Pagamento via PIX · liberação automática</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     12. COMPARAÇÃO
+     ========================================================================== -->
+<section class="secao">
+  <div class="envelope envelope--estreito">
+    <div class="cabecalho-secao">
+      <span class="etiqueta">Comparativo</span>
+      <h2>Qual kit combina com você?</h2>
+    </div>
+
+    <div class="revela comparacao-caixa">
+      <table class="comparacao">
+        <caption class="so-leitor">Comparação entre o Kit Básico e o Kit Premium</caption>
+        <thead>
+          <tr><th scope="col">O que vem</th><th scope="col">Básico</th><th scope="col">Premium ⭐</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Cartas de personagens</th><td>40 cartas</td><td>40 + cartas adicionais</td></tr>
+          <tr><th scope="row">Material principal</th><td><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg></td><td><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg></td></tr>
+          <tr><th scope="row">Regras do jogo</th><td><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg></td><td><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg></td></tr>
+          <tr><th scope="row">Arquivo em PDF</th><td><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg></td><td><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg></td></tr>
+          <tr><th scope="row">Garantia de 7 dias</th><td><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg></td><td><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg></td></tr>
+          <tr><th scope="row">Atividades extras</th><td><span class="traco" aria-label="Não incluso">—</span></td><td><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg></td></tr>
+          <tr><th scope="row">Dinâmicas complementares</th><td><span class="traco" aria-label="Não incluso">—</span></td><td><svg class="tique" aria-hidden="true"><use href="#i-tique"/></svg></td></tr>
+          <tr><th scope="row">Materiais bônus</th><td><span class="traco" aria-label="Não incluso">—</span></td><td>4 bônus</td></tr>
+          <tr><th scope="row">Valor</th><td>R$ 10,90</td><td>R$ 27,90</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     13. BÔNUS — valores e conteúdos ficam todos aqui, fáceis de editar
+     ========================================================================== -->
+<section class="secao secao--ceu">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta etiqueta--sol">Bônus</span>
+      <h2>Somente no Kit Premium</h2>
+      <p>Além do jogo principal, você também recebe materiais extras para continuar diversificando suas aulas.</p>
+    </div>
+
+    <div class="grade grade--4 revela">
+      <article class="card bonus">
+        <div class="card__icone card__icone--sol" aria-hidden="true">🎲</div>
+        <h3>Dinâmicas bíblicas</h3>
+        <p class="bonus__valor">R$ 29,90</p>
+        <span class="bonus__gratis">Grátis no Premium</span>
+      </article>
+      <article class="card bonus">
+        <div class="card__icone" aria-hidden="true">🔎</div>
+        <h3>Caça-palavras bíblico</h3>
+        <p class="bonus__valor">R$ 19,90</p>
+        <span class="bonus__gratis">Grátis no Premium</span>
+      </article>
+      <article class="card bonus">
+        <div class="card__icone card__icone--brasa" aria-hidden="true">🧠</div>
+        <h3>Jogo da memória bíblico</h3>
+        <p class="bonus__valor">R$ 19,90</p>
+        <span class="bonus__gratis">Grátis no Premium</span>
+      </article>
+      <article class="card bonus">
+        <div class="card__icone card__icone--verde" aria-hidden="true">📚</div>
+        <h3>Perguntas bíblicas extras</h3>
+        <p class="bonus__valor">R$ 29,90</p>
+        <span class="bonus__gratis">Grátis no Premium</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     14. VALOR DO KIT
+     ========================================================================== -->
+<section class="secao">
+  <div class="envelope">
+    <div class="valor-caixa revela">
+      <span class="etiqueta etiqueta--verde">Valor do kit</span>
+      <h2 style="font-size:var(--t-h3);margin-bottom:1.25rem">O que você levaria comprando separado</h2>
+
+      <div class="valor-linha"><span>Dinâmicas bíblicas</span><b>R$ 29,90</b></div>
+      <div class="valor-linha"><span>Caça-palavras bíblico</span><b>R$ 19,90</b></div>
+      <div class="valor-linha"><span>Jogo da memória bíblico</span><b>R$ 19,90</b></div>
+      <div class="valor-linha"><span>Perguntas bíblicas extras</span><b>R$ 29,90</b></div>
+
+      <p class="valor-total" style="margin-top:1.5rem">
+        Mais de <b style="color:var(--tinta)">R$ 90</b> em conteúdo · <s>R$ 67,90</s>
+      </p>
+      <p style="font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:.8rem;color:var(--tinta-suave);margin:1rem 0 0">Hoje por</p>
+      <p class="valor-hoje">R$ 27,90</p>
+
+      <a href="#planos" class="botao botao--brasa botao--grande js-rolar">Quero aproveitar o Kit Premium</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     15. GARANTIA
+     ========================================================================== -->
+<section class="secao secao--ceu">
+  <div class="envelope garantia revela">
+    <svg class="garantia__selo" viewBox="0 0 200 200" role="img" aria-label="Selo de sete dias de garantia.">
+      <circle cx="100" cy="100" r="94" fill="#E4F7ED"/>
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#17A45C" stroke-width="4" stroke-dasharray="10 8"/>
+      <path d="M100 32 46 54v42c0 32 22 58 54 66 32-8 54-34 54-66V54z" fill="#17A45C"/>
+      <path d="M78 88l16 16 28-31" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="100" y="136" text-anchor="middle" font-family="Baloo 2, sans-serif" font-size="19" font-weight="800" letter-spacing="1" fill="#fff">7 DIAS</text>
+    </svg>
+
+    <div>
+      <span class="etiqueta etiqueta--verde">🛡️ Risco zero</span>
+      <h2>Você tem 7 dias de garantia</h2>
+      <p style="font-size:var(--t-lead);color:var(--tinta-suave)">
+        Você pode conhecer o material com tranquilidade. Se dentro de 7 dias perceber que
+        o produto não é para você, poderá solicitar o reembolso conforme as condições da compra.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     16. COMO VOCÊ RECEBE
+     ========================================================================== -->
+<section class="secao secao--azul">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta">Entrega</span>
+      <h2>Receba seu material rapidamente</h2>
+    </div>
+
+    <ol class="linha-tempo revela">
+      <li><div class="linha-tempo__num">01</div><div><h3>Compra aprovada</h3><p>O PIX cai na hora e a confirmação é automática.</p></div></li>
+      <li><div class="linha-tempo__num">02</div><div><h3>Receba o acesso por e-mail</h3><p>Enviamos para o e-mail informado na compra.</p></div></li>
+      <li><div class="linha-tempo__num">03</div><div><h3>Baixe os arquivos</h3><p>PDF pronto, sem precisar instalar nada.</p></div></li>
+      <li><div class="linha-tempo__num">04</div><div><h3>Imprima</h3><p>Imprima tudo ou só as cartas que for usar.</p></div></li>
+      <li><div class="linha-tempo__num">05</div><div><h3>Comece a brincar</h3><p>É só recortar e chamar a turma.</p></div></li>
+    </ol>
+
+    <p style="text-align:center;margin-top:2rem;font-weight:800;font-size:var(--t-lead);color:var(--sol)">
+      Produto 100% digital. Nenhum item físico será enviado.
+    </p>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     17. FAQ
+     ========================================================================== -->
+<section class="secao">
+  <div class="envelope">
+    <div class="cabecalho-secao">
+      <span class="etiqueta">Dúvidas</span>
+      <h2>Tire suas dúvidas</h2>
+    </div>
+
+    <div class="faq revela">
+      <details>
+        <summary>O produto é físico ou digital?</summary>
+        <div class="faq__resposta">É um produto 100% digital. Você recebe os arquivos para baixar e imprimir.</div>
+      </details>
+      <details>
+        <summary>Como vou receber o material?</summary>
+        <div class="faq__resposta">Após a confirmação do pagamento, o acesso será enviado para o e-mail informado na compra.</div>
+      </details>
+      <details>
+        <summary>Preciso ter algum material especial?</summary>
+        <div class="faq__resposta">Não. A proposta é que você possa imprimir o material e começar a brincadeira.</div>
+      </details>
+      <details>
+        <summary>Posso usar mais de uma vez?</summary>
+        <div class="faq__resposta">Sim. Depois de adquirir o material, você poderá utilizá-lo novamente em suas atividades, respeitando as condições de uso do produto.</div>
+      </details>
+      <details>
+        <summary>Posso usar na minha igreja ou turma?</summary>
+        <div class="faq__resposta">Sim. O material foi pensado para atividades infantis em igrejas, EBD e grupos de crianças.</div>
+      </details>
+      <details>
+        <summary>Para qual idade é indicado?</summary>
+        <div class="faq__resposta">Principalmente para crianças em idade escolar, aproximadamente entre 6 e 12 anos, podendo ser adaptado conforme a turma.</div>
+      </details>
+      <details>
+        <summary>Preciso imprimir tudo de uma vez?</summary>
+        <div class="faq__resposta">Não. Você pode imprimir apenas as cartas e materiais que desejar utilizar.</div>
+      </details>
+      <details>
+        <summary>Como funciona a garantia?</summary>
+        <div class="faq__resposta">Você possui 7 dias de garantia conforme as condições apresentadas na compra.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     18. ÚLTIMA CTA
+     ========================================================================== -->
+<section class="secao secao--sol">
+  <div class="envelope envelope--estreito" style="text-align:center">
+    <h2>Sua próxima aula pode ser muito mais divertida.</h2>
+    <p style="font-size:var(--t-lead);color:var(--tinta-suave);max-width:36rem;margin-inline:auto">
+      Leve uma atividade pronta para sua turma e transforme personagens bíblicos
+      em uma brincadeira que as crianças vão querer participar.
+    </p>
+    <div style="margin-top:2rem">
+      <a href="#planos" class="botao botao--brasa botao--grande js-rolar">Quero o “Quem Sou Eu?”</a>
+      <ul class="selos-cta">
+        <li><span aria-hidden="true">🔒</span> Compra segura</li>
+        <li><span aria-hidden="true">📩</span> Recebimento digital</li>
+        <li><span aria-hidden="true">🛡️</span> 7 dias de garantia</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     RODAPÉ
+     ========================================================================== -->
+<footer class="rodape">
+  <div class="envelope">
+    <h3>Quem Sou Eu? — Personagens Bíblicos</h3>
+    <p>Produto digital. Nenhum produto físico será enviado.</p>
+
+    <ul class="rodape__links">
+      <li><a href="#planos" class="js-rolar">Ver os kits</a></li>
+      <li><a href="termos.html">Termos de Uso</a></li>
+      <li><a href="privacidade.html">Política de Privacidade</a></li>
+      <li><a href="mailto:contato@seudominio.com.br">Contato</a></li>
+      <li><a href="#garantia-rodape">Garantia</a></li>
+    </ul>
+
+    <p id="garantia-rodape" style="max-width:44rem">
+      Garantia de 7 dias conforme as condições apresentadas na compra. Em caso de dúvida
+      sobre o acesso, fale com o suporte pelo e-mail de contato.
+    </p>
+
+    <p class="rodape__legal">© 2026 — Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- CTA FIXO NO CELULAR -->
+<div class="cta-fixo" id="cta-fixo">
+  <button type="button" class="botao botao--brasa botao--largo js-comprar" data-plano="quem-sou-eu-premium">
+    Quero o Kit Premium
+  </button>
+  <span class="cta-fixo__preco">R$ 27,90 · pagamento único via PIX</span>
+</div>
+
+<!-- ==========================================================================
+     MODAL DE CHECKOUT PIX (ZuckPay)
+     ========================================================================== -->
+<div class="modal" id="checkout" role="dialog" aria-modal="true" aria-labelledby="checkout-titulo">
+  <div class="modal__caixa">
+
+    <div class="modal__topo">
+      <div>
+        <h3 id="checkout-titulo">Finalizar compra</h3>
+        <p><span id="checkout-plano">—</span> · <strong style="color:var(--tinta)" id="checkout-valor">—</strong></p>
+      </div>
+      <button type="button" class="modal__fechar" id="checkout-fechar" aria-label="Fechar">
+        <svg aria-hidden="true"><use href="#i-x"/></svg>
+      </button>
+    </div>
+
+    <!-- ETAPA 1: DADOS -->
+    <form class="modal__corpo" id="checkout-form" novalidate>
+      <div class="campo">
+        <label for="cp-nome">Nome completo</label>
+        <input id="cp-nome" name="nome" type="text" autocomplete="name" required>
+        <p class="campo__erro oculto" data-erro="nome"></p>
+      </div>
+      <div class="campo">
+        <label for="cp-cpf">CPF</label>
+        <input id="cp-cpf" name="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" required>
+        <p class="campo__erro oculto" data-erro="cpf"></p>
+      </div>
+      <div class="campo">
+        <label for="cp-email">E-mail</label>
+        <input id="cp-email" name="email" type="email" autocomplete="email" required>
+        <p class="campo__ajuda">É neste e-mail que o material será entregue.</p>
+        <p class="campo__erro oculto" data-erro="email"></p>
+      </div>
+      <div class="campo">
+        <label for="cp-telefone">Telefone (com DDD)</label>
+        <input id="cp-telefone" name="telefone" type="tel" inputmode="numeric" placeholder="(11) 99999-8888" required>
+        <p class="campo__erro oculto" data-erro="telefone"></p>
+      </div>
+
+      <p class="aviso-erro oculto" id="checkout-erro-geral"></p>
+
+      <button type="submit" class="botao botao--brasa botao--largo" id="checkout-enviar">
+        <span class="js-label">Gerar PIX</span>
+        <svg class="girando oculto js-spinner" aria-hidden="true"><use href="#i-girando"/></svg>
+      </button>
+      <p class="modal__rodape-nota">
+        <svg style="width:.9rem;height:.9rem;display:inline;vertical-align:-2px" aria-hidden="true"><use href="#i-cadeado"/></svg>
+        Seus dados são usados apenas para emitir a cobrança e entregar o material.
+      </p>
+    </form>
+
+    <!-- ETAPA 2: PAGAMENTO -->
+    <div class="modal__corpo pix oculto" id="checkout-pix">
+      <p style="font-size:.93rem;color:var(--tinta-suave)">
+        Abra o app do seu banco, escolha <strong style="color:var(--tinta)">PIX Copia e Cola</strong> ou aponte para o QR Code.
+      </p>
+
+      <img class="pix__qr" id="pix-imagem" src="" alt="QR Code do PIX">
+
+      <div style="text-align:left">
+        <label for="pix-codigo" style="display:block;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-suave);margin-bottom:.35rem">PIX copia e cola</label>
+        <textarea class="pix__codigo" id="pix-codigo" readonly rows="3"></textarea>
+        <button type="button" class="botao botao--azul botao--largo" id="pix-copiar" style="margin-top:.6rem;font-size:.95rem;padding-block:.75em">
+          <svg style="width:1.05rem;height:1.05rem" aria-hidden="true"><use href="#i-copiar"/></svg>
+          <span>Copiar código</span>
+        </button>
+      </div>
+
+      <p class="pix__espera">
+        <svg class="girando" aria-hidden="true"><use href="#i-girando"/></svg>
+        Aguardando pagamento… <span id="pix-timer" style="font-family:ui-monospace,monospace;color:var(--tinta)"></span>
+      </p>
+      <p style="font-size:.76rem;color:var(--tinta-suave);margin-top:.4rem">
+        A confirmação é automática. Pode deixar esta página aberta.
+      </p>
+    </div>
+
+    <!-- ETAPA 3: PAGO -->
+    <div class="modal__corpo pago oculto" id="checkout-pago">
+      <div class="pago__marca"><svg aria-hidden="true"><use href="#i-tique"/></svg></div>
+      <h3 style="font-size:1.5rem">Pagamento confirmado!</h3>
+      <p style="color:var(--tinta-suave)">
+        Enviamos o acesso para <strong style="color:var(--tinta)" id="pago-email"></strong>.
+        Se não encontrar, confira a caixa de spam.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ==========================================================================
+   INTERAÇÕES DA PÁGINA
+   ========================================================================== */
+(function () {
+    'use strict';
+
+    var semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- revelar ao rolar ---------- */
+    var aRevelar = document.querySelectorAll('.revela');
+    if (!('IntersectionObserver' in window) || semMovimento) {
+        aRevelar.forEach(function (el) { el.classList.add('visivel'); });
+    } else {
+        var observador = new IntersectionObserver(function (entradas) {
+            entradas.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('visivel');
+                observador.unobserve(e.target);
+            });
+        }, { rootMargin: '0px 0px -12% 0px', threshold: .08 });
+        aRevelar.forEach(function (el) { observador.observe(el); });
+    }
+
+    /* ---------- rolagem suave até os planos ---------- */
+    document.querySelectorAll('.js-rolar').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            var alvo = document.querySelector(link.getAttribute('href'));
+            if (!alvo) return;
+            e.preventDefault();
+            alvo.scrollIntoView({ behavior: semMovimento ? 'auto' : 'smooth', block: 'start' });
+        });
+    });
+
+    /* ---------- carrosséis ---------- */
+    document.querySelectorAll('[data-carrossel]').forEach(function (carrossel) {
+        var trilho  = carrossel.querySelector('[data-trilho]');
+        var itens   = Array.prototype.slice.call(trilho.children);
+        var pontos  = carrossel.querySelector('[data-pontos]');
+        var anterior = carrossel.querySelector('[data-anterior]');
+        var proximo  = carrossel.querySelector('[data-proximo]');
+        if (!itens.length) return;
+
+        // Um ponto por carta: o leitor vê quantas existem e onde está.
+        itens.forEach(function (_, i) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'carrossel__ponto';
+            b.setAttribute('aria-label', 'Ir para o item ' + (i + 1));
+            b.addEventListener('click', function () { irPara(i); });
+            pontos.appendChild(b);
+        });
+        var listaPontos = Array.prototype.slice.call(pontos.children);
+
+        function indiceAtual() {
+            var centro = trilho.scrollLeft + trilho.clientWidth / 2;
+            var maisPerto = 0, menorDistancia = Infinity;
+            itens.forEach(function (item, i) {
+                var meio = item.offsetLeft + item.offsetWidth / 2;
+                var d = Math.abs(meio - centro);
+                if (d < menorDistancia) { menorDistancia = d; maisPerto = i; }
+            });
+            return maisPerto;
+        }
+
+        function irPara(i) {
+            var item = itens[Math.max(0, Math.min(itens.length - 1, i))];
+            trilho.scrollTo({
+                left: item.offsetLeft - (trilho.clientWidth - item.offsetWidth) / 2,
+                behavior: semMovimento ? 'auto' : 'smooth'
+            });
+        }
+
+        function atualizar() {
+            var i = indiceAtual();
+            listaPontos.forEach(function (p, n) { p.setAttribute('aria-current', n === i ? 'true' : 'false'); });
+            anterior.disabled = trilho.scrollLeft <= 2;
+            proximo.disabled  = trilho.scrollLeft >= trilho.scrollWidth - trilho.clientWidth - 2;
+        }
+
+        anterior.addEventListener('click', function () { irPara(indiceAtual() - 1); });
+        proximo.addEventListener('click', function () { irPara(indiceAtual() + 1); });
+        trilho.addEventListener('scroll', function () {
+            window.clearTimeout(trilho._t);
+            trilho._t = window.setTimeout(atualizar, 90);
+        }, { passive: true });
+        window.addEventListener('resize', atualizar);
+        atualizar();
+    });
+
+    /* ---------- FAQ: uma pergunta aberta por vez ---------- */
+    var perguntas = document.querySelectorAll('.faq details');
+    perguntas.forEach(function (d) {
+        d.addEventListener('toggle', function () {
+            if (!d.open) return;
+            perguntas.forEach(function (outra) { if (outra !== d) outra.open = false; });
+        });
+    });
+
+    /* ---------- CTA fixo no celular ---------- */
+    var ctaFixo = document.getElementById('cta-fixo');
+    var planos  = document.getElementById('planos');
+    var rodape  = document.querySelector('.rodape');
+
+    function avaliarCtaFixo() {
+        // Some quando os planos já estão na tela: o botão viraria ruído.
+        var passouDoHero = window.scrollY > window.innerHeight * .65;
+        var planosNaTela = false;
+        [planos, rodape].forEach(function (el) {
+            if (!el) return;
+            var r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight && r.bottom > 0) planosNaTela = true;
+        });
+        ctaFixo.classList.toggle('visivel', passouDoHero && !planosNaTela);
+    }
+    window.addEventListener('scroll', avaliarCtaFixo, { passive: true });
+    window.addEventListener('resize', avaliarCtaFixo);
+    avaliarCtaFixo();
+})();
+</script>
+
+<script>
+/* ==========================================================================
+   CHECKOUT PIX VIA ZUCKPAY
+   Os endpoints ficam em /api (api/pix.php e api/status.php). O preço NÃO vem
+   daqui: o navegador envia só o id do plano e o servidor decide quanto cobrar.
+   ========================================================================== */
+(function () {
+    'use strict';
+
+    // Ajuste se a pasta api/ não estiver na raiz do site.
+    var API = '/api';
+
+    // Apenas os rótulos exibidos no modal. O valor cobrado vem do config.php.
+    var PLANOS = {
+        'quem-sou-eu-basico':  { nome: 'Kit Básico',  valor: 'R$ 10,90' },
+        'quem-sou-eu-premium': { nome: 'Kit Premium', valor: 'R$ 27,90' }
+    };
+
+    var modal     = document.getElementById('checkout');
+    var form      = document.getElementById('checkout-form');
+    var telaPix   = document.getElementById('checkout-pix');
+    var telaPago  = document.getElementById('checkout-pago');
+    var enviar    = document.getElementById('checkout-enviar');
+    var erroGeral = document.getElementById('checkout-erro-geral');
+
+    var planoAtual = null;
+    var poll = null;
+    var contagem = null;
+    var pedido = null;      // id estável entre tentativas (idempotência)
+    var focoAnterior = null;
+
+    /* ---------- atribuição (UTMs, Meta, Google, TikTok) ---------- */
+    function lerCookie(nome) {
+        var achado = document.cookie.split('; ').filter(function (c) { return c.indexOf(nome + '=') === 0; })[0];
+        return achado ? decodeURIComponent(achado.split('=').slice(1).join('=')) : '';
+    }
+    function rastreio() {
+        var url = new URLSearchParams(location.search);
+        var dados = {};
+        ['utm_source','utm_campaign','utm_medium','utm_content','utm_term','gclid','ttclid','click_id']
+            .forEach(function (k) { var v = url.get(k); if (v) dados[k] = v; });
+        var fbc = lerCookie('_fbc'); if (fbc) dados.fbc = fbc;
+        var fbp = lerCookie('_fbp'); if (fbp) dados.fbp = fbp;
+        return dados;
+    }
+
+    /* ---------- máscaras ---------- */
+    function mascararCpf(v) {
+        return v.replace(/\D/g, '').slice(0, 11)
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    }
+    function mascararTelefone(v) {
+        var d = v.replace(/\D/g, '').slice(0, 11);
+        if (d.length <= 10) return d.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{4})(\d)/, '$1-$2');
+        return d.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2');
+    }
+    document.getElementById('cp-cpf').addEventListener('input', function (e) { e.target.value = mascararCpf(e.target.value); });
+    document.getElementById('cp-telefone').addEventListener('input', function (e) { e.target.value = mascararTelefone(e.target.value); });
+
+    /* ---------- abrir / fechar ---------- */
+    function mostrarEtapa(etapa) {
+        form.classList.toggle('oculto', etapa !== 'form');
+        telaPix.classList.toggle('oculto', etapa !== 'pix');
+        telaPago.classList.toggle('oculto', etapa !== 'pago');
+    }
+
+    function abrir(plano) {
+        if (!PLANOS[plano]) return;
+        planoAtual = plano;
+        focoAnterior = document.activeElement;
+        // Um id por abertura: reenviar o formulário não gera segunda cobrança.
+        pedido = (window.crypto && crypto.randomUUID
+                    ? crypto.randomUUID()
+                    : String(Date.now()) + Math.random().toString(16).slice(2)
+                 ).replace(/[^a-zA-Z0-9-]/g, '');
+        document.getElementById('checkout-plano').textContent = PLANOS[plano].nome;
+        document.getElementById('checkout-valor').textContent = PLANOS[plano].valor;
+        limparErros();
+        mostrarEtapa('form');
+        modal.classList.add('aberto');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('cp-nome').focus();
+        if (window.fbq) fbq('track', 'InitiateCheckout', { content_name: PLANOS[plano].nome });
+    }
+
+    function fechar() {
+        modal.classList.remove('aberto');
+        document.body.style.overflow = '';
+        clearTimeout(poll); clearInterval(contagem);
+        if (focoAnterior && focoAnterior.focus) focoAnterior.focus();
+    }
+
+    document.querySelectorAll('.js-comprar').forEach(function (b) {
+        b.addEventListener('click', function () { abrir(b.dataset.plano); });
+    });
+    document.getElementById('checkout-fechar').addEventListener('click', fechar);
+    modal.addEventListener('click', function (e) { if (e.target === modal) fechar(); });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('aberto')) fechar();
+    });
+
+    /* ---------- erros ---------- */
+    function limparErros() {
+        document.querySelectorAll('[data-erro]').forEach(function (p) { p.classList.add('oculto'); p.textContent = ''; });
+        erroGeral.classList.add('oculto'); erroGeral.textContent = '';
+    }
+    function mostrarErros(campos, geral) {
+        limparErros();
+        Object.keys(campos || {}).forEach(function (campo) {
+            var p = document.querySelector('[data-erro="' + campo + '"]');
+            if (p) { p.textContent = campos[campo]; p.classList.remove('oculto'); }
+        });
+        if (geral) { erroGeral.textContent = geral; erroGeral.classList.remove('oculto'); }
+    }
+
+    function carregando(estado) {
+        enviar.disabled = estado;
+        enviar.querySelector('.js-spinner').classList.toggle('oculto', !estado);
+        enviar.querySelector('.js-label').textContent = estado ? 'Gerando…' : 'Gerar PIX';
+    }
+
+    /* ---------- envio ---------- */
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        limparErros();
+        carregando(true);
+
+        fetch(API + '/pix.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                plano:    planoAtual,
+                pedido:   pedido,
+                nome:     document.getElementById('cp-nome').value,
+                cpf:      document.getElementById('cp-cpf').value,
+                email:    document.getElementById('cp-email').value,
+                telefone: document.getElementById('cp-telefone').value,
+                rastreio: rastreio()
+            })
+        }).then(function (resposta) {
+            return resposta.json().catch(function () { return {}; })
+                .then(function (dados) { return { ok: resposta.ok, dados: dados }; });
+        }).then(function (r) {
+            if (!r.ok) {
+                if (r.dados.debug) console.error('[zuckpay] detalhe do erro:', r.dados.debug);
+                var msg = (r.dados.erro || 'Não foi possível gerar o PIX.')
+                        + (r.dados.ref ? ' (código ' + r.dados.ref + ')' : '');
+                mostrarErros(r.dados.campos, r.dados.campos ? null : msg);
+                return;
+            }
+            exibirPix(r.dados);
+        }).catch(function () {
+            mostrarErros(null, 'Falha de conexão. Verifique sua internet e tente de novo.');
+        }).then(function () {
+            carregando(false);
+        });
+    });
+
+    /* ---------- pagamento ---------- */
+    function exibirPix(dados) {
+        document.getElementById('pix-codigo').value = dados.qrcode || '';
+        var img = document.getElementById('pix-imagem');
+        if (dados.qrcode_image) { img.src = dados.qrcode_image; img.classList.remove('oculto'); }
+        else { img.classList.add('oculto'); }
+
+        mostrarEtapa('pix');
+
+        var restante = dados.expiracao || 1200;
+        var relogio = document.getElementById('pix-timer');
+        clearInterval(contagem);
+        contagem = setInterval(function () {
+            restante--;
+            if (restante <= 0) {
+                clearInterval(contagem); clearTimeout(poll);
+                relogio.textContent = '(expirado)';
+                return;
+            }
+            relogio.textContent = '(' + String(Math.floor(restante / 60)).padStart(2, '0')
+                                + ':' + String(restante % 60).padStart(2, '0') + ')';
+        }, 1000);
+
+        clearTimeout(poll);
+        agendarConsulta(dados, 5);
+    }
+
+    /**
+     * A ZuckPay limita requisições, então seguimos o atraso sugerido pelo
+     * servidor em vez de um intervalo fixo.
+     */
+    function agendarConsulta(dados, segundos) {
+        clearTimeout(poll);
+        poll = setTimeout(function () { verificar(dados); }, segundos * 1000);
+    }
+
+    function verificar(dados) {
+        var proxima = 8;
+        fetch(API + '/status.php?transactionId=' + encodeURIComponent(dados.transactionId))
+            .then(function (r) { return r.json().then(function (s) { return { ok: r.ok, s: s }; }); })
+            .then(function (r) {
+                if (r.ok && r.s.pago) {
+                    clearTimeout(poll); clearInterval(contagem);
+                    document.getElementById('pago-email').textContent = document.getElementById('cp-email').value;
+                    mostrarEtapa('pago');
+                    if (window.fbq) fbq('track', 'Purchase', { value: dados.valor, currency: 'BRL', content_name: dados.plano });
+                    return;
+                }
+                // Recusado, expirado ou estornado: não adianta continuar.
+                if (r.ok && r.s.final) { clearTimeout(poll); clearInterval(contagem); return; }
+                if (r.ok && r.s.proxima_consulta) proxima = r.s.proxima_consulta;
+                agendarConsulta(dados, proxima);
+            })
+            .catch(function () { agendarConsulta(dados, proxima); });
+    }
+
+    /* ---------- copiar ---------- */
+    document.getElementById('pix-copiar').addEventListener('click', function () {
+        var campo = document.getElementById('pix-codigo');
+        var rotulo = this.querySelector('span');
+        function avisar() {
+            rotulo.textContent = 'Copiado!';
+            setTimeout(function () { rotulo.textContent = 'Copiar código'; }, 2000);
+        }
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(campo.value).then(avisar, function () { campo.select(); document.execCommand('copy'); avisar(); });
+        } else {
+            campo.select(); document.execCommand('copy'); avisar();
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

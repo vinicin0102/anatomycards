@@ -3,7 +3,8 @@
 Landing page de vendas com checkout PIX integrado à **ZuckPay**.
 
 ```
-index.html               página de vendas + modal de checkout
+index.html               página de vendas (Arritmias) + modal de checkout
+quem-sou-eu/index.html   página de vendas (Quem Sou Eu? Personagens Bíblicos)
 api/pix.php              cria a cobrança PIX
 api/status.php           consulta o status do pagamento
 api/webhook.php          recebe a notificação da ZuckPay
@@ -49,6 +50,30 @@ Planos: **Básico R$ 9,99** e **Premium R$ 29,90**. Ambos ficam em
 `config.php`, junto com o `product_id` do produto cadastrado no painel da
 ZuckPay (atualmente `593187` nos dois — se cada plano tiver produto próprio,
 use um id diferente em cada).
+
+## Quem Sou Eu? — Personagens Bíblicos
+
+Segunda página de vendas, em `quem-sou-eu/index.html`. É um arquivo único
+(HTML, CSS e JS juntos) e usa o mesmo `/api` da raiz, então basta publicar a
+pasta ao lado do `index.html` — a página fica em `seudominio.com.br/quem-sou-eu/`.
+
+Planos: **Kit Básico R$ 10,90** e **Kit Premium R$ 27,90**, com os ids
+`quem-sou-eu-basico` e `quem-sou-eu-premium` (já presentes no
+`config.example.php`). Preencha o `product_id` de cada um com o id do produto
+correspondente no painel da ZuckPay.
+
+O que ainda precisa da sua mão nessa página:
+
+- **Termos de Uso e Política de Privacidade** — o rodapé aponta para
+  `quem-sou-eu/termos.html` e `quem-sou-eu/privacidade.html`, que ainda não
+  existem. Crie os dois arquivos ou troque os links.
+- **E-mail de contato** — está como `contato@seudominio.com.br` no rodapé.
+- **Depoimentos** — os seis do carrossel são exemplos e estão marcados com
+  "Exemplo de depoimento". Ao ter mensagens reais, troque o texto e remova a
+  marcação só dos que forem verdadeiros.
+- **Fotos reais** (opcional) — as ilustrações são SVG desenhado no próprio
+  arquivo. Onde houver foto da turma usando o material, os comentários
+  `<!-- TROCAR: ... -->` indicam o lugar.
 
 ## Conferir o webhook
 

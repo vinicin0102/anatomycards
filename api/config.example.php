@@ -46,6 +46,26 @@ return [
             'valor'      => 29.90,
             'product_id' => 593187,
         ],
+
+        /**
+         * Landing page quem-sou-eu/ — "Quem Sou Eu? Personagens Bíblicos".
+         *
+         * Os ids são os mesmos que os botões da página enviam
+         * (data-plano="quem-sou-eu-basico" e data-plano="quem-sou-eu-premium").
+         * Troque o product_id pelo id do produto cadastrado no painel da
+         * ZuckPay; sem ele a cobrança é criada mesmo assim, só não fica
+         * vinculada ao produto nos relatórios.
+         */
+        'quem-sou-eu-basico' => [
+            'nome'       => 'Kit Básico — Quem Sou Eu? Personagens Bíblicos',
+            'valor'      => 10.90,
+            'product_id' => null,
+        ],
+        'quem-sou-eu-premium' => [
+            'nome'       => 'Kit Premium — Quem Sou Eu? Personagens Bíblicos',
+            'valor'      => 27.90,
+            'product_id' => null,
+        ],
     ],
 
     // URL pública que a ZuckPay chama quando o pagamento muda de status.
