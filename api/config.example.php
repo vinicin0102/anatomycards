@@ -29,23 +29,43 @@ return [
      * Planos vendidos na página.
      *
      * O preço fica AQUI, no servidor. O navegador envia apenas o id do plano
-     * ("basico" ou "premium") — um valor vindo do cliente é sempre ignorado.
+     * ("slides" ou "biobox") — um valor vindo do cliente é sempre ignorado.
      *
      * product_id: id do produto cadastrado no painel da ZuckPay. É opcional
      * na API, mas preenchê-lo vincula a venda ao produto nos relatórios.
      * Se cada plano tiver seu próprio produto, use um id diferente em cada um.
      */
     'planos' => [
-        'basico' => [
-            'nome'       => 'Pacote Básico — Arritmias Cardíacas',
-            'valor'      => 9.99,
-            'product_id' => 593187,
+        'slides' => [
+            'nome'       => 'BIO SLIDES — 50 Aulas de Biologia Prontas',
+            'valor'      => 9.90,
+            'product_id' => 0, // TROCAR pelo id do produto no painel
         ],
-        'premium' => [
-            'nome'       => 'Pacote Premium — Arritmias Cardíacas',
-            'valor'      => 29.90,
-            'product_id' => 593187,
+        'biobox' => [
+            'nome'       => 'BIOBOX PROFESSOR — Biblioteca Completa',
+            'valor'      => 27.00,
+            'product_id' => 0, // TROCAR pelo id do produto no painel
         ],
+    ],
+
+    /**
+     * Order bumps — adicionais marcados no checkout.
+     *
+     * Mesma regra dos planos: o navegador manda só os ids, o preço sai daqui.
+     *
+     * codigo:     uma letra, gravada no external_id_client da cobrança
+     *             (ex.: BS-slides-jpa-<pedido>) para saber o que entregar.
+     * incluso_em: planos que já trazem esse conteúdo. O bump não é oferecido
+     *             nem cobrado nesses planos.
+     */
+    'bumps' => [
+        'jogos'      => ['nome' => '50 Jogos de Biologia',        'valor' => 4.90, 'codigo' => 'j', 'incluso_em' => ['biobox']],
+        'provas'     => ['nome' => '50 Provas + Gabaritos',       'valor' => 7.90, 'codigo' => 'p', 'incluso_em' => ['biobox']],
+        'praticas'   => ['nome' => '30 Aulas Práticas',           'valor' => 7.90, 'codigo' => 'x', 'incluso_em' => ['biobox']],
+        'atividades' => ['nome' => '100 Atividades de Fixação',   'valor' => 4.90, 'codigo' => 'a', 'incluso_em' => ['biobox']],
+        'genetica'   => ['nome' => 'Kit Genética',                'valor' => 4.90, 'codigo' => 'g', 'incluso_em' => []],
+        'ecologia'   => ['nome' => 'Kit Ecologia',                'valor' => 4.90, 'codigo' => 'e', 'incluso_em' => []],
+        'prompts'    => ['nome' => '100 Prompts para Professores', 'valor' => 7.90, 'codigo' => 'i', 'incluso_em' => []],
     ],
 
     // URL pública que a ZuckPay chama quando o pagamento muda de status.

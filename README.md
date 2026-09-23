@@ -1,4 +1,4 @@
-# Arritmias Cardíacas do Zero ao Diagnóstico
+# BIO SLIDES — 50 Aulas de Biologia Prontas
 
 Landing page de vendas com checkout PIX integrado à **ZuckPay**.
 
@@ -39,16 +39,41 @@ ficar na raiz do site, ajuste a constante `API` no script de checkout do
 
 ## Como funciona
 
-1. O visitante clica em um dos planos e preenche nome, CPF, e-mail e telefone.
-2. `api/pix.php` valida os dados e chama `POST /conta/v3/pix/qrcode`.
+1. O professor clica em um dos planos, preenche nome, CPF, e-mail e telefone
+   e marca os order bumps que quiser.
+2. `api/pix.php` valida os dados, soma plano + bumps com os preços do
+   `config.php` e chama `POST /conta/v3/pix/qrcode`.
 3. A página mostra o QR Code e o copia-e-cola, e consulta `api/status.php`
    a cada 4s até o pagamento ser confirmado.
 4. A ZuckPay chama `api/webhook.php`, que confirma o pagamento e registra a venda.
 
-Planos: **Básico R$ 9,99** e **Premium R$ 29,90**. Ambos ficam em
-`config.php`, junto com o `product_id` do produto cadastrado no painel da
-ZuckPay (atualmente `593187` nos dois — se cada plano tiver produto próprio,
-use um id diferente em cada).
+Planos (em `config.php`):
+
+| id | Produto | Valor |
+|---|---|---|
+| `slides` | 🧬 BIO SLIDES — 50 aulas prontas | R$ 9,90 |
+| `biobox` | 💎 BIOBOX PROFESSOR — biblioteca completa | R$ 27,00 |
+
+Order bumps (em `config.php`, chave `bumps`):
+
+| id | Código | Bump | Valor | Oferecido no BIOBOX? |
+|---|---|---|---|---|
+| `jogos` | j | 🎲 50 Jogos de Biologia | R$ 4,90 | não (já incluso) |
+| `provas` | p | 📝 50 Provas + Gabaritos | R$ 7,90 | não (já incluso) |
+| `praticas` | x | 🔬 30 Aulas Práticas | R$ 7,90 | não (já incluso) |
+| `atividades` | a | 📋 100 Atividades de Fixação | R$ 4,90 | não (já incluso) |
+| `genetica` | g | 🧬 Kit Genética | R$ 4,90 | sim |
+| `ecologia` | e | 🌱 Kit Ecologia | R$ 4,90 | sim |
+| `prompts` | i | 🤖 100 Prompts para Professores | R$ 7,90 | sim |
+
+O navegador envia só os ids; o servidor ignora ids desconhecidos e bumps já
+inclusos no plano. Plano e bumps vão no `external_id_client` da cobrança
+(`BS-<plano>-<códigos>-<pedido>`, ex.: `BS-slides-jg-…`), e o webhook os
+decodifica (`itensDoPedido()`) e grava no log para a entrega saber o que foi pago.
+No checkout do BIO SLIDES aparece também o upgrade para o BIOBOX (+ R$ 17,10).
+
+Preencha o `product_id` de cada plano com o id do produto cadastrado no painel
+da ZuckPay (com `0` ele não é enviado).
 
 ## Conferir o webhook
 
@@ -146,11 +171,11 @@ A ZuckPay responde **429 após 5 tentativas em 30 minutos**. Por isso:
    o envio do e-mail com os PDFs ou a liberação da área de membros. A ZuckPay
    pode reenviar a mesma notificação, então grave o `transactionId` e só
    entregue uma vez.
-2. **Imagens** — capas do hero, as 3 prévias e as 4 capas de resumos ainda
-   apontam para `medment.site` (arte do e-book de ECG). Cada bloco tem um
-   comentário `<!-- TROCAR -->`.
-3. **Depoimentos** — usam avatar com a inicial do nome; trocar por `<img>` se
-   tiver as fotos.
+2. **Formato dos arquivos** — a página diz que as aulas são editáveis. Confirme
+   o formato entregue (PowerPoint, Google Slides, Canva…) e, se quiser, cite-o no
+   FAQ (comentário `<!-- CONFIRMAR -->`).
+3. **Depoimentos** — a página não tem depoimentos nem notificações de "compra
+   recente". Adicione depoimentos reais de professores quando tiver.
 4. **Rate limiting** — não há limite de requisições em `api/pix.php`. Vale pôr
    um limite por IP para evitar geração de cobranças em massa.
 5. **Desativar o diagnóstico** — depois de resolver, apague `api/diagnostico.php`

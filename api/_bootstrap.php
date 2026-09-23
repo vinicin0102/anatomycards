@@ -243,3 +243,25 @@ function registrarPagamento(array $config, array $dados): void
         FILE_APPEND | LOCK_EX
     );
 }
+
+/**
+ * Lê plano e bumps do external_id_client (BS-<plano>-<códigos>-<pedido>),
+ * para o webhook saber o que entregar.
+ *
+ * @return array{plano:string,bumps:string[]} ids do plano e dos bumps
+ */
+function itensDoPedido(array $config, string $externalId): array
+{
+    if (!preg_match('/^BS-([a-z]+)-([a-z0-9]+)-/', $externalId, $m)) {
+        return ['plano' => '', 'bumps' => []];
+    }
+
+    $bumps = [];
+    foreach ((array) ($config['bumps'] ?? []) as $bumpId => $bump) {
+        if ($m[2] !== '0' && str_contains($m[2], (string) ($bump['codigo'] ?? '#'))) {
+            $bumps[] = $bumpId;
+        }
+    }
+
+    return ['plano' => $m[1], 'bumps' => $bumps];
+}

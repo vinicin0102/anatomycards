@@ -4,8 +4,8 @@ declare(strict_types=1);
 /**
  * Cria uma cobrança PIX na ZuckPay.
  *
- * POST { plano, nome, cpf, email, telefone, rastreio? }
- * -> { transactionId, qrcode, qrcode_image, checkout_url, expiracao, valor }
+ * POST { plano, bumps?, nome, cpf, email, telefone, rastreio? }
+ * -> { transactionId, qrcode, qrcode_image, checkout_url, expiracao, valor, itens }
  */
 
 require __DIR__ . '/_bootstrap.php';
@@ -31,6 +31,34 @@ if (!isset($planos[$planoId])) {
     responder(400, ['erro' => 'Plano inválido.']);
 }
 $plano = $planos[$planoId];
+
+/**
+ * Order bumps: o navegador manda só os ids marcados. Preço e nome vêm do
+ * config.php. Ids desconhecidos, repetidos ou já inclusos no plano são
+ * descartados — ninguém paga duas vezes pelo mesmo conteúdo.
+ */
+$catalogoBumps = is_array($config['bumps'] ?? null) ? $config['bumps'] : [];
+$bumpsPedidos  = is_array($corpo['bumps'] ?? null) ? $corpo['bumps'] : [];
+$bumps = [];
+foreach ($catalogoBumps as $bumpId => $bump) {
+    if (!in_array($bumpId, $bumpsPedidos, true)) {
+        continue;
+    }
+    if (in_array($planoId, (array) ($bump['incluso_em'] ?? []), true)) {
+        continue;
+    }
+    $bumps[$bumpId] = $bump;
+}
+
+// Soma em centavos para não acumular erro de ponto flutuante.
+$centavos = (int) round($plano['valor'] * 100);
+foreach ($bumps as $bump) {
+    $centavos += (int) round($bump['valor'] * 100);
+}
+$valorTotal = $centavos / 100;
+
+$itens = array_merge([$plano['nome']], array_column($bumps, 'nome'));
+$codigosBumps = implode('', array_column($bumps, 'codigo'));
 
 $nome     = trim((string) ($corpo['nome'] ?? ''));
 $cpf      = preg_replace('/\D/', '', (string) ($corpo['cpf'] ?? '')) ?? '';
@@ -68,12 +96,17 @@ if (strlen($pedido) < 8 || strlen($pedido) > 60) {
 $payload = [
     'nome'               => $nome,
     'cpf'                => $cpf,
-    'valor'              => $plano['valor'],
+    'valor'              => $valorTotal,
     'email'              => $email,
     'telefone'           => $telefone,
     'urlnoty'            => $config['webhook_url'],
-    'descricao'          => $plano['nome'],
-    'external_id_client' => 'AC-' . $planoId . '-' . $pedido,
+    'descricao'          => mb_substr(implode(' + ', $itens), 0, 250),
+    /*
+     * Plano e bumps ficam gravados no id (BS-<plano>-<códigos>-<pedido>) para
+     * o webhook saber o que entregar. Mudar os bumps muda o id, então a
+     * idempotência nunca devolve uma cobrança antiga com outro valor.
+     */
+    'external_id_client' => 'BS-' . $planoId . '-' . ($codigosBumps !== '' ? $codigosBumps : '0') . '-' . $pedido,
 ];
 
 // Vincula a venda ao produto cadastrado no painel (opcional na API).
@@ -134,7 +167,8 @@ responder(200, [
     'qrcode_image'  => (string) ($resposta['qrcode_image'] ?? ''),
     'checkout_url'  => (string) ($resposta['checkout_url'] ?? ''),
     'expiracao'     => (int) ($resposta['calendar']['expiration'] ?? 1200),
-    'valor'         => $plano['valor'],
+    'valor'         => $valorTotal,
     'plano'         => $plano['nome'],
+    'itens'         => $itens,
     'pedido'        => $pedido,
 ]);
