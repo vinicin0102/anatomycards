@@ -39,7 +39,8 @@ ficar na raiz do site, ajuste a constante `API` no script de checkout do
 
 ## Como funciona
 
-1. O visitante clica em um dos planos e preenche nome, CPF, e-mail e telefone.
+1. O visitante clica em um dos planos (o Básico passa antes por um pop-up que
+   oferece o Premium) e preenche nome, CPF, e-mail e telefone.
 2. `api/pix.php` valida os dados e chama `POST /conta/v3/pix/qrcode`.
 3. A página mostra o QR Code e o copia-e-cola, e consulta `api/status.php`
    a cada 4s até o pagamento ser confirmado.
@@ -149,9 +150,11 @@ A ZuckPay responde **429 após 5 tentativas em 30 minutos**. Por isso:
 2. **Imagens** — capas do hero, as 3 prévias e as 4 capas de resumos ainda
    apontam para `medment.site` (arte do e-book de ECG). Cada bloco tem um
    comentário `<!-- TROCAR -->`.
-3. **Depoimentos** — usam avatar com a inicial do nome; trocar por `<img>` se
-   tiver as fotos.
-4. **Rate limiting** — não há limite de requisições em `api/pix.php`. Vale pôr
+3. **Depoimentos** — ficam na lista `DEPOIMENTOS` do script da página e usam
+   avatar com a inicial do nome; trocar por `<img>` se tiver as fotos.
+4. **Seção "Quem preparou"** — está com texto genérico e ícone no lugar da foto
+   (comentários `<!-- TROCAR -->`). Coloque nome, foto e mini-bio reais.
+5. **Rate limiting** — não há limite de requisições em `api/pix.php`. Vale pôr
    um limite por IP para evitar geração de cobranças em massa.
-5. **Desativar o diagnóstico** — depois de resolver, apague `api/diagnostico.php`
+6. **Desativar o diagnóstico** — depois de resolver, apague `api/diagnostico.php`
    ou deixe `debug_token` vazio (assim ele responde 404).
