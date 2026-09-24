@@ -8,6 +8,7 @@ api/pix.php              cria a cobrança PIX
 api/status.php           consulta o status do pagamento
 api/webhook.php          recebe a notificação da ZuckPay
 api/diagnostico.php      checagem da integração (protegido por token)
+assets/                  vídeo da primeira dobra (video-hero.mp4)
 tools/testar-webhook.php testa a validação de assinatura do webhook (CLI)
 api/_bootstrap.php       validação, CORS e chamada autenticada à API
 api/config.example.php   modelo de configuração
@@ -51,7 +52,7 @@ Planos (em `config.php`):
 
 | id | Produto | Valor |
 |---|---|---|
-| `slides` | 🧬 BIO SLIDES — 50 aulas prontas | R$ 9,90 |
+| `slides` | 🧬 BIO SLIDES — 50 aulas prontas | R$ 12,90 |
 | `biobox` | 💎 BIOBOX PROFESSOR — biblioteca completa | R$ 27,00 |
 
 Order bumps (em `config.php`, chave `bumps`):
@@ -70,10 +71,18 @@ O navegador envia só os ids; o servidor ignora ids desconhecidos e bumps já
 inclusos no plano. Plano e bumps vão no `external_id_client` da cobrança
 (`BS-<plano>-<códigos>-<pedido>`, ex.: `BS-slides-jg-…`), e o webhook os
 decodifica (`itensDoPedido()`) e grava no log para a entrega saber o que foi pago.
-No checkout do BIO SLIDES aparece também o upgrade para o BIOBOX (+ R$ 17,10).
+No checkout do BIO SLIDES aparece também o upgrade para o BIOBOX (+ R$ 14,10).
 
 Preencha o `product_id` de cada plano com o id do produto cadastrado no painel
 da ZuckPay (com `0` ele não é enviado).
+
+## Vídeo da primeira dobra
+
+O topo da página mostra um vídeo. Envie o arquivo para `assets/video-hero.mp4`
+(capa opcional em `assets/video-hero.jpg`) ou troque a constante `VIDEO_HERO`
+no `index.html` por um link do YouTube ou Vimeo. O vídeo começa sem som (regra
+dos navegadores para autoplay) e o botão "Toque para ouvir" liga o áudio.
+Sem vídeo, a página mostra o mockup animado das aulas no lugar.
 
 ## Conferir o webhook
 

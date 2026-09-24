@@ -38,7 +38,7 @@ return [
     'planos' => [
         'slides' => [
             'nome'       => 'BIO SLIDES — 50 Aulas de Biologia Prontas',
-            'valor'      => 9.90,
+            'valor'      => 12.90,
             'product_id' => 0, // TROCAR pelo id do produto no painel
         ],
         'biobox' => [
