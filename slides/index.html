@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aula Futura — Slides animados para professores</title>
+<title>Aula Futura</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Exo+2:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root {
+    color-scheme: dark;
     --bg: #04070f;
     --painel: #0a1120;
     --painel-2: #0f1a2e;
@@ -742,7 +743,7 @@ function listarSalvas() {
         x.title = 'Apagar';
         x.addEventListener('click', ev => {
             ev.stopPropagation();
-            if (!confirm('Apagar esta aula?')) return;
+            if (!confirmarNoBotao(x, 'Apagar?')) return;
             gravarSalvas(lerSalvas().filter(s => s.id !== d.id));
             listarSalvas();
         });
@@ -757,6 +758,19 @@ function listarSalvas() {
 /* ------------------------------------------------------------------
    utilidades
    ------------------------------------------------------------------ */
+/* Ação destrutiva pede um segundo clique em até 3 s (sem caixas de diálogo). */
+function confirmarNoBotao(botao, textoConfirmar) {
+    if (botao.dataset.confirmando) return true;
+    const original = botao.textContent;
+    botao.dataset.confirmando = '1';
+    botao.textContent = textoConfirmar;
+    setTimeout(() => {
+        if (!botao.isConnected) return;
+        delete botao.dataset.confirmando;
+        botao.textContent = original;
+    }, 3000);
+    return false;
+}
 function el(tag, cls = '', texto) {
     const n = document.createElement(tag);
     if (cls) n.className = cls;
@@ -1212,9 +1226,11 @@ $('#btn-add').addEventListener('click', () => mexer(() => { deck.slides.splice(a
 $('#btn-duplicar').addEventListener('click', () => mexer(() => {
     deck.slides.splice(atual + 1, 0, JSON.parse(JSON.stringify(deck.slides[atual]))); atual++;
 }));
-$('#btn-excluir').addEventListener('click', () => {
+$('#btn-excluir').addEventListener('click', ev => {
     if (deck.slides.length === 1) return;
-    if (!confirm('Excluir este slide?')) return;
+    if (!confirmarNoBotao(ev.currentTarget, 'Clique para confirmar')) return;
+    delete ev.currentTarget.dataset.confirmando;
+    ev.currentTarget.textContent = '✕ Excluir';
     mexer(() => { deck.slides.splice(atual, 1); atual = Math.min(atual, deck.slides.length - 1); });
 });
 $('#btn-subir').addEventListener('click', () => {
@@ -1262,7 +1278,7 @@ $('#arquivo').addEventListener('change', async ev => {
         const d = JSON.parse(await f.text());
         abrirEstudio({ ...d, id: novoId() });
     } catch {
-        alert('Arquivo inválido. Use um .json baixado por este app.');
+        $('#erro').textContent = 'Arquivo inválido. Use um .json baixado por este app.';
     }
 });
 
