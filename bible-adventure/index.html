@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bible Adventure — A Fun Bible Mini App for Kids | Only $7</title>
+<meta name="description" content="Bible Adventure turns Bible stories, characters, lessons, and Christian values into a fun, interactive mini app made for curious young minds. One-time payment of $7.">
+<meta name="theme-color" content="#4FB3F6">
+<meta property="og:title" content="Bible Adventure — Help Your Child Discover the Bible">
+<meta property="og:description" content="A fun, interactive Bible mini app for kids. Stories, characters, quizzes and Christian values. Only $7, one-time.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --sky: #4FB3F6;
+    --sky-deep: #2E95E0;
+    --sky-soft: #DDF1FF;
+    --navy: #1A2456;
+    --navy-2: #27347A;
+    --gold: #FFC93C;
+    --gold-deep: #E9A800;
+    --gold-soft: #FFF1C4;
+    --cream: #FFF8EC;
+    --white: #FFFFFF;
+    --green: #4CC27E;
+    --green-soft: #E3F7EA;
+    --orange: #FF7A1A;
+    --orange-dark: #CF5A00;
+    --purple: #9C84EE;
+    --purple-soft: #EEE9FF;
+    --red-soft: #FFE8E3;
+    --ink: #1A2456;
+    --muted: #4E5982;
+    --line: rgba(26, 36, 86, .10);
+    --radius: 22px;
+    --shadow: 0 10px 30px rgba(26, 36, 86, .10);
+    --shadow-lg: 0 24px 60px rgba(26, 36, 86, .18);
+    --head: "Baloo 2", "Nunito", system-ui, sans-serif;
+    --body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--cream);
+    overflow-x: hidden;
+    padding-bottom: 92px; /* room for sticky CTA */
+  }
+  @supports (overflow-x: clip) { body { overflow-x: clip; } }
+  img, svg { display: block; max-width: 100%; }
+  h1, h2, h3 { font-family: var(--head); line-height: 1.1; margin: 0; letter-spacing: -.01em; }
+  p { margin: 0 0 14px; }
+  p:last-child { margin-bottom: 0; }
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+  .narrow { max-width: 720px; }
+  section { position: relative; padding: 64px 0; }
+  .center { text-align: center; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--head); font-weight: 800; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 999px;
+    background: var(--white); color: var(--navy); box-shadow: 0 3px 0 var(--line);
+    margin-bottom: 16px;
+  }
+  .h2 { font-size: clamp(30px, 7.4vw, 46px); font-weight: 800; color: var(--navy); }
+  .lead { font-size: 18px; color: var(--muted); max-width: 620px; }
+  .center .lead { margin-left: auto; margin-right: auto; }
+  .hl { color: var(--orange); }
+  .hl-sky { color: var(--sky-deep); }
+  .mark {
+    background: linear-gradient(transparent 58%, var(--gold) 58%, var(--gold) 92%, transparent 92%);
+    padding: 0 2px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    --b: var(--orange); --bd: var(--orange-dark);
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; max-width: 460px; min-height: 62px;
+    padding: 14px 24px;
+    font-family: var(--head); font-weight: 800; font-size: 19px; letter-spacing: .02em; line-height: 1.15;
+    text-align: center; text-decoration: none; text-transform: uppercase;
+    color: var(--white); background: var(--b);
+    border: 0; border-radius: 999px;
+    box-shadow: 0 6px 0 var(--bd), 0 14px 26px rgba(255, 122, 26, .35);
+    transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    cursor: pointer; -webkit-tap-highlight-color: transparent;
+  }
+  .btn:hover { filter: brightness(1.05); transform: translateY(-2px); box-shadow: 0 8px 0 var(--bd), 0 18px 30px rgba(255, 122, 26, .4); }
+  .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--bd), 0 6px 12px rgba(255, 122, 26, .3); }
+  .btn:focus-visible { outline: 4px solid var(--navy); outline-offset: 4px; }
+  .btn .arrow { font-size: 1.1em; }
+  .center .btn { margin-left: auto; margin-right: auto; }
+  .btn-gold { --b: var(--gold); --bd: var(--gold-deep); color: var(--navy); box-shadow: 0 6px 0 var(--bd), 0 14px 26px rgba(233, 168, 0, .35); }
+  .btn-gold:hover { box-shadow: 0 8px 0 var(--bd), 0 18px 30px rgba(233, 168, 0, .4); }
+
+  .reassure {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px;
+    margin-top: 16px; font-size: 14px; font-weight: 700; color: var(--muted);
+  }
+  .reassure span { display: inline-flex; align-items: center; gap: 5px; }
+  .reassure span::before { content: "✓"; color: var(--green); font-weight: 900; }
+
+  /* ---------- Decorations ---------- */
+  .cloud { position: absolute; pointer-events: none; opacity: .95; }
+  .twinkle { position: absolute; pointer-events: none; color: var(--gold); font-size: 22px; }
+
+  /* ---------- Top bar ---------- */
+  .topbar { position: relative; z-index: 3; padding: 14px 0 0; }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: inline-flex; align-items: center; gap: 8px; font-family: var(--head); font-weight: 800; font-size: 20px; color: var(--navy); text-decoration: none; }
+  .logo-badge {
+    width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--gold); box-shadow: 0 3px 0 var(--gold-deep); font-size: 19px;
+  }
+  .topbar-price { font-family: var(--head); font-weight: 800; font-size: 14px; background: var(--white); padding: 6px 12px; border-radius: 999px; box-shadow: 0 3px 0 var(--line); }
+  .topbar-price b { color: var(--orange); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 0 0 72px;
+    background:
+      radial-gradient(circle at 85% 12%, rgba(255, 255, 255, .55) 0 60px, transparent 61px),
+      linear-gradient(180deg, #8FD3FF 0%, #BFE6FF 45%, var(--cream) 100%);
+    overflow: hidden;
+  }
+  .hero-grid { position: relative; z-index: 2; display: grid; gap: 40px; padding-top: 28px; }
+  .hero-copy { text-align: center; }
+  .hero .eyebrow { background: var(--navy); color: var(--gold); box-shadow: 0 3px 0 rgba(0,0,0,.2); }
+  .hero h1 { font-size: clamp(34px, 9vw, 60px); font-weight: 800; color: var(--navy); }
+  .hero h1 .hl { position: relative; white-space: nowrap; }
+  .hero h1 .hl svg { position: absolute; left: 0; right: 0; bottom: -6px; width: 100%; height: 12px; }
+  .hero-sub { margin: 18px auto 24px; font-size: 18px; color: var(--muted); max-width: 540px; }
+  .price-row { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 18px; }
+  .price-tag {
+    position: relative; display: inline-flex; align-items: baseline; gap: 6px;
+    background: var(--white); border: 3px dashed var(--gold); border-radius: 18px;
+    padding: 6px 18px; font-family: var(--head); font-weight: 800; color: var(--navy);
+    transform: rotate(-2deg);
+  }
+  .price-tag small { font-size: 15px; letter-spacing: .06em; }
+  .price-tag strong { font-size: 38px; color: var(--orange); line-height: 1; }
+  .price-note { font-weight: 800; font-size: 14px; color: var(--muted); text-align: left; line-height: 1.3; }
+
+  /* Phone mockup */
+  .mock-stage { position: relative; width: 100%; max-width: 440px; margin: 0 auto; padding: 18px 0; }
+  .phone {
+    position: relative; z-index: 2; width: 250px; margin: 0 auto;
+    background: var(--navy); border-radius: 40px; padding: 10px;
+    box-shadow: var(--shadow-lg), inset 0 0 0 2px rgba(255,255,255,.08);
+  }
+  .phone::before { content: ""; position: absolute; top: 16px; left: 50%; width: 70px; height: 18px; transform: translateX(-50%); background: var(--navy); border-radius: 0 0 12px 12px; z-index: 3; }
+  .screen { position: relative; border-radius: 31px; overflow: hidden; background: linear-gradient(180deg, #E9F6FF, var(--cream)); padding: 30px 12px 12px; font-size: 12px; line-height: 1.35; }
+  .app-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .app-hi { font-family: var(--head); font-weight: 800; font-size: 15px; }
+  .app-hi small { display: block; font-family: var(--body); font-weight: 700; font-size: 10px; color: var(--muted); }
+  .app-stars { background: var(--white); border-radius: 999px; padding: 3px 9px; font-weight: 800; box-shadow: 0 2px 0 var(--line); }
+  .app-story { position: relative; border-radius: 18px; overflow: hidden; background: linear-gradient(180deg, #6BC4FF, #3A9DE8); color: var(--white); padding: 10px 12px 12px; margin-bottom: 10px; }
+  .app-story svg { width: 100%; height: 86px; margin: 2px 0 6px; }
+  .app-story h4 { margin: 0; font-family: var(--head); font-size: 16px; }
+  .app-story .meta { font-size: 10px; font-weight: 700; opacity: .9; }
+  .app-bar { height: 7px; background: rgba(255,255,255,.35); border-radius: 99px; margin-top: 6px; overflow: hidden; }
+  .app-bar i { display: block; width: 66%; height: 100%; background: var(--gold); border-radius: 99px; }
+  .app-quiz { background: var(--white); border-radius: 16px; padding: 10px; box-shadow: 0 3px 0 var(--line); margin-bottom: 10px; }
+  .app-quiz .q { font-weight: 800; font-size: 12px; margin-bottom: 7px; }
+  .app-opt { display: flex; justify-content: space-between; align-items: center; border: 2px solid var(--line); border-radius: 10px; padding: 5px 8px; font-weight: 700; margin-top: 5px; }
+  .app-opt.ok { border-color: var(--green); background: var(--green-soft); }
+  .app-opt.ok::after { content: "✓"; color: var(--green); font-weight: 900; }
+  .app-badge { display: flex; align-items: center; gap: 8px; background: var(--gold-soft); border-radius: 14px; padding: 7px 9px; font-weight: 800; font-size: 11px; }
+  .app-badge span { font-size: 18px; }
+  .app-nav { display: flex; justify-content: space-around; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); font-size: 17px; }
+  .app-nav span:first-child { background: var(--sky-soft); border-radius: 10px; padding: 0 8px; }
+
+  .chips { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+  .chip {
+    position: relative; z-index: 3;
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--white); border-radius: 16px; padding: 8px 10px;
+    font-family: var(--head); font-weight: 800; font-size: 14px; line-height: 1.1; color: var(--navy);
+    box-shadow: 0 4px 0 var(--line), var(--shadow);
+  }
+  .chip i { flex: 0 0 auto; font-style: normal; width: 28px; height: 28px; border-radius: 9px; display: grid; place-items: center; font-size: 16px; }
+  .chip-1 i { background: var(--sky-soft); }
+  .chip-2 i { background: var(--gold-soft); }
+  .chip-3 i { background: var(--purple-soft); }
+  .chip-4 i { background: var(--red-soft); }
+  @media (min-width: 560px) {
+    .mock-stage { max-width: 560px; }
+    .chips { display: contents; }
+    .chip { position: absolute; white-space: nowrap; }
+    .chip-1 { top: 16%; left: 0; transform: rotate(-4deg); }
+    .chip-2 { top: 40%; right: 0; transform: rotate(4deg); }
+    .chip-3 { bottom: 4%; left: 0; transform: rotate(3deg); }
+    .chip-4 { bottom: 20%; right: 0; transform: rotate(-3deg); }
+  }
+
+  /* ---------- Pain ---------- */
+  .pain { background: var(--cream); }
+  .pain-copy { font-size: 18px; color: var(--muted); margin: 20px auto 34px; max-width: 620px; }
+  .pain-copy strong { color: var(--navy); }
+  .cards-3 { display: grid; gap: 16px; }
+  .pain-card {
+    background: var(--white); border-radius: var(--radius); padding: 24px 22px;
+    box-shadow: 0 5px 0 var(--line); border: 2px solid var(--line); text-align: left;
+    display: grid; grid-template-columns: 56px 1fr; gap: 4px 16px; align-items: start;
+  }
+  .pain-card .ico { grid-row: span 2; width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; font-size: 28px; }
+  .pain-card h3 { font-size: 21px; font-weight: 800; }
+  .pain-card p { font-size: 15.5px; color: var(--muted); }
+  .bg-sky { background: var(--sky-soft); }
+  .bg-gold { background: var(--gold-soft); }
+  .bg-red { background: var(--red-soft); }
+  .bg-green { background: var(--green-soft); }
+  .bg-purple { background: var(--purple-soft); }
+  .bg-orange { background: #FFE6D2; }
+  .pain-quote {
+    margin: 34px auto 0; max-width: 640px; text-align: center;
+    font-family: var(--head); font-weight: 700; font-size: 22px; line-height: 1.3; color: var(--navy);
+  }
+  .pain-quote span { display: block; margin-top: 8px; font-family: var(--body); font-size: 15px; font-weight: 700; color: var(--muted); }
+
+  /* ---------- Transition (night sky) ---------- */
+  .night {
+    color: var(--white);
+    background:
+      radial-gradient(circle at 20% 10%, rgba(156, 132, 238, .35), transparent 45%),
+      radial-gradient(circle at 90% 80%, rgba(79, 179, 246, .3), transparent 45%),
+      linear-gradient(180deg, var(--navy), var(--navy-2));
+    overflow: hidden;
+  }
+  .night .h2 { color: var(--white); }
+  .night .lead { color: rgba(255,255,255,.82); }
+  .night .eyebrow { background: rgba(255,255,255,.12); color: var(--gold); box-shadow: none; }
+  .stars-bg { position: absolute; inset: 0; pointer-events: none; }
+  .stars-bg i { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff; opacity: .7; }
+  .versus { display: grid; gap: 16px; margin: 36px 0; }
+  .vs-card { border-radius: var(--radius); padding: 24px 22px; text-align: left; }
+  .vs-old { background: rgba(255,255,255,.07); border: 2px dashed rgba(255,255,255,.25); }
+  .vs-new { background: var(--white); color: var(--navy); box-shadow: 0 6px 0 var(--gold), var(--shadow-lg); }
+  .vs-label { font-family: var(--head); font-weight: 800; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; }
+  .vs-old .vs-label { color: rgba(255,255,255,.6); }
+  .vs-new .vs-label { color: var(--orange); }
+  .vs-words { font-family: var(--head); font-weight: 800; font-size: 26px; line-height: 1.25; }
+  .vs-old .vs-words { color: rgba(255,255,255,.55); }
+  .vs-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .vs-pills span { font-family: var(--head); font-weight: 800; font-size: 18px; padding: 6px 14px; border-radius: 999px; }
+  .vs-mid { display: grid; place-items: center; }
+  .vs-mid b { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--gold); color: var(--navy); font-family: var(--head); font-size: 18px; box-shadow: 0 4px 0 var(--gold-deep); }
+  .meet {
+    max-width: 640px; margin: 0 auto 30px; padding: 28px 22px; border-radius: 28px;
+    background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.14);
+  }
+  .meet-logo { width: 72px; height: 72px; margin: 0 auto 14px; border-radius: 22px; display: grid; place-items: center; font-size: 38px; background: var(--gold); box-shadow: 0 5px 0 var(--gold-deep); }
+  .meet h3 { font-size: clamp(30px, 7vw, 40px); font-weight: 800; color: var(--gold); margin-bottom: 10px; }
+  .meet p { color: rgba(255,255,255,.88); font-size: 18px; }
+
+  /* ---------- How it works ---------- */
+  .how { background: var(--white); }
+  .steps { position: relative; display: grid; gap: 22px; margin-top: 40px; }
+  .step { position: relative; z-index: 1; border-radius: var(--radius); padding: 26px 22px 24px; text-align: center; border: 3px solid var(--white); box-shadow: var(--shadow); }
+  .step-num {
+    width: 76px; height: 76px; margin: -58px auto 12px; border-radius: 50%;
+    display: grid; place-items: center; font-family: var(--head); font-weight: 800; font-size: 40px; color: var(--white);
+    border: 5px solid var(--white); box-shadow: 0 5px 0 rgba(0,0,0,.12);
+  }
+  .step-emoji { font-size: 44px; line-height: 1; margin-bottom: 8px; }
+  .step h3 { font-size: 26px; font-weight: 800; letter-spacing: .06em; margin-bottom: 6px; }
+  .step p { color: var(--muted); font-size: 16px; }
+  .step-1 { background: var(--sky-soft); } .step-1 .step-num { background: var(--sky); } .step-1 h3 { color: var(--sky-deep); }
+  .step-2 { background: var(--gold-soft); } .step-2 .step-num { background: var(--orange); } .step-2 h3 { color: var(--orange-dark); }
+  .step-3 { background: var(--green-soft); } .step-3 .step-num { background: var(--green); } .step-3 h3 { color: #23945A; }
+  .map-path { display: none; }
+
+  /* ---------- Features ---------- */
+  .features { background: var(--sky-soft); overflow: hidden; }
+  .feat-grid { display: grid; gap: 14px; margin-top: 36px; }
+  .feat {
+    display: grid; grid-template-columns: 60px 1fr; gap: 4px 16px; align-items: start;
+    background: var(--white); border-radius: var(--radius); padding: 20px;
+    box-shadow: 0 5px 0 rgba(46, 149, 224, .18); text-align: left;
+  }
+  .feat .ico { grid-row: span 2; width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; font-size: 30px; }
+  .feat h3 { font-size: 21px; font-weight: 800; }
+  .feat p { font-size: 15.5px; color: var(--muted); }
+  .section-cta { margin-top: 36px; }
+
+  /* ---------- Transformation ---------- */
+  .transform { background: var(--cream); }
+  .ba { display: grid; gap: 18px; margin-top: 36px; }
+  .ba-card { border-radius: var(--radius); padding: 24px 22px; text-align: left; }
+  .ba-before { background: var(--white); border: 2px solid var(--line); }
+  .ba-after { background: var(--white); border: 3px solid var(--green); box-shadow: 0 6px 0 var(--green), var(--shadow); }
+  .ba-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .ba-face { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; font-size: 30px; }
+  .ba-before .ba-face { background: #EEF0F6; }
+  .ba-after .ba-face { background: var(--green-soft); }
+  .ba-head h3 { font-size: 24px; font-weight: 800; }
+  .ba-head small { display: block; font-family: var(--body); font-size: 14px; font-weight: 700; color: var(--muted); }
+  .ba ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .ba li { display: flex; gap: 10px; font-weight: 700; font-size: 16px; line-height: 1.4; }
+  .ba-before li { color: var(--muted); }
+  .ba li span { flex: 0 0 auto; }
+  .ba-arrow { display: grid; place-items: center; font-size: 34px; color: var(--green); line-height: 1; }
+
+  /* ---------- Parent emotional ---------- */
+  .heart {
+    background:
+      radial-gradient(circle at 10% 0%, rgba(255, 201, 60, .35), transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(156, 132, 238, .22), transparent 50%),
+      var(--gold-soft);
+    overflow: hidden;
+  }
+  .heart-card {
+    position: relative; max-width: 720px; margin: 0 auto; background: var(--white);
+    border-radius: 30px; padding: 40px 22px 32px; box-shadow: var(--shadow-lg); text-align: center;
+  }
+  .heart-card::before {
+    content: "❤️"; position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-size: 28px;
+    background: var(--white); box-shadow: 0 5px 0 var(--line);
+  }
+  .heart-card .h2 { font-size: clamp(28px, 6.8vw, 42px); margin-bottom: 20px; }
+  .heart-card p { font-size: 18px; color: var(--muted); }
+  .cartoon-line {
+    margin: 24px 0; padding: 18px 20px; border-radius: 18px; background: var(--sky-soft);
+    font-family: var(--head); font-weight: 700; font-size: 20px; line-height: 1.35; color: var(--navy);
+  }
+  .gift {
+    margin-top: 26px; padding: 22px 20px; border-radius: 22px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: var(--white);
+    font-family: var(--head); font-weight: 700; font-size: 22px; line-height: 1.3;
+  }
+  .gift b { color: var(--gold); font-weight: 800; }
+
+  /* ---------- Story cards ---------- */
+  .stories { background: var(--white); }
+  .card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 36px; }
+  .scard {
+    --c1: #6BC4FF; --c2: #2E95E0;
+    position: relative; border-radius: 20px; padding: 7px;
+    background: linear-gradient(145deg, var(--gold), #FFE08A 50%, var(--gold-deep));
+    box-shadow: 0 6px 0 rgba(26,36,86,.14), var(--shadow);
+    transition: transform .2s ease;
+  }
+  .scard:nth-child(odd) { transform: rotate(-1.5deg); }
+  .scard:nth-child(even) { transform: rotate(1.5deg); }
+  .scard:hover { transform: rotate(0) translateY(-4px); }
+  .scard-in { border-radius: 14px; overflow: hidden; background: var(--white); height: 100%; display: flex; flex-direction: column; }
+  .scard-art {
+    position: relative; aspect-ratio: 1 / .82; display: grid; place-items: center;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,.45) 0 18%, transparent 19%),
+      linear-gradient(160deg, var(--c1), var(--c2));
+    font-size: clamp(46px, 14vw, 64px); line-height: 1;
+  }
+  .scard-art .no { position: absolute; top: 7px; left: 8px; font-family: var(--head); font-weight: 800; font-size: 11px; color: var(--white); background: rgba(0,0,0,.18); border-radius: 99px; padding: 2px 8px; }
+  .scard-art .star { position: absolute; top: 6px; right: 8px; font-size: 16px; }
+  .scard-body { padding: 10px 10px 12px; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 6px; }
+  .scard-body h3 { font-size: 17px; font-weight: 800; line-height: 1.15; }
+  .scard-body em { font-style: normal; align-self: center; font-family: var(--head); font-weight: 800; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; background: var(--cream); color: var(--muted); }
+  .c-noah   { --c1: #7FD0FF; --c2: #2B7FD1; }
+  .c-daniel { --c1: #FFC96B; --c2: #E0851C; }
+  .c-david  { --c1: #B9E27A; --c2: #4AA54F; }
+  .c-jonah  { --c1: #7FE3E0; --c2: #2A9BB0; }
+  .c-esther { --c1: #D2BEFF; --c2: #8A6BE0; }
+  .c-jesus  { --c1: #FFD9A8; --c2: #F08C5A; }
+
+  /* ---------- Testimonials ---------- */
+  .proof { background: var(--purple-soft); }
+  .tgrid { display: grid; gap: 16px; margin-top: 36px; }
+  .tcard { position: relative; background: var(--white); border-radius: var(--radius); padding: 26px 22px 20px; box-shadow: 0 5px 0 rgba(156,132,238,.25); text-align: left; }
+  .tcard::before { content: "“"; position: absolute; top: -6px; right: 18px; font-family: Georgia, serif; font-size: 90px; line-height: 1; color: var(--purple); opacity: .35; }
+  .tcard blockquote { margin: 0 0 18px; font-size: 17px; font-weight: 700; color: var(--navy); font-style: italic; }
+  .tperson { display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 2px dashed var(--line); }
+  .tavatar { width: 44px; height: 44px; border-radius: 50%; background: var(--purple-soft); display: grid; place-items: center; font-size: 22px; flex: 0 0 auto; }
+  .tperson b { display: block; font-size: 15px; }
+  .tperson small { color: var(--muted); font-weight: 700; font-size: 13px; }
+  .placeholder-note { margin-top: 18px; font-size: 13px; font-weight: 700; color: var(--muted); text-align: center; }
+
+  /* ---------- Offer ---------- */
+  .offer { background: var(--cream); }
+  .offer-card {
+    position: relative; max-width: 560px; margin: 36px auto 0; background: var(--white);
+    border-radius: 30px; padding: 30px 22px; border: 4px solid var(--gold);
+    box-shadow: 0 8px 0 var(--gold-deep), var(--shadow-lg); text-align: center;
+  }
+  .offer-ribbon {
+    position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+    background: var(--orange); color: var(--white); white-space: nowrap;
+    font-family: var(--head); font-weight: 800; font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 6px 18px; border-radius: 999px; box-shadow: 0 4px 0 var(--orange-dark);
+  }
+  .offer-app { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 6px 0 20px; }
+  .offer-app .meet-logo { margin: 0; width: 56px; height: 56px; font-size: 30px; border-radius: 18px; }
+  .offer-app b { font-family: var(--head); font-size: 26px; font-weight: 800; line-height: 1; text-align: left; }
+  .offer-app small { display: block; font-family: var(--body); font-size: 13px; font-weight: 700; color: var(--muted); }
+  .checklist { list-style: none; margin: 0 0 24px; padding: 0; display: grid; gap: 10px; text-align: left; }
+  .checklist li { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 17px; padding: 10px 14px; border-radius: 14px; background: var(--cream); }
+  .checklist li::before { content: "✓"; flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--green); color: var(--white); font-size: 15px; font-weight: 900; }
+  .price-box { border-top: 2px dashed var(--line); padding-top: 22px; margin-bottom: 22px; }
+  .price-regular { font-weight: 800; color: var(--muted); font-size: 15px; letter-spacing: .04em; }
+  .price-regular s { font-size: 18px; }
+  .price-today { font-family: var(--head); font-weight: 800; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--navy); margin-top: 8px; }
+  .price-big { font-family: var(--head); font-weight: 800; font-size: 96px; line-height: .95; color: var(--orange); letter-spacing: -.03em; }
+  .price-big sup { font-size: .45em; vertical-align: .9em; margin-right: 2px; }
+  .onetime { display: inline-block; margin-top: 8px; font-family: var(--head); font-weight: 800; font-size: 14px; letter-spacing: .1em; padding: 5px 14px; border-radius: 999px; background: var(--green-soft); color: #23945A; }
+
+  /* ---------- Snack anchor ---------- */
+  .snack { background: var(--white); }
+  .snack-card {
+    max-width: 760px; margin: 0 auto; border-radius: 30px; padding: 36px 22px; text-align: center;
+    background: linear-gradient(135deg, #FFE6D2, var(--gold-soft));
+    display: grid; gap: 22px; align-items: center;
+  }
+  .snack-compare { display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .snack-item { width: 110px; padding: 14px 8px; border-radius: 20px; background: var(--white); box-shadow: 0 4px 0 var(--line); }
+  .snack-item .e { font-size: 38px; line-height: 1.1; }
+  .snack-item small { display: block; font-weight: 800; font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.25; }
+  .snack-item.win { border: 3px solid var(--orange); }
+  .snack-eq { font-family: var(--head); font-weight: 800; font-size: 22px; color: var(--muted); }
+  .snack .h2 { font-size: clamp(28px, 6.8vw, 40px); }
+  .snack-price { font-family: var(--head); font-weight: 800; font-size: 72px; line-height: 1; color: var(--orange); }
+  .snack-price + small { display: block; font-weight: 800; color: var(--muted); margin-bottom: 18px; }
+
+  /* ---------- Objections ---------- */
+  .objections { background: var(--sky-soft); }
+  .obj-grid { display: grid; gap: 14px; margin-top: 36px; }
+  .obj { background: var(--white); border-radius: var(--radius); padding: 22px 20px; box-shadow: 0 5px 0 rgba(46,149,224,.18); text-align: left; }
+  .obj h3 { display: flex; gap: 10px; align-items: flex-start; font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+  .obj h3::before { content: "?"; flex: 0 0 auto; width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: var(--sky); color: var(--white); font-size: 18px; }
+  .obj p { color: var(--muted); font-size: 16px; padding-left: 40px; }
+  .obj p b { color: var(--green); }
+
+  /* ---------- Final CTA ---------- */
+  .final {
+    color: var(--white); text-align: center; overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 110%, rgba(255, 201, 60, .45), transparent 55%),
+      radial-gradient(circle at 10% 10%, rgba(156, 132, 238, .35), transparent 40%),
+      linear-gradient(180deg, var(--navy-2), var(--navy));
+    padding: 80px 0;
+  }
+  .final .h2 { color: var(--white); font-size: clamp(30px, 7.4vw, 50px); max-width: 820px; margin: 0 auto; }
+  .final .h2 .gold { color: var(--gold); }
+  .final-copy { margin: 22px auto 26px; max-width: 560px; font-size: 18px; color: rgba(255,255,255,.86); }
+  .final-copy strong { color: var(--white); }
+  .final-price { display: inline-flex; flex-direction: column; align-items: center; margin-bottom: 24px; }
+  .final-price b { font-family: var(--head); font-weight: 800; font-size: 104px; line-height: .95; color: var(--gold); text-shadow: 0 6px 0 rgba(0,0,0,.2); }
+  .final-price small { font-weight: 800; letter-spacing: .1em; text-transform: uppercase; font-size: 13px; color: rgba(255,255,255,.75); }
+  .final .reassure { color: rgba(255,255,255,.8); }
+
+  /* ---------- FAQ ---------- */
+  .faq { background: var(--cream); }
+  .faq-list { margin-top: 32px; display: grid; gap: 12px; }
+  .faq details { background: var(--white); border-radius: 18px; box-shadow: 0 4px 0 var(--line); border: 2px solid var(--line); overflow: hidden; }
+  .faq details[open] { border-color: var(--sky); }
+  .faq summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    padding: 18px 18px; font-family: var(--head); font-weight: 800; font-size: 19px; line-height: 1.25; color: var(--navy);
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+"; flex: 0 0 auto; width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center;
+    background: var(--sky-soft); color: var(--sky-deep); font-size: 22px; transition: transform .2s ease;
+  }
+  .faq details[open] summary::after { content: "–"; background: var(--sky); color: var(--white); }
+  .faq summary:focus-visible { outline: 3px solid var(--sky); outline-offset: -3px; }
+  .faq .ans { padding: 0 18px 18px; color: var(--muted); font-size: 16px; }
+  .faq-cta { margin-top: 36px; }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--navy); color: rgba(255,255,255,.7); text-align: center; padding: 36px 0 28px; font-size: 13px; }
+  footer .logo { color: var(--white); margin-bottom: 12px; }
+  footer p { max-width: 560px; margin: 0 auto 8px; }
+
+  /* ---------- Sticky CTA ---------- */
+  .sticky {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, .96); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 -8px 24px rgba(26,36,86,.14);
+    transform: translateY(110%); transition: transform .3s ease;
+  }
+  .sticky.show { transform: translateY(0); }
+  .sticky-in { display: flex; align-items: center; gap: 12px; max-width: 640px; margin: 0 auto; }
+  .sticky-info { flex: 0 0 auto; line-height: 1.1; }
+  .sticky-info b { display: block; font-family: var(--head); font-weight: 800; font-size: 26px; color: var(--orange); }
+  .sticky-info small { font-weight: 800; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  .sticky .btn { min-height: 54px; font-size: 16px; padding: 10px 14px; box-shadow: 0 5px 0 var(--orange-dark); }
+
+  /* ---------- Reveal ---------- */
+  .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @keyframes floaty { 0%,100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+  .float { animation: floaty 4.5s ease-in-out infinite; }
+  .float.d2 { animation-delay: -1.2s; } .float.d3 { animation-delay: -2.4s; } .float.d4 { animation-delay: -3.4s; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 6px 0 var(--orange-dark), 0 14px 26px rgba(255,122,26,.35), 0 0 0 0 rgba(255,122,26,.45); } 60% { box-shadow: 0 6px 0 var(--orange-dark), 0 14px 26px rgba(255,122,26,.35), 0 0 0 14px rgba(255,122,26,0); } }
+  .pulse { animation: pulse 2.4s ease-out infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .float, .pulse { animation: none; }
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    .sticky { transition: none; }
+  }
+
+  /* ---------- Small phones ---------- */
+  @media (max-width: 360px) {
+    .chip { font-size: 12px; padding: 6px 9px; }
+    .chip i { width: 24px; height: 24px; font-size: 14px; }
+    .phone { width: 228px; }
+    .price-big { font-size: 84px; }
+    .sticky-info b { font-size: 22px; }
+    .sticky .btn { font-size: 14px; }
+  }
+
+  /* ---------- Tablet / desktop ---------- */
+  @media (min-width: 720px) {
+    body { font-size: 18px; }
+    section { padding: 96px 0; }
+    .cards-3, .tgrid { grid-template-columns: repeat(3, 1fr); }
+    .pain-card { grid-template-columns: 1fr; text-align: center; }
+    .pain-card .ico { grid-row: auto; margin: 0 auto 10px; width: 68px; height: 68px; font-size: 34px; }
+    .versus { grid-template-columns: 1fr auto 1fr; align-items: stretch; }
+    .steps { grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 60px; }
+    .map-path { display: block; position: absolute; left: 12%; right: 12%; top: -24px; height: 60px; z-index: 0; }
+    .feat-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .ba { grid-template-columns: 1fr auto 1.15fr; align-items: center; }
+    .ba-arrow { transform: rotate(-90deg); }
+    .card-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .obj-grid { grid-template-columns: repeat(2, 1fr); }
+    .heart-card { padding: 56px 56px 44px; }
+    .offer-card { padding: 40px 40px 34px; }
+    .snack-card { grid-template-columns: 1fr 1fr; padding: 44px; text-align: left; }
+    .snack-card .btn { margin-left: 0; }
+    .sticky { display: none; }
+    body { padding-bottom: 0; }
+  }
+  @media (min-width: 980px) {
+    .hero { padding-bottom: 100px; }
+    .hero-grid { grid-template-columns: 1fr 1fr; align-items: center; gap: 30px; padding-top: 40px; }
+    .hero-copy { text-align: left; }
+    .hero-sub { margin-left: 0; }
+    .price-row { justify-content: flex-start; }
+    .hero .btn { margin-left: 0; max-width: 540px; }
+    .hero h1 { font-size: 54px; }
+    .hero .reassure { justify-content: flex-start; }
+    .phone { width: 290px; }
+    .mock-stage { max-width: 640px; }
+    .screen { font-size: 13px; }
+    .feat-grid { grid-template-columns: repeat(3, 1fr); }
+    .feat { grid-template-columns: 1fr; text-align: center; padding: 28px 22px; }
+    .feat .ico { grid-row: auto; margin: 0 auto 12px; width: 72px; height: 72px; font-size: 36px; }
+  }
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<!-- ================= TOP BAR (no navigation, on purpose) ================= -->
+<header class="topbar">
+  <div class="wrap">
+    <span class="logo"><span class="logo-badge" aria-hidden="true">📖</span>Bible Adventure</span>
+    <span class="topbar-price">Only <b>$7</b></span>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <svg class="cloud float" style="top:70px;left:-40px;width:150px" viewBox="0 0 200 80" aria-hidden="true"><path fill="#fff" d="M40 70h130a28 28 0 0 0 0-56 40 40 0 0 0-72-6A30 30 0 0 0 40 70z"/></svg>
+  <svg class="cloud float d3" style="top:320px;right:-50px;width:170px;opacity:.8" viewBox="0 0 200 80" aria-hidden="true"><path fill="#fff" d="M40 70h130a28 28 0 0 0 0-56 40 40 0 0 0-72-6A30 30 0 0 0 40 70z"/></svg>
+  <span class="twinkle float d2" style="top:120px;right:14%" aria-hidden="true">✦</span>
+  <span class="twinkle float d4" style="top:40%;left:6%;font-size:16px" aria-hidden="true">✦</span>
+
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">✨ A fun way to discover the Bible</span>
+      <h1>Help Your Child Discover the Bible in a Way They'll
+        <span class="hl">Actually Enjoy<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9 Q 50 1 100 6 T 198 4" fill="none" stroke="#FFC93C" stroke-width="5" stroke-linecap="round"/></svg></span>
+      </h1>
+      <p class="hero-sub">Bible Adventure turns Bible stories, characters, lessons, and Christian values into a <strong>fun and interactive mini app</strong> made for curious young minds.</p>
+
+      <div class="price-row">
+        <span class="price-tag"><small>ONLY</small><strong>$7</strong></span>
+        <span class="price-note">One-time<br>payment</span>
+      </div>
+      <a href="#CHECKOUT" class="btn pulse" data-cta>Start the Bible Adventure — $7 <span class="arrow" aria-hidden="true">→</span></a>
+      <div class="reassure"><span>Instant access</span><span>Child-friendly</span><span>Fun &amp; educational</span></div>
+    </div>
+
+    <!-- App mockup -->
+    <div class="mock-stage" aria-label="Preview of the Bible Adventure mini app" role="img">
+      <div class="phone">
+        <div class="screen">
+          <div class="app-head">
+            <div class="app-hi">Hi, Explorer! 👋<small>Ready for today's adventure?</small></div>
+            <div class="app-stars">⭐ 12</div>
+          </div>
+
+          <div class="app-story">
+            <div class="meta">TODAY'S STORY</div>
+            <svg viewBox="0 0 220 90" aria-hidden="true">
+              <circle cx="190" cy="18" r="11" fill="#FFE27A"/>
+              <path d="M20 22c6-8 18-8 22 0 8-2 12 4 10 9H14c-3-5 1-10 6-9z" fill="#fff" opacity=".9"/>
+              <path d="M40 58 L180 58 L166 76 L54 76 Z" fill="#9A5B2E"/>
+              <rect x="70" y="38" width="80" height="20" rx="3" fill="#C27A3E"/>
+              <path d="M64 40 L110 24 L156 40 Z" fill="#E0A15E"/>
+              <rect x="86" y="44" width="10" height="9" rx="2" fill="#6B3A17"/>
+              <rect x="124" y="44" width="10" height="9" rx="2" fill="#6B3A17"/>
+              <text x="100" y="54" font-size="11">🦒</text>
+              <text x="140" y="52" font-size="9">🐘</text>
+              <path d="M0 76 Q 18 68 36 76 T 72 76 T 108 76 T 144 76 T 180 76 T 220 76 V90 H0Z" fill="#1F6FC0"/>
+              <path d="M0 82 Q 18 75 36 82 T 72 82 T 108 82 T 144 82 T 180 82 T 220 82 V90 H0Z" fill="#185FA8"/>
+              <path d="M150 12 q8 -6 16 0" stroke="#fff" stroke-width="2" fill="none"/>
+            </svg>
+            <h4>Noah's Ark 🌈</h4>
+            <div class="meta">Chapter 2 of 3 · Obedience &amp; Faith</div>
+            <div class="app-bar"><i></i></div>
+          </div>
+
+          <div class="app-quiz">
+            <div class="q">⭐ Quick quiz: Who built the big ark?</div>
+            <div class="app-opt ok">Noah</div>
+            <div class="app-opt">Jonah</div>
+            <div class="app-opt">David</div>
+          </div>
+
+          <div class="app-badge"><span>🏅</span>New badge unlocked: Faithful Friend!</div>
+
+          <div class="app-nav" aria-hidden="true"><span>🗺️</span><span>📖</span><span>⭐</span><span>👑</span></div>
+        </div>
+      </div>
+
+      <div class="chips">
+        <span class="chip chip-1 float"><i>📖</i>Bible Stories</span>
+        <span class="chip chip-2 float d2"><i>⭐</i>Fun Quizzes</span>
+        <span class="chip chip-3 float d3"><i>👑</i>Bible Characters</span>
+        <span class="chip chip-4 float d4"><i>❤️</i>Christian Values</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAIN ================= -->
+<section class="pain">
+  <div class="wrap center">
+    <span class="eyebrow">💭 For parents &amp; grandparents</span>
+    <h2 class="h2 reveal">Does Your Child Really Know the <span class="hl">Stories of the Bible?</span></h2>
+    <div class="pain-copy reveal">
+      <p>You may want your child to grow up knowing the stories, lessons, and values found in the Bible...</p>
+      <p><strong>But getting a child to sit still and pay attention isn't always easy.</strong></p>
+      <p>Between games, videos, social media, cartoons, and endless distractions, traditional Bible learning can quickly feel boring to a young child.</p>
+    </div>
+
+    <div class="cards-3">
+      <article class="pain-card reveal">
+        <div class="ico bg-sky" aria-hidden="true">📱</div>
+        <h3>Too Many Distractions</h3>
+        <p>Children are surrounded by entertainment designed to capture their attention.</p>
+      </article>
+      <article class="pain-card reveal">
+        <div class="ico bg-gold" aria-hidden="true">📖</div>
+        <h3>Bible Learning Can Feel Difficult</h3>
+        <p>Long explanations and traditional materials aren't always designed for young learners.</p>
+      </article>
+      <article class="pain-card reveal">
+        <div class="ico bg-red" aria-hidden="true">❤️</div>
+        <h3>You Want Something Meaningful</h3>
+        <p>You want your child to learn values that can stay with them as they grow.</p>
+      </article>
+    </div>
+
+    <p class="pain-quote reveal">It's not that you don't care. It's that you need a way that actually <span class="mark">keeps their attention.</span></p>
+  </div>
+</section>
+
+<!-- ================= TRANSITION ================= -->
+<section class="night" id="discover">
+  <div class="stars-bg" aria-hidden="true">
+    <i style="top:8%;left:12%"></i><i style="top:18%;left:78%"></i><i style="top:32%;left:40%"></i>
+    <i style="top:52%;left:88%"></i><i style="top:64%;left:6%"></i><i style="top:80%;left:55%"></i>
+    <i style="top:90%;left:24%"></i><i style="top:12%;left:58%"></i><i style="top:44%;left:20%"></i>
+  </div>
+  <span class="twinkle float" style="top:60px;right:10%;font-size:28px" aria-hidden="true">✦</span>
+  <span class="twinkle float d3" style="bottom:120px;left:8%" aria-hidden="true">✦</span>
+
+  <div class="wrap center" style="position:relative">
+    <span class="eyebrow">🗺️ A new way to start</span>
+    <h2 class="h2 reveal">What If Bible Time Felt Like <span style="color:var(--gold)">Adventure Time?</span></h2>
+    <p class="lead reveal" style="margin-top:18px">Instead of simply telling your child to read another Bible story...<br><strong style="color:#fff">Give them something they can explore.</strong></p>
+
+    <div class="versus">
+      <div class="vs-card vs-old reveal">
+        <div class="vs-label">The traditional way</div>
+        <div class="vs-words">Sit down. Read. Listen. Try to remember.</div>
+      </div>
+      <div class="vs-mid" aria-hidden="true"><b>VS</b></div>
+      <div class="vs-card vs-new reveal">
+        <div class="vs-label">The Bible Adventure way</div>
+        <div class="vs-pills">
+          <span class="bg-sky">🧭 Explore</span>
+          <span class="bg-gold">🔎 Discover</span>
+          <span class="bg-purple">⭐ Answer</span>
+          <span class="bg-green">💡 Learn</span>
+          <span class="bg-orange">🎉 Have fun</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="meet reveal">
+      <div class="meet-logo" aria-hidden="true">📖</div>
+      <h3>Meet Bible Adventure.</h3>
+      <p>An interactive mini app designed to help children discover Bible stories and Christian values through a fun and engaging experience.</p>
+    </div>
+
+    <a href="#CHECKOUT" class="btn btn-gold" data-cta>Discover Bible Adventure <span class="arrow" aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="how">
+  <div class="wrap center">
+    <span class="eyebrow">🧭 How it works</span>
+    <h2 class="h2 reveal">Learning Can Be <span class="hl-sky">Simple</span>, <span class="hl">Fun</span> &amp; <span style="color:#23945A">Meaningful</span></h2>
+
+    <div class="steps">
+      <svg class="map-path" viewBox="0 0 800 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 50 C 150 -10, 250 70, 400 30 S 650 -10, 800 50" fill="none" stroke="#FFC93C" stroke-width="4" stroke-dasharray="4 12" stroke-linecap="round"/>
+      </svg>
+      <article class="step step-1 reveal">
+        <div class="step-num">1</div>
+        <div class="step-emoji" aria-hidden="true">🗺️</div>
+        <h3>EXPLORE</h3>
+        <p>Discover Bible stories and meet important characters from Scripture.</p>
+      </article>
+      <article class="step step-2 reveal">
+        <div class="step-num">2</div>
+        <div class="step-emoji" aria-hidden="true">🎯</div>
+        <h3>PLAY</h3>
+        <p>Answer fun questions and interact with the content.</p>
+      </article>
+      <article class="step step-3 reveal">
+        <div class="step-num">3</div>
+        <div class="step-emoji" aria-hidden="true">🌱</div>
+        <h3>LEARN</h3>
+        <p>Build a stronger understanding of Bible stories and the values behind them.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section class="features">
+  <svg class="cloud" style="top:30px;right:-30px;width:140px;opacity:.9" viewBox="0 0 200 80" aria-hidden="true"><path fill="#fff" d="M40 70h130a28 28 0 0 0 0-56 40 40 0 0 0-72-6A30 30 0 0 0 40 70z"/></svg>
+  <div class="wrap center">
+    <span class="eyebrow">🎒 What's inside</span>
+    <h2 class="h2 reveal">Everything Your Child Needs to <span class="hl">Start Exploring</span></h2>
+
+    <div class="feat-grid">
+      <article class="feat reveal"><div class="ico bg-sky" aria-hidden="true">📖</div><h3>Bible Stories</h3><p>Discover memorable stories from the Bible in a child-friendly format.</p></article>
+      <article class="feat reveal"><div class="ico bg-gold" aria-hidden="true">⭐</div><h3>Interactive Quizzes</h3><p>Fun questions help children remember what they discover.</p></article>
+      <article class="feat reveal"><div class="ico bg-purple" aria-hidden="true">👑</div><h3>Bible Characters</h3><p>Meet important people from Scripture and learn what made their stories special.</p></article>
+      <article class="feat reveal"><div class="ico bg-red" aria-hidden="true">❤️</div><h3>Christian Values</h3><p>Discover lessons about kindness, courage, faith, forgiveness, obedience, and love.</p></article>
+      <article class="feat reveal"><div class="ico bg-green" aria-hidden="true">🎮</div><h3>Fun Learning</h3><p>Turn learning into an experience children actually want to explore.</p></article>
+      <article class="feat reveal"><div class="ico bg-orange" aria-hidden="true">📱</div><h3>Easy Access</h3><p>Simple and accessible from a phone, tablet, or computer.</p></article>
+    </div>
+
+    <div class="section-cta">
+      <a href="#CHECKOUT" class="btn" data-cta>Let My Child Explore <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRANSFORMATION ================= -->
+<section class="transform">
+  <div class="wrap center">
+    <span class="eyebrow">✨ The difference</span>
+    <h2 class="h2 reveal">From <span style="color:var(--muted)">"I'm Bored"</span> to <span class="hl">"Can I Do Another One?"</span></h2>
+
+    <div class="ba">
+      <div class="ba-card ba-before reveal">
+        <div class="ba-head"><div class="ba-face" aria-hidden="true">😴</div><h3>Before<small>Bible time feels like a chore</small></h3></div>
+        <ul>
+          <li><span>❌</span>Bible stories feel boring</li>
+          <li><span>❌</span>Child loses attention quickly</li>
+          <li><span>❌</span>Parents struggle to keep them engaged</li>
+        </ul>
+      </div>
+      <div class="ba-arrow" aria-hidden="true">⬇</div>
+      <div class="ba-card ba-after reveal">
+        <div class="ba-head"><div class="ba-face" aria-hidden="true">🤩</div><h3>With Bible Adventure<small>Bible time feels like discovery</small></h3></div>
+        <ul>
+          <li><span>✅</span>Bible stories become easier to understand</li>
+          <li><span>✅</span>Learning feels interactive</li>
+          <li><span>✅</span>Children can explore at their own pace</li>
+          <li><span>✅</span>Bible time becomes more enjoyable</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARENT EMOTIONAL ================= -->
+<section class="heart">
+  <div class="wrap">
+    <div class="heart-card reveal">
+      <h2 class="h2">Because What You Teach Them Today Can <span class="hl">Stay With Them Tomorrow.</span></h2>
+      <p>Children may forget many things they experience growing up.</p>
+      <p>But the stories, lessons, and values they learn can become part of who they are.</p>
+
+      <div class="cartoon-line">Kids today can name so many cartoon characters. Wouldn't it be wonderful if they also knew Noah, David, Esther, and the story of Jesus?</div>
+
+      <p>Bible Adventure gives you a simple way to introduce your child to the Bible through an experience designed around <strong>curiosity, exploration, and fun.</strong></p>
+
+      <div class="gift">You're not just giving them an app.<br><b>You're giving them something meaningful to discover.</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTENT PREVIEW ================= -->
+<section class="stories">
+  <div class="wrap center">
+    <span class="eyebrow">🃏 Story cards</span>
+    <h2 class="h2 reveal">Stories Your Child Can <span class="hl">Explore</span></h2>
+    <p class="lead reveal" style="margin-top:14px">Colorful story cards introduce the heroes, adventures, and lessons of the Bible.</p>
+
+    <div class="card-grid">
+      <article class="scard c-noah reveal"><div class="scard-in"><div class="scard-art"><span class="no">01</span><span class="star" aria-hidden="true">⭐</span><span aria-hidden="true">🌊</span></div><div class="scard-body"><h3>Noah's Ark</h3><em>Obedience</em></div></div></article>
+      <article class="scard c-daniel reveal"><div class="scard-in"><div class="scard-art"><span class="no">02</span><span class="star" aria-hidden="true">⭐</span><span aria-hidden="true">🦁</span></div><div class="scard-body"><h3>Daniel in the Lions' Den</h3><em>Faith</em></div></div></article>
+      <article class="scard c-david reveal"><div class="scard-in"><div class="scard-art"><span class="no">03</span><span class="star" aria-hidden="true">⭐</span><span aria-hidden="true">🌟</span></div><div class="scard-body"><h3>David &amp; Goliath</h3><em>Courage</em></div></div></article>
+      <article class="scard c-jonah reveal"><div class="scard-in"><div class="scard-art"><span class="no">04</span><span class="star" aria-hidden="true">⭐</span><span aria-hidden="true">🐟</span></div><div class="scard-body"><h3>Jonah &amp; the Great Fish</h3><em>Second chances</em></div></div></article>
+      <article class="scard c-esther reveal"><div class="scard-in"><div class="scard-art"><span class="no">05</span><span class="star" aria-hidden="true">⭐</span><span aria-hidden="true">👑</span></div><div class="scard-body"><h3>Queen Esther</h3><em>Bravery</em></div></div></article>
+      <article class="scard c-jesus reveal"><div class="scard-in"><div class="scard-art"><span class="no">06</span><span class="star" aria-hidden="true">⭐</span><span aria-hidden="true">✝️</span></div><div class="scard-body"><h3>The Story of Jesus</h3><em>Love</em></div></div></article>
+    </div>
+
+    <div class="section-cta">
+      <a href="#CHECKOUT" class="btn" data-cta>Explore the Stories <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOCIAL PROOF (placeholders — replace with real feedback) ================= -->
+<section class="proof">
+  <div class="wrap center">
+    <span class="eyebrow">💬 From families</span>
+    <h2 class="h2 reveal">Parents Love Making Bible Learning <span class="hl">More Fun</span></h2>
+
+    <!-- IMPORTANT: Only publish genuine testimonials, with the parent's permission. Do not invent names, places, or ratings. -->
+    <div class="tgrid">
+      <figure class="tcard reveal" style="margin:0">
+        <blockquote>[REAL PARENT TESTIMONIAL HERE]</blockquote>
+        <figcaption class="tperson"><span class="tavatar" aria-hidden="true">👨‍👩‍👧</span><span><b>[Parent first name]</b><small>[Relationship, e.g. mom of two]</small></span></figcaption>
+      </figure>
+      <figure class="tcard reveal" style="margin:0">
+        <blockquote>[REAL PARENT TESTIMONIAL HERE]</blockquote>
+        <figcaption class="tperson"><span class="tavatar" aria-hidden="true">👵</span><span><b>[Parent first name]</b><small>[Relationship, e.g. grandmother]</small></span></figcaption>
+      </figure>
+      <figure class="tcard reveal" style="margin:0">
+        <blockquote>[REAL PARENT TESTIMONIAL HERE]</blockquote>
+        <figcaption class="tperson"><span class="tavatar" aria-hidden="true">👨‍👧‍👦</span><span><b>[Parent first name]</b><small>[Relationship, e.g. dad]</small></span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VALUE / OFFER ================= -->
+<section class="offer" id="offer">
+  <div class="wrap center">
+    <span class="eyebrow">🎁 Your Bible Adventure</span>
+    <h2 class="h2 reveal">Everything Your Child Needs to Start <span class="hl">Exploring the Bible</span></h2>
+
+    <div class="offer-card reveal">
+      <div class="offer-ribbon">One-time payment</div>
+      <div class="offer-app">
+        <div class="meet-logo" aria-hidden="true">📖</div>
+        <b>Bible Adventure<small>Interactive mini app for kids</small></b>
+      </div>
+
+      <ul class="checklist">
+        <li>Bible stories</li>
+        <li>Bible characters</li>
+        <li>Interactive quizzes</li>
+        <li>Christian values</li>
+        <li>Fun learning activities</li>
+        <li>Child-friendly experience</li>
+        <li>Easy access</li>
+      </ul>
+
+      <div class="price-box">
+        <!-- Only show a regular value if it is a real, verifiable price. Otherwise delete this line. -->
+        <div class="price-regular">REGULAR VALUE: <s>$XX</s></div>
+        <div class="price-today">Today</div>
+        <div class="price-big"><sup>$</sup>7</div>
+        <span class="onetime">ONE-TIME PAYMENT</span>
+      </div>
+
+      <a href="#CHECKOUT" class="btn" data-cta>Get Bible Adventure for $7 <span class="arrow" aria-hidden="true">→</span></a>
+      <div class="reassure"><span>Instant access</span><span>No subscription</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICE ANCHOR ================= -->
+<section class="snack">
+  <div class="wrap">
+    <div class="snack-card reveal">
+      <div>
+        <div class="snack-compare" aria-hidden="true">
+          <div class="snack-item"><div class="e">🍿🥤</div><small>A family snack</small></div>
+          <div class="snack-eq">or</div>
+          <div class="snack-item win"><div class="e">📖✨</div><small>A Bible adventure</small></div>
+        </div>
+      </div>
+      <div>
+        <h2 class="h2">For Less Than the Cost of a <span class="hl">Family Snack...</span></h2>
+        <p style="margin:12px 0 14px;color:var(--muted);font-size:18px">You can give your child a fun new way to discover the Bible.</p>
+        <div class="snack-price">$7</div>
+        <small>One-time payment</small>
+        <a href="#CHECKOUT" class="btn" data-cta>Start the Adventure <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OBJECTIONS ================= -->
+<section class="objections">
+  <div class="wrap center">
+    <span class="eyebrow">🤔 Good questions</span>
+    <h2 class="h2 reveal">You Might Be <span class="hl-sky">Wondering...</span></h2>
+
+    <div class="obj-grid">
+      <article class="obj reveal">
+        <h3>Is this suitable for children?</h3>
+        <p><b>Yes.</b> Bible Adventure is designed with a child-friendly experience focused on simple language, colorful visuals, stories, and interactive learning.</p>
+      </article>
+      <article class="obj reveal">
+        <h3>Do I need to be good with technology?</h3>
+        <p><b>No.</b> The experience is designed to be simple and easy to access.</p>
+      </article>
+      <article class="obj reveal">
+        <h3>Is this a Bible replacement?</h3>
+        <p><b>No.</b> Bible Adventure is designed as a supplementary learning experience to help children become more familiar with Bible stories and Christian values.</p>
+      </article>
+      <article class="obj reveal">
+        <h3>How much does it cost?</h3>
+        <p>Just <b style="color:var(--orange)">$7</b> with a one-time payment.</p>
+      </article>
+    </div>
+
+    <div class="section-cta">
+      <a href="#CHECKOUT" class="btn" data-cta>Get Access for $7 <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="final" id="final">
+  <div class="stars-bg" aria-hidden="true">
+    <i style="top:10%;left:15%"></i><i style="top:22%;left:82%"></i><i style="top:40%;left:8%"></i>
+    <i style="top:55%;left:92%"></i><i style="top:15%;left:48%"></i><i style="top:70%;left:30%"></i>
+  </div>
+  <span class="twinkle float" style="top:50px;left:12%;font-size:26px" aria-hidden="true">✦</span>
+  <span class="twinkle float d2" style="top:110px;right:12%" aria-hidden="true">✦</span>
+
+  <div class="wrap" style="position:relative">
+    <h2 class="h2 reveal">Give Your Child a Fun Way to Discover the Stories That Have <span class="gold">Inspired Generations.</span></h2>
+    <div class="final-copy reveal">
+      <p>Don't wait for Bible learning to feel boring.</p>
+      <p>Make it something they can <strong>explore, discover, and enjoy.</strong></p>
+      <p><strong>Start their Bible Adventure today.</strong></p>
+    </div>
+    <div class="final-price"><b>$7</b><small>One-time payment</small></div>
+    <a href="#CHECKOUT" class="btn pulse" data-cta>Get Bible Adventure Now <span class="arrow" aria-hidden="true">→</span></a>
+    <div class="reassure"><span>Instant access</span><span>One-time payment</span><span>Child-friendly learning</span></div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq">
+  <div class="wrap narrow center">
+    <span class="eyebrow">❓ FAQ</span>
+    <h2 class="h2 reveal">Frequently Asked Questions</h2>
+
+    <div class="faq-list" style="text-align:left">
+      <details>
+        <summary>What is Bible Adventure?</summary>
+        <div class="ans">Bible Adventure is an interactive mini app for children. It helps kids discover Bible stories, characters, lessons, and Christian values through colorful visuals, simple language, and fun quizzes. It's not a PDF and not a traditional online course.</div>
+      </details>
+      <details>
+        <summary>Who is it for?</summary>
+        <div class="ans">It's made for young children and for the parents, grandparents, and family members who want to introduce them to the Bible in a way that keeps their attention.</div>
+      </details>
+      <details>
+        <summary>What will my child learn?</summary>
+        <div class="ans">Your child will explore well-known Bible stories like Noah's Ark, David &amp; Goliath, and the story of Jesus, meet important Bible characters, and discover values such as kindness, courage, faith, forgiveness, obedience, and love.</div>
+      </details>
+      <details>
+        <summary>Can my child use it independently?</summary>
+        <div class="ans">The experience is designed to be simple and child-friendly, so many children can explore at their own pace. Younger children, or those still learning to read, may enjoy it most with a parent or grandparent alongside — which can also be a lovely moment to share together.</div>
+      </details>
+      <details>
+        <summary>Is it a physical product?</summary>
+        <div class="ans">No. Bible Adventure is a digital mini app. Nothing is shipped — you access it online.</div>
+      </details>
+      <details>
+        <summary>How do I access it?</summary>
+        <div class="ans">After your payment is complete, you'll receive your access details. You can open Bible Adventure from a phone, tablet, or computer.</div>
+      </details>
+      <details>
+        <summary>Is the payment one-time?</summary>
+        <div class="ans">Yes. It's a single payment of $7. There's no subscription.</div>
+      </details>
+      <details>
+        <summary>Is it a replacement for the Bible?</summary>
+        <div class="ans">No. Bible Adventure is a supplementary learning experience designed to help children become more familiar with Bible stories and Christian values. It works best alongside reading the Bible together as a family.</div>
+      </details>
+    </div>
+
+    <div class="faq-cta">
+      <a href="#CHECKOUT" class="btn" data-cta>Start for Just $7 <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="logo"><span class="logo-badge" aria-hidden="true">📖</span>Bible Adventure</span>
+    <p>A fun, interactive way for children to discover Bible stories, characters, and Christian values.</p>
+    <p>Bible Adventure is a supplementary learning experience and is not a replacement for the Bible.</p>
+    <p>© <span id="year">2026</span> Bible Adventure. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Sticky mobile CTA -->
+<div class="sticky" id="sticky" aria-hidden="true">
+  <div class="sticky-in">
+    <div class="sticky-info"><b>$7</b><small>One-time</small></div>
+    <a href="#CHECKOUT" class="btn" data-cta tabindex="-1">Start the Bible Adventure</a>
+  </div>
+</div>
+
+<script>
+  // Set your checkout link here. Every CTA on the page points to it.
+  // While empty, buttons keep the "#CHECKOUT" placeholder.
+  var CHECKOUT_URL = '';
+
+  (function () {
+    if (CHECKOUT_URL) {
+      document.querySelectorAll('a[href="#CHECKOUT"]').forEach(function (a) { a.href = CHECKOUT_URL; });
+    }
+
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    var reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      reveals.forEach(function (el) { io.observe(el); });
+    } else {
+      reveals.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    // Sticky CTA: visible once the hero button is off-screen, hidden while the final CTA is on screen
+    var sticky = document.getElementById('sticky');
+    var heroBtn = document.querySelector('.hero [data-cta]');
+    var finalSec = document.getElementById('final');
+    if (sticky && heroBtn && finalSec && 'IntersectionObserver' in window) {
+      var heroVisible = true, finalVisible = false;
+      var update = function () {
+        var show = !heroVisible && !finalVisible;
+        sticky.classList.toggle('show', show);
+        sticky.setAttribute('aria-hidden', show ? 'false' : 'true');
+        var link = sticky.querySelector('a');
+        if (link) link.tabIndex = show ? 0 : -1;
+      };
+      new IntersectionObserver(function (e) { heroVisible = e[0].isIntersecting; update(); }).observe(heroBtn);
+      new IntersectionObserver(function (e) { finalVisible = e[0].isIntersecting; update(); }).observe(finalSec);
+    }
+  })();
+</script>
+</body>
+</html>
