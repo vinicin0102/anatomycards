@@ -11,6 +11,8 @@ api/diagnostico.php      checagem da integração (protegido por token)
 tools/testar-webhook.php testa a validação de assinatura do webhook (CLI)
 api/_bootstrap.php       validação, CORS e chamada autenticada à API
 api/config.example.php   modelo de configuração
+api/slides.php           gera o roteiro de slides com a API do Claude
+slides/index.html        app "Aula Futura" — gerador de slides para professores
 storage/                 log de pagamentos (não versionado)
 ```
 
@@ -128,6 +130,38 @@ Estas escolhas são deliberadas — mudá-las abre brecha real:
 - **Cobranças não duplicam.** Cada abertura do checkout gera um `pedido`, usado
   como `external_id_client`. Clicar duas vezes devolve a mesma cobrança em vez
   de criar outra.
+
+## Aula Futura — gerador de slides para professores
+
+`slides/index.html` é um app separado da página de vendas. O professor informa
+a disciplina, o tema exato, o nível da turma e (opcionalmente) cola o próprio
+material; a IA devolve a aula em slides animados com visual futurista e notas
+para o professor. Depois dá para editar cada slide, reordenar, trocar o visual
+(Neon, Plasma, Solar, Matrix, Gelo) e apresentar em tela cheia.
+
+- **Layouts:** capa, tópicos, destaque (número/conceito), comparação, etapas,
+  definição/citação, pergunta de quiz (a resposta aparece ao avançar) e resumo.
+- **Apresentação:** setas/espaço/clique/swipe para navegar, `N` mostra as notas,
+  `F` tela cheia, `Esc` sai.
+- **Exportar:** "Baixar apresentação (.html)" gera um arquivo único que abre
+  direto no modo apresentação, sem servidor. O `.json` pode ser reaberto no app.
+- **Modo manual:** a aba "Escrever meu roteiro" monta os slides a partir de um
+  texto simples, sem IA e sem custo.
+- As aulas ficam salvas no navegador do professor (localStorage).
+
+Para ligar a geração com IA, preencha no `config.php`:
+
+| Chave | O que é |
+|---|---|
+| `anthropic_api_key` | chave da API do Claude (console.anthropic.com), ou a variável `ANTHROPIC_API_KEY` |
+| `slides_codigo` | código que o professor digita no app. **Vazio = geração desligada** |
+| `slides_limite_hora` | gerações por IP por hora (padrão 20) |
+
+A chave fica só no servidor. Como cada geração consome créditos da API, o
+endpoint recusa pedidos sem o código de acesso e limita o volume por IP. A
+chamada usa `claude-opus-5` com saída estruturada (JSON Schema), então o
+formato dos slides é garantido; o PHP ainda normaliza o resultado antes de
+devolver ao navegador, e o front só insere texto com `textContent`.
 
 ## Rate limit
 

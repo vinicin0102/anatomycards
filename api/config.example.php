@@ -87,4 +87,16 @@ return [
      * Sem ele o diagnóstico responde 404.
      */
     'debug_token' => '',
+
+    /**
+     * Gerador de slides (slides/index.html -> api/slides.php).
+     *
+     * anthropic_api_key: chave da API do Claude (console.anthropic.com).
+     * slides_codigo: senha que o professor digita no app. Cada geração custa
+     * créditos da API, então o endpoint fica desligado enquanto estiver vazio.
+     * slides_limite_hora: gerações permitidas por IP a cada hora.
+     */
+    'anthropic_api_key'  => getenv('ANTHROPIC_API_KEY') ?: '',
+    'slides_codigo'      => getenv('SLIDES_CODIGO') ?: '',
+    'slides_limite_hora' => 20,
 ];
