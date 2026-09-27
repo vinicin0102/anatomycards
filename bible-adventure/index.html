@@ -598,7 +598,7 @@
         <span class="price-tag"><small>ONLY</small><strong>$7</strong></span>
         <span class="price-note">One-time<br>payment</span>
       </div>
-      <a href="#CHECKOUT" class="btn pulse" data-cta>Start the Bible Adventure — $7 <span class="arrow" aria-hidden="true">→</span></a>
+      <a href="https://pay.hotmart.com/L107791315O" class="btn pulse" data-cta>Start the Bible Adventure — $7 <span class="arrow" aria-hidden="true">→</span></a>
       <div class="reassure"><span>Instant access</span><span>Child-friendly</span><span>Fun &amp; educational</span></div>
     </div>
 
@@ -727,7 +727,7 @@
       <p>An interactive mini app designed to help children discover Bible stories and Christian values through a fun and engaging experience.</p>
     </div>
 
-    <a href="#CHECKOUT" class="btn btn-gold" data-cta>Discover Bible Adventure <span class="arrow" aria-hidden="true">→</span></a>
+    <a href="https://pay.hotmart.com/L107791315O" class="btn btn-gold" data-cta>Discover Bible Adventure <span class="arrow" aria-hidden="true">→</span></a>
   </div>
 </section>
 
@@ -780,7 +780,7 @@
     </div>
 
     <div class="section-cta">
-      <a href="#CHECKOUT" class="btn" data-cta>Let My Child Explore <span class="arrow" aria-hidden="true">→</span></a>
+      <a href="https://pay.hotmart.com/L107791315O" class="btn" data-cta>Let My Child Explore <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -848,7 +848,7 @@
     </div>
 
     <div class="section-cta">
-      <a href="#CHECKOUT" class="btn" data-cta>Explore the Stories <span class="arrow" aria-hidden="true">→</span></a>
+      <a href="https://pay.hotmart.com/L107791315O" class="btn" data-cta>Explore the Stories <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -908,7 +908,7 @@
         <span class="onetime">ONE-TIME PAYMENT</span>
       </div>
 
-      <a href="#CHECKOUT" class="btn" data-cta>Get Bible Adventure for $7 <span class="arrow" aria-hidden="true">→</span></a>
+      <a href="https://pay.hotmart.com/L107791315O" class="btn" data-cta>Get Bible Adventure for $7 <span class="arrow" aria-hidden="true">→</span></a>
       <div class="reassure"><span>Instant access</span><span>No subscription</span></div>
     </div>
   </div>
@@ -930,7 +930,7 @@
         <p style="margin:12px 0 14px;color:var(--muted);font-size:18px">You can give your child a fun new way to discover the Bible.</p>
         <div class="snack-price">$7</div>
         <small>One-time payment</small>
-        <a href="#CHECKOUT" class="btn" data-cta>Start the Adventure <span class="arrow" aria-hidden="true">→</span></a>
+        <a href="https://pay.hotmart.com/L107791315O" class="btn" data-cta>Start the Adventure <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
@@ -962,7 +962,7 @@
     </div>
 
     <div class="section-cta">
-      <a href="#CHECKOUT" class="btn" data-cta>Get Access for $7 <span class="arrow" aria-hidden="true">→</span></a>
+      <a href="https://pay.hotmart.com/L107791315O" class="btn" data-cta>Get Access for $7 <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -984,7 +984,7 @@
       <p><strong>Start their Bible Adventure today.</strong></p>
     </div>
     <div class="final-price"><b>$7</b><small>One-time payment</small></div>
-    <a href="#CHECKOUT" class="btn pulse" data-cta>Get Bible Adventure Now <span class="arrow" aria-hidden="true">→</span></a>
+    <a href="https://pay.hotmart.com/L107791315O" class="btn pulse" data-cta>Get Bible Adventure Now <span class="arrow" aria-hidden="true">→</span></a>
     <div class="reassure"><span>Instant access</span><span>One-time payment</span><span>Child-friendly learning</span></div>
   </div>
 </section>
@@ -1031,7 +1031,7 @@
     </div>
 
     <div class="faq-cta">
-      <a href="#CHECKOUT" class="btn" data-cta>Start for Just $7 <span class="arrow" aria-hidden="true">→</span></a>
+      <a href="https://pay.hotmart.com/L107791315O" class="btn" data-cta>Start for Just $7 <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -1051,19 +1051,20 @@
 <div class="sticky" id="sticky" aria-hidden="true">
   <div class="sticky-in">
     <div class="sticky-info"><b>$7</b><small>One-time</small></div>
-    <a href="#CHECKOUT" class="btn" data-cta tabindex="-1">Start the Bible Adventure</a>
+    <a href="https://pay.hotmart.com/L107791315O" class="btn" data-cta tabindex="-1">Start the Bible Adventure</a>
   </div>
 </div>
 
 <script>
-  // Set your checkout link here. Every CTA on the page points to it.
-  // While empty, buttons keep the "#CHECKOUT" placeholder.
-  var CHECKOUT_URL = '';
+  // Checkout link used by every CTA on the page.
+  var CHECKOUT_URL = 'https://pay.hotmart.com/L107791315O';
 
   (function () {
-    if (CHECKOUT_URL) {
-      document.querySelectorAll('a[href="#CHECKOUT"]').forEach(function (a) { a.href = CHECKOUT_URL; });
-    }
+    // Forward ad-tracking params (utm_*, src, sck, etc.) from this page's URL to the checkout.
+    var params = window.location.search;
+    document.querySelectorAll('[data-cta]').forEach(function (a) {
+      a.href = CHECKOUT_URL + params;
+    });
 
     var y = document.getElementById('year');
     if (y) y.textContent = new Date().getFullYear();
