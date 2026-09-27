@@ -141,8 +141,15 @@ para o professor. Depois dá para editar cada slide, reordenar, trocar o visual
 
 - **Layouts:** capa, tópicos, destaque (número/conceito), comparação, etapas,
   definição/citação, pergunta de quiz (a resposta aparece ao avançar) e resumo.
+- **Movimento:** transições entre slides (dobra espacial, deslizar, cubo 3D,
+  glitch), partículas que disparam na troca e fogem do mouse, parallax das
+  camadas, cartões flutuando, números que contam até o valor, pulso de energia
+  nas etapas e títulos com brilho/glitch. Opcional: revelar os itens um a um,
+  a cada clique. Respeita a opção "reduzir movimento" do sistema.
 - **Apresentação:** setas/espaço/clique/swipe para navegar, `N` mostra as notas,
   `F` tela cheia, `Esc` sai.
+- **Aula de exemplo:** o botão "Ver aula de exemplo" abre uma aula pronta para
+  conhecer os layouts sem gastar geração.
 - **Exportar:** "Baixar apresentação (.html)" gera um arquivo único que abre
   direto no modo apresentação, sem servidor. O `.json` pode ser reaberto no app.
 - **Modo manual:** a aba "Escrever meu roteiro" monta os slides a partir de um
