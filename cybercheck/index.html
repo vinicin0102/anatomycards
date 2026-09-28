@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Cyber Check | Análise Digital, Segurança e Privacidade</title>
+    <meta name="description" content="Uma ferramenta para entender sinais de risco, proteger sua vida digital e tomar decisões com mais informação.">
+    <meta name="theme-color" content="#030507">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #030507;
+            --bg-2: #070b10;
+            --ink: #e8f1f5;
+            --muted: #8b9aa6;
+            --dim: #56646f;
+            --green: #00ff9c;
+            --green-d: #00c878;
+            --red: #ff2e4d;
+            --blue: #1f8bff;
+            --cyan: #22d3ff;
+            --glass: rgba(255, 255, 255, .035);
+            --glass-2: rgba(255, 255, 255, .06);
+            --line: rgba(0, 255, 156, .16);
+            --line-b: rgba(34, 211, 255, .2);
+            --radius: 18px;
+            --f-title: 'Orbitron', 'Inter', system-ui, sans-serif;
+            --f-body: 'Inter', system-ui, -apple-system, sans-serif;
+            --f-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+            --shadow: 0 30px 70px -25px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .02);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--f-body);
+            font-size: 16px;
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        img, svg { display: block; max-width: 100%; }
+        button { font: inherit; color: inherit; }
+        a { color: inherit; }
+        ::selection { background: var(--green); color: #001a0f; }
+
+        /* ---------- camadas de fundo ---------- */
+        #matrix {
+            position: fixed; inset: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none; opacity: .55;
+        }
+        .bg-grid {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(0, 255, 156, .035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 156, .035) 1px, transparent 1px);
+            background-size: 56px 56px;
+            mask-image: radial-gradient(ellipse at 50% 0%, #000 20%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 20%, transparent 75%);
+        }
+        .bg-glow {
+            position: fixed; inset: -20vh -20vw; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(40vw 40vw at 12% 8%, rgba(0, 255, 156, .10), transparent 60%),
+                radial-gradient(45vw 45vw at 92% 30%, rgba(31, 139, 255, .12), transparent 60%),
+                radial-gradient(40vw 40vw at 50% 105%, rgba(255, 46, 77, .09), transparent 60%);
+        }
+        .scanlines {
+            position: fixed; inset: 0; z-index: 60; pointer-events: none;
+            background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, .018) 0 1px, transparent 1px 3px);
+            mix-blend-mode: overlay;
+        }
+        .scanlines::after {
+            content: ""; position: absolute; left: 0; right: 0; height: 22vh; top: -22vh;
+            background: linear-gradient(to bottom, transparent, rgba(0, 255, 156, .04), transparent);
+            animation: sweep 9s linear infinite;
+        }
+        @keyframes sweep { to { transform: translateY(130vh); } }
+
+        main, header, footer { position: relative; z-index: 2; }
+        main { overflow-x: hidden; overflow-x: clip; }
+
+        .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+        section { padding: clamp(72px, 11vw, 130px) 0; position: relative; }
+
+        /* ---------- tipografia ---------- */
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: var(--f-mono); font-size: 12px; letter-spacing: .22em;
+            color: var(--green); text-transform: uppercase;
+        }
+        .eyebrow::before {
+            content: ""; width: 8px; height: 8px; border-radius: 50%;
+            background: var(--green); box-shadow: 0 0 12px var(--green);
+            animation: blink 1.6s steps(2, start) infinite;
+        }
+        @keyframes blink { to { visibility: hidden; } }
+
+        h1, h2, h3 { font-family: var(--f-title); margin: 0; letter-spacing: .02em; line-height: 1.12; }
+        h2 {
+            font-size: clamp(26px, 4.6vw, 46px); font-weight: 800;
+            text-transform: uppercase;
+        }
+        h3 { font-size: 16px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+
+        .sec-head { text-align: center; max-width: 820px; margin: 0 auto clamp(40px, 6vw, 64px); }
+        .sec-head .tag {
+            font-family: var(--f-mono); font-size: 12px; color: var(--dim);
+            letter-spacing: .2em; margin-bottom: 18px; display: block;
+        }
+        .sec-head .tag b { color: var(--cyan); font-weight: 500; }
+        .sec-head p { color: var(--muted); font-size: clamp(16px, 2vw, 18px); margin: 20px auto 0; max-width: 640px; }
+
+        .grad {
+            background: linear-gradient(92deg, var(--green) 0%, var(--cyan) 55%, var(--blue) 100%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .grad-red {
+            background: linear-gradient(92deg, #ff6b81, var(--red));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+
+        /* ---------- glitch discreto ---------- */
+        .glitch { position: relative; display: inline-block; }
+        .glitch::before, .glitch::after {
+            content: attr(data-text); position: absolute; inset: 0;
+            pointer-events: none; opacity: 0;
+        }
+        .glitch::before { color: var(--red); transform: translate(2px, 0); }
+        .glitch::after  { color: var(--cyan); transform: translate(-2px, 0); }
+        .glitch.is-glitching::before { opacity: .8; animation: g1 .38s steps(2) 1; }
+        .glitch.is-glitching::after  { opacity: .8; animation: g2 .38s steps(2) 1; }
+        @keyframes g1 {
+            0% { clip-path: inset(10% 0 70% 0); transform: translate(3px, -1px); }
+            50% { clip-path: inset(60% 0 10% 0); transform: translate(-3px, 1px); }
+            100% { clip-path: inset(35% 0 45% 0); transform: translate(2px, 0); }
+        }
+        @keyframes g2 {
+            0% { clip-path: inset(70% 0 5% 0); transform: translate(-3px, 1px); }
+            50% { clip-path: inset(5% 0 75% 0); transform: translate(3px, -1px); }
+            100% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 0); }
+        }
+
+        /* ---------- botões ---------- */
+        .btn {
+            --c: var(--green);
+            position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            padding: 18px 30px; border: 0; border-radius: 12px; cursor: pointer;
+            font-family: var(--f-title); font-weight: 800; font-size: 15px; letter-spacing: .1em;
+            text-transform: uppercase; text-decoration: none; color: #00140b;
+            background: linear-gradient(135deg, #5dffc0, var(--green) 45%, var(--green-d));
+            box-shadow: 0 0 0 1px rgba(0, 255, 156, .6), 0 10px 40px -8px rgba(0, 255, 156, .55), inset 0 1px 0 rgba(255, 255, 255, .5);
+            transition: transform .2s ease, box-shadow .2s ease;
+            overflow: hidden; isolation: isolate;
+        }
+        .btn::after {
+            content: ""; position: absolute; top: 0; bottom: 0; width: 40%; left: -60%; z-index: -1;
+            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .55), transparent);
+            transform: skewX(-20deg); animation: shine 3.6s ease-in-out infinite;
+        }
+        @keyframes shine { 0%, 60% { left: -60%; } 100% { left: 130%; } }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(0, 255, 156, .9), 0 16px 50px -8px rgba(0, 255, 156, .75), inset 0 1px 0 rgba(255, 255, 255, .5); }
+        .btn:active { transform: translateY(0); }
+        .btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+        .btn svg { width: 20px; height: 20px; flex: none; }
+        .btn-block { width: 100%; }
+        .btn-blue {
+            color: #fff;
+            background: linear-gradient(135deg, #5fb6ff, var(--blue) 50%, #0f5fd8);
+            box-shadow: 0 0 0 1px rgba(31, 139, 255, .7), 0 10px 40px -8px rgba(31, 139, 255, .6), inset 0 1px 0 rgba(255, 255, 255, .35);
+        }
+        .btn-blue:hover { box-shadow: 0 0 0 1px rgba(31, 139, 255, 1), 0 16px 50px -8px rgba(31, 139, 255, .8), inset 0 1px 0 rgba(255, 255, 255, .35); }
+        .btn-ghost {
+            color: var(--ink); background: rgba(255, 255, 255, .04);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, .14);
+        }
+        .btn-ghost::after { display: none; }
+        .btn-ghost:hover { box-shadow: 0 0 0 1px var(--green); }
+
+        /* ---------- glass ---------- */
+        .glass {
+            position: relative;
+            background: linear-gradient(160deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .015) 40%, rgba(0, 0, 0, .15));
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, .06);
+        }
+        .corner::before, .corner::after {
+            content: ""; position: absolute; width: 16px; height: 16px; pointer-events: none;
+            border: 2px solid var(--green); opacity: .7;
+        }
+        .corner::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; border-top-left-radius: var(--radius); }
+        .corner::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; border-bottom-right-radius: var(--radius); }
+
+        .tilt { transform-style: preserve-3d; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; will-change: transform; }
+        .tilt:hover { border-color: rgba(0, 255, 156, .45); }
+
+        .ico {
+            width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
+            background: radial-gradient(circle at 30% 25%, rgba(0, 255, 156, .25), rgba(0, 255, 156, .05) 70%);
+            border: 1px solid rgba(0, 255, 156, .35); color: var(--green);
+            box-shadow: 0 0 24px -6px rgba(0, 255, 156, .6), inset 0 0 12px rgba(0, 255, 156, .12);
+        }
+        .ico svg { width: 26px; height: 26px; }
+        .ico.red { color: var(--red); border-color: rgba(255, 46, 77, .4); background: radial-gradient(circle at 30% 25%, rgba(255, 46, 77, .28), rgba(255, 46, 77, .05) 70%); box-shadow: 0 0 24px -6px rgba(255, 46, 77, .6); }
+        .ico.blue { color: var(--cyan); border-color: rgba(34, 211, 255, .4); background: radial-gradient(circle at 30% 25%, rgba(34, 211, 255, .25), rgba(34, 211, 255, .05) 70%); box-shadow: 0 0 24px -6px rgba(34, 211, 255, .6); }
+
+        /* ---------- reveal ---------- */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1); }
+        .reveal.in { opacity: 1; transform: none; }
+        .d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; } .d3 { transition-delay: .24s; }
+        .d4 { transition-delay: .32s; } .d5 { transition-delay: .40s; } .d6 { transition-delay: .48s; }
+
+        /* ---------- topo ---------- */
+        .topbar {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(3, 5, 7, .7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 255, 156, .1);
+        }
+        .topbar .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-mark {
+            width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center;
+            background: linear-gradient(135deg, rgba(0, 255, 156, .2), rgba(31, 139, 255, .2));
+            border: 1px solid rgba(0, 255, 156, .5); box-shadow: 0 0 16px -4px var(--green);
+            color: var(--green);
+        }
+        .logo-mark svg { width: 18px; height: 18px; }
+        .logo-txt { font-family: var(--f-title); font-weight: 800; letter-spacing: .14em; font-size: 15px; }
+        .logo-txt span { color: var(--green); }
+        .sys {
+            font-family: var(--f-mono); font-size: 11px; color: var(--dim); letter-spacing: .12em;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .sys i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+        .topbar .btn { padding: 11px 18px; font-size: 12px; }
+        @media (max-width: 720px) { .sys { display: none; } }
+
+        /* ---------- HERO ---------- */
+        .hero { padding-top: clamp(40px, 7vw, 90px); padding-bottom: clamp(70px, 9vw, 110px); }
+        .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+        .hero h1 {
+            font-size: clamp(30px, 5.3vw, 62px); font-weight: 900; text-transform: uppercase;
+            margin: 22px 0 26px; line-height: 1.06;
+        }
+        .hero h1 .l2 { display: block; margin-top: 8px; }
+        .hero-copy p { color: var(--muted); font-size: clamp(16px, 1.9vw, 19px); margin: 0 0 16px; max-width: 560px; }
+        .hero-copy p strong { color: var(--ink); font-weight: 600; }
+        .hero-cta { margin-top: 34px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+        .price-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+        .price-tag {
+            font-family: var(--f-mono); font-size: 13px; letter-spacing: .12em; color: var(--muted);
+            padding: 10px 14px; border: 1px dashed rgba(0, 255, 156, .35); border-radius: 10px;
+            background: rgba(0, 255, 156, .04);
+        }
+        .price-tag b { font-family: var(--f-title); font-size: 22px; color: var(--green); letter-spacing: .04em; margin-left: 6px; text-shadow: 0 0 18px rgba(0, 255, 156, .6); }
+        .seal {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: var(--f-mono); font-size: 11px; letter-spacing: .16em; color: var(--cyan);
+            padding: 9px 13px; border-radius: 999px;
+            border: 1px solid rgba(34, 211, 255, .4); background: rgba(34, 211, 255, .07);
+            box-shadow: 0 0 20px -8px var(--cyan);
+        }
+        .seal svg { width: 15px; height: 15px; }
+        .trust { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 6px; font-size: 13px; color: var(--dim); }
+        .trust span { display: inline-flex; align-items: center; gap: 7px; }
+        .trust svg { width: 15px; height: 15px; color: var(--green); }
+
+        /* painel HUD do hero */
+        .hero-visual { position: relative; perspective: 1400px; min-height: 560px; display: grid; place-items: center; }
+        .hud-ring {
+            position: absolute; width: 520px; height: 520px; max-width: 110%; aspect-ratio: 1; border-radius: 50%;
+            border: 1px dashed rgba(0, 255, 156, .22);
+            animation: spin 60s linear infinite;
+        }
+        .hud-ring.r2 { width: 420px; height: 420px; border: 1px solid rgba(31, 139, 255, .18); border-top-color: rgba(31, 139, 255, .7); animation-duration: 14s; animation-direction: reverse; }
+        .hud-ring.r3 { width: 610px; height: 610px; border: 1px solid rgba(255, 46, 77, .08); border-left-color: rgba(255, 46, 77, .45); animation-duration: 22s; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .phone {
+            position: relative; width: 272px; height: 548px; border-radius: 44px; padding: 12px;
+            background: linear-gradient(145deg, #1b242d, #06090c 60%);
+            box-shadow:
+                0 0 0 1.5px rgba(0, 255, 156, .45),
+                0 0 60px -10px rgba(0, 255, 156, .5),
+                0 60px 90px -30px rgba(0, 0, 0, .95),
+                inset 0 0 0 2px rgba(255, 255, 255, .06);
+            transform: rotateY(-16deg) rotateX(8deg) rotateZ(1deg);
+            transform-style: preserve-3d;
+            transition: transform .4s ease-out;
+        }
+        .phone::before {
+            content: ""; position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 88px; height: 24px; border-radius: 20px; background: #000; z-index: 3;
+        }
+        .screen {
+            position: relative; width: 100%; height: 100%; border-radius: 34px; overflow: hidden;
+            background: radial-gradient(120% 70% at 50% 0%, #07251a 0%, #030807 60%);
+            padding: 54px 16px 18px; font-family: var(--f-mono); font-size: 10.5px; color: #9fe9c8;
+        }
+        .screen::after {
+            content: ""; position: absolute; left: 0; right: 0; top: 0; height: 36%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 255, 156, .22), transparent);
+            border-bottom: 1px solid rgba(0, 255, 156, .8);
+            box-shadow: 0 6px 18px rgba(0, 255, 156, .5);
+            animation: scan 3.2s ease-in-out infinite;
+        }
+        @keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(290%); } }
+        .scr-top { display: flex; justify-content: space-between; color: var(--dim); letter-spacing: .12em; font-size: 9.5px; }
+        .scr-top b { color: var(--green); font-weight: 500; }
+        .gauge { position: relative; width: 150px; height: 150px; margin: 18px auto 12px; }
+        .gauge svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+        .gauge .val {
+            position: absolute; inset: 0; display: grid; place-items: center; text-align: center;
+            font-family: var(--f-title); font-size: 30px; font-weight: 800; color: #fff;
+        }
+        .gauge .val small { display: block; font-family: var(--f-mono); font-size: 8.5px; font-weight: 400; color: var(--green); letter-spacing: .2em; margin-top: 4px; }
+        .scr-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+        .scr-list li {
+            display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; align-items: center;
+            padding: 8px 10px; border-radius: 9px; background: rgba(0, 255, 156, .05); border: 1px solid rgba(0, 255, 156, .14);
+        }
+        .scr-list .bar { grid-column: 1 / -1; height: 3px; border-radius: 3px; background: rgba(255, 255, 255, .07); overflow: hidden; }
+        .scr-list .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--green), var(--cyan)); transition: width 1.2s ease; }
+        .scr-list .st { font-size: 9px; letter-spacing: .1em; color: var(--green); }
+        .scr-list .st.warn { color: #ffb020; }
+        .scr-foot { margin-top: 12px; text-align: center; color: var(--dim); font-size: 9px; letter-spacing: .2em; }
+
+        .float {
+            position: absolute; z-index: 4; padding: 12px 14px; border-radius: 14px;
+            display: flex; align-items: center; gap: 10px;
+            font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; color: var(--ink);
+            animation: bob 6s ease-in-out infinite;
+        }
+        .float .ico { width: 36px; height: 36px; border-radius: 10px; }
+        .float .ico svg { width: 18px; height: 18px; }
+        .float small { display: block; color: var(--dim); font-size: 9.5px; letter-spacing: .14em; }
+        .f1 { top: 8%; left: -2%; animation-delay: -1s; }
+        .f2 { top: 30%; right: -4%; animation-delay: -3s; }
+        .f3 { bottom: 16%; left: -6%; animation-delay: -2s; }
+        .f4 { bottom: 4%; right: 2%; animation-delay: -4.5s; }
+        @keyframes bob { 0%, 100% { transform: translateY(0) translateZ(40px); } 50% { transform: translateY(-14px) translateZ(40px); } }
+
+        .hex-strip {
+            position: absolute; font-family: var(--f-mono); font-size: 10px; color: rgba(0, 255, 156, .35);
+            letter-spacing: .15em; white-space: nowrap; pointer-events: none;
+        }
+        .hex-strip.s1 { top: 0; right: 0; }
+        .hex-strip.s2 { bottom: -10px; left: 10%; color: rgba(31, 139, 255, .4); }
+
+        @media (max-width: 960px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .hero-copy { text-align: center; }
+            .hero-copy p { margin-left: auto; margin-right: auto; }
+            .hero-cta { align-items: center; }
+            .price-row, .trust { justify-content: center; }
+            .hero-visual { min-height: 520px; margin-top: 10px; }
+        }
+        @media (max-width: 480px) {
+            .hero-visual { min-height: 470px; transform: scale(.9); margin: -20px 0; }
+            .f1 { left: -4%; } .f2 { right: -6%; } .f3 { left: -6%; } .f4 { right: -4%; }
+            .btn { padding: 17px 22px; font-size: 14px; }
+            .hero-cta .btn { width: 100%; }
+        }
+
+        /* ---------- ticker ---------- */
+        .ticker {
+            position: relative; z-index: 2; overflow: hidden; white-space: nowrap;
+            border-top: 1px solid rgba(0, 255, 156, .12); border-bottom: 1px solid rgba(0, 255, 156, .12);
+            background: rgba(0, 255, 156, .025); padding: 14px 0;
+            font-family: var(--f-mono); font-size: 12px; letter-spacing: .2em; color: var(--dim);
+        }
+        .ticker-track { display: inline-flex; gap: 48px; animation: tick 40s linear infinite; padding-left: 48px; }
+        .ticker-track span::before { content: "◆ "; color: var(--green); }
+        @keyframes tick { to { transform: translateX(-50%); } }
+
+        /* ---------- DOR ---------- */
+        .pain-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+        .pain-card { padding: 28px 24px 30px; overflow: hidden; }
+        .pain-card .num {
+            position: absolute; top: 18px; right: 20px; font-family: var(--f-mono); font-size: 11px;
+            color: rgba(255, 46, 77, .7); letter-spacing: .15em;
+        }
+        .pain-card p { margin: 22px 0 0; font-size: 17px; font-weight: 600; line-height: 1.45; color: var(--ink); }
+        .pain-card .signal {
+            margin-top: 22px; height: 26px; display: flex; align-items: flex-end; gap: 3px;
+        }
+        .pain-card .signal i {
+            flex: 1; background: linear-gradient(to top, rgba(255, 46, 77, .8), rgba(255, 46, 77, .15));
+            border-radius: 2px; animation: eq 1.4s ease-in-out infinite;
+        }
+        @keyframes eq { 0%, 100% { height: 20%; } 50% { height: 100%; } }
+        .pain-card { border-color: rgba(255, 46, 77, .18); }
+        .pain-card:hover { border-color: rgba(255, 46, 77, .5); box-shadow: var(--shadow), 0 0 40px -12px rgba(255, 46, 77, .5); }
+        .pain-card.corner::before, .pain-card.corner::after { border-color: var(--red); }
+        .pain-note {
+            margin: 44px auto 0; max-width: 780px; padding: 26px 30px; text-align: center;
+            font-size: clamp(16px, 2vw, 19px); color: var(--ink);
+            border-color: rgba(34, 211, 255, .25);
+        }
+        .pain-note strong { color: var(--cyan); font-weight: 600; }
+        @media (max-width: 1000px) { .pain-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 540px) { .pain-grid { grid-template-columns: 1fr; } }
+
+        /* ---------- COMO FUNCIONA ---------- */
+        .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+        .steps { display: grid; gap: 16px; }
+        .step { display: grid; grid-template-columns: auto 1fr; gap: 20px; padding: 24px; align-items: start; }
+        .step .n {
+            font-family: var(--f-title); font-weight: 900; font-size: 34px; line-height: 1;
+            color: transparent; -webkit-text-stroke: 1.2px var(--green); min-width: 56px;
+            text-shadow: 0 0 22px rgba(0, 255, 156, .35);
+        }
+        .step h3 { font-size: 18px; margin-bottom: 8px; }
+        .step p { margin: 0; color: var(--muted); }
+        .step:nth-child(2) .n { -webkit-text-stroke-color: var(--cyan); }
+        .step:nth-child(3) .n { -webkit-text-stroke-color: var(--blue); }
+
+        .terminal { overflow: hidden; border-color: rgba(0, 255, 156, .3); }
+        .term-bar {
+            display: flex; align-items: center; gap: 8px; padding: 13px 16px;
+            border-bottom: 1px solid rgba(0, 255, 156, .15); background: rgba(0, 0, 0, .35);
+        }
+        .term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #333; }
+        .term-bar i:nth-child(1) { background: var(--red); }
+        .term-bar i:nth-child(2) { background: #ffb020; }
+        .term-bar i:nth-child(3) { background: var(--green); }
+        .term-bar span { margin-left: auto; font-family: var(--f-mono); font-size: 11px; color: var(--dim); letter-spacing: .12em; }
+        .term-body {
+            min-height: 330px; padding: 20px 20px 26px; font-family: var(--f-mono); font-size: 13.5px; line-height: 1.9;
+            color: #b7f7da; background: linear-gradient(to bottom, rgba(0, 20, 12, .6), rgba(0, 0, 0, .6));
+        }
+        .term-body .ln { white-space: pre-wrap; word-break: break-word; }
+        .term-body .p { color: var(--green); }
+        .term-body .ok { color: var(--green); }
+        .term-body .info { color: var(--cyan); }
+        .term-body .dimt { color: var(--dim); }
+        .term-body .big { color: #fff; font-weight: 700; text-shadow: 0 0 14px rgba(0, 255, 156, .8); }
+        .caret { display: inline-block; width: 9px; height: 17px; background: var(--green); vertical-align: -3px; animation: blink 1s steps(2, start) infinite; box-shadow: 0 0 10px var(--green); }
+        .term-prog { height: 4px; margin-top: 8px; border-radius: 4px; background: rgba(255, 255, 255, .07); overflow: hidden; }
+        .term-prog i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--green), var(--cyan)); box-shadow: 0 0 10px var(--green); transition: width .12s linear; }
+        @media (max-width: 900px) { .how-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) { .step { padding: 20px 18px; gap: 14px; } .step .n { font-size: 28px; min-width: 44px; } .term-body { font-size: 12px; min-height: 300px; } }
+
+        /* ---------- INCLUÍDO ---------- */
+        .inc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+        .inc-card { padding: 24px; display: flex; gap: 16px; align-items: center; }
+        .inc-card .chk {
+            flex: none; width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center;
+            background: rgba(0, 255, 156, .1); border: 1px solid rgba(0, 255, 156, .45); color: var(--green);
+            box-shadow: 0 0 18px -6px var(--green);
+        }
+        .inc-card .chk svg { width: 20px; height: 20px; }
+        .inc-card b { display: block; font-weight: 600; font-size: 16px; line-height: 1.35; }
+        .inc-card small { display: block; font-family: var(--f-mono); color: var(--dim); font-size: 10.5px; letter-spacing: .15em; margin-top: 4px; }
+        .inc-card.wide {
+            grid-column: span 3; justify-content: center; text-align: left;
+            border-color: rgba(34, 211, 255, .35);
+            background: linear-gradient(100deg, rgba(0, 255, 156, .08), rgba(31, 139, 255, .08));
+        }
+        .inc-card.wide .chk { color: var(--cyan); border-color: rgba(34, 211, 255, .5); background: rgba(34, 211, 255, .1); box-shadow: 0 0 18px -6px var(--cyan); }
+        @media (max-width: 900px) { .inc-grid { grid-template-columns: 1fr 1fr; } .inc-card.wide { grid-column: span 2; } }
+        @media (max-width: 560px) { .inc-grid { grid-template-columns: 1fr; } .inc-card.wide { grid-column: auto; justify-content: flex-start; } }
+
+        /* ---------- OFERTA ---------- */
+        .offer { overflow: hidden; }
+        .offer::before {
+            content: ""; position: absolute; inset: 0; z-index: -1;
+            background:
+                radial-gradient(60% 50% at 50% 40%, rgba(31, 139, 255, .14), transparent 70%),
+                radial-gradient(40% 40% at 30% 70%, rgba(0, 255, 156, .08), transparent 70%);
+        }
+        .plans { display: grid; grid-template-columns: 1fr 1.08fr; gap: 26px; max-width: 920px; margin: 0 auto; align-items: stretch; }
+        .plan { padding: 36px 30px 32px; display: flex; flex-direction: column; }
+        .plan .pname { font-family: var(--f-title); font-weight: 800; font-size: 20px; letter-spacing: .1em; }
+        .plan .pdesc { color: var(--muted); font-size: 14px; margin: 6px 0 0; }
+        .plan .pprice { margin: 26px 0 6px; display: flex; align-items: baseline; gap: 8px; }
+        .plan .pprice small { font-family: var(--f-mono); font-size: 15px; color: var(--muted); }
+        .plan .pprice b { font-family: var(--f-title); font-size: clamp(44px, 6vw, 56px); font-weight: 900; line-height: 1; letter-spacing: .01em; }
+        .plan .pmeta { font-family: var(--f-mono); font-size: 11px; letter-spacing: .14em; color: var(--dim); }
+        .plan ul { list-style: none; padding: 0; margin: 26px 0 30px; display: grid; gap: 12px; flex: 1; }
+        .plan li { display: flex; gap: 12px; align-items: flex-start; font-size: 15.5px; }
+        .plan li svg { flex: none; width: 20px; height: 20px; color: var(--green); margin-top: 2px; }
+        .plan.basic .pprice b { color: var(--ink); }
+        .plan.pro {
+            border: 1px solid transparent;
+            background:
+                linear-gradient(160deg, rgba(10, 20, 34, .92), rgba(4, 8, 14, .92)) padding-box,
+                conic-gradient(from var(--ang, 0deg), var(--green), var(--cyan), var(--blue), var(--red), var(--green)) border-box;
+            box-shadow: 0 0 70px -20px rgba(31, 139, 255, .7), 0 40px 80px -30px rgba(0, 0, 0, .9);
+            animation: rot 6s linear infinite;
+            transform: translateY(-10px);
+        }
+        @property --ang { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+        @keyframes rot { to { --ang: 360deg; } }
+        .plan.pro .pprice b { background: linear-gradient(92deg, var(--green), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 16px rgba(34, 211, 255, .45)); }
+        .plan.pro li svg { color: var(--cyan); }
+        .badge {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            padding: 7px 16px; border-radius: 999px; white-space: nowrap;
+            font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .2em; color: #001221;
+            background: linear-gradient(90deg, var(--green), var(--cyan));
+            box-shadow: 0 0 24px -4px var(--cyan);
+        }
+        .plans-note { text-align: center; margin-top: 34px; color: var(--dim); font-size: 13px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; }
+        .plans-note span { display: inline-flex; gap: 7px; align-items: center; }
+        .plans-note svg { width: 15px; height: 15px; color: var(--green); }
+        @media (max-width: 820px) { .plans { grid-template-columns: 1fr; max-width: 480px; } .plan.pro { transform: none; order: -1; margin-top: 14px; } }
+
+        /* ---------- SEGURANÇA 3D ---------- */
+        .sec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 70px); align-items: center; }
+        .sec-copy p { color: var(--muted); font-size: clamp(16px, 1.9vw, 19px); margin: 0 0 16px; }
+        .sec-copy p strong { color: var(--ink); }
+        .sec-copy h2 { margin: 18px 0 26px; }
+        .rules { display: grid; gap: 12px; margin-top: 26px; }
+        .rule { display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 12px; font-size: 15px; }
+        .rule svg { width: 20px; height: 20px; flex: none; }
+        .rule.yes { border: 1px solid rgba(0, 255, 156, .25); background: rgba(0, 255, 156, .05); }
+        .rule.yes svg { color: var(--green); }
+        .rule.no { border: 1px solid rgba(255, 46, 77, .25); background: rgba(255, 46, 77, .05); }
+        .rule.no svg { color: var(--red); }
+
+        .stage { position: relative; height: 520px; perspective: 1200px; display: grid; place-items: center; }
+        .stage-inner { position: relative; width: 420px; height: 420px; transform-style: preserve-3d; transform: rotateX(58deg) rotateZ(-30deg); }
+        .platform {
+            position: absolute; inset: 0; border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 156, .16), rgba(0, 255, 156, .02) 60%, transparent 70%);
+            border: 1px solid rgba(0, 255, 156, .35);
+            box-shadow: 0 0 60px rgba(0, 255, 156, .2), inset 0 0 40px rgba(0, 255, 156, .12);
+        }
+        .platform::before, .platform::after {
+            content: ""; position: absolute; border-radius: 50%; border: 1px dashed rgba(34, 211, 255, .35);
+        }
+        .platform::before { inset: 16%; animation: spin 30s linear infinite; }
+        .platform::after { inset: 34%; border-style: solid; border-color: rgba(255, 46, 77, .3); border-top-color: var(--red); animation: spin 8s linear infinite reverse; }
+        .obj { position: absolute; transform-style: preserve-3d; }
+        /* cada objeto fica "em pé" sobre a plataforma */
+        .obj > .up { transform: rotateZ(30deg) rotateX(-58deg); transform-origin: 50% 100%; }
+        .obj-phone { left: 50%; top: 50%; width: 120px; margin: -230px 0 0 -60px; }
+        .obj-phone .up { animation: floatUp 6s ease-in-out infinite; }
+        .mini-phone {
+            width: 120px; height: 230px; border-radius: 22px; padding: 7px;
+            background: linear-gradient(145deg, #1c262f, #05080b);
+            box-shadow: 0 0 0 1.5px rgba(0, 255, 156, .6), 0 0 40px -6px rgba(0, 255, 156, .6), 0 30px 40px -10px #000;
+        }
+        .mini-screen {
+            width: 100%; height: 100%; border-radius: 16px; overflow: hidden; position: relative;
+            background: radial-gradient(100% 70% at 50% 20%, #0b3b29, #020705);
+            display: grid; place-items: center;
+        }
+        .mini-screen svg { width: 54px; height: 54px; color: var(--green); filter: drop-shadow(0 0 12px var(--green)); }
+        .mini-screen::after {
+            content: ""; position: absolute; left: 0; right: 0; height: 30%; top: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 255, 156, .3)); border-bottom: 1px solid var(--green);
+            animation: scan 2.6s ease-in-out infinite;
+        }
+        .obj-shield { left: 6%; top: 20%; }
+        .obj-lock { right: 2%; top: 44%; }
+        .obj-db { left: 18%; bottom: 2%; }
+        .obj-shield .up { animation: floatUp 7s ease-in-out -2s infinite; }
+        .obj-lock .up { animation: floatUp 5.5s ease-in-out -1s infinite; }
+        .obj-db .up { animation: floatUp 6.5s ease-in-out -3s infinite; }
+        @keyframes floatUp { 0%, 100% { translate: 0 0; } 50% { translate: 0 -16px; } }
+        .obj .token {
+            width: 96px; height: 96px; border-radius: 22px; display: grid; place-items: center;
+            background: linear-gradient(145deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .02));
+            border: 1px solid rgba(34, 211, 255, .5);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 0 36px -6px rgba(34, 211, 255, .6), 0 22px 30px -10px #000, inset 0 1px 0 rgba(255, 255, 255, .15);
+            color: var(--cyan);
+        }
+        .obj .token svg { width: 46px; height: 46px; filter: drop-shadow(0 0 10px currentColor); }
+        .obj-lock .token { color: var(--red); border-color: rgba(255, 46, 77, .55); box-shadow: 0 0 36px -6px rgba(255, 46, 77, .6), 0 22px 30px -10px #000; }
+        .obj-db .token { color: var(--green); border-color: rgba(0, 255, 156, .5); box-shadow: 0 0 36px -6px rgba(0, 255, 156, .6), 0 22px 30px -10px #000; }
+        .obj-shield .token { width: 108px; height: 108px; }
+        .code-float {
+            position: absolute; font-family: var(--f-mono); font-size: 11px; line-height: 1.7;
+            color: rgba(0, 255, 156, .6); pointer-events: none; white-space: pre;
+            text-shadow: 0 0 8px rgba(0, 255, 156, .5);
+        }
+        .code-float.c1 { top: 4%; right: 0; animation: drift 9s ease-in-out infinite; }
+        .code-float.c2 { bottom: 6%; left: 0; color: rgba(34, 211, 255, .6); text-shadow: 0 0 8px rgba(34, 211, 255, .5); animation: drift 11s ease-in-out -4s infinite; }
+        @keyframes drift { 0%, 100% { transform: translateY(0); opacity: .9; } 50% { transform: translateY(-12px); opacity: .5; } }
+        @media (max-width: 900px) { .sec-grid { grid-template-columns: 1fr; } .stage { order: -1; } }
+        @media (max-width: 520px) { .stage { height: 400px; } .stage-inner { transform: rotateX(58deg) rotateZ(-30deg) scale(.72); } .code-float { font-size: 9.5px; } }
+
+        /* ---------- FAQ ---------- */
+        .faq { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+        .faq details { padding: 0; overflow: hidden; }
+        .faq summary {
+            list-style: none; cursor: pointer; padding: 22px 60px 22px 24px; position: relative;
+            font-weight: 600; font-size: 16.5px;
+        }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary::before {
+            content: "?"; font-family: var(--f-mono); color: var(--green); margin-right: 12px; font-weight: 700;
+        }
+        .faq summary::after {
+            content: "+"; position: absolute; right: 22px; top: 50%; transform: translateY(-50%);
+            width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center;
+            font-family: var(--f-mono); font-size: 18px; color: var(--green);
+            border: 1px solid rgba(0, 255, 156, .35); transition: transform .25s ease;
+        }
+        .faq details[open] summary::after { content: "–"; transform: translateY(-50%) rotate(180deg); }
+        .faq details[open] { border-color: rgba(0, 255, 156, .45); }
+        .faq .ans { padding: 0 24px 22px 50px; color: var(--muted); }
+        .faq .ans p { margin: 0; }
+        .faq details.hl { border-color: rgba(255, 46, 77, .35); }
+        .faq details.hl summary::before { color: var(--red); content: "!"; }
+        .faq details.hl .ans strong { color: var(--ink); }
+        @media (max-width: 480px) { .faq summary { padding: 18px 54px 18px 18px; font-size: 15.5px; } .faq .ans { padding: 0 18px 18px 18px; } }
+
+        /* ---------- CTA FINAL ---------- */
+        .final { text-align: center; overflow: hidden; background: #000; border-top: 1px solid rgba(0, 255, 156, .15); }
+        .final-term {
+            position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+            font-family: var(--f-mono); font-size: 12px; line-height: 1.8; color: rgba(0, 255, 156, .13);
+            padding: 20px; text-align: left; white-space: pre;
+            mask-image: radial-gradient(ellipse at center, transparent 20%, #000 75%);
+            -webkit-mask-image: radial-gradient(ellipse at center, transparent 20%, #000 75%);
+        }
+        .final .wrap { position: relative; z-index: 1; }
+        .final h2 { font-size: clamp(30px, 6vw, 68px); font-weight: 900; line-height: 1.08; }
+        .final h2 .l2 { display: block; margin-top: 6px; }
+        .final p.sub { color: var(--muted); font-size: clamp(16px, 2vw, 20px); max-width: 620px; margin: 24px auto 38px; }
+        .stats {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 820px; margin: 0 auto 40px;
+        }
+        .stat { padding: 18px 12px; border-radius: 14px; }
+        .stat b { display: block; font-family: var(--f-title); font-size: clamp(24px, 3.6vw, 34px); font-weight: 900; color: var(--green); text-shadow: 0 0 18px rgba(0, 255, 156, .5); line-height: 1.1; }
+        .stat span { display: block; font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .14em; color: var(--dim); margin-top: 8px; text-transform: uppercase; }
+        .live {
+            display: inline-flex; align-items: center; gap: 10px; margin-bottom: 26px;
+            font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .18em; color: var(--green);
+            padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(0, 255, 156, .35); background: rgba(0, 255, 156, .05);
+        }
+        .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(0, 255, 156, .7); animation: pulse 1.8s infinite; }
+        @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(0, 255, 156, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 156, 0); } }
+        .final .btn { font-size: 17px; padding: 22px 38px; }
+        @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } .final .btn { width: 100%; font-size: 15px; padding: 20px 18px; } }
+
+        /* ---------- rodapé ---------- */
+        footer { padding: 40px 0 110px; border-top: 1px solid rgba(255, 255, 255, .06); background: #000; color: var(--dim); font-size: 13px; }
+        footer .wrap { display: grid; gap: 16px; text-align: center; }
+        footer p { margin: 0; max-width: 820px; margin-inline: auto; }
+
+        /* ---------- barra fixa no celular ---------- */
+        .sticky {
+            position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 70;
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+            padding: 10px 10px 10px 18px; border-radius: 16px;
+            background: rgba(5, 10, 14, .88); border: 1px solid rgba(0, 255, 156, .35);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 20px 50px -10px #000, 0 0 30px -12px var(--green);
+            transform: translateY(140%); transition: transform .35s ease;
+            margin-bottom: env(safe-area-inset-bottom);
+        }
+        .sticky.show { transform: none; }
+        .sticky .sp { font-family: var(--f-mono); font-size: 10px; letter-spacing: .14em; color: var(--dim); line-height: 1.3; }
+        .sticky .sp b { display: block; font-family: var(--f-title); font-size: 19px; color: var(--green); letter-spacing: .02em; }
+        .sticky .btn { padding: 14px 18px; font-size: 12.5px; }
+        @media (min-width: 900px) { .sticky { display: none; } }
+
+        /* ---------- CHECKOUT (modal com order bumps) ---------- */
+        .modal {
+            position: fixed; inset: 0; z-index: 100; display: none; align-items: flex-start; justify-content: center;
+            background: rgba(0, 0, 0, .78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            padding: 24px 14px; overflow-y: auto;
+        }
+        .modal.open { display: flex; }
+        .modal-box {
+            width: 100%; max-width: 620px; margin: auto; padding: 0; overflow: hidden;
+            background: linear-gradient(160deg, rgba(10, 18, 24, .97), rgba(3, 6, 9, .98));
+            border-color: rgba(0, 255, 156, .35);
+            animation: pop .35s cubic-bezier(.2, .8, .2, 1);
+        }
+        @keyframes pop { from { opacity: 0; transform: translateY(20px) scale(.97); } }
+        .m-head {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+            padding: 18px 22px; border-bottom: 1px solid rgba(0, 255, 156, .15); background: rgba(0, 255, 156, .04);
+        }
+        .m-head h3 { font-size: 15px; display: flex; align-items: center; gap: 10px; }
+        .m-head h3 svg { width: 18px; height: 18px; color: var(--green); }
+        .m-close {
+            width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, .12);
+            background: transparent; cursor: pointer; display: grid; place-items: center; color: var(--muted);
+        }
+        .m-close:hover { color: #fff; border-color: var(--green); }
+        .m-close svg { width: 18px; height: 18px; }
+        .m-body { padding: 22px; display: grid; gap: 22px; }
+        .m-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: .2em; color: var(--dim); margin-bottom: 10px; display: block; }
+
+        .plan-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .plan-pick label { cursor: pointer; }
+        .plan-pick input { position: absolute; opacity: 0; pointer-events: none; }
+        .plan-pick .pp {
+            display: block; padding: 14px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .03); transition: border-color .2s, background .2s, box-shadow .2s;
+        }
+        .plan-pick .pp b { display: block; font-family: var(--f-title); font-size: 12.5px; letter-spacing: .08em; }
+        .plan-pick .pp span { font-family: var(--f-mono); font-size: 15px; color: var(--green); }
+        .plan-pick input:checked + .pp { border-color: var(--green); background: rgba(0, 255, 156, .08); box-shadow: 0 0 24px -10px var(--green); }
+        .plan-pick input:focus-visible + .pp { outline: 2px solid #fff; outline-offset: 2px; }
+
+        .bumps { display: grid; gap: 12px; }
+        .bump {
+            position: relative; display: block; cursor: pointer; border-radius: 14px; padding: 16px 16px 14px;
+            border: 1.5px dashed rgba(255, 176, 32, .45); background: rgba(255, 176, 32, .04);
+            transition: border-color .2s, background .2s, box-shadow .2s;
+        }
+        .bump:hover { border-color: rgba(255, 176, 32, .8); }
+        .bump-top { display: flex; align-items: center; gap: 12px; }
+        .bump .ico { width: 40px; height: 40px; border-radius: 11px; flex: none; }
+        .bump .ico svg { width: 20px; height: 20px; }
+        .bump-name { font-family: var(--f-title); font-weight: 700; font-size: 13px; letter-spacing: .08em; flex: 1; line-height: 1.3; }
+        .bump-price { font-family: var(--f-mono); font-weight: 700; color: #ffb020; white-space: nowrap; }
+        .bump-price small { display: block; font-size: 9.5px; color: var(--dim); letter-spacing: .12em; font-weight: 400; text-align: right; }
+        .bump p { margin: 10px 0 12px; font-size: 14px; color: var(--muted); line-height: 1.5; }
+        .bump-check {
+            display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px;
+            background: rgba(255, 176, 32, .1); font-family: var(--f-mono); font-size: 12.5px; font-weight: 700; letter-spacing: .1em; color: #ffcf70;
+        }
+        .bump input { position: absolute; opacity: 0; pointer-events: none; }
+        .box {
+            width: 22px; height: 22px; border-radius: 6px; flex: none; display: grid; place-items: center;
+            border: 2px solid #ffb020; background: transparent; transition: background .2s;
+        }
+        .box svg { width: 14px; height: 14px; color: #001a0f; opacity: 0; transform: scale(.4); transition: opacity .2s, transform .2s; }
+        .bump input:checked ~ .bump-check .box { background: var(--green); border-color: var(--green); }
+        .bump input:checked ~ .bump-check .box svg { opacity: 1; transform: none; }
+        .bump input:checked ~ .bump-check { background: rgba(0, 255, 156, .12); color: var(--green); }
+        .bump:has(input:checked) { border-style: solid; border-color: var(--green); background: rgba(0, 255, 156, .05); box-shadow: 0 0 26px -12px var(--green); }
+        .bump input:focus-visible ~ .bump-check { outline: 2px solid #fff; outline-offset: 2px; }
+
+        .summary { border-top: 1px dashed rgba(255, 255, 255, .12); padding-top: 18px; display: grid; gap: 8px; font-size: 14.5px; }
+        .summary .row { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); }
+        .summary .row span:last-child { font-family: var(--f-mono); color: var(--ink); white-space: nowrap; }
+        .summary .total { margin-top: 6px; padding-top: 12px; border-top: 1px solid rgba(0, 255, 156, .2); color: var(--ink); font-weight: 700; align-items: baseline; }
+        .summary .total span:first-child { font-family: var(--f-title); font-size: 14px; letter-spacing: .12em; }
+        .summary .total span:last-child { font-family: var(--f-title); font-size: 28px; color: var(--green); text-shadow: 0 0 16px rgba(0, 255, 156, .5); }
+        .m-foot { display: grid; gap: 12px; }
+        .m-msg { display: none; font-size: 13.5px; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255, 176, 32, .4); background: rgba(255, 176, 32, .07); color: #ffd48a; }
+        .m-msg.show { display: block; }
+        .m-safe { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; font-size: 12px; color: var(--dim); }
+        .m-safe span { display: inline-flex; align-items: center; gap: 6px; }
+        .m-safe svg { width: 14px; height: 14px; color: var(--green); }
+        @media (max-width: 420px) { .m-body { padding: 18px 16px; } .plan-pick .pp b { font-size: 11px; } }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+            .reveal { opacity: 1; transform: none; }
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ícones (desenhados à mão, sem logos de plataformas) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+        <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.6 3.1 8.3 7.5 9.5 4.4-1.2 7.5-4.9 7.5-9.5V6L12 3Z"/><path d="m8.8 12 2.3 2.3 4.3-4.6"/></symbol>
+        <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"/><circle cx="12" cy="15.3" r="1.4"/><path d="M12 16.7v1.6"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.5 5.5h3"/><path d="M11 18.5h2"/></symbol>
+        <symbol id="i-msg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H9.5L5.5 19v-3.5H4z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
+        <symbol id="i-db" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7" ry="2.8"/><path d="M5 5.5v6.5c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8V5.5"/><path d="M5 12v6.5c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8V12"/></symbol>
+        <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+        <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 2.8 19.5h18.4L12 3.5Z"/><path d="M12 10v4"/><path d="M12 17h.01"/></symbol>
+        <symbol id="i-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-6 4 12 2.5-6H21"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></symbol>
+        <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5 4.5 13.5H12l-1 8 8.5-11H12l1-8Z"/></symbol>
+        <symbol id="i-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><path d="M4 12h16"/></symbol>
+        <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M16 7l2.5 2.5M14 9l1.8 1.8"/></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c1.2-3.8 4-5.5 7.5-5.5s6.3 1.7 7.5 5.5"/></symbol>
+        <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="10" r="1.8"/><path d="m20.5 16-5-5-9 8.5"/></symbol>
+        <symbol id="i-devices" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="13" height="10" rx="1.8"/><path d="M6 18.5h6"/><rect x="16.5" y="8.5" width="5" height="11" rx="1.3"/></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.3"/><path d="M3 19.5c.9-3.3 3.2-4.8 6-4.8s5.1 1.5 6 4.8"/><path d="M15.5 5.5a3.2 3.2 0 0 1 0 6.1M18 14.8c1.5.6 2.6 2 3 4.2"/></symbol>
+        <symbol id="i-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="m6.5 9.5 3 2.5-3 2.5M12 15h5"/></symbol>
+        <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.5l2.2 11h10.6L20.5 7.5H6.4"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></symbol>
+    </defs>
+</svg>
+
+<canvas id="matrix" aria-hidden="true"></canvas>
+<div class="bg-glow" aria-hidden="true"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="scanlines" aria-hidden="true"></div>
+
+<header class="topbar">
+    <div class="wrap">
+        <a class="logo" href="#topo" aria-label="Cyber Check — início">
+            <span class="logo-mark"><svg><use href="#i-shield"/></svg></span>
+            <span class="logo-txt">CYBER<span>CHECK</span></span>
+        </a>
+        <div class="sys" aria-hidden="true"><i></i> SYS.STATUS: ONLINE // <span id="clock">00:00:00</span></div>
+        <a class="btn" href="#oferta">Começar</a>
+    </div>
+</header>
+
+<main id="topo">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div class="hero-copy">
+                <span class="eyebrow reveal">ANÁLISE DIGITAL • SEGURANÇA • PRIVACIDADE</span>
+
+                <h1 class="reveal d1">
+                    <span class="glitch js-glitch" data-text="DESCONFIA QUE TEM ALGO ERRADO?">DESCONFIA QUE TEM ALGO <span class="grad-red">ERRADO?</span></span>
+                    <span class="l2 grad">DESCUBRA O QUE VOCÊ PRECISA SABER.</span>
+                </h1>
+
+                <p class="reveal d2">Quando alguma coisa muda no comportamento de alguém, a dúvida pode consumir seus pensamentos.</p>
+                <p class="reveal d3">O <strong>Cyber Check</strong> ajuda você a organizar sinais, analisar riscos digitais e entender quais passos podem ser tomados de forma <strong>segura e responsável</strong>.</p>
+
+                <div class="hero-cta reveal d4">
+                    <button class="btn js-buy" data-plan="basico" type="button">
+                        COMEÇAR MINHA ANÁLISE <svg><use href="#i-arrow"/></svg>
+                    </button>
+                    <div class="price-row">
+                        <span class="price-tag">ACESSO ESPECIAL: <b>R$ 12,90</b></span>
+                        <span class="seal"><svg><use href="#i-bolt"/></svg> ACESSO DIGITAL IMEDIATO</span>
+                    </div>
+                    <div class="trust">
+                        <span><svg><use href="#i-check"/></svg> Sem instalar nada</span>
+                        <span><svg><use href="#i-check"/></svg> Funciona no celular</span>
+                        <span><svg><use href="#i-check"/></svg> Foco em proteção, não em invasão</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual reveal d2" id="heroVisual" aria-hidden="true">
+                <div class="hud-ring r3"></div>
+                <div class="hud-ring"></div>
+                <div class="hud-ring r2"></div>
+                <div class="hex-strip s1">0x4F 0x2A 0xE1 0x9C 0x00 0x7B</div>
+                <div class="hex-strip s2">SHA256 · a9f3…e21c · VERIFIED</div>
+
+                <div class="phone" id="phone">
+                    <div class="screen">
+                        <div class="scr-top"><span>CYBER//CHECK</span><b>● SCAN</b></div>
+                        <div class="gauge">
+                            <svg viewBox="0 0 120 120">
+                                <defs>
+                                    <linearGradient id="gg" x1="0" x2="1" y1="0" y2="1">
+                                        <stop offset="0" stop-color="#00ff9c"/><stop offset="1" stop-color="#1f8bff"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="8"/>
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(0,255,156,.25)" stroke-width="1" stroke-dasharray="2 5" transform="scale(.8) translate(15 15)"/>
+                                <circle id="gaugeArc" cx="60" cy="60" r="50" fill="none" stroke="url(#gg)" stroke-width="8" stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16" style="filter:drop-shadow(0 0 6px #00ff9c)"/>
+                            </svg>
+                            <div class="val"><div><span id="gaugeVal">0</span>%<small>ANALISANDO</small></div></div>
+                        </div>
+                        <ul class="scr-list">
+                            <li><span>SINAIS DE COMPORTAMENTO</span><span class="st">OK</span><span class="bar"><i data-w="92"></i></span></li>
+                            <li><span>SESSÕES ATIVAS</span><span class="st warn">REVISAR</span><span class="bar"><i data-w="64"></i></span></li>
+                            <li><span>PRIVACIDADE DAS CONTAS</span><span class="st">OK</span><span class="bar"><i data-w="81"></i></span></li>
+                            <li><span>PERMISSÕES DE APPS</span><span class="st warn">REVISAR</span><span class="bar"><i data-w="47"></i></span></li>
+                        </ul>
+                        <div class="scr-foot">// CHECK EM ANDAMENTO</div>
+                    </div>
+                </div>
+
+                <div class="float glass f1"><span class="ico"><svg><use href="#i-lock"/></svg></span><div>2FA<small>RECOMENDADO</small></div></div>
+                <div class="float glass f2"><span class="ico red"><svg><use href="#i-alert"/></svg></span><div>ALERTA<small>ACESSO SUSPEITO?</small></div></div>
+                <div class="float glass f3"><span class="ico blue"><svg><use href="#i-msg"/></svg></span><div>MENSAGENS<small>SINAIS DE GOLPE</small></div></div>
+                <div class="float glass f4"><span class="ico"><svg><use href="#i-db"/></svg></span><div>DADOS<small>PROTEGIDOS</small></div></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+            <span>CHECKLIST DE SINAIS</span><span>SEGURANÇA DIGITAL</span><span>PRIVACIDADE</span><span>PROTEÇÃO DE CONTAS</span><span>GOLPES E ACESSOS SUSPEITOS</span><span>ACESSO IMEDIATO</span>
+            <span>CHECKLIST DE SINAIS</span><span>SEGURANÇA DIGITAL</span><span>PRIVACIDADE</span><span>PROTEÇÃO DE CONTAS</span><span>GOLPES E ACESSOS SUSPEITOS</span><span>ACESSO IMEDIATO</span>
+        </div>
+    </div>
+
+    <!-- ================= A DOR ================= -->
+    <section id="dor">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <span class="tag">// 01 <b>— SINAIS</b></span>
+                <h2>QUANDO A DÚVIDA COMEÇA, <span class="grad-red">SUA CABEÇA NÃO PARA.</span></h2>
+            </div>
+
+            <div class="pain-grid">
+                <article class="glass corner pain-card tilt reveal d1">
+                    <span class="num">SIG_01</span>
+                    <span class="ico red"><svg><use href="#i-pulse"/></svg></span>
+                    <p>Você percebe mudanças de comportamento.</p>
+                    <div class="signal" aria-hidden="true"><i style="animation-delay:-.1s"></i><i style="animation-delay:-.5s"></i><i style="animation-delay:-.3s"></i><i style="animation-delay:-.9s"></i><i style="animation-delay:-.2s"></i><i style="animation-delay:-.7s"></i><i style="animation-delay:-.4s"></i><i style="animation-delay:-1.1s"></i></div>
+                </article>
+                <article class="glass corner pain-card tilt reveal d2">
+                    <span class="num">SIG_02</span>
+                    <span class="ico red"><svg><use href="#i-phone"/></svg></span>
+                    <p>Celular sempre protegido e longe de você.</p>
+                    <div class="signal" aria-hidden="true"><i style="animation-delay:-.6s"></i><i style="animation-delay:-.2s"></i><i style="animation-delay:-1s"></i><i style="animation-delay:-.4s"></i><i style="animation-delay:-.8s"></i><i style="animation-delay:-.1s"></i><i style="animation-delay:-.5s"></i><i style="animation-delay:-.3s"></i></div>
+                </article>
+                <article class="glass corner pain-card tilt reveal d3">
+                    <span class="num">SIG_03</span>
+                    <span class="ico red"><svg><use href="#i-msg"/></svg></span>
+                    <p>Conversas que parecem diferentes.</p>
+                    <div class="signal" aria-hidden="true"><i style="animation-delay:-.3s"></i><i style="animation-delay:-.9s"></i><i style="animation-delay:-.1s"></i><i style="animation-delay:-.6s"></i><i style="animation-delay:-.4s"></i><i style="animation-delay:-1.2s"></i><i style="animation-delay:-.2s"></i><i style="animation-delay:-.7s"></i></div>
+                </article>
+                <article class="glass corner pain-card tilt reveal d4">
+                    <span class="num">SIG_04</span>
+                    <span class="ico red"><svg><use href="#i-eye"/></svg></span>
+                    <p>E aquela sensação de que existe algo que você não está sabendo.</p>
+                    <div class="signal" aria-hidden="true"><i style="animation-delay:-.8s"></i><i style="animation-delay:-.3s"></i><i style="animation-delay:-.6s"></i><i style="animation-delay:-.1s"></i><i style="animation-delay:-1s"></i><i style="animation-delay:-.5s"></i><i style="animation-delay:-.2s"></i><i style="animation-delay:-.9s"></i></div>
+                </article>
+            </div>
+
+            <p class="glass pain-note reveal">
+                Em vez de agir no impulso, tenha acesso a <strong>informações e orientações</strong> que ajudam você a avaliar a situação com mais clareza.
+            </p>
+        </div>
+    </section>
+
+    <!-- ================= COMO FUNCIONA ================= -->
+    <section id="como-funciona">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <span class="tag">// 02 <b>— PROTOCOLO</b></span>
+                <h2><span class="grad">3 PASSOS</span> PARA COMEÇAR</h2>
+            </div>
+
+            <div class="how-grid">
+                <div class="steps">
+                    <article class="glass corner step tilt reveal d1">
+                        <span class="n">01</span>
+                        <div><h3>1. Responda</h3><p>Conte o que está acontecendo e quais sinais chamaram sua atenção.</p></div>
+                    </article>
+                    <article class="glass corner step tilt reveal d2">
+                        <span class="n">02</span>
+                        <div><h3>2. Analise</h3><p>Receba uma análise estruturada dos sinais apresentados.</p></div>
+                    </article>
+                    <article class="glass corner step tilt reveal d3">
+                        <span class="n">03</span>
+                        <div><h3>3. Proteja-se</h3><p>Veja recomendações para proteger suas contas, dispositivos e informações pessoais.</p></div>
+                    </article>
+                </div>
+
+                <div class="glass terminal reveal d2" aria-label="Simulação ilustrativa de terminal">
+                    <div class="term-bar"><i></i><i></i><i></i><span>cyber-check — bash</span></div>
+                    <div class="term-body" id="term" aria-live="off"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= O QUE VOCÊ RECEBE ================= -->
+    <section id="incluido">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <span class="tag">// 03 <b>— PACOTE</b></span>
+                <h2>O QUE ESTÁ <span class="grad">INCLUÍDO</span> NO ACESSO</h2>
+            </div>
+
+            <div class="inc-grid">
+                <div class="glass inc-card tilt reveal d1"><span class="chk"><svg><use href="#i-check"/></svg></span><div><b>Checklist de sinais de comportamento</b><small>MÓDULO_01</small></div></div>
+                <div class="glass inc-card tilt reveal d2"><span class="chk"><svg><use href="#i-check"/></svg></span><div><b>Guia de segurança digital</b><small>MÓDULO_02</small></div></div>
+                <div class="glass inc-card tilt reveal d3"><span class="chk"><svg><use href="#i-check"/></svg></span><div><b>Orientações sobre privacidade</b><small>MÓDULO_03</small></div></div>
+                <div class="glass inc-card tilt reveal d1"><span class="chk"><svg><use href="#i-check"/></svg></span><div><b>Checklist de proteção de contas</b><small>MÓDULO_04</small></div></div>
+                <div class="glass inc-card tilt reveal d2"><span class="chk"><svg><use href="#i-check"/></svg></span><div><b>Guia para identificar golpes e acessos suspeitos</b><small>MÓDULO_05</small></div></div>
+                <div class="glass inc-card tilt reveal d3"><span class="chk"><svg><use href="#i-check"/></svg></span><div><b>Material de análise de relacionamento digital</b><small>MÓDULO_06</small></div></div>
+                <div class="glass inc-card wide reveal d2"><span class="chk"><svg><use href="#i-bolt"/></svg></span><div><b>Acesso imediato ao conteúdo</b><small>LIBERADO APÓS A CONFIRMAÇÃO DO PAGAMENTO</small></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= OFERTA ================= -->
+    <section id="oferta" class="offer">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <span class="tag">// 04 <b>— ACESSO</b></span>
+                <h2>COMECE SUA ANÁLISE <span class="grad">HOJE</span></h2>
+                <p>Escolha o plano. Na próxima etapa você pode adicionar guias de proteção específicos, se quiser.</p>
+            </div>
+
+            <div class="plans">
+                <article class="glass corner plan basic reveal d1">
+                    <div class="pname">CYBER CHECK</div>
+                    <p class="pdesc">O essencial para organizar os sinais e começar a se proteger.</p>
+                    <div class="pprice"><small>R$</small><b>12,90</b></div>
+                    <div class="pmeta">ACESSO DIGITAL IMEDIATO</div>
+                    <ul>
+                        <li><svg><use href="#i-check"/></svg> Checklist de sinais de comportamento</li>
+                        <li><svg><use href="#i-check"/></svg> Guia de segurança digital</li>
+                        <li><svg><use href="#i-check"/></svg> Orientações sobre privacidade</li>
+                        <li><svg><use href="#i-check"/></svg> Acesso imediato ao conteúdo</li>
+                    </ul>
+                    <button class="btn btn-ghost btn-block js-buy" data-plan="basico" type="button">QUERO COMEÇAR</button>
+                </article>
+
+                <article class="glass plan pro reveal d2">
+                    <span class="badge">MAIS COMPLETO</span>
+                    <div class="pname grad">CYBER CHECK PRO</div>
+                    <p class="pdesc">Tudo do básico, com análise ampliada e materiais extras.</p>
+                    <div class="pprice"><small>R$</small><b>27,00</b></div>
+                    <div class="pmeta">ACESSO DIGITAL IMEDIATO</div>
+                    <ul>
+                        <li><svg><use href="#i-check"/></svg> Conteúdo completo</li>
+                        <li><svg><use href="#i-check"/></svg> Análise ampliada</li>
+                        <li><svg><use href="#i-check"/></svg> Checklist avançado</li>
+                        <li><svg><use href="#i-check"/></svg> Guia de segurança</li>
+                        <li><svg><use href="#i-check"/></svg> Materiais extras</li>
+                        <li><svg><use href="#i-check"/></svg> Atualizações</li>
+                    </ul>
+                    <button class="btn btn-blue btn-block js-buy" data-plan="pro" type="button">QUERO O PLANO PRO <svg><use href="#i-arrow"/></svg></button>
+                </article>
+            </div>
+
+            <div class="plans-note reveal">
+                <span><svg><use href="#i-lock"/></svg> Compra segura</span>
+                <span><svg><use href="#i-bolt"/></svg> Acesso digital imediato</span>
+                <span><svg><use href="#i-phone"/></svg> Use pelo celular ou computador</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SEGURANÇA ================= -->
+    <section id="seguranca">
+        <div class="wrap sec-grid">
+            <div class="stage reveal" aria-hidden="true">
+                <pre class="code-float c1">if (session.unknown) {
+  revoke(session);
+  enable2FA();
+}</pre>
+                <pre class="code-float c2">&gt; privacy.audit()
+&gt; permissions: 12 revisadas
+&gt; status: PROTEGIDO</pre>
+                <div class="stage-inner" id="stage">
+                    <div class="platform"></div>
+                    <div class="obj obj-shield"><div class="up"><div class="token"><svg><use href="#i-shield"/></svg></div></div></div>
+                    <div class="obj obj-lock"><div class="up"><div class="token"><svg><use href="#i-lock"/></svg></div></div></div>
+                    <div class="obj obj-db"><div class="up"><div class="token"><svg><use href="#i-db"/></svg></div></div></div>
+                    <div class="obj obj-phone"><div class="up"><div class="mini-phone"><div class="mini-screen"><svg><use href="#i-lock"/></svg></div></div></div></div>
+                </div>
+            </div>
+
+            <div class="sec-copy">
+                <span class="eyebrow reveal">// 05 — ÉTICA DIGITAL</span>
+                <h2 class="reveal d1">PRIVACIDADE NÃO É LUXO. <span class="grad">É PROTEÇÃO.</span></h2>
+                <p class="reveal d2"><strong>Não invada a privacidade de outra pessoa.</strong></p>
+                <p class="reveal d2">Use as ferramentas para proteger suas próprias contas, identificar riscos e tomar decisões conscientes.</p>
+                <div class="rules">
+                    <div class="rule yes reveal d3"><svg><use href="#i-check"/></svg> Revisar a segurança das suas próprias contas e aparelhos</div>
+                    <div class="rule yes reveal d3"><svg><use href="#i-check"/></svg> Reconhecer golpes, sessões e acessos desconhecidos</div>
+                    <div class="rule no reveal d4"><svg><use href="#i-x"/></svg> Acessar contas, mensagens ou aparelhos de terceiros</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section id="faq">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <span class="tag">// 06 <b>— SUPORTE</b></span>
+                <h2>PERGUNTAS <span class="grad">FREQUENTES</span></h2>
+            </div>
+
+            <div class="faq">
+                <details class="glass reveal">
+                    <summary>É necessário instalar alguma coisa?</summary>
+                    <div class="ans"><p>Não. O conteúdo é acessado pelo navegador, sem instalar aplicativos no seu aparelho ou no de outra pessoa.</p></div>
+                </details>
+                <details class="glass reveal">
+                    <summary>O acesso é imediato?</summary>
+                    <div class="ans"><p>Sim. Assim que o pagamento é confirmado, o acesso ao conteúdo é liberado.</p></div>
+                </details>
+                <details class="glass reveal">
+                    <summary>Posso usar pelo celular?</summary>
+                    <div class="ans"><p>Sim. Todo o material foi pensado para ser usado no celular, e também funciona no computador ou tablet.</p></div>
+                </details>
+                <details class="glass reveal">
+                    <summary>Como funciona a análise?</summary>
+                    <div class="ans"><p>Você responde sobre os sinais que percebeu e usa os checklists e guias para organizá-los de forma estruturada. O material ajuda a separar o que é fato do que é suposição e indica passos seguros para proteger suas contas e informações. É uma ferramenta de orientação: ela não acessa dados de ninguém e não dá um veredito sobre outra pessoa.</p></div>
+                </details>
+                <details class="glass reveal">
+                    <summary>Posso verificar a segurança das minhas próprias contas?</summary>
+                    <div class="ans"><p>Sim, e esse é o foco. Os guias mostram onde revisar sessões ativas, dispositivos conectados, permissões de aplicativos e configurações de privacidade das suas contas.</p></div>
+                </details>
+                <details class="glass reveal">
+                    <summary>Meus dados ficam protegidos?</summary>
+                    <div class="ans"><p>Pedimos apenas os dados necessários para processar a compra e liberar o acesso. O Cyber Check nunca pede suas senhas nem as de outra pessoa.</p></div>
+                </details>
+                <details class="glass hl reveal">
+                    <summary>É possível acessar mensagens de outra pessoa?</summary>
+                    <div class="ans"><p><strong>Não.</strong> O produto não oferece acesso não autorizado a contas, mensagens ou dispositivos de terceiros.</p></div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CTA FINAL ================= -->
+    <section class="final" id="final">
+        <div class="final-term" id="finalTerm" aria-hidden="true"></div>
+        <div class="wrap">
+            <div class="live reveal"><i></i> OFERTA ATIVA • ACESSO POR R$ 12,90</div>
+            <h2 class="reveal d1">
+                <span class="glitch js-glitch" data-text="A DÚVIDA PODE ESPERAR.">A DÚVIDA PODE ESPERAR.</span>
+                <span class="l2 grad">SUA SEGURANÇA, NÃO.</span>
+            </h2>
+            <p class="sub reveal d2">Comece agora sua análise e descubra quais sinais merecem sua atenção.</p>
+
+            <!-- Contador visual: números reais do produto, sem prazo artificial -->
+            <div class="stats reveal d3">
+                <div class="glass stat"><b data-count="7" data-pad="2">00</b><span>Materiais incluídos</span></div>
+                <div class="glass stat"><b data-count="3" data-pad="2">00</b><span>Passos para começar</span></div>
+                <div class="glass stat"><b data-count="0" data-pad="2">00</b><span>Apps para instalar</span></div>
+                <div class="glass stat"><b data-count="100" data-suffix="%">0%</b><span>Pelo celular</span></div>
+            </div>
+
+            <button class="btn js-buy reveal d4" data-plan="basico" type="button">
+                COMEÇAR AGORA — R$ 12,90 <svg><use href="#i-arrow"/></svg>
+            </button>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap">
+        <div class="logo" style="justify-content:center"><span class="logo-mark"><svg><use href="#i-shield"/></svg></span><span class="logo-txt">CYBER<span>CHECK</span></span></div>
+        <p>O Cyber Check é um conteúdo educativo de segurança digital e privacidade. Não oferece, não ensina e não facilita acesso não autorizado a contas, mensagens ou dispositivos de terceiros.</p>
+        <p>Instagram, Facebook e Telegram são marcas de seus respectivos titulares. Este produto não tem vínculo, patrocínio ou aprovação dessas empresas.</p>
+        <p>© <span id="year">2026</span> Cyber Check. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<!-- barra fixa no celular -->
+<div class="sticky" id="sticky">
+    <div class="sp">ACESSO ESPECIAL<b>R$ 12,90</b></div>
+    <button class="btn js-buy" data-plan="basico" type="button">COMEÇAR ANÁLISE</button>
+</div>
+
+<!-- ================= CHECKOUT + ORDER BUMPS ================= -->
+<div class="modal" id="checkout" role="dialog" aria-modal="true" aria-labelledby="ck-title">
+    <div class="glass modal-box">
+        <div class="m-head">
+            <h3 id="ck-title"><svg><use href="#i-cart"/></svg> FINALIZAR ACESSO</h3>
+            <button class="m-close" type="button" id="ck-close" aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
+        </div>
+        <form class="m-body" id="ck-form">
+            <div>
+                <span class="m-label">// SEU PLANO</span>
+                <div class="plan-pick">
+                    <label><input type="radio" name="plano" value="basico" checked><span class="pp"><b>CYBER CHECK</b><span>R$ 12,90</span></span></label>
+                    <label><input type="radio" name="plano" value="pro"><span class="pp"><b>CYBER CHECK PRO</b><span>R$ 27,00</span></span></label>
+                </div>
+            </div>
+
+            <div>
+                <span class="m-label">// COMPLEMENTOS OPCIONAIS</span>
+                <div class="bumps">
+                    <label class="bump">
+                        <input type="checkbox" name="bump" value="instagram">
+                        <div class="bump-top">
+                            <span class="ico"><svg><use href="#i-image"/></svg></span>
+                            <span class="bump-name">PROTEÇÃO DO INSTAGRAM</span>
+                            <span class="bump-price">+ R$ 9,90</span>
+                        </div>
+                        <p>Guia completo para revisar configurações de privacidade, sessões ativas e segurança da sua conta.</p>
+                        <div class="bump-check"><span class="box"><svg><use href="#i-check"/></svg></span> SIM, QUERO ADICIONAR</div>
+                    </label>
+
+                    <label class="bump">
+                        <input type="checkbox" name="bump" value="celular">
+                        <div class="bump-top">
+                            <span class="ico blue"><svg><use href="#i-phone"/></svg></span>
+                            <span class="bump-name">PROTEÇÃO DO CELULAR</span>
+                            <span class="bump-price">+ R$ 11,90</span>
+                        </div>
+                        <p>Aprenda a verificar configurações de segurança, permissões, aplicativos suspeitos e sessões desconhecidas.</p>
+                        <div class="bump-check"><span class="box"><svg><use href="#i-check"/></svg></span> SIM, QUERO ADICIONAR</div>
+                    </label>
+
+                    <label class="bump">
+                        <input type="checkbox" name="bump" value="telegram">
+                        <div class="bump-top">
+                            <span class="ico"><svg><use href="#i-devices"/></svg></span>
+                            <span class="bump-name">PROTEÇÃO DO TELEGRAM</span>
+                            <span class="bump-price">+ R$ 5,90</span>
+                        </div>
+                        <p>Checklist para revisar sessões, dispositivos conectados e configurações de privacidade.</p>
+                        <div class="bump-check"><span class="box"><svg><use href="#i-check"/></svg></span> SIM, QUERO ADICIONAR</div>
+                    </label>
+
+                    <label class="bump">
+                        <input type="checkbox" name="bump" value="facebook">
+                        <div class="bump-top">
+                            <span class="ico blue"><svg><use href="#i-users"/></svg></span>
+                            <span class="bump-name">PROTEÇÃO DO FACEBOOK</span>
+                            <span class="bump-price">+ R$ 5,90</span>
+                        </div>
+                        <p>Aprenda a identificar acessos desconhecidos e aumentar a segurança da sua conta.</p>
+                        <div class="bump-check"><span class="box"><svg><use href="#i-check"/></svg></span> SIM, QUERO ADICIONAR</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="summary" id="ck-summary" aria-live="polite"></div>
+
+            <div class="m-foot">
+                <p class="m-msg" id="ck-msg" role="status"></p>
+                <button class="btn btn-block" type="submit" id="ck-go">IR PARA O PAGAMENTO <svg><use href="#i-arrow"/></svg></button>
+                <div class="m-safe">
+                    <span><svg><use href="#i-lock"/></svg> Pagamento seguro</span>
+                    <span><svg><use href="#i-bolt"/></svg> Acesso digital imediato</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+/* =====================================================================
+   CONFIGURAÇÃO DO CHECKOUT
+   Cole aqui o link de pagamento de cada plano (plataforma de checkout).
+   Os complementos marcados seguem no parâmetro "bumps" da URL; os preços
+   exibidos aqui são só informativos — o valor cobrado deve vir sempre
+   da plataforma de pagamento, nunca do navegador.
+   ===================================================================== */
+const CHECKOUT_LINKS = {
+    basico: '',   // TROCAR: link de checkout do CYBER CHECK (R$ 12,90)
+    pro:    ''    // TROCAR: link de checkout do CYBER CHECK PRO (R$ 27,00)
+};
+
+const PLANOS = {
+    basico: { nome: 'CYBER CHECK',     preco: 12.90 },
+    pro:    { nome: 'CYBER CHECK PRO', preco: 27.00 }
+};
+const BUMPS = {
+    instagram: { nome: 'Proteção do Instagram', preco: 9.90 },
+    celular:   { nome: 'Proteção do Celular',   preco: 11.90 },
+    telegram:  { nome: 'Proteção do Telegram',  preco: 5.90 },
+    facebook:  { nome: 'Proteção do Facebook',  preco: 5.90 }
+};
+
+(function () {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePointer = window.matchMedia('(pointer: fine)').matches;
+    const brl = v => 'R$ ' + v.toFixed(2).replace('.', ',');
+
+    /* ---------- fundo: código hexadecimal caindo devagar + partículas ---------- */
+    const cv = document.getElementById('matrix');
+    const ctx = cv.getContext('2d');
+    const HEX = '0123456789ABCDEF';
+    let W, H, cols, drops, parts, dpr;
+    const FS = 14;
+
+    function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = window.innerWidth; H = window.innerHeight;
+        cv.width = W * dpr; cv.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        cols = Math.ceil(W / (FS * 1.6));
+        drops = Array.from({ length: cols }, () => ({ y: Math.random() * H, v: .25 + Math.random() * .6, on: Math.random() < .45 }));
+        const n = Math.round(Math.min(60, W / 22));
+        parts = Array.from({ length: n }, () => ({
+            x: Math.random() * W, y: Math.random() * H,
+            vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25,
+            r: Math.random() * 1.6 + .4, c: Math.random() < .7 ? '0,255,156' : (Math.random() < .5 ? '34,211,255' : '255,46,77')
+        }));
+    }
+
+    function frame() {
+        ctx.fillStyle = 'rgba(3,5,7,0.16)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.font = FS + 'px "JetBrains Mono", monospace';
+        for (let i = 0; i < cols; i++) {
+            const d = drops[i];
+            if (!d.on) continue;
+            const ch = HEX[(Math.random() * 16) | 0] + HEX[(Math.random() * 16) | 0];
+            const x = i * FS * 1.6;
+            ctx.fillStyle = Math.random() < .03 ? 'rgba(255,46,77,.55)' : (i % 5 === 0 ? 'rgba(34,211,255,.35)' : 'rgba(0,255,156,.35)');
+            ctx.fillText(ch, x, d.y);
+            d.y += FS * d.v;
+            if (d.y > H + 20) { d.y = -20; d.on = Math.random() < .5; d.v = .25 + Math.random() * .6; }
+        }
+        for (const p of parts) {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+            if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(' + p.c + ',.7)'; ctx.fill();
+        }
+    }
+
+    resize();
+    let resizeT;
+    window.addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(resize, 150); });
+
+    if (reduce) {
+        for (let k = 0; k < 40; k++) frame();
+    } else {
+        let last = 0;
+        (function loop(t) {
+            requestAnimationFrame(loop);
+            if (document.hidden || t - last < 60) return; // ~16fps: código passando lentamente
+            last = t; frame();
+        })(0);
+    }
+
+    /* ---------- relógio do topo ---------- */
+    const clock = document.getElementById('clock');
+    const tickClock = () => { clock.textContent = new Date().toLocaleTimeString('pt-BR', { hour12: false }); };
+    tickClock(); setInterval(tickClock, 1000);
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ---------- reveal ao rolar ---------- */
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* ---------- glitch discreto, de tempos em tempos ---------- */
+    if (!reduce) {
+        const glitches = document.querySelectorAll('.js-glitch');
+        setInterval(() => {
+            const g = glitches[(Math.random() * glitches.length) | 0];
+            g.classList.add('is-glitching');
+            setTimeout(() => g.classList.remove('is-glitching'), 400);
+        }, 3800);
+    }
+
+    /* ---------- tilt 3D nos cards ---------- */
+    if (finePointer && !reduce) {
+        document.querySelectorAll('.tilt').forEach(el => {
+            el.addEventListener('pointermove', e => {
+                const r = el.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width - .5;
+                const y = (e.clientY - r.top) / r.height - .5;
+                el.style.transform = `perspective(900px) rotateX(${(-y * 7).toFixed(2)}deg) rotateY(${(x * 9).toFixed(2)}deg) translateY(-4px)`;
+            });
+            el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+        });
+
+        const hv = document.getElementById('heroVisual');
+        const phone = document.getElementById('phone');
+        hv.addEventListener('pointermove', e => {
+            const r = hv.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - .5;
+            const y = (e.clientY - r.top) / r.height - .5;
+            phone.style.transform = `rotateY(${(-16 + x * 22).toFixed(1)}deg) rotateX(${(8 - y * 16).toFixed(1)}deg) rotateZ(1deg)`;
+        });
+        hv.addEventListener('pointerleave', () => { phone.style.transform = ''; });
+
+        const stage = document.getElementById('stage');
+        const sec = document.getElementById('seguranca');
+        sec.addEventListener('pointermove', e => {
+            const x = e.clientX / window.innerWidth - .5;
+            stage.style.transform = `rotateX(58deg) rotateZ(${(-30 + x * 24).toFixed(1)}deg)`;
+        });
+    }
+
+    /* ---------- HUD do celular: varredura em loop ---------- */
+    const arc = document.getElementById('gaugeArc');
+    const gv = document.getElementById('gaugeVal');
+    const bars = document.querySelectorAll('.scr-list .bar i');
+    const CIRC = 314.16;
+    function runGauge() {
+        let v = 0;
+        bars.forEach(b => b.style.width = '0');
+        setTimeout(() => bars.forEach(b => b.style.width = b.dataset.w + '%'), 150);
+        const id = setInterval(() => {
+            v += 1;
+            gv.textContent = v;
+            arc.style.strokeDashoffset = CIRC - CIRC * v / 100;
+            if (v >= 100) { clearInterval(id); if (!reduce) setTimeout(runGauge, 2600); }
+        }, reduce ? 1 : 34);
+    }
+    runGauge();
+
+    /* ---------- terminal da seção "como funciona" ---------- */
+    const term = document.getElementById('term');
+    const SCRIPT = [
+        { t: '$ cyber-check --start', c: 'p' },
+        { t: '> INITIALIZING...', c: 'big', pause: 500 },
+        { t: '  [ok] checklist de sinais carregado', c: 'ok' },
+        { t: '  [ok] módulo de privacidade', c: 'ok' },
+        { t: '> ANALYZING DIGITAL RISKS...', c: 'big', prog: true },
+        { t: '  sessões ativas ........ revisar', c: 'info' },
+        { t: '  permissões de apps .... revisar', c: 'info' },
+        { t: '  autenticação 2FA ...... recomendada', c: 'info' },
+        { t: '> CHECK COMPLETE', c: 'big', pause: 300 },
+        { t: '  → veja suas recomendações de proteção', c: 'dimt' }
+    ];
+    let termRunning = false;
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+
+    async function typeLine(line) {
+        const div = document.createElement('div');
+        div.className = 'ln ' + line.c;
+        term.appendChild(div);
+        const caret = document.createElement('span'); caret.className = 'caret';
+        for (let i = 0; i <= line.t.length; i++) {
+            div.textContent = line.t.slice(0, i);
+            div.appendChild(caret);
+            await wait(line.c === 'big' ? 38 : 16);
+        }
+        caret.remove();
+        if (line.prog) {
+            const pb = document.createElement('div'); pb.className = 'term-prog';
+            const fill = document.createElement('i'); pb.appendChild(fill);
+            term.appendChild(pb);
+            for (let p = 0; p <= 100; p += 4) { fill.style.width = p + '%'; await wait(45); }
+        }
+        await wait(line.pause || 180);
+    }
+
+    async function runTerm() {
+        if (termRunning) return;
+        termRunning = true;
+        if (reduce) {
+            SCRIPT.forEach(l => { const d = document.createElement('div'); d.className = 'ln ' + l.c; d.textContent = l.t; term.appendChild(d); });
+            return;
+        }
+        while (true) {
+            term.innerHTML = '';
+            for (const l of SCRIPT) await typeLine(l);
+            const end = document.createElement('div'); end.className = 'ln p';
+            end.textContent = '$ '; end.appendChild(Object.assign(document.createElement('span'), { className: 'caret' }));
+            term.appendChild(end);
+            await wait(4200);
+        }
+    }
+    new IntersectionObserver((en, obs) => {
+        if (en[0].isIntersecting) { runTerm(); obs.disconnect(); }
+    }, { threshold: .3 }).observe(term);
+
+    /* ---------- fundo de terminal do CTA final ---------- */
+    const ft = document.getElementById('finalTerm');
+    const hexLine = () => Array.from({ length: 16 }, () => HEX[(Math.random() * 16) | 0] + HEX[(Math.random() * 16) | 0]).join(' ');
+    const rows = [];
+    for (let i = 0; i < 40; i++) rows.push(('0000' + (i * 16).toString(16)).slice(-5).toUpperCase() + '  ' + hexLine() + '  ' + hexLine());
+    ft.textContent = rows.join('\n');
+    if (!reduce) setInterval(() => {
+        rows.shift();
+        rows.push(('0000' + ((Date.now() / 50 | 0) % 0xFFFFF).toString(16)).slice(-5).toUpperCase() + '  ' + hexLine() + '  ' + hexLine());
+        ft.textContent = rows.join('\n');
+    }, 900);
+
+    /* ---------- contador visual (conta até os números reais do produto) ---------- */
+    const countIO = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            countIO.unobserve(e.target);
+            const el = e.target, to = +el.dataset.count, pad = +(el.dataset.pad || 0), suf = el.dataset.suffix || '';
+            const fmt = n => String(n).padStart(pad, '0') + suf;
+            if (reduce || to === 0) { el.textContent = fmt(to); return; }
+            const t0 = performance.now(), dur = 1400;
+            (function step(t) {
+                const k = Math.min(1, (t - t0) / dur);
+                el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - k, 3))));
+                if (k < 1) requestAnimationFrame(step);
+            })(t0);
+        });
+    }, { threshold: .5 });
+    document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
+
+    /* ---------- FAQ: um aberto por vez ---------- */
+    const faqs = document.querySelectorAll('.faq details');
+    faqs.forEach(d => d.addEventListener('toggle', () => {
+        if (d.open) faqs.forEach(o => { if (o !== d) o.open = false; });
+    }));
+
+    /* ---------- barra fixa no celular ---------- */
+    const sticky = document.getElementById('sticky');
+    const heroCta = document.querySelector('.hero-cta');
+    const finalSec = document.getElementById('final');
+    let heroGone = false, finalIn = false;
+    const upd = () => sticky.classList.toggle('show', heroGone && !finalIn && !document.getElementById('checkout').classList.contains('open'));
+    new IntersectionObserver(e => { heroGone = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; upd(); }).observe(heroCta);
+    new IntersectionObserver(e => { finalIn = e[0].isIntersecting; upd(); }, { threshold: .15 }).observe(finalSec);
+
+    /* ---------- checkout com order bumps ---------- */
+    const modal = document.getElementById('checkout');
+    const form = document.getElementById('ck-form');
+    const summary = document.getElementById('ck-summary');
+    const msg = document.getElementById('ck-msg');
+    let lastFocus = null;
+
+    function selecao() {
+        const plano = form.querySelector('input[name="plano"]:checked').value;
+        const bumps = [...form.querySelectorAll('input[name="bump"]:checked')].map(i => i.value);
+        return { plano, bumps };
+    }
+
+    function renderSummary() {
+        const { plano, bumps } = selecao();
+        let total = PLANOS[plano].preco;
+        let html = `<div class="row"><span>${PLANOS[plano].nome}</span><span>${brl(PLANOS[plano].preco)}</span></div>`;
+        bumps.forEach(b => {
+            total += BUMPS[b].preco;
+            html += `<div class="row"><span>+ ${BUMPS[b].nome}</span><span>${brl(BUMPS[b].preco)}</span></div>`;
+        });
+        html += `<div class="row total"><span>TOTAL</span><span>${brl(total)}</span></div>`;
+        summary.innerHTML = html;
+        msg.classList.remove('show');
+    }
+
+    function abrir(plano) {
+        lastFocus = document.activeElement;
+        form.querySelector(`input[name="plano"][value="${plano}"]`).checked = true;
+        renderSummary();
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        upd();
+        setTimeout(() => document.getElementById('ck-close').focus(), 50);
+    }
+    function fechar() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+        upd();
+        if (lastFocus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('.js-buy').forEach(b => b.addEventListener('click', () => abrir(b.dataset.plan)));
+    document.getElementById('ck-close').addEventListener('click', fechar);
+    modal.addEventListener('click', e => { if (e.target === modal) fechar(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) fechar(); });
+    form.addEventListener('change', renderSummary);
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        const { plano, bumps } = selecao();
+        const base = CHECKOUT_LINKS[plano];
+        if (!base) {
+            msg.textContent = 'Checkout em configuração: adicione o link de pagamento deste plano em CHECKOUT_LINKS.';
+            msg.classList.add('show');
+            return;
+        }
+        const url = new URL(base, location.href);
+        // Repassa UTMs da página para o checkout
+        new URLSearchParams(location.search).forEach((v, k) => { if (/^(utm_|src$|sck$|fbclid$|gclid$)/.test(k)) url.searchParams.set(k, v); });
+        if (bumps.length) url.searchParams.set('bumps', bumps.join(','));
+        location.href = url.toString();
+    });
+})();
+</script>
+</body>
+</html>

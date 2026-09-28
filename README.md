@@ -155,3 +155,15 @@ A ZuckPay responde **429 após 5 tentativas em 30 minutos**. Por isso:
    um limite por IP para evitar geração de cobranças em massa.
 5. **Desativar o diagnóstico** — depois de resolver, apague `api/diagnostico.php`
    ou deixe `debug_token` vazio (assim ele responde 404).
+
+## Cyber Check (`cybercheck/index.html`)
+
+Landing page independente do produto **Cyber Check**, publicada em `/cybercheck/`.
+É um arquivo único (HTML + CSS + JS, sem build) e não usa a pasta `api/`.
+
+O checkout abre um modal com o plano (Básico R$ 12,90 / PRO R$ 27,00) e os
+order bumps (Instagram, Celular, Telegram, Facebook). Para ativar, preencha
+`CHECKOUT_LINKS` no script da página com o link de pagamento de cada plano;
+os bumps marcados seguem no parâmetro `bumps` da URL, junto com as UTMs. Os
+preços da página são só informativos — o valor cobrado tem de vir da
+plataforma de pagamento.
