@@ -4,8 +4,8 @@ declare(strict_types=1);
 /**
  * Cria uma cobrança PIX na ZuckPay.
  *
- * POST { plano, nome, cpf, email, telefone, rastreio? }
- * -> { transactionId, qrcode, qrcode_image, checkout_url, expiracao, valor }
+ * POST { plano, extras?, nome, cpf, email, telefone, rastreio? }
+ * -> { transactionId, qrcode, qrcode_image, checkout_url, expiracao, valor, itens }
  */
 
 require __DIR__ . '/_bootstrap.php';
@@ -31,6 +31,32 @@ if (!isset($planos[$planoId])) {
     responder(400, ['erro' => 'Plano inválido.']);
 }
 $plano = $planos[$planoId];
+
+/**
+ * Extras (order bumps): o navegador manda só os ids. Id desconhecido ou de
+ * outro plano é recusado, e o valor de cada um vem do config.php.
+ */
+$extrasDisponiveis = is_array($plano['extras'] ?? null) ? $plano['extras'] : [];
+$extrasPedidos = $corpo['extras'] ?? [];
+if (!is_array($extrasPedidos) || count($extrasPedidos) > count($extrasDisponiveis)) {
+    responder(400, ['erro' => 'Extras inválidos.']);
+}
+
+$extras = [];
+foreach ($extrasPedidos as $extraId) {
+    if (!is_string($extraId) || !isset($extrasDisponiveis[$extraId])) {
+        responder(400, ['erro' => 'Extras inválidos.']);
+    }
+    $extras[$extraId] = $extrasDisponiveis[$extraId];
+}
+
+$valorTotal = (float) $plano['valor'];
+$itens = [$plano['nome']];
+foreach ($extras as $extra) {
+    $valorTotal += (float) $extra['valor'];
+    $itens[] = $extra['nome'];
+}
+$valorTotal = round($valorTotal, 2);
 
 $nome     = trim((string) ($corpo['nome'] ?? ''));
 $cpf      = preg_replace('/\D/', '', (string) ($corpo['cpf'] ?? '')) ?? '';
@@ -65,15 +91,17 @@ if (strlen($pedido) < 8 || strlen($pedido) > 60) {
     $pedido = bin2hex(random_bytes(12));
 }
 
+$externalId = ($plano['prefixo'] ?? 'AC') . '-' . $planoId . '-' . $pedido;
+
 $payload = [
     'nome'               => $nome,
     'cpf'                => $cpf,
-    'valor'              => $plano['valor'],
+    'valor'              => $valorTotal,
     'email'              => $email,
     'telefone'           => $telefone,
     'urlnoty'            => $config['webhook_url'],
-    'descricao'          => $plano['nome'],
-    'external_id_client' => 'AC-' . $planoId . '-' . $pedido,
+    'descricao'          => mb_substr(implode(' + ', $itens), 0, 250),
+    'external_id_client' => $externalId,
 ];
 
 // Vincula a venda ao produto cadastrado no painel (opcional na API).
@@ -127,6 +155,14 @@ if ($status !== 200 || empty($resposta['transactionId'])) {
     responder(502, $saida);
 }
 
+// Guarda o que foi comprado, para o webhook saber quais extras entregar.
+registrarPedido($config, $externalId, [
+    'plano'  => $planoId,
+    'extras' => array_keys($extras),
+    'itens'  => $itens,
+    'valor'  => $valorTotal,
+]);
+
 // Devolve só o que o navegador precisa. Nada de credencial, nada de valor líquido.
 responder(200, [
     'transactionId' => (string) $resposta['transactionId'],
@@ -134,7 +170,8 @@ responder(200, [
     'qrcode_image'  => (string) ($resposta['qrcode_image'] ?? ''),
     'checkout_url'  => (string) ($resposta['checkout_url'] ?? ''),
     'expiracao'     => (int) ($resposta['calendar']['expiration'] ?? 1200),
-    'valor'         => $plano['valor'],
+    'valor'         => $valorTotal,
     'plano'         => $plano['nome'],
+    'itens'         => $itens,
     'pedido'        => $pedido,
 ]);

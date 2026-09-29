@@ -45,7 +45,9 @@ ficar na raiz do site, ajuste a constante `API` no script de checkout do
    a cada 4s até o pagamento ser confirmado.
 4. A ZuckPay chama `api/webhook.php`, que confirma o pagamento e registra a venda.
 
-Planos: **Básico R$ 9,99** e **Premium R$ 29,90**. Ambos ficam em
+Planos: **Básico R$ 9,99** e **Premium R$ 29,90** (Arritmias) e
+**Central AEE R$ 27,90** com extras opcionais (página em `central-aee/`,
+ver `central-aee/README.md`). Ambos ficam em
 `config.php`, junto com o `product_id` do produto cadastrado no painel da
 ZuckPay (atualmente `593187` nos dois — se cada plano tiver produto próprio,
 use um id diferente em cada).

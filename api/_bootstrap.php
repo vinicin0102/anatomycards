@@ -233,6 +233,28 @@ function transacaoJaRegistrada(array $config, string $transactionId): bool
     return false;
 }
 
+/**
+ * Guarda os itens de um pedido (plano + extras) pelo external_id_client.
+ * O webhook lê este arquivo para saber o que entregar. Uma nova tentativa
+ * com o mesmo pedido sobrescreve a anterior, que é o que o comprador escolheu por último.
+ */
+function registrarPedido(array $config, string $externalId, array $dados): void
+{
+    $arquivo = diretorioEstado($config) . '/pedido-' . sha1($externalId) . '.json';
+    @file_put_contents($arquivo, json_encode($dados + ['criado_em' => date('c')], JSON_UNESCAPED_UNICODE), LOCK_EX);
+}
+
+/** Lê os itens gravados por registrarPedido(), ou null se não houver. */
+function lerPedido(array $config, string $externalId): ?array
+{
+    if ($externalId === '') {
+        return null;
+    }
+    $arquivo = diretorioEstado($config) . '/pedido-' . sha1($externalId) . '.json';
+    $dados = is_file($arquivo) ? json_decode((string) @file_get_contents($arquivo), true) : null;
+    return is_array($dados) ? $dados : null;
+}
+
 /** Acrescenta a venda ao log de pagamentos. */
 function registrarPagamento(array $config, array $dados): void
 {

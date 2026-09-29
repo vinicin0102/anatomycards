@@ -97,10 +97,15 @@ if (strtoupper((string) $resposta['status']) !== 'PAID') {
 $jaProcessado = transacaoJaRegistrada($config, $transactionId);
 
 if (!$jaProcessado) {
+    $externalId = (string) ($transacao['external_id_client'] ?? ($corpo['external_id_client'] ?? ''));
+    $pedido = lerPedido($config, $externalId);
+
     registrarPagamento($config, [
         'transactionId'      => $transactionId,
         'evento'             => $evento,
-        'external_id_client' => $transacao['external_id_client'] ?? ($corpo['external_id_client'] ?? null),
+        'external_id_client' => $externalId !== '' ? $externalId : null,
+        'plano'              => $pedido['plano'] ?? null,
+        'extras'             => $pedido['extras'] ?? [],
         'nome'               => $transacao['nome'] ?? null,
         'email'              => $transacao['email'] ?? ($resposta['email'] ?? null),
         'valor'              => $resposta['amount'] ?? ($transacao['amount'] ?? null),
@@ -114,6 +119,8 @@ if (!$jaProcessado) {
      * TODO — entrega do produto.
      * Aqui entra o envio do e-mail com o link dos PDFs / liberação da área de
      * membros. Este bloco roda uma única vez por transactionId.
+     * $pedido['plano'] e $pedido['extras'] dizem o que entregar (Central AEE
+     * + os ids dos extras marcados).
      */
 }
 

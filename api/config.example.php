@@ -46,6 +46,33 @@ return [
             'valor'      => 29.90,
             'product_id' => 593187,
         ],
+
+        /**
+         * Central AEE (página em /central-aee/).
+         *
+         * extras: complementos (order bumps) que só podem ser comprados junto
+         * com este plano. O navegador envia apenas os ids marcados; o valor
+         * de cada extra é somado aqui, no servidor. Os ids e preços precisam
+         * bater com o array EXTRAS do central-aee/index.html (que só exibe).
+         *
+         * prefixo: início do external_id_client, para separar as vendas de
+         * cada produto nos relatórios.
+         */
+        'central-aee' => [
+            'nome'       => 'Central AEE',
+            'valor'      => 27.90,
+            'product_id' => 0, // TROCAR pelo id do produto no painel da ZuckPay
+            'prefixo'    => 'AEE',
+            'extras'     => [
+                'relatorios' => ['nome' => 'Banco de Relatórios e Pareceres',   'valor' => 7.90],
+                'atividades' => ['nome' => 'Banco de Atividades Adaptadas',     'valor' => 9.90],
+                'tea'        => ['nome' => 'Kit Professor TEA',                 'valor' => 9.90],
+                'rotina'     => ['nome' => 'Kit Rotina Visual',                 'valor' => 7.90],
+                'pasta'      => ['nome' => 'Pasta do Aluno',                    'valor' => 12.90],
+                '30dias'     => ['nome' => 'Primeiros 30 Dias no AEE',          'valor' => 12.90],
+                'frases'     => ['nome' => 'Banco de Frases para Documentação', 'valor' => 7.90],
+            ],
+        ],
     ],
 
     // URL pública que a ZuckPay chama quando o pagamento muda de status.
