@@ -105,6 +105,7 @@ if (!$jaProcessado) {
         'evento'             => $evento,
         'external_id_client' => $externalId !== '' ? $externalId : null,
         'plano'              => $pedido['plano'] ?? null,
+        'primeiro_nome'      => $pedido['primeiro_nome'] ?? null,
         'extras'             => $pedido['extras'] ?? [],
         'nome'               => $transacao['nome'] ?? null,
         'email'              => $transacao['email'] ?? ($resposta['email'] ?? null),

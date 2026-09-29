@@ -233,6 +233,14 @@ function transacaoJaRegistrada(array $config, string $transactionId): bool
     return false;
 }
 
+/** Primeiro nome, só com letras, no máximo 20 caracteres ("maria clara" -> "Maria"). */
+function primeiroNome(string $nome): string
+{
+    $primeiro = preg_split('/\s+/u', trim($nome))[0] ?? '';
+    $primeiro = preg_replace('/[^\p{L}\'-]/u', '', $primeiro) ?? '';
+    return mb_convert_case(mb_substr($primeiro, 0, 20), MB_CASE_TITLE, 'UTF-8');
+}
+
 /**
  * Guarda os itens de um pedido (plano + extras) pelo external_id_client.
  * O webhook lê este arquivo para saber o que entregar. Uma nova tentativa

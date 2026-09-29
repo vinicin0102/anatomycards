@@ -218,31 +218,50 @@ section{padding:64px 0;position:relative;overflow-x:clip}
 .side.after .ok{background:var(--green);color:#fff}
 
 /* Extras */
-.bumps{display:grid;gap:14px;max-width:860px;margin:0 auto}
-.bump{position:relative;display:grid;grid-template-columns:auto 1fr;gap:14px;background:#fff;border:2px dashed color-mix(in srgb,var(--c) 45%,#fff);border-left:6px solid var(--c);border-radius:18px;padding:18px;cursor:pointer;transition:border-color .15s,background .15s,box-shadow .15s}
+.bumps{display:grid;gap:10px}
+.bumps-title{font-size:15px;font-weight:800;color:var(--navy);margin:0 0 4px}
+.bumps-sub{font-size:13px;color:var(--muted);margin-bottom:10px}
+.bump{position:relative;display:grid;grid-template-columns:auto 1fr;gap:12px;background:#fff;border:2px dashed color-mix(in srgb,var(--c) 45%,#fff);border-left:5px solid var(--c);border-radius:14px;padding:12px 14px;cursor:pointer;transition:border-color .15s,background .15s,box-shadow .15s}
 .bump:hover{box-shadow:var(--shadow)}
 .bump.on{border-style:solid;border-color:var(--green);border-left-color:var(--green);background:#F3FCF6;box-shadow:var(--shadow)}
 .bump input{position:absolute;opacity:0;pointer-events:none}
-.box{width:26px;height:26px;border-radius:8px;border:2px solid #B9C3DA;background:#fff;display:grid;place-items:center;margin-top:2px;transition:.15s}
+.box{width:24px;height:24px;border-radius:8px;border:2px solid #B9C3DA;background:#fff;display:grid;place-items:center;margin-top:2px;transition:.15s}
 .box .ico{width:16px;height:16px;stroke-width:3.2;color:#fff;opacity:0}
 .bump.on .box{background:var(--green);border-color:var(--green)}
 .bump.on .box .ico{opacity:1}
 .bump input:focus-visible + .box{outline:3px solid #B9B0FA;outline-offset:2px}
-.bump-top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px}
-.bump-kicker{font-size:11.5px;font-weight:800;letter-spacing:.1em;color:var(--c)}
-.bump h3{font-size:17.5px;font-weight:800;margin-top:2px}
-.bump p{color:var(--muted);font-size:15px;margin-top:6px}
-.bump-price{font-weight:800;color:var(--navy);white-space:nowrap;background:var(--c50);padding:3px 10px;border-radius:999px;font-size:15px}
-.bump-cta{margin-top:10px;font-size:14px;font-weight:700;color:var(--c)}
+.bump-top{display:flex;flex-wrap:nowrap;align-items:flex-start;justify-content:space-between;gap:4px 12px}
+.bump-kicker{font-size:10.5px;font-weight:800;letter-spacing:.1em;color:var(--c)}
+.bump h3{font-size:14.5px;font-weight:800;margin-top:1px;line-height:1.3}
+.bump p{color:var(--muted);font-size:13px;margin-top:3px;line-height:1.45}
+.bump-price{font-weight:800;color:var(--navy);white-space:nowrap;background:var(--c50);padding:2px 9px;border-radius:999px;font-size:13px}
+.bump-cta{margin-top:6px;font-size:12.5px;font-weight:700;color:var(--c)}
 .bump.on .bump-cta{color:var(--green)}
+
+/* Depoimentos */
+.testi{display:grid;grid-auto-flow:column;grid-auto-columns:78%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 16px 18px;margin:0 -16px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.testi figure{margin:0;scroll-snap-align:center}
+.testi img{width:100%;height:auto;border-radius:18px;box-shadow:var(--shadow)}
+.swipe{text-align:center;font-size:13px;color:var(--muted);margin-top:4px}
 
 /* Oferta */
 .offer-sec{background:linear-gradient(160deg,#EEF3FF 0%,#F6F0FF 50%,#FFF2F8 100%)}
-.offer{max-width:560px;margin:0 auto;background:#fff;border-radius:26px;box-shadow:var(--shadow-lg);overflow:hidden;position:relative}
+.plans{display:grid;gap:22px;max-width:980px;margin:0 auto;align-items:start}
+.offer{width:100%;max-width:480px;margin:0 auto;background:#fff;border-radius:26px;box-shadow:var(--shadow-lg);overflow:hidden;position:relative}
 .offer::before{content:"";display:block;height:8px;background:var(--rainbow)}
 .offer-head{background:linear-gradient(135deg,var(--blue),var(--purple) 60%,var(--pink));color:#fff;text-align:center;padding:22px 20px}
 .offer-head strong{display:block;font-size:24px;font-weight:800;letter-spacing:.04em}
 .offer-head span{font-size:14.5px;opacity:.92}
+.offer.basic::before{background:var(--line)}
+.offer.basic .offer-head{background:#fff;color:var(--navy);border-bottom:1px solid var(--line)}
+.offer.basic .offer-head span{color:var(--muted);opacity:1}
+.offer.featured{box-shadow:0 30px 70px rgba(87,80,240,.25);outline:3px solid var(--purple)}
+.ribbon{display:inline-block;margin-bottom:8px;background:var(--yellow);color:#4A3200;font-size:11.5px;font-weight:800;letter-spacing:.08em;padding:5px 12px;border-radius:999px}
+.offer-list li.off{color:#A0A7C0;text-decoration:line-through}
+.offer-list li.off .ok{background:#EEF0F6;color:#B4BAD0}
+.btn-outline{background:#fff;color:var(--navy);border:2px solid var(--navy);box-shadow:none}
+.btn-outline:hover{background:var(--navy);color:#fff}
+.tag-plan{position:absolute;top:18px;right:18px;font-size:10.5px;font-weight:800;letter-spacing:.06em;color:var(--purple);background:var(--purple-50);padding:4px 9px;border-radius:999px}
 .offer-body{padding:26px 22px 28px}
 .offer-list{list-style:none;padding:0;margin:0;display:grid;gap:11px}
 .offer-list li{display:flex;gap:12px;align-items:center;font-weight:600}
@@ -302,9 +321,19 @@ footer .copy{margin-top:22px;font-size:12.5px;color:#7F8AB5}
 .sticky::before{content:"";position:absolute;left:0;right:0;top:-4px;height:4px;background:var(--rainbow)}
 .sticky.hide{transform:translateY(120%)}
 .sticky-info strong{display:block;font-size:13px;letter-spacing:.06em;color:var(--navy)}
-.sticky-info span{font-size:18px;font-weight:800;color:var(--navy)}
+.sticky-info span{font-size:18px;font-weight:800;color:var(--navy);white-space:nowrap}
+.sticky-info small{font-size:12px;font-weight:600;color:var(--muted)}
+.sticky .btn{white-space:nowrap}
 .sticky .btn{min-height:50px;padding:12px 20px;font-size:15px}
 body{padding-bottom:80px}
+
+/* Pop-up de compra recente (só vendas reais) */
+.toast{position:fixed;left:16px;bottom:96px;z-index:60;max-width:320px;display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-left:5px solid var(--green);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow-lg);transform:translateY(20px);opacity:0;pointer-events:none;transition:opacity .35s ease,transform .35s ease}
+.toast.show{opacity:1;transform:none}
+.toast .av{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;color:#fff;font-weight:800;font-size:17px;background:linear-gradient(135deg,var(--blue),var(--purple))}
+.toast p{font-size:13.5px;line-height:1.4;color:var(--ink)}
+.toast small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+@media (min-width:960px){.toast{bottom:24px;left:24px}}
 
 /* ===== Modal de checkout PIX ===== */
 .modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(15,26,66,.62);backdrop-filter:blur(4px)}
@@ -317,6 +346,7 @@ body{padding-bottom:80px}
 .dlg-close{background:none;border:0;cursor:pointer;color:var(--muted);padding:6px;margin:-6px;border-radius:8px}
 .dlg-close:hover{color:var(--navy);background:#F2F4F9}
 .dlg-body{padding:18px 22px 22px}
+.dlg-sec{margin-bottom:18px}
 .dlg-items{background:#FAFBFE;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14px;margin-bottom:18px}
 .field-g{margin-bottom:14px}
 .field-g label{display:block;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:5px}
@@ -368,6 +398,7 @@ body{padding-bottom:80px}
   .stats{grid-template-columns:repeat(3,1fr)}
   .stat{flex-direction:column;text-align:center}
   .guarantee{grid-template-columns:auto 1fr;padding:40px}
+  .testi{grid-auto-columns:44%}
   .btn-hero{width:auto;min-width:360px}
   .pz-desk{display:block}
 }
@@ -378,6 +409,9 @@ body{padding-bottom:80px}
   .cards{grid-template-columns:repeat(3,1fr)}
   .steps{grid-template-columns:repeat(3,1fr)}
   .product-grid{grid-template-columns:1fr 1fr}
+  .plans{grid-template-columns:1fr 1fr}
+  .testi{grid-auto-flow:row;grid-template-columns:repeat(4,1fr);overflow:visible;margin:0;padding:0}
+  .swipe{display:none}
   .stats{grid-template-columns:1fr}
   .stat{flex-direction:row;text-align:left}
   .sticky{display:none}
@@ -539,8 +573,8 @@ body{padding-bottom:80px}
       <article class="card reveal t-purple"><span class="f-ico"><svg class="ico"><use href="#i-target"/></svg></span><h3>Avaliações</h3><p>Fichas para avaliação inicial, observação e acompanhamento.</p></article>
       <article class="card reveal t-green"><span class="f-ico"><svg class="ico"><use href="#i-calendar"/></svg></span><h3>Planejamento</h3><p>Modelos para estruturar objetivos, estratégias e atendimentos.</p></article>
       <article class="card reveal t-orange"><span class="f-ico"><svg class="ico"><use href="#i-chart"/></svg></span><h3>Registros</h3><p>Materiais para registrar evolução, observações e acompanhamento.</p></article>
-      <article class="card reveal t-pink"><span class="f-ico"><svg class="ico"><use href="#i-users"/></svg></span><h3>Família e escola</h3><p>Modelos para comunicação, reuniões e devolutivas.</p></article>
-      <article class="card reveal t-teal"><span class="f-ico"><svg class="ico"><use href="#i-puzzle"/></svg></span><h3>Recursos pedagógicos</h3><p>Materiais de apoio para facilitar o atendimento e a organização da rotina.</p></article>
+      <article class="card reveal t-pink"><span class="tag-plan">PLANO COMPLETO</span><span class="f-ico"><svg class="ico"><use href="#i-users"/></svg></span><h3>Família e escola</h3><p>Modelos para comunicação, reuniões e devolutivas.</p></article>
+      <article class="card reveal t-teal"><span class="tag-plan">PLANO COMPLETO</span><span class="f-ico"><svg class="ico"><use href="#i-puzzle"/></svg></span><h3>Recursos pedagógicos</h3><p>Materiais de apoio para facilitar o atendimento e a organização da rotina.</p></article>
     </div>
   </div>
 </section>
@@ -717,15 +751,25 @@ body{padding-bottom:80px}
   </div>
 </section>
 
-<!-- ============ EXTRAS (ORDER BUMPS) ============ -->
-<section class="bg-pink" id="extras">
+<!-- ============ DEPOIMENTOS ============ -->
+<!-- Depoimentos reais de clientes, publicados com autorização. -->
+<section class="bg-pink" id="depoimentos">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow t-pink"><span class="dot"></span>Complementos opcionais</span>
-      <h2 class="h2">Quer deixar sua Central AEE ainda mais completa?</h2>
-      <p class="lead">Cada extra é um produto independente. Marque os que fazem sentido para você. O valor é somado ao seu pedido.</p>
+      <span class="eyebrow t-pink"><span class="dot"></span>Depoimentos</span>
+      <h2 class="h2">O que dizem os professores</h2>
     </div>
-    <div class="bumps" id="bumps"><!-- preenchido pelo script a partir de EXTRAS --></div>
+    <div class="testi">
+      <figure><img src="img/depoimento-claudia.jpg" width="336" height="485" loading="lazy" alt="Depoimento de Cláudia, professora de AEE: “Eu perdia horas fazendo PEI do zero. Com os modelos prontos, consegui encontrar uma estrutura, adaptar para cada aluno e terminar muito mais rápido. Foi um alívio enorme na minha rotina.”"></figure>
+      <figure><img src="img/depoimento-rafaela.jpg" width="336" height="485" loading="lazy" alt="Depoimento de Rafaela, professora: “O que mais gostei foi ter PEI, PDI, PAEE, relatórios e pareceres no mesmo lugar. Não precisei ficar procurando modelos diferentes na internet. Baixei, abri no Word e comecei a adaptar.”"></figure>
+      <figure><img src="img/depoimento-pablo.jpg" width="336" height="485" loading="lazy" alt="Depoimento de Pablo, professor: “A coordenação pediu os documentos com prazo curto e eu já estava desesperado. Os modelos me deram uma base pronta e facilitaram muito o preenchimento. Economizei horas de trabalho.”"></figure>
+      <figure><img src="img/depoimento-juliana.jpg" width="336" height="485" loading="lazy" alt="Depoimento de Juliana, professora de AEE: “Eu estava levando muito tempo para organizar meu planejamento. Ter os modelos como ponto de partida facilitou bastante e consegui adaptar tudo para a realidade dos meus alunos.”"></figure>
+      <figure><img src="img/depoimento-mariana.jpg" width="336" height="485" loading="lazy" alt="Depoimento de Mariana, professora de Educação Especial: “Gostei principalmente da organização dos materiais. Antes eu precisava procurar um modelo em vários lugares. Agora consigo encontrar o que preciso com muito mais facilidade.”"></figure>
+      <figure><img src="img/depoimento-fernanda.jpg" width="336" height="485" loading="lazy" alt="Depoimento de Fernanda, professora de AEE: “Os modelos me ajudaram muito na hora de organizar os registros dos atendimentos. Foi uma mão na roda para minha rotina e economizei bastante tempo.”"></figure>
+      <figure><img src="img/depoimento-camila.jpg" width="336" height="485" loading="lazy" alt="Depoimento de Camila, professora de Sala de Recursos: “Comecei recentemente no AEE e estava completamente perdida sobre por onde começar. Ter uma estrutura pronta me ajudou a organizar minha rotina e entender melhor o que eu precisava preparar.”"></figure>
+      <figure><img src="img/depoimento-patricia.jpg" width="336" height="485" loading="lazy" alt="Depoimento de Patrícia, professora de AEE: “O que mais gostei foi poder editar os materiais. Não precisei usar tudo exatamente como estava, consegui adaptar os modelos conforme as necessidades dos meus alunos.”"></figure>
+    </div>
+    <p class="swipe">Arraste para ver mais →</p>
   </div>
 </section>
 
@@ -738,32 +782,55 @@ body{padding-bottom:80px}
       <span class="eyebrow t-blue"><span class="dot"></span>Oferta</span>
       <h2 class="h2">Comece a organizar sua rotina de AEE hoje.</h2>
     </div>
-    <div class="offer">
-      <div class="offer-head"><strong>CENTRAL AEE</strong><span>O kit completo para o professor de AEE</span></div>
-      <div class="offer-body">
-        <ul class="offer-list">
+    <div class="plans">
+      <div class="offer basic">
+        <div class="offer-head"><strong>PLANO BÁSICO</strong><span>A documentação essencial do AEE</span></div>
+        <div class="offer-body">
+          <ul class="offer-list">
           <li class="t-blue"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Documentos e modelos</li>
           <li class="t-purple"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Avaliações</li>
           <li class="t-pink"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Planejamento</li>
           <li class="t-orange"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Registros</li>
           <li class="t-yellow"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Fichas de acompanhamento</li>
-          <li class="t-green"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Recursos de apoio</li>
-          <li class="t-teal"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Biblioteca organizada</li>
-          <li class="t-blue"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Acesso digital</li>
-        </ul>
-        <div class="price">
-          <div class="value"><sup>R$</sup>27,90</div>
-          <span class="once">pagamento único</span>
-          <span class="pix"><svg class="ico" style="width:14px;height:14px"><use href="#i-bolt"/></svg>Pagamento via PIX</span>
-        </div>
-        <div class="summary" id="summary" aria-live="polite"></div>
-        <button type="button" class="btn btn-primary btn-block js-comprar"><svg class="ico"><use href="#i-cart"/></svg>QUERO MEU CENTRAL AEE</button>
-        <div class="trust">
-          <span><svg class="ico" style="color:var(--blue)"><use href="#i-lock"/></svg>Compra segura</span>
-          <span><svg class="ico" style="color:var(--orange)"><use href="#i-bolt"/></svg>Acesso digital</span>
-          <span><svg class="ico" style="color:var(--green)"><use href="#i-shield"/></svg>30 dias de garantia</span>
+          <li class="t-teal"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Acesso digital</li>
+          <li class="t- off"><span class="ok"><svg class="ico"><use href="#i-x"/></svg></span>Família e escola</li>
+          <li class="t- off"><span class="ok"><svg class="ico"><use href="#i-x"/></svg></span>Recursos pedagógicos</li>
+          </ul>
+          <div class="price">
+            <div class="value"><sup>R$</sup>12,90</div>
+            <span class="once">pagamento único</span>
+          </div>
+          <button type="button" class="btn btn-outline btn-block js-comprar" data-plano="aee-basico">QUERO O PLANO BÁSICO</button>
         </div>
       </div>
+
+      <div class="offer featured">
+        <div class="offer-head"><span class="ribbon">MAIS COMPLETO</span><strong>PLANO COMPLETO</strong><span>O kit completo para o professor de AEE</span></div>
+        <div class="offer-body">
+          <ul class="offer-list">
+          <li class="t-blue"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Documentos e modelos</li>
+          <li class="t-purple"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Avaliações</li>
+          <li class="t-pink"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Planejamento</li>
+          <li class="t-orange"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Registros</li>
+          <li class="t-yellow"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Fichas de acompanhamento</li>
+          <li class="t-green"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Família e escola</li>
+          <li class="t-teal"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Recursos pedagógicos</li>
+          <li class="t-blue"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Biblioteca organizada completa</li>
+          <li class="t-purple"><span class="ok"><svg class="ico"><use href="#i-check"/></svg></span>Acesso digital</li>
+          </ul>
+          <div class="price">
+            <div class="value"><sup>R$</sup>27,90</div>
+            <span class="once">pagamento único</span>
+            <span class="pix"><svg class="ico" style="width:14px;height:14px"><use href="#i-bolt"/></svg>Pagamento via PIX</span>
+          </div>
+          <button type="button" class="btn btn-primary btn-block js-comprar" data-plano="aee-completo"><svg class="ico"><use href="#i-cart"/></svg>QUERO O PLANO COMPLETO</button>
+        </div>
+      </div>
+    </div>
+    <div class="trust" style="margin-top:24px">
+      <span><svg class="ico" style="color:var(--blue)"><use href="#i-lock"/></svg>Compra segura</span>
+      <span><svg class="ico" style="color:var(--orange)"><use href="#i-bolt"/></svg>Acesso digital</span>
+      <span><svg class="ico" style="color:var(--green)"><use href="#i-shield"/></svg>30 dias de garantia</span>
     </div>
   </div>
 </section>
@@ -810,7 +877,7 @@ body{padding-bottom:80px}
       </details>
       <details class="t-green">
         <summary>É pagamento único?<svg class="ico"><use href="#i-plus"/></svg></summary>
-        <div class="ans">Sim. O pagamento é feito uma única vez, via PIX, sem mensalidade. Os extras opcionais, se escolhidos, entram no mesmo PIX.</div>
+        <div class="ans">Sim. O pagamento é feito uma única vez, via PIX, sem mensalidade. Os complementos opcionais, se escolhidos no checkout, entram no mesmo PIX.</div>
       </details>
       <details class="t-teal">
         <summary>Tenho acesso por quanto tempo?<svg class="ico"><use href="#i-plus"/></svg></summary>
@@ -857,8 +924,14 @@ body{padding-bottom:80px}
 
 <!-- Barra fixa (mobile) -->
 <div class="sticky" id="sticky">
-  <div class="sticky-info"><strong>CENTRAL AEE</strong><span id="sticky-price">R$ 27,90</span></div>
+  <div class="sticky-info"><strong>CENTRAL AEE</strong><span><small>a partir de</small> R$ 12,90</span></div>
   <a href="#oferta" class="btn btn-primary">QUERO ACESSAR</a>
+</div>
+
+<!-- Pop-up de compra recente: só aparece com vendas reais (api/vendas-recentes.php) -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="av" id="toast-av"></span>
+  <p><strong id="toast-nome"></strong> comprou o <strong id="toast-plano"></strong><small id="toast-tempo"></small></p>
 </div>
 
 <!-- ============ MODAL DE CHECKOUT PIX (ZuckPay) ============ -->
@@ -867,14 +940,13 @@ body{padding-bottom:80px}
     <div class="dlg-head">
       <div>
         <h3 id="ck-titulo">Finalizar compra</h3>
-        <p>Central AEE · <strong id="ck-total" style="color:var(--navy)">R$ 27,90</strong></p>
+        <p><span id="ck-plano">Central AEE</span> · <strong id="ck-total" style="color:var(--navy)">R$ 27,90</strong></p>
       </div>
       <button type="button" class="dlg-close" id="ck-fechar" aria-label="Fechar"><svg class="ico"><use href="#i-x"/></svg></button>
     </div>
 
     <!-- Etapa 1: dados -->
     <form class="dlg-body" id="ck-form" novalidate>
-      <div class="dlg-items" id="ck-itens"></div>
       <p class="alert" id="ck-erro" role="alert"></p>
       <div class="field-g">
         <label for="ck-nome">Nome completo</label>
@@ -897,6 +969,12 @@ body{padding-bottom:80px}
         <input id="ck-telefone" name="telefone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(11) 99999-8888" required>
         <p class="err" data-erro="telefone"></p>
       </div>
+      <div class="dlg-sec" style="margin-top:22px;padding-top:18px;border-top:1px dashed var(--line)">
+        <p class="bumps-title">Quer deixar sua Central AEE ainda mais completa?</p>
+        <p class="bumps-sub">Complementos opcionais. Cada um é um produto independente e entra no mesmo PIX.</p>
+        <div class="bumps" id="bumps"><!-- preenchido pelo script a partir de EXTRAS --></div>
+      </div>
+      <div class="dlg-items" id="ck-itens"></div>
       <button type="submit" class="btn btn-primary btn-block" id="ck-enviar"><span class="spin"></span><span class="js-label">GERAR PIX</span></button>
       <p class="fineprint">Seus dados são usados apenas para emitir a cobrança e entregar o material.</p>
     </form>
@@ -929,9 +1007,12 @@ body{padding-bottom:80px}
 // Caminho dos endpoints PHP da ZuckPay (a pasta api/ na raiz do site).
 const API = '/api';
 
-// Id do plano em api/config.php. O preço cobrado é sempre o do servidor.
-const PLANO = 'central-aee';
-const PRECO = 2790; // centavos — só para exibição
+// Planos: ids iguais aos de api/config.php. O preço cobrado é sempre o do
+// servidor; estes valores (em centavos) servem só para exibição.
+const PLANOS = {
+  'aee-basico':   { nome: 'Plano Básico',   preco: 1290 },
+  'aee-completo': { nome: 'Plano Completo', preco: 2790 }
+};
 
 // Respostas do FAQ que dependem do produto real. Deixe vazio ('') para
 // exibir o texto genérico, que não promete nada que possa não existir.
@@ -949,8 +1030,8 @@ const FAQ_PADRAO = {
   programas: 'Você precisa de um programa ou aplicativo compatível com o formato de cada arquivo. As orientações para abrir e editar os materiais acompanham a entrega.'
 };
 
-// Extras (order bumps). Os ids e preços precisam ser os mesmos de
-// planos['central-aee']['extras'] em api/config.php — lá é que vale o preço.
+// Extras (order bumps), exibidos só no checkout. Ids e preços precisam ser
+// os mesmos de $extrasAee em api/config.php — lá é que vale o preço.
 const EXTRAS = [
   { id:'relatorios', tom:'blue',   nome:'Banco de Relatórios e Pareceres',   desc:'Modelos de relatórios e pareceres para diferentes situações pedagógicas.', preco:790,  sim:'SIM! Quero adicionar o Banco de Relatórios' },
   { id:'atividades', tom:'purple', nome:'Banco de Atividades Adaptadas',     desc:'Atividades e recursos para diferentes habilidades e necessidades pedagógicas.', preco:990,  sim:'SIM! Quero adicionar o Banco de Atividades' },
@@ -974,15 +1055,15 @@ const EXTRAS = [
     el.textContent = (FAQ[k] || '').trim() || FAQ_PADRAO[k];
   });
 
-  /* ---------- extras ---------- */
+  /* ---------- extras (dentro do checkout) ---------- */
   const lista = $('bumps');
   lista.innerHTML = EXTRAS.map((e, i) => `
-    <label class="bump reveal t-${esc(e.tom)}" data-id="${esc(e.id)}">
+    <label class="bump t-${esc(e.tom)}" data-id="${esc(e.id)}">
       <input type="checkbox" value="${esc(e.id)}" aria-describedby="bump-d-${i}">
       <span class="box" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
       <span>
         <span class="bump-top">
-          <span><span class="bump-kicker">EXTRA ${String(i + 1).padStart(2, '0')}</span><h3>${esc(e.nome)}</h3></span>
+          <h3>${esc(e.nome)}</h3>
           <span class="bump-price">+ ${brl(e.preco)}</span>
         </span>
         <p id="bump-d-${i}">${esc(e.desc)}</p>
@@ -990,15 +1071,9 @@ const EXTRAS = [
       </span>
     </label>`).join('');
 
+  let plano = 'aee-completo';
   const selecionados = () => EXTRAS.filter(e => lista.querySelector(`input[value="${CSS.escape(e.id)}"]`).checked);
-  const total = () => PRECO + selecionados().reduce((s, e) => s + e.preco, 0);
-
-  function resumoHtml() {
-    const sel = selecionados();
-    return `<div class="summary-row"><span>Central AEE</span><span>${brl(PRECO)}</span></div>` +
-      sel.map(e => `<div class="summary-row"><span>+ ${esc(e.nome)}</span><span>${brl(e.preco)}</span></div>`).join('') +
-      `<div class="summary-row total"><span>Total</span><span>${brl(total())}</span></div>`;
-  }
+  const total = () => PLANOS[plano].preco + selecionados().reduce((s, e) => s + e.preco, 0);
 
   function atualizar() {
     lista.querySelectorAll('.bump').forEach(b => {
@@ -1007,18 +1082,18 @@ const EXTRAS = [
       b.classList.toggle('on', on);
       b.querySelector('.bump-cta').textContent = on ? '☑ Adicionado ao seu pedido' : '☐ ' + e.sim;
     });
-    const summary = $('summary');
-    const temExtras = selecionados().length > 0;
-    summary.classList.toggle('show', temExtras);
-    summary.innerHTML = temExtras ? resumoHtml() : '';
-    $('sticky-price').textContent = brl(total());
+    const sel = selecionados();
+    $('ck-itens').innerHTML =
+      `<div class="summary-row"><span>Central AEE — ${esc(PLANOS[plano].nome)}</span><span>${brl(PLANOS[plano].preco)}</span></div>` +
+      sel.map(e => `<div class="summary-row"><span>+ ${esc(e.nome)}</span><span>${brl(e.preco)}</span></div>`).join('') +
+      `<div class="summary-row total"><span>Total</span><span>${brl(total())}</span></div>`;
+    $('ck-total').textContent = brl(total());
   }
   lista.addEventListener('change', atualizar);
-  atualizar();
 
   /* ---------- checkout PIX (ZuckPay) ---------- */
   const modal = $('checkout'), form = $('ck-form'), enviar = $('ck-enviar');
-  let pedido = null, pedidoExtras = '', poll = null, contagem = null, ultimoFoco = null;
+  let pedido = null, pedidoChave = '', poll = null, contagem = null, ultimoFoco = null;
 
   function lerCookie(nome) {
     const achado = document.cookie.split('; ').find(c => c.startsWith(nome + '='));
@@ -1051,23 +1126,17 @@ const EXTRAS = [
     $('ck-pago').hidden = qual !== 'pago';
   }
 
-  function abrir() {
-    const ids = selecionados().map(e => e.id).join(',');
-    // Um pedido por combinação de itens: reenviar o formulário sem mudar
-    // os extras devolve a mesma cobrança (idempotência na ZuckPay).
-    if (!pedido || ids !== pedidoExtras) {
-      pedido = (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(16) + Math.random().toString(16).slice(2)).replace(/[^a-zA-Z0-9-]/g, '');
-      pedidoExtras = ids;
-    }
-    $('ck-itens').innerHTML = resumoHtml();
-    $('ck-total').textContent = brl(total());
+  function abrir(novoPlano) {
+    plano = PLANOS[novoPlano] ? novoPlano : 'aee-completo';
+    $('ck-plano').textContent = 'Central AEE — ' + PLANOS[plano].nome;
+    atualizar();
     limparErros();
     etapa('form');
     ultimoFoco = document.activeElement;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => $('ck-nome').focus(), 50);
-    if (window.fbq) fbq('track', 'InitiateCheckout', { value: total() / 100, currency: 'BRL', content_name: 'Central AEE' });
+    modal.querySelector('.dialog').scrollTop = 0;
+    if (window.fbq) fbq('track', 'InitiateCheckout', { value: total() / 100, currency: 'BRL', content_name: 'Central AEE — ' + PLANOS[plano].nome });
   }
 
   function fechar() {
@@ -1077,7 +1146,7 @@ const EXTRAS = [
     if (ultimoFoco) ultimoFoco.focus();
   }
 
-  document.querySelectorAll('.js-comprar').forEach(b => b.addEventListener('click', abrir));
+  document.querySelectorAll('.js-comprar').forEach(b => b.addEventListener('click', () => abrir(b.dataset.plano)));
   $('ck-fechar').addEventListener('click', fechar);
   modal.addEventListener('click', e => { if (e.target === modal) fechar(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) fechar(); });
@@ -1106,14 +1175,22 @@ const EXTRAS = [
   form.addEventListener('submit', async e => {
     e.preventDefault();
     limparErros();
+    const ids = selecionados().map(x => x.id);
+    // Um pedido por combinação de plano + extras: reenviar sem mudar nada
+    // devolve a mesma cobrança (idempotência na ZuckPay).
+    const chave = plano + '|' + ids.join(',');
+    if (!pedido || chave !== pedidoChave) {
+      pedido = (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(16) + Math.random().toString(16).slice(2)).replace(/[^a-zA-Z0-9-]/g, '');
+      pedidoChave = chave;
+    }
     carregando(true);
     try {
       const resp = await fetch(API + '/pix.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          plano:    PLANO,
-          extras:   selecionados().map(x => x.id),
+          plano:    plano,
+          extras:   ids,
           pedido:   pedido,
           nome:     $('ck-nome').value,
           cpf:      $('ck-cpf').value,
@@ -1144,6 +1221,7 @@ const EXTRAS = [
     // O valor exibido aqui é o que o servidor cobrou, não o calculado na página.
     $('ck-valor-pix').textContent = Number(dados.valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     etapa('pix');
+    modal.querySelector('.dialog').scrollTop = 0;
 
     let restante = dados.expiracao || 1200;
     const relogio = $('ck-timer');
@@ -1174,7 +1252,7 @@ const EXTRAS = [
         $('ck-pago-email').textContent = $('ck-email').value;
         etapa('pago');
         pedido = null;
-        if (window.fbq) fbq('track', 'Purchase', { value: Number(dados.valor), currency: 'BRL', content_name: 'Central AEE' });
+        if (window.fbq) fbq('track', 'Purchase', { value: Number(dados.valor), currency: 'BRL', content_name: 'Central AEE — ' + PLANOS[plano].nome });
         return;
       }
       if (r.ok && s.final) { clearTimeout(poll); clearInterval(contagem); return; }
@@ -1191,16 +1269,50 @@ const EXTRAS = [
     setTimeout(() => { rotulo.textContent = 'COPIAR CÓDIGO'; }, 2000);
   });
 
+  /* ---------- pop-ups de compras recentes (somente vendas reais) ---------- */
+  // Cada venda aparece uma vez; sem vendas confirmadas, nada é exibido.
+  function tempoAtras(min) {
+    if (min < 60) return `há ${min} min`;
+    const h = Math.floor(min / 60);
+    if (h < 24) return `há ${h} ${h === 1 ? 'hora' : 'horas'}`;
+    const d = Math.floor(h / 24);
+    return `há ${d} ${d === 1 ? 'dia' : 'dias'}`;
+  }
+  async function popups() {
+    let vendas = [];
+    try {
+      const r = await fetch(`${API}/vendas-recentes.php?planos=${Object.keys(PLANOS).join(',')}`);
+      if (r.ok) vendas = (await r.json()).vendas || [];
+    } catch (_) { return; }
+    const toast = $('toast');
+    let i = 0;
+    const proxima = () => {
+      if (i >= vendas.length) return;
+      const v = vendas[i++];
+      if (!modal.classList.contains('open')) {
+        $('toast-av').textContent = v.nome.charAt(0);
+        $('toast-nome').textContent = v.nome;
+        $('toast-plano').textContent = v.plano.replace(/^Central AEE — /, '');
+        $('toast-tempo').textContent = tempoAtras(v.minutos);
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 5000);
+      }
+      setTimeout(proxima, 14000);
+    };
+    setTimeout(proxima, 6000);
+  }
+  popups();
+
   /* ---------- barra fixa e animações ---------- */
   const sticky = $('sticky');
   const hero = document.querySelector('.hero .cta-area');
-  const oferta = document.querySelector('.offer');
+  const oferta = document.querySelector('.plans');
   if ('IntersectionObserver' in window) {
     const vis = new Map();
     const io = new IntersectionObserver(entries => {
       entries.forEach(en => vis.set(en.target, en.isIntersecting));
       sticky.classList.toggle('hide', vis.get(hero) || vis.get(oferta));
-    }, { threshold: 0.15 });
+    }, { threshold: 0.05 });
     io.observe(hero); io.observe(oferta);
 
     const rv = new IntersectionObserver(entries => entries.forEach(en => {

@@ -4,6 +4,17 @@
  * config.php está no .gitignore e NUNCA deve ser versionado.
  */
 
+// Extras (order bumps) do Central AEE, compartilhados pelos dois planos.
+$extrasAee = [
+    'relatorios' => ['nome' => 'Banco de Relatórios e Pareceres',   'valor' => 7.90],
+    'atividades' => ['nome' => 'Banco de Atividades Adaptadas',     'valor' => 9.90],
+    'tea'        => ['nome' => 'Kit Professor TEA',                 'valor' => 9.90],
+    'rotina'     => ['nome' => 'Kit Rotina Visual',                 'valor' => 7.90],
+    'pasta'      => ['nome' => 'Pasta do Aluno',                    'valor' => 12.90],
+    '30dias'     => ['nome' => 'Primeiros 30 Dias no AEE',          'valor' => 12.90],
+    'frases'     => ['nome' => 'Banco de Frases para Documentação', 'valor' => 7.90],
+];
+
 return [
     // Credenciais da ZuckPay (painel > Integrações > API keys)
     'client_id'     => getenv('ZUCKPAY_CLIENT_ID')     ?: 'seu_client_id',
@@ -48,30 +59,29 @@ return [
         ],
 
         /**
-         * Central AEE (página em /central-aee/).
+         * Central AEE (página em /central-aee/): dois planos com os mesmos extras.
          *
-         * extras: complementos (order bumps) que só podem ser comprados junto
-         * com este plano. O navegador envia apenas os ids marcados; o valor
-         * de cada extra é somado aqui, no servidor. Os ids e preços precisam
-         * bater com o array EXTRAS do central-aee/index.html (que só exibe).
+         * extras: complementos (order bumps) oferecidos no checkout. O
+         * navegador envia apenas os ids marcados; o valor de cada extra é
+         * somado aqui, no servidor. Ids e preços precisam bater com
+         * PLANOS / EXTRAS do central-aee/index.html (que só exibe).
          *
          * prefixo: início do external_id_client, para separar as vendas de
          * cada produto nos relatórios.
          */
-        'central-aee' => [
-            'nome'       => 'Central AEE',
+        'aee-basico' => [
+            'nome'       => 'Central AEE — Plano Básico',
+            'valor'      => 12.90,
+            'product_id' => 0, // TROCAR pelo id do produto no painel da ZuckPay
+            'prefixo'    => 'AEE',
+            'extras'     => $extrasAee,
+        ],
+        'aee-completo' => [
+            'nome'       => 'Central AEE — Plano Completo',
             'valor'      => 27.90,
             'product_id' => 0, // TROCAR pelo id do produto no painel da ZuckPay
             'prefixo'    => 'AEE',
-            'extras'     => [
-                'relatorios' => ['nome' => 'Banco de Relatórios e Pareceres',   'valor' => 7.90],
-                'atividades' => ['nome' => 'Banco de Atividades Adaptadas',     'valor' => 9.90],
-                'tea'        => ['nome' => 'Kit Professor TEA',                 'valor' => 9.90],
-                'rotina'     => ['nome' => 'Kit Rotina Visual',                 'valor' => 7.90],
-                'pasta'      => ['nome' => 'Pasta do Aluno',                    'valor' => 12.90],
-                '30dias'     => ['nome' => 'Primeiros 30 Dias no AEE',          'valor' => 12.90],
-                'frases'     => ['nome' => 'Banco de Frases para Documentação', 'valor' => 7.90],
-            ],
+            'extras'     => $extrasAee,
         ],
     ],
 
@@ -95,6 +105,15 @@ return [
         'https://SEU-DOMINIO.com.br',
         'https://www.SEU-DOMINIO.com.br',
     ],
+
+    /**
+     * Pop-ups de compras recentes (api/vendas-recentes.php).
+     *
+     * Mostram só vendas reais, lidas do log de pagamentos confirmados:
+     * primeiro nome, plano e há quanto tempo. Nada de e-mail, CPF ou
+     * sobrenome. false desliga o endpoint (responde lista vazia).
+     */
+    'vendas_recentes' => true,
 
     // Onde gravar o log de pagamentos confirmados.
     'log_path' => __DIR__ . '/../storage/pagamentos.log',

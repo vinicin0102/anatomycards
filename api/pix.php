@@ -158,6 +158,8 @@ if ($status !== 200 || empty($resposta['transactionId'])) {
 // Guarda o que foi comprado, para o webhook saber quais extras entregar.
 registrarPedido($config, $externalId, [
     'plano'  => $planoId,
+    // Só o primeiro nome, usado nos pop-ups de compras recentes.
+    'primeiro_nome' => primeiroNome($nome),
     'extras' => array_keys($extras),
     'itens'  => $itens,
     'valor'  => $valorTotal,
