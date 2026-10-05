@@ -1,6 +1,15 @@
-# Arritmias Cardíacas do Zero ao Diagnóstico
+# Atlas das Escrituras
 
-Landing page de vendas com checkout PIX integrado à **ZuckPay**.
+Landing page de vendas do **Atlas das Escrituras** (150 páginas de mapas, linhas do
+tempo, personagens, resumos e contextos bíblicos), posicionada para professores de
+EBD, líderes de célula e quem prepara estudos bíblicos. Checkout PIX integrado à
+**ZuckPay**.
+
+A página é um único `index.html` sem framework: CSS próprio, ícones e páginas
+ilustrativas em SVG inline, sem Tailwind nem bibliotecas de ícones. Inclui CTA fixo
+no celular, galeria com lightbox, popup de saída (desktop: mouse saindo pelo topo;
+celular: ao voltar para a aba) e popup discreto de recuperação após ~50s — no máximo
+um popup por sessão, e nunca para quem já clicou em comprar.
 
 ```
 index.html               página de vendas + modal de checkout
@@ -45,10 +54,11 @@ ficar na raiz do site, ajuste a constante `API` no script de checkout do
    a cada 4s até o pagamento ser confirmado.
 4. A ZuckPay chama `api/webhook.php`, que confirma o pagamento e registra a venda.
 
-Planos: **Básico R$ 9,99** e **Premium R$ 29,90**. Ambos ficam em
-`config.php`, junto com o `product_id` do produto cadastrado no painel da
-ZuckPay (atualmente `593187` nos dois — se cada plano tiver produto próprio,
-use um id diferente em cada).
+Planos: **`basico` — Atlas, R$ 3,90** e **`premium` — Pacote Completo (Atlas + 3
+extras), R$ 9,90**. O preço cobrado é o do `config.php` no servidor, **não** o do
+HTML: ao publicar esta página, atualize `valor` e `nome` dos dois planos no seu
+`config.php` real (que não é versionado) e preencha o `product_id` do produto do
+Atlas no painel da ZuckPay (`0` = não envia).
 
 ## Conferir o webhook
 
@@ -146,11 +156,15 @@ A ZuckPay responde **429 após 5 tentativas em 30 minutos**. Por isso:
    o envio do e-mail com os PDFs ou a liberação da área de membros. A ZuckPay
    pode reenviar a mesma notificação, então grave o `transactionId` e só
    entregue uma vez.
-2. **Imagens** — capas do hero, as 3 prévias e as 4 capas de resumos ainda
-   apontam para `medment.site` (arte do e-book de ECG). Cada bloco tem um
-   comentário `<!-- TROCAR -->`.
-3. **Depoimentos** — usam avatar com a inicial do nome; trocar por `<img>` se
-   tiver as fotos.
+2. **Mockups** — os dispositivos, a galeria e as capas dos bônus usam páginas
+   *ilustrativas* desenhadas em SVG (sprite no topo do `index.html`), não
+   capturas do PDF real. Troque por imagens reais das páginas assim que possível
+   para que o visitante veja exatamente o que vai receber. Os pontos estão
+   marcados com `<!-- TROCAR -->`.
+3. **Depoimentos** — a seção existe, mas está com o atributo `hidden` porque
+   ainda não há depoimentos reais. Preencha com textos verdadeiros (exatos, com
+   autorização de quem escreveu) e remova o `hidden`. Não use textos de exemplo
+   como se fossem avaliações.
 4. **Rate limiting** — não há limite de requisições em `api/pix.php`. Vale pôr
    um limite por IP para evitar geração de cobranças em massa.
 5. **Desativar o diagnóstico** — depois de resolver, apague `api/diagnostico.php`

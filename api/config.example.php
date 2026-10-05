@@ -37,14 +37,14 @@ return [
      */
     'planos' => [
         'basico' => [
-            'nome'       => 'Pacote Básico — Arritmias Cardíacas',
-            'valor'      => 9.99,
-            'product_id' => 593187,
+            'nome'       => 'Atlas das Escrituras — 150 páginas',
+            'valor'      => 3.90,
+            'product_id' => 0, // TROCAR pelo id do produto do Atlas no painel (0 = não envia)
         ],
         'premium' => [
-            'nome'       => 'Pacote Premium — Arritmias Cardíacas',
-            'valor'      => 29.90,
-            'product_id' => 593187,
+            'nome'       => 'Atlas das Escrituras — Pacote Completo (Atlas + 3 extras)',
+            'valor'      => 9.90,
+            'product_id' => 0, // TROCAR pelo id do produto do Atlas no painel (0 = não envia)
         ],
     ],
 

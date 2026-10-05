@@ -73,7 +73,7 @@ $payload = [
     'telefone'           => $telefone,
     'urlnoty'            => $config['webhook_url'],
     'descricao'          => $plano['nome'],
-    'external_id_client' => 'AC-' . $planoId . '-' . $pedido,
+    'external_id_client' => 'AE-' . $planoId . '-' . $pedido,
 ];
 
 // Vincula a venda ao produto cadastrado no painel (opcional na API).
