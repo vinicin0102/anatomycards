@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>+100 Receitas para um Natal Fora do Óbvio</title>
+<meta name="description" content="Chega de repetir as mesmas receitas todo Natal. +100 receitas de pratos, sobremesas, entradas e acompanhamentos para surpreender sua família. Acesso imediato no celular.">
+<meta name="theme-color" content="#0A2A20">
+<meta property="og:title" content="+100 Receitas para um Natal Fora do Óbvio">
+<meta property="og:description" content="Neste Natal, pare de fazer sempre as mesmas receitas.">
+<meta property="og:image" content="img/hero-mesa.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800;6..12,900&display=swap" rel="stylesheet">
+
+<script>
+  /* Foto que ainda não foi colocada na pasta img/: troca pelo fundo ilustrado
+     do .ph em vez de mostrar o ícone de imagem quebrada. Fica no <head> para
+     já estar ouvindo quando as imagens começarem a carregar. */
+  document.addEventListener('error', function (e) {
+    var el = e.target;
+    if (el && el.tagName === 'IMG' && el.closest) {
+      var ph = el.closest('.ph');
+      if (ph) ph.classList.add('is-empty');
+    }
+  }, true);
+</script>
+
+<style>
+:root{
+  --red:#B3132B;
+  --red-dark:#8A0E21;
+  --red-glow:#E0263F;
+  --green:#0F3B2E;
+  --green-deep:#0A2A20;
+  --green-ink:#061D16;
+  --gold:#D4A84B;
+  --gold-light:#F3D98E;
+  --gold-dark:#A87F2A;
+  --cream:#FBF6EC;
+  --cream-2:#F4EBDA;
+  --paper:#FFFDF8;
+  --ink:#2A1E17;
+  --ink-soft:#5E4E42;
+  --muted:#8C7B6D;
+  --ok:#1F8A4C;
+  --radius:20px;
+  --shadow-sm:0 2px 10px rgba(42,30,23,.08);
+  --shadow:0 14px 40px -12px rgba(42,30,23,.28);
+  --shadow-lg:0 30px 70px -20px rgba(6,29,22,.55);
+  --display:'Fraunces', Georgia, 'Times New Roman', serif;
+  --body:'Nunito Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);font-size:17px;line-height:1.55;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 16px}
+.narrow{max-width:760px}
+section{position:relative}
+.sec{padding:72px 0}
+.center{text-align:center}
+
+h1,h2,h3{font-family:var(--display);line-height:1.08;letter-spacing:-.01em;font-weight:800}
+.h2{font-size:clamp(30px,7.4vw,48px)}
+.h2 em{font-style:normal;color:var(--red)}
+.lead{font-size:clamp(17px,4.4vw,20px);color:var(--ink-soft)}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-weight:900;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.kicker::before,.kicker::after{content:"";width:18px;height:2px;background:currentColor;border-radius:2px;opacity:.6}
+
+/* ---------- foto (com fundo de reserva) ---------- */
+.ph{position:relative;overflow:hidden;background:
+    radial-gradient(120% 90% at 30% 20%, #F6C77A 0%, #D9822B 38%, #8A2B12 78%, #4A140B 100%);}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph.is-empty img{display:none}
+.ph.is-empty::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(circle at 78% 18%, rgba(255,240,200,.55) 0 3px, transparent 4px),
+    radial-gradient(circle at 15% 70%, rgba(255,240,200,.35) 0 2px, transparent 3px),
+    radial-gradient(circle at 62% 82%, rgba(255,240,200,.4) 0 2px, transparent 3px),
+    radial-gradient(60% 50% at 50% 55%, rgba(255,255,255,.18), transparent 70%)}
+.ph.is-empty::after{content:attr(data-emoji);position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(44px,12vw,72px);filter:drop-shadow(0 8px 14px rgba(0,0,0,.35))}
+.ph--green{background:radial-gradient(120% 90% at 30% 20%, #4E8A5B 0%, #1E5A3E 45%, #0A2A20 100%)}
+.ph--cream{background:radial-gradient(120% 90% at 30% 20%, #FFF3D6 0%, #F2C98A 45%, #C97B3C 100%)}
+.ph--berry{background:radial-gradient(120% 90% at 30% 20%, #FFB4B4 0%, #D1364E 45%, #6B0E1F 100%)}
+.ph--choco{background:radial-gradient(120% 90% at 30% 20%, #D9A06A 0%, #7A4321 45%, #2E160A 100%)}
+
+/* ---------- botões ---------- */
+.btn{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:520px;margin:0 auto;
+  padding:20px 22px;border:0;border-radius:999px;text-decoration:none;text-align:center;
+  font-family:var(--body);font-weight:900;font-size:clamp(17px,4.6vw,20px);letter-spacing:.01em;line-height:1.2;
+  color:#fff;background:linear-gradient(180deg,#2FB866 0%,#1B9A4E 55%,#14803F 100%);
+  box-shadow:0 6px 0 #0E6331, 0 18px 34px -10px rgba(20,128,63,.7), inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .15s ease, box-shadow .15s ease, filter .15s;overflow:hidden;-webkit-tap-highlight-color:transparent}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #0E6331, 0 8px 20px -10px rgba(20,128,63,.7)}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-18deg);animation:shine 3.6s ease-in-out infinite}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+.btn--pulse{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+.micro{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin-top:14px;font-size:14px;font-weight:700;color:inherit;opacity:.85}
+.micro span{white-space:nowrap}
+
+/* ---------- luzes de Natal ---------- */
+.lights{position:absolute;left:0;right:0;top:0;height:46px;overflow:hidden;pointer-events:none;z-index:3}
+.lights svg{position:absolute;top:-6px;left:0;width:100%;height:30px}
+.lights ul{list-style:none;display:flex;justify-content:space-around;position:absolute;top:6px;left:-10px;right:-10px}
+.lights li{width:10px;height:16px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;margin-top:var(--y,10px);position:relative;
+  background:var(--c);box-shadow:0 0 12px 3px var(--c);animation:twinkle 2.2s ease-in-out infinite;animation-delay:var(--d,0s)}
+.lights li::before{content:"";position:absolute;top:-5px;left:2px;width:6px;height:6px;border-radius:2px;background:#2b3a31}
+@keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35;box-shadow:0 0 4px 1px var(--c)}}
+
+/* ---------- neve ---------- */
+.snow{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.snow i{position:absolute;top:-10px;width:var(--s,4px);height:var(--s,4px);border-radius:50%;background:rgba(255,255,255,.75);
+  left:var(--x);animation:fall var(--t,14s) linear infinite;animation-delay:var(--d,0s);filter:blur(.4px)}
+@keyframes fall{to{transform:translate3d(var(--dx,20px),110vh,0)}}
+
+/* ---------- HERO ---------- */
+.hero{color:#fff;padding:46px 0 48px;overflow:hidden;
+  background:
+    radial-gradient(70% 50% at 50% 0%, rgba(212,168,75,.22), transparent 70%),
+    linear-gradient(180deg, rgba(6,29,22,.82) 0%, rgba(10,42,32,.9) 45%, rgba(6,29,22,.97) 100%),
+    url('img/hero-mesa.jpg') center/cover no-repeat,
+    var(--green-deep)}
+.hero::before{content:"";position:absolute;inset:0;background:
+   radial-gradient(circle at 12% 30%, rgba(179,19,43,.35), transparent 35%),
+   radial-gradient(circle at 90% 70%, rgba(179,19,43,.3), transparent 35%);pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.hero-grid{display:grid;gap:20px;align-items:center}
+.hero-top{display:flex;justify-content:center;margin-bottom:14px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+  background:rgba(212,168,75,.14);border:1px solid rgba(243,217,142,.45);color:var(--gold-light)}
+.hero h1{font-size:clamp(32px,8.8vw,62px);text-align:center;font-weight:900;text-wrap:balance}
+.hero h1 .hl{color:var(--gold-light);background:linear-gradient(180deg,#FFF0C2,#E2B65A 60%,#B98A2F);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{margin:14px auto 0;max-width:560px;text-align:center;font-size:clamp(17px,4.6vw,21px);color:rgba(255,255,255,.88)}
+.hero .sub strong{color:#fff}
+.hero-visual{position:relative;max-width:290px;margin:0 auto;width:100%}
+.hero-visual .stage{aspect-ratio:1/.84}
+.hero-cta{margin-top:6px}
+.hero-cta .micro{color:rgba(255,255,255,.85)}
+
+/* selo */
+.seal{display:flex;align-items:center;gap:12px;margin:0 auto 16px;max-width:420px;padding:8px 14px 8px 8px;border-radius:18px;
+  background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(243,217,142,.35);backdrop-filter:blur(4px)}
+.seal-badge{flex:none;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;text-align:center;line-height:1;
+  font-family:var(--display);font-weight:900;color:var(--green-ink);
+  background:radial-gradient(circle at 35% 30%,#FFF3C9,#E7BE62 55%,#B4872E);box-shadow:0 0 0 3px rgba(243,217,142,.35),0 8px 18px rgba(0,0,0,.35)}
+.seal-badge b{display:block;font-size:19px}
+.seal-badge small{display:block;font-family:var(--body);font-size:8.5px;font-weight:900;letter-spacing:.08em;margin-top:2px}
+.seal-txt strong{display:block;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light)}
+.seal-txt span{font-size:14px;color:rgba(255,255,255,.85)}
+
+/* ---------- mockup do livro ---------- */
+.stage{position:relative;aspect-ratio:1/1;width:100%}
+.stage-food{position:absolute;inset:6% 0 0 8%;border-radius:28px;box-shadow:var(--shadow-lg);transform:rotate(3deg)}
+.stage-food .ph{position:absolute;inset:0;border-radius:inherit}
+.stage-food .ph.is-empty::after{justify-items:end;padding-right:12%;align-items:start;padding-top:14%}
+.stage-food::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(200deg,transparent 40%,rgba(6,29,22,.55));}
+.book{position:absolute;left:4%;bottom:4%;width:56%;aspect-ratio:3/4.15;perspective:1400px;z-index:2;container-type:inline-size}
+.book-inner{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(-24deg) rotateX(4deg);transition:transform .6s ease}
+.book:hover .book-inner{transform:rotateY(-12deg) rotateX(2deg)}
+.book-cover{position:absolute;inset:0;border-radius:4px 12px 12px 4px;overflow:hidden;
+  background:linear-gradient(160deg,#134A39 0%,#0B2D22 60%,#071C15 100%);
+  box-shadow:inset 6px 0 10px rgba(0,0,0,.45), inset -1px 0 0 rgba(255,255,255,.08), 18px 26px 40px -8px rgba(0,0,0,.7);
+  display:flex;flex-direction:column;padding:9% 9% 8%;color:#fff;transform:translateZ(14px)}
+.book-cover::before{content:"";position:absolute;inset:5%;border:1.5px solid rgba(243,217,142,.65);border-radius:4px 8px 8px 4px;pointer-events:none}
+.book-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(255,255,255,.18) 0%,transparent 22%,transparent 70%,rgba(255,255,255,.06) 100%);pointer-events:none}
+.book-spine{position:absolute;top:0;bottom:0;left:0;width:28px;transform-origin:left;transform:rotateY(90deg) translateX(-14px);background:linear-gradient(90deg,#06180F,#0E3528)}
+.book-pages{position:absolute;top:2%;bottom:2%;right:-3px;width:26px;transform:translateZ(0) rotateY(90deg) translateX(13px);transform-origin:right;
+  background:repeating-linear-gradient(90deg,#f5efe2 0 2px,#e1d6c2 2px 3px)}
+.bc-top{position:relative;z-index:1;text-align:center;font-family:var(--body);font-weight:900;font-size:5.4cqw;letter-spacing:.2em;color:var(--gold-light)}
+.bc-num{position:relative;z-index:1;text-align:center;font-family:var(--display);font-weight:900;line-height:.9;margin-top:6%;
+  font-size:29cqw;background:linear-gradient(180deg,#FFF2C8,#E2B65A 55%,#A87F2A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.bc-title{position:relative;z-index:1;text-align:center;font-family:var(--display);font-weight:800;font-size:8.6cqw;line-height:1.08;margin-top:2%}
+.bc-title b{display:block;color:var(--gold-light);font-weight:900}
+.bc-photo{position:relative;z-index:1;flex:1;margin-top:8%;border-radius:50% 50% 10px 10px / 30% 30% 10px 10px;box-shadow:0 0 0 2px rgba(243,217,142,.55)}
+.bc-photo .ph{position:absolute;inset:0;border-radius:inherit}
+.bc-photo .ph.is-empty::after{font-size:20cqw}
+.bc-foot{position:relative;z-index:1;text-align:center;font-size:4.6cqw;font-weight:800;letter-spacing:.16em;margin-top:7%;color:rgba(255,255,255,.75);text-transform:uppercase}
+.phone{position:absolute;right:2%;bottom:0;width:30%;aspect-ratio:9/18.5;border-radius:22px;padding:5px;z-index:3;
+  background:linear-gradient(145deg,#2a2a2e,#0b0b0d);box-shadow:0 22px 40px -10px rgba(0,0,0,.75), inset 0 0 0 1.5px #444;transform:rotate(6deg)}
+.phone-screen{position:relative;width:100%;height:100%;border-radius:17px;overflow:hidden;background:var(--cream);display:flex;flex-direction:column}
+.phone-screen::before{content:"";position:absolute;top:5px;left:50%;width:34%;height:7px;border-radius:9px;background:#0b0b0d;transform:translateX(-50%);z-index:2}
+.ps-photo{height:44%}
+.ps-photo .ph{height:100%}
+.ps-photo .ph.is-empty::after{font-size:26px}
+.ps-body{padding:8% 9%;font-size:7px;line-height:1.35;color:var(--ink)}
+.ps-body b{display:block;font-family:var(--display);font-size:9.5px;line-height:1.1;margin-bottom:4px}
+.ps-line{height:4px;border-radius:3px;background:#e6dccb;margin-top:5px}
+.ps-line.s{width:62%}
+.ps-tag{display:inline-block;font-size:6px;font-weight:900;color:#fff;background:var(--red);border-radius:4px;padding:1px 4px;margin-bottom:4px;letter-spacing:.06em}
+.sparkle{position:absolute;width:18px;height:18px;z-index:4;color:var(--gold-light);animation:spark 2.6s ease-in-out infinite}
+@keyframes spark{0%,100%{transform:scale(.6) rotate(0);opacity:.4}50%{transform:scale(1.15) rotate(25deg);opacity:1}}
+
+/* ---------- faixa de urgência ---------- */
+.ribbon{background:linear-gradient(90deg,var(--red-dark),var(--red),var(--red-dark));color:#fff;padding:12px 0;font-weight:800;text-align:center;font-size:14px;letter-spacing:.04em;overflow:hidden}
+.ribbon .track{display:flex;gap:40px;white-space:nowrap;width:max-content;animation:marquee 26s linear infinite}
+.ribbon span{display:inline-flex;align-items:center;gap:10px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ---------- DOR ---------- */
+.pain{background:var(--paper)}
+.pain-grid{display:grid;gap:40px;align-items:center;margin-top:36px}
+.menus{position:relative;height:340px;max-width:340px;width:100%;margin:0 auto}
+.menu{position:absolute;inset:0 18px;background:#fff;border-radius:14px;padding:22px 22px 18px;box-shadow:var(--shadow);border:1px solid #efe5d3;
+  background-image:repeating-linear-gradient(180deg,transparent 0 33px,#f3ebdc 33px 34px);background-position:0 70px}
+.menu:nth-child(1){transform:rotate(-9deg) translate(-14px,10px);filter:saturate(.4) brightness(.97)}
+.menu:nth-child(2){transform:rotate(-3deg) translate(-4px,4px);filter:saturate(.6)}
+.menu:nth-child(3){transform:rotate(4deg)}
+.menu h4{font-family:var(--display);font-size:20px;display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.menu h4 small{font-family:var(--body);font-size:12px;font-weight:900;color:#fff;background:var(--muted);padding:2px 8px;border-radius:6px}
+.menu:nth-child(3) h4 small{background:var(--red)}
+.menu ul{list-style:none;font-size:16px;color:var(--ink-soft)}
+.menu li{height:34px;display:flex;align-items:center;gap:8px}
+.menu li::before{content:"•";color:var(--muted)}
+.stamp{position:absolute;right:-6px;bottom:22px;z-index:5;transform:rotate(-12deg);font-family:var(--display);font-weight:900;font-size:24px;color:var(--red);
+  border:3px solid var(--red);border-radius:10px;padding:4px 12px;background:rgba(255,255,255,.85);letter-spacing:.02em;box-shadow:0 6px 14px rgba(179,19,43,.18)}
+.pain-text p{font-size:19px;color:var(--ink-soft)}
+.pain-text .q{font-family:var(--display);font-size:clamp(24px,6vw,30px);font-weight:800;color:var(--ink);margin:6px 0 14px}
+.same{list-style:none;margin:14px 0 18px;display:grid;gap:8px}
+.same li{display:flex;align-items:center;gap:12px;font-size:19px;font-weight:700;color:var(--ink);opacity:0;transform:translateX(-12px);transition:all .5s ease}
+.same li span{color:var(--red);font-weight:900}
+.same li::before{content:"";flex:none;width:26px;height:26px;border-radius:50%;background:#F3E3E3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B3132B' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M4 12a8 8 0 0 1 13.7-5.7L20 8M20 4v4h-4M20 12a8 8 0 0 1-13.7 5.7L4 16M4 20v-4h4'/%3E%3C/svg%3E") center/15px no-repeat}
+.in .same li{opacity:1;transform:none}
+.same li:nth-child(2){transition-delay:.12s}.same li:nth-child(3){transition-delay:.24s}.same li:nth-child(4){transition-delay:.36s}.same li:nth-child(5){transition-delay:.48s}
+.callout{margin-top:26px;padding:20px 22px;border-radius:var(--radius);background:linear-gradient(135deg,var(--green),var(--green-deep));color:#fff;
+  font-family:var(--display);font-weight:800;font-size:clamp(20px,5.2vw,24px);line-height:1.25;position:relative;box-shadow:var(--shadow)}
+.callout::before{content:"✨";position:absolute;top:-16px;left:20px;font-size:28px}
+.callout b{color:var(--gold-light)}
+
+/* ---------- PRODUTO ---------- */
+.product{background:
+  radial-gradient(60% 50% at 80% 20%, rgba(212,168,75,.18), transparent 60%),
+  radial-gradient(60% 50% at 10% 90%, rgba(179,19,43,.12), transparent 60%), var(--cream)}
+.product-grid{display:grid;gap:36px;align-items:center;margin-top:30px}
+.product-grid .stage{max-width:420px;margin:0 auto}
+.cats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
+.cat{display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;background:#fff;box-shadow:var(--shadow-sm);border:1px solid #f0e6d4;font-weight:800;font-size:15.5px;line-height:1.2;
+  transition:transform .2s ease, box-shadow .2s ease}
+.cat:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.cat i{font-style:normal;flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:var(--cream-2)}
+
+/* ---------- RECEITAS ---------- */
+.recipes{background:linear-gradient(180deg,var(--green-deep),var(--green-ink));color:#fff;overflow:hidden}
+.recipes .h2 em{color:var(--gold-light)}
+.recipes .lead{color:rgba(255,255,255,.78)}
+.r-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:34px}
+.r-card{position:relative;border-radius:18px;overflow:hidden;background:#123d30;box-shadow:0 14px 30px -14px rgba(0,0,0,.7);transform:translateZ(0);
+  transition:transform .3s ease}
+.r-card:hover{transform:translateY(-4px)}
+.r-card .ph{aspect-ratio:4/5}
+.r-card .ph img{transition:transform .6s ease}
+.r-card:hover .ph img{transform:scale(1.06)}
+.r-card .ph::marker{display:none}
+.r-cap{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 12px;background:linear-gradient(180deg,transparent,rgba(6,20,15,.92) 70%)}
+.r-cap h3{font-size:clamp(15px,4.2vw,19px);font-weight:800;line-height:1.12}
+.inside{position:absolute;top:10px;left:10px;display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.03em;
+  color:var(--green-ink);background:linear-gradient(180deg,#FFF0C2,#E2B65A);box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.r-more{margin-top:26px;text-align:center;font-weight:800;color:var(--gold-light);font-size:18px}
+
+/* ---------- AMOSTRAS (folhear) ---------- */
+.samples{background:var(--cream-2)}
+.flip-wrap{margin-top:34px;display:grid;justify-items:center;gap:18px}
+.flip{position:relative;width:min(100%,430px);aspect-ratio:1/1.74;perspective:2200px}
+.flip::before{content:"";position:absolute;inset:3% -2% -3% 2%;border-radius:10px;background:#d9cbb2;box-shadow:var(--shadow-lg);transform:rotate(1.5deg)}
+.flip::after{content:"";position:absolute;inset:1.5% -1% -1.5% 1%;border-radius:8px;background:#ece2cf;transform:rotate(.6deg)}
+.page{position:absolute;inset:0;z-index:calc(20 - var(--i));transform-origin:left center;transform-style:preserve-3d;
+  transition:transform .85s cubic-bezier(.6,.05,.3,1), opacity .85s ease, box-shadow .85s ease;
+  background:var(--paper);border-radius:4px 10px 10px 4px;overflow:hidden;box-shadow:0 10px 30px -12px rgba(42,30,23,.4), inset 10px 0 18px -10px rgba(0,0,0,.18);
+  display:flex;flex-direction:column;backface-visibility:hidden}
+.page.flipped{transform:rotateY(-115deg);opacity:0;pointer-events:none;box-shadow:-30px 10px 40px -10px rgba(0,0,0,.35)}
+.page::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.08),transparent 6%);pointer-events:none}
+.pg-photo{height:27%;flex:none;position:relative}
+.pg-photo .ph{height:100%}
+.pg-num{position:absolute;bottom:10px;right:12px;font-family:var(--display);font-weight:800;font-size:12px;color:#fff;background:rgba(6,29,22,.6);padding:2px 9px;border-radius:999px}
+.pg-body{padding:12px 14px 12px;display:flex;flex-direction:column;flex:1;min-height:0;font-size:11px;line-height:1.38;color:var(--ink)}
+.pg-cat{font-size:9.5px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.pg-body h3{font-size:20px;margin:2px 0 7px;color:var(--green-deep)}
+.pg-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px}
+.pg-meta span{font-size:10px;font-weight:800;background:var(--cream-2);border-radius:999px;padding:3px 8px;color:var(--ink-soft)}
+.pg-cols{margin-bottom:8px;display:grid;grid-template-columns:.9fr 1.1fr;gap:10px;flex:1;min-height:0}
+.pg-cols h4{font-family:var(--body);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:4px;padding-bottom:3px;border-bottom:1.5px solid #efe3cc}
+.pg-cols ul,.pg-cols ol{padding-left:13px}
+.pg-cols li{margin-bottom:3px}
+.pg-cols ol li::marker{font-weight:900;color:var(--red)}
+.pg-tip{margin-top:auto;padding:7px 10px;border-radius:8px;background:#FFF5DA;border-left:3px solid var(--gold);font-size:10.5px}
+.pg-tip b{color:var(--gold-dark)}
+.flip-ctrl{display:flex;align-items:center;gap:16px}
+.flip-ctrl button{width:52px;height:52px;border-radius:50%;border:0;background:#fff;box-shadow:var(--shadow-sm);font-size:22px;font-weight:900;color:var(--green);display:grid;place-items:center;transition:transform .15s}
+.flip-ctrl button:active{transform:scale(.92)}
+.flip-ctrl button:disabled{opacity:.35;cursor:default}
+.flip-count{font-weight:800;color:var(--ink-soft);min-width:90px;text-align:center}
+.flip-hint{font-size:14px;color:var(--muted);font-weight:700}
+
+/* ---------- BENEFÍCIOS ---------- */
+.benefits{background:var(--paper)}
+.ben-grid{display:grid;gap:30px;align-items:center;margin-top:30px}
+.ben-photo{position:relative;border-radius:26px;box-shadow:var(--shadow-lg);overflow:hidden}
+.ben-photo .ph{aspect-ratio:4/3.4}
+.ben-photo .tag{position:absolute;left:14px;bottom:14px;background:#fff;border-radius:14px;padding:10px 14px;font-weight:800;font-size:14px;box-shadow:var(--shadow);display:flex;gap:8px;align-items:center}
+.checks{list-style:none;display:grid;gap:10px}
+.checks li{display:flex;gap:12px;align-items:flex-start;padding:13px 16px;background:var(--cream);border-radius:14px;font-weight:700;font-size:17px;line-height:1.35}
+.checks li::before{content:"✓";flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--ok);color:#fff;font-weight:900;font-size:15px;margin-top:-1px}
+
+/* ---------- PARA QUEM É ---------- */
+.forwho{background:linear-gradient(180deg,var(--cream),var(--cream-2))}
+.who-grid{display:grid;gap:14px;margin-top:32px}
+.who{display:flex;gap:16px;align-items:flex-start;padding:20px;border-radius:var(--radius);background:#fff;box-shadow:var(--shadow-sm);border:1px solid #efe4d0;transition:transform .2s ease, box-shadow .2s}
+.who:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.who i{font-style:normal;flex:none;width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:linear-gradient(135deg,#FFF1D6,#F6DDB0)}
+.who h3{font-size:20px;margin-bottom:3px}
+.who p{color:var(--ink-soft);font-size:16px}
+
+/* ---------- DESEJO ---------- */
+.desire{color:#fff;background:var(--green-ink);overflow:hidden;padding:0}
+.desire .ph{position:absolute;inset:0}
+.desire .ph.is-empty::after{opacity:.4;font-size:120px}
+.desire-veil{position:relative;z-index:2;padding:96px 0;background:linear-gradient(180deg,rgba(6,29,22,.55),rgba(6,29,22,.82) 60%,rgba(6,29,22,.95))}
+.desire h2{font-size:clamp(28px,7vw,48px);text-wrap:balance}
+.desire blockquote{font-family:var(--display);font-weight:900;font-style:italic;font-size:clamp(34px,9vw,64px);line-height:1.05;margin:18px 0 22px;
+  color:var(--gold-light);text-shadow:0 6px 30px rgba(0,0,0,.5)}
+.desire p{font-size:clamp(18px,4.6vw,21px);color:rgba(255,255,255,.9);max-width:560px;margin:0 auto}
+
+/* ---------- AVALIAÇÕES ---------- */
+.reviews{background:var(--paper)}
+.ph-note{display:flex;gap:10px;align-items:flex-start;max-width:640px;margin:20px auto 0;padding:12px 16px;border-radius:12px;border:2px dashed #E6A23C;background:#FFF7E6;color:#7A4B00;font-size:14px;font-weight:700;text-align:left}
+.rv-grid{display:grid;grid-auto-flow:column;grid-auto-columns:84%;gap:12px;margin:28px -16px 0;padding:4px 16px 14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.rv-grid::-webkit-scrollbar{display:none}
+.rv{scroll-snap-align:center}
+.rv-hint{text-align:center;font-size:14px;font-weight:700;color:var(--muted);margin-top:6px}
+.rv{position:relative;padding:20px;border-radius:var(--radius);background:var(--cream);border:1px solid #efe4d0}
+.rv-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.avatar{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:19px;color:#fff;background:var(--bg,var(--red));box-shadow:0 0 0 3px #fff, 0 0 0 4px #ead9bd}
+.rv-name{font-weight:900;line-height:1.2}
+.stars{color:#F2A900;letter-spacing:2px;font-size:15px}
+.rv p{font-size:16.5px;color:var(--ink-soft)}
+.rv-flag{position:absolute;top:12px;right:12px;font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#7A4B00;background:#FFE7B3;border-radius:6px;padding:3px 7px}
+
+/* ---------- COMPARAÇÃO ---------- */
+.compare{background:linear-gradient(180deg,var(--cream-2),var(--cream))}
+.cmp-grid{display:grid;gap:16px;margin-top:32px;align-items:stretch}
+.cmp{border-radius:24px;padding:24px 20px;position:relative}
+.cmp h3{font-family:var(--body);font-weight:900;font-size:17px;letter-spacing:.06em;text-transform:uppercase;display:flex;gap:10px;align-items:center;margin-bottom:16px}
+.cmp--no{background:#ECE6DE;color:#5f5650}
+.cmp--no h3{color:#8A3A3A}
+.chaos{display:flex;flex-wrap:wrap;gap:8px}
+.chaos span{padding:8px 12px;border-radius:10px;background:#fff;font-weight:700;font-size:15px;box-shadow:0 2px 6px rgba(0,0,0,.06);transform:rotate(var(--r,0deg));text-decoration:line-through;text-decoration-color:rgba(179,19,43,.45)}
+.cmp--no .sum{margin-top:16px;font-size:15px;font-weight:700}
+.cmp--yes{background:linear-gradient(150deg,var(--green),var(--green-deep));color:#fff;box-shadow:var(--shadow-lg);border:2px solid rgba(243,217,142,.5)}
+.cmp--yes h3{color:var(--gold-light)}
+.cmp--yes ul{list-style:none;display:grid;gap:10px}
+.cmp--yes li{display:flex;gap:12px;align-items:center;font-weight:800;font-size:17px;padding:10px 12px;background:rgba(255,255,255,.07);border-radius:12px}
+.cmp--yes li i{font-style:normal;font-size:20px}
+.vs{display:grid;place-items:center;margin:-30px auto;z-index:2;width:56px;height:56px;border-radius:50%;background:var(--red);color:#fff;font-family:var(--display);font-weight:900;font-size:19px;box-shadow:0 8px 20px rgba(179,19,43,.4);border:4px solid var(--cream)}
+
+/* ---------- OFERTA ---------- */
+.offer{color:#fff;overflow:hidden;
+  background:
+    radial-gradient(60% 40% at 50% 0%, rgba(212,168,75,.25), transparent 70%),
+    radial-gradient(circle at 0% 100%, rgba(179,19,43,.45), transparent 45%),
+    radial-gradient(circle at 100% 60%, rgba(179,19,43,.3), transparent 40%),
+    linear-gradient(180deg,var(--green-deep),var(--green-ink))}
+.offer .wrap{position:relative;z-index:2}
+.offer .h2{color:#fff}
+.offer-card{max-width:560px;margin:34px auto 0;background:var(--paper);color:var(--ink);border-radius:28px;padding:26px 20px 26px;position:relative;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.8), 0 0 0 4px rgba(243,217,142,.55)}
+.offer-flag{position:absolute;top:-18px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:8px 18px;border-radius:999px;font-weight:900;font-size:13px;letter-spacing:.08em;
+  color:#fff;background:linear-gradient(180deg,var(--red-glow),var(--red-dark));box-shadow:0 8px 18px rgba(179,19,43,.45)}
+.offer-card .stage{max-width:300px;margin:10px auto 22px}
+.get h3{font-family:var(--body);font-size:15px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;text-align:center}
+.get ul{list-style:none;display:grid;gap:7px}
+.get li{display:flex;gap:10px;align-items:center;font-weight:800;font-size:17px;padding:9px 12px;border-radius:12px;background:var(--cream)}
+.get li::before{content:"✔";flex:none;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:13px;background:var(--ok);color:#fff}
+.price{text-align:center;margin:24px 0 20px;padding:18px 10px 20px;border-radius:20px;background:linear-gradient(180deg,#FFF6E0,#FFEFC8);border:2px dashed var(--gold)}
+.price .from{font-weight:800;color:var(--muted);font-size:17px}
+.price .from s{text-decoration-thickness:2px;text-decoration-color:var(--red)}
+.price .by{font-weight:900;font-size:14px;letter-spacing:.14em;color:var(--red);margin-top:6px}
+.price .val{font-family:var(--display);font-weight:900;color:var(--green-deep);line-height:1;display:flex;justify-content:center;align-items:flex-start;gap:4px;margin-top:4px}
+.price .val small{font-size:26px;margin-top:12px}
+.price .val b{font-size:clamp(72px,20vw,96px);letter-spacing:-.03em}
+.price .val sup{font-size:34px;margin-top:10px}
+.price .once{display:inline-block;margin-top:8px;font-weight:900;font-size:14px;color:var(--ok);background:#E3F5EA;padding:4px 12px;border-radius:999px}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.trust div{text-align:center;font-size:12.5px;font-weight:800;color:var(--ink-soft);line-height:1.25;padding:10px 4px;border-radius:12px;background:var(--cream)}
+.trust i{display:block;font-style:normal;font-size:20px;margin-bottom:3px}
+
+/* contagem */
+.countdown{margin:28px auto 0;max-width:560px;text-align:center;padding:18px 16px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(243,217,142,.35)}
+.countdown .cd-title{font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);font-size:14px}
+.countdown .cd-sub{font-size:14px;color:rgba(255,255,255,.75);margin-top:2px}
+.cd-boxes{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.cd-box{min-width:66px;padding:10px 6px 8px;border-radius:14px;background:linear-gradient(180deg,#fff,#F3EADA);color:var(--green-deep);box-shadow:0 6px 0 rgba(0,0,0,.25)}
+.cd-box b{display:block;font-family:var(--display);font-weight:900;font-size:30px;line-height:1;font-variant-numeric:tabular-nums}
+.cd-box span{display:block;font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.cd-done{font-family:var(--display);font-weight:800;font-size:22px;margin-top:8px}
+
+/* ---------- GARANTIA ---------- */
+.guarantee{background:var(--paper)}
+.g-card{display:grid;gap:22px;align-items:center;justify-items:center;text-align:center;max-width:860px;margin:0 auto;padding:30px 22px;border-radius:28px;background:var(--cream);border:2px solid #efe1c4}
+.g-seal{position:relative;width:170px;height:170px;border-radius:50%;display:grid;place-items:center;text-align:center;color:var(--green-ink);
+  background:radial-gradient(circle at 35% 30%,#FFF3C9,#E7BE62 55%,#B4872E);box-shadow:0 0 0 6px #fff, 0 0 0 8px #E7BE62, 0 20px 40px -10px rgba(168,127,42,.6)}
+.g-seal::before{content:"";position:absolute;inset:10px;border-radius:50%;border:2px dashed rgba(6,29,22,.35)}
+.g-seal b{display:block;font-family:var(--display);font-size:64px;line-height:.9;font-weight:900}
+.g-seal span{display:block;font-weight:900;font-size:13px;letter-spacing:.12em}
+.g-seal em{display:block;font-style:normal;font-size:22px;margin-bottom:2px}
+.g-card h2{font-size:clamp(28px,6.8vw,40px)}
+.g-card p{color:var(--ink-soft);font-size:18px;margin-top:10px}
+
+/* ---------- FAQ ---------- */
+.faq{background:linear-gradient(180deg,var(--cream),var(--cream-2))}
+.faq-list{display:grid;gap:10px;margin-top:30px}
+.faq details{background:#fff;border-radius:16px;box-shadow:var(--shadow-sm);border:1px solid #efe4d0;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 54px 18px 20px;font-weight:800;font-size:17.5px;position:relative;line-height:1.3}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:16px;top:50%;width:28px;height:28px;margin-top:-14px;border-radius:50%;display:grid;place-items:center;
+  background:var(--cream-2);color:var(--red);font-size:20px;font-weight:900;transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 20px 18px;color:var(--ink-soft);font-size:16.5px}
+
+/* ---------- CTA FINAL ---------- */
+.final{color:#fff;text-align:center;overflow:hidden;padding:84px 0 110px;
+  background:
+    radial-gradient(70% 50% at 50% 100%, rgba(212,168,75,.25), transparent 70%),
+    radial-gradient(circle at 10% 20%, rgba(179,19,43,.5), transparent 40%),
+    radial-gradient(circle at 90% 30%, rgba(179,19,43,.4), transparent 40%),
+    linear-gradient(180deg,var(--red-dark) 0%, #5E0915 40%, var(--green-ink) 100%)}
+.final .wrap{position:relative;z-index:2}
+.final h2{font-size:clamp(32px,8.4vw,54px);text-wrap:balance}
+.final .sub{margin:16px auto 0;max-width:560px;font-size:clamp(17px,4.6vw,21px);color:rgba(255,255,255,.88)}
+.final .stage{max-width:320px;margin:28px auto 20px}
+.final-price{margin:6px 0 22px}
+.final-price .from{font-weight:800;color:rgba(255,255,255,.7);font-size:17px}
+.final-price .from s{text-decoration-color:var(--gold-light)}
+.final-price .now{font-family:var(--display);font-weight:900;font-size:clamp(40px,11vw,58px);color:var(--gold-light);line-height:1.05}
+.final-price .now small{font-family:var(--body);font-size:18px;font-weight:800;color:#fff;display:block}
+.final .micro{color:rgba(255,255,255,.8)}
+
+footer{background:var(--green-ink);color:rgba(255,255,255,.55);text-align:center;font-size:13px;padding:26px 0 110px}
+footer p+p{margin-top:6px}
+
+/* ---------- barra fixa (mobile) ---------- */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(10,42,32,.94);backdrop-filter:blur(8px);border-top:1px solid rgba(243,217,142,.3);
+  display:flex;align-items:center;gap:12px;transform:translateY(110%);transition:transform .35s ease}
+.sticky.show{transform:none}
+.sticky .sp{color:#fff;line-height:1.1;flex:none}
+.sticky .sp s{font-size:12px;opacity:.65;display:block}
+.sticky .sp b{font-family:var(--display);font-size:24px;color:var(--gold-light)}
+.sticky .btn{padding:14px 14px;font-size:15.5px;box-shadow:0 4px 0 #0E6331}
+
+/* ---------- revelar ao rolar ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- telas maiores ---------- */
+@media (min-width:640px){
+  .r-grid{grid-template-columns:repeat(3,1fr);gap:16px}
+  .who-grid{grid-template-columns:repeat(2,1fr)}
+  .rv-grid{grid-auto-flow:row;grid-template-columns:repeat(2,1fr);margin:28px 0 0;padding:0;overflow:visible}
+  .rv-hint{display:none}
+  .cats{grid-template-columns:repeat(3,1fr)}
+  .flip{aspect-ratio:1/1.46}
+  .pg-photo{height:31%}
+  .pg-body{font-size:12px;padding:14px 18px}
+  .pg-body h3{font-size:23px}
+}
+@media (min-width:900px){
+  body{font-size:18px}
+  .sec{padding:104px 0}
+  .hero{padding:90px 0 84px}
+  .hero-grid{grid-template-columns:1.05fr .95fr;gap:48px}
+  .hero h1,.hero .sub{text-align:left;margin-left:0}
+  .hero-top{justify-content:flex-start}
+  .seal{margin-left:0}
+  .hero-cta .btn{margin-left:0}
+  .hero-cta .micro{justify-content:flex-start}
+  .hero-visual{max-width:none;grid-row:1/3;grid-column:2}
+  .hero-visual .stage{aspect-ratio:1/1}
+  .pain-grid{grid-template-columns:.9fr 1.1fr;gap:64px}
+  .product-grid{grid-template-columns:1fr 1fr;gap:56px}
+  .r-grid{grid-template-columns:repeat(4,1fr)}
+  .ben-grid{grid-template-columns:1.05fr .95fr;gap:56px}
+  .who-grid{grid-template-columns:repeat(3,1fr)}
+  .rv-grid{grid-template-columns:repeat(3,1fr)}
+  .cmp-grid{grid-template-columns:1fr auto 1fr;gap:0 18px;align-items:center}
+  .vs{margin:auto}
+  .g-card{grid-template-columns:auto 1fr;text-align:left;padding:40px 44px;gap:40px}
+  .sticky{display:none}
+  footer{padding-bottom:30px}
+  .flip{width:480px;aspect-ratio:1/1.32}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal,.same li{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ==========================================================
+     CONFIGURAÇÃO RÁPIDA
+     1. Link do checkout: constante CHECKOUT_URL no fim da página.
+     2. Fotos: coloque os arquivos em natal/img/ (lista no README.md).
+        Enquanto uma foto não existir, aparece um fundo ilustrado.
+     3. Avaliações: são EXEMPLOS. Troque por avaliações reais e
+        remova os avisos marcados com data-placeholder.
+     ========================================================== -->
+
+<!-- ================= 1–2. HERO ================= -->
+<header class="hero" id="topo">
+  <div class="lights" aria-hidden="true">
+    <svg viewBox="0 0 1200 30" preserveAspectRatio="none"><path d="M0 4 Q 50 26 100 4 T 200 4 T 300 4 T 400 4 T 500 4 T 600 4 T 700 4 T 800 4 T 900 4 T 1000 4 T 1100 4 T 1200 4" fill="none" stroke="#2b3a31" stroke-width="2"/></svg>
+    <ul>
+      <li style="--c:#FF4D5E;--y:14px"></li><li style="--c:#FFD166;--y:20px;--d:.4s"></li><li style="--c:#5BE38A;--y:14px;--d:.8s"></li>
+      <li style="--c:#FF4D5E;--y:8px;--d:1.2s"></li><li style="--c:#FFD166;--y:14px;--d:.2s"></li><li style="--c:#5BE38A;--y:20px;--d:.6s"></li>
+      <li style="--c:#FF4D5E;--y:14px;--d:1s"></li><li style="--c:#FFD166;--y:8px;--d:1.4s"></li><li style="--c:#5BE38A;--y:14px;--d:.3s"></li>
+      <li style="--c:#FF4D5E;--y:20px;--d:.7s"></li><li style="--c:#FFD166;--y:14px;--d:1.1s"></li><li style="--c:#5BE38A;--y:8px;--d:.5s"></li>
+    </ul>
+  </div>
+  <div class="snow" aria-hidden="true" data-snow="22"></div>
+
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-top"><span class="pill">🎄 Especial de Natal</span></div>
+        <h1>Cansado de comer as <span class="hl">mesmas receitas</span> todo Natal?</h1>
+        <p class="sub">Tenha <strong>+100 receitas deliciosas</strong> para transformar sua ceia em uma mesa cheia de novidades — com pratos, sobremesas e acompanhamentos para surpreender sua família.</p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="stage">
+          <div class="stage-food">
+            <!-- TROCAR: foto de mesa de Natal farta (img/hero-mesa.jpg) -->
+            <div class="ph" data-emoji="🍗"><img src="img/hero-mesa.jpg" alt="Mesa de Natal farta com pernil, sobremesas, frutas e decoração natalina" fetchpriority="high"></div>
+          </div>
+          <div class="book" aria-hidden="true">
+            <div class="book-inner">
+              <div class="book-spine"></div>
+              <div class="book-pages"></div>
+              <div class="book-cover">
+                <div class="bc-top">LIVRO DIGITAL</div>
+                <div class="bc-num">+100</div>
+                <div class="bc-title">Receitas para um Natal <b>Fora do Óbvio</b></div>
+                <div class="bc-photo"><div class="ph ph--berry" data-emoji="🎄"><img src="img/capa.jpg" alt=""></div></div>
+                <div class="bc-foot">Pratos • Sobremesas • Entradas</div>
+              </div>
+            </div>
+          </div>
+          <div class="phone" aria-hidden="true">
+            <div class="phone-screen">
+              <div class="ps-photo"><div class="ph ph--cream" data-emoji="🍰"><img src="img/receitas/cheesecake-frutas-vermelhas.jpg" alt=""></div></div>
+              <div class="ps-body"><span class="ps-tag">SOBREMESA</span><b>Cheesecake de Frutas Vermelhas</b><div class="ps-line"></div><div class="ps-line"></div><div class="ps-line s"></div><div class="ps-line"></div><div class="ps-line s"></div></div>
+            </div>
+          </div>
+          <svg class="sparkle" style="top:4%;left:2%" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+          <svg class="sparkle" style="top:30%;right:-2%;animation-delay:1.2s;width:14px" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <div class="seal">
+          <div class="seal-badge"><div><b>+100</b><small>RECEITAS</small></div></div>
+          <div class="seal-txt"><strong>Receitas de Natal</strong><span>Práticas • Variadas • Fáceis de preparar</span></div>
+        </div>
+        <a class="btn btn--pulse" href="#oferta" data-cta>QUERO AS +100 RECEITAS DE NATAL 🎄</a>
+        <div class="micro"><span>⚡ Acesso imediato</span><span>• Produto digital</span><span>• 📱 Receba no celular</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ribbon" aria-hidden="true">
+  <div class="track">
+    <span>🍰 Sobremesas</span><span>🍗 Pratos principais</span><span>🥗 Acompanhamentos</span><span>🥖 Entradas</span><span>🍫 Doces</span><span>🎄 Receitas especiais</span>
+    <span>🍰 Sobremesas</span><span>🍗 Pratos principais</span><span>🥗 Acompanhamentos</span><span>🥖 Entradas</span><span>🍫 Doces</span><span>🎄 Receitas especiais</span>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= 3. DOR ================= -->
+<section class="sec pain">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">Seja sincero</span>
+      <h2 class="h2" style="margin-top:10px">Todo ano é a <em>mesma coisa</em>...</h2>
+    </div>
+
+    <div class="pain-grid">
+      <div class="menus reveal" aria-label="Cardápios da ceia de três anos seguidos, todos iguais" role="img">
+        <div class="menu"><h4>Ceia <small>2023</small></h4><ul><li>Pavê</li><li>Salpicão</li><li>Arroz</li><li>Farofa</li><li>Pudim</li></ul></div>
+        <div class="menu"><h4>Ceia <small>2024</small></h4><ul><li>Pavê</li><li>Salpicão</li><li>Arroz</li><li>Farofa</li><li>Pudim</li></ul></div>
+        <div class="menu"><h4>Ceia <small>2025</small></h4><ul><li>Pavê</li><li>Salpicão</li><li>Arroz</li><li>Farofa</li><li>Pudim</li></ul></div>
+        <div class="stamp">DE NOVO? 😩</div>
+      </div>
+
+      <div class="pain-text reveal">
+        <p>Chega dezembro e começa a mesma dúvida:</p>
+        <p class="q">“O que vamos fazer para a ceia?”</p>
+        <p>E no final...</p>
+        <ul class="same">
+          <li><div>Pavê <span>de sempre.</span></div></li>
+          <li><div>Salpicão <span>de sempre.</span></div></li>
+          <li><div>Arroz <span>de sempre.</span></div></li>
+          <li><div>Farofa <span>de sempre.</span></div></li>
+          <li><div>A mesma sobremesa <span>de todos os anos.</span></div></li>
+        </ul>
+        <p>Se você também sente que sua ceia poderia ser muito mais especial, existe uma maneira simples de mudar isso.</p>
+        <div class="callout">Você <b>não precisa repetir</b> as mesmas receitas para ter uma ceia deliciosa.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. PRODUTO ================= -->
+<section class="sec product">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">Apresentamos</span>
+      <h2 class="h2" style="margin-top:10px">Conheça o seu novo <em>arsenal de receitas</em> para o Natal 🎄</h2>
+    </div>
+    <div class="product-grid">
+      <div class="reveal">
+        <div class="stage">
+          <div class="stage-food"><div class="ph ph--green" data-emoji="🎁"><img src="img/mesa-bonita.jpg" alt="" loading="lazy"></div></div>
+          <div class="book" aria-hidden="true">
+            <div class="book-inner">
+              <div class="book-spine"></div><div class="book-pages"></div>
+              <div class="book-cover">
+                <div class="bc-top">LIVRO DIGITAL</div>
+                <div class="bc-num">+100</div>
+                <div class="bc-title">Receitas para um Natal <b>Fora do Óbvio</b></div>
+                <div class="bc-photo"><div class="ph ph--berry" data-emoji="🎄"><img src="img/capa.jpg" alt="" loading="lazy"></div></div>
+                <div class="bc-foot">Pratos • Sobremesas • Entradas</div>
+              </div>
+            </div>
+          </div>
+          <div class="phone" aria-hidden="true">
+            <div class="phone-screen">
+              <div class="ps-photo"><div class="ph" data-emoji="🍖"><img src="img/receitas/lombo-especial.jpg" alt="" loading="lazy"></div></div>
+              <div class="ps-body"><span class="ps-tag">PRATO PRINCIPAL</span><b>Lombo Assado com Laranja e Mel</b><div class="ps-line"></div><div class="ps-line s"></div><div class="ps-line"></div><div class="ps-line"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="lead">Reunimos <strong style="color:var(--ink)">mais de 100 receitas</strong> para você sair do básico e montar uma ceia muito mais criativa, bonita e saborosa.</p>
+        <p class="lead" style="margin-top:12px">São dezenas de ideias para você escolher exatamente o que combina com a sua família e com a sua ceia.</p>
+        <div class="cats">
+          <div class="cat"><i>🍰</i>Sobremesas</div>
+          <div class="cat"><i>🍗</i>Pratos principais</div>
+          <div class="cat"><i>🥗</i>Acompanha&shy;mentos</div>
+          <div class="cat"><i>🥖</i>Entradas</div>
+          <div class="cat"><i>🍫</i>Doces</div>
+          <div class="cat"><i>🎄</i>Receitas especiais de Natal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. RECEITAS ================= -->
+<section class="sec recipes">
+  <div class="snow" aria-hidden="true" data-snow="14"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="center reveal">
+      <span class="kicker" style="color:var(--gold-light)">Uma espiada</span>
+      <h2 class="h2" style="margin-top:10px">Olha só algumas das receitas que <em>você vai encontrar</em> 👇</h2>
+    </div>
+    <!-- TROCAR: fotos em img/receitas/<nome>.jpg (formato vertical 4:5) -->
+    <div class="r-grid" id="receitas"></div>
+    <p class="r-more reveal">+ dezenas de outras receitas dentro do livro 🎄</p>
+  </div>
+</section>
+
+<!-- ================= 6. AMOSTRAS ================= -->
+<section class="sec samples">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">Por dentro do livro</span>
+      <h2 class="h2" style="margin-top:10px">Não é só uma lista de receitas. <em>Veja como é o material por dentro.</em></h2>
+      <p class="lead" style="margin-top:12px">Foto do prato, ingredientes, passo a passo, tempo de preparo e dicas. Toque nas setas para folhear 👇</p>
+    </div>
+
+    <!-- TROCAR: as páginas abaixo são uma reprodução do formato. Se preferir,
+         substitua o conteúdo de cada .page por um <img> com o print da
+         página real do ebook. -->
+    <div class="flip-wrap reveal">
+      <div class="flip" id="flip" aria-roledescription="carrossel" aria-label="Prévia das páginas do livro"></div>
+      <div class="flip-ctrl">
+        <button type="button" id="flip-prev" aria-label="Página anterior">‹</button>
+        <span class="flip-count" id="flip-count" aria-live="polite">1 / 6</span>
+        <button type="button" id="flip-next" aria-label="Próxima página">›</button>
+      </div>
+      <span class="flip-hint">Deslize para o lado para virar a página</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. BENEFÍCIOS ================= -->
+<section class="sec benefits">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="h2">Imagine chegar na ceia com <em>uma mesa assim...</em></h2>
+    </div>
+    <div class="ben-grid">
+      <div class="ben-photo reveal">
+        <!-- TROCAR: mesa natalina bonita, bem decorada (img/mesa-bonita.jpg) -->
+        <div class="ph" data-emoji="🎄"><img src="img/mesa-bonita.jpg" alt="Mesa natalina decorada com pratos variados, sobremesas e velas" loading="lazy"></div>
+        <div class="tag">😍 “Foi você que fez tudo isso?”</div>
+      </div>
+      <ul class="checks reveal">
+        <li>Mais variedade para sua ceia</li>
+        <li>Novas receitas para experimentar</li>
+        <li>Mais opções de sobremesas</li>
+        <li>Ideias para surpreender seus convidados</li>
+        <li>Receitas organizadas em um só lugar</li>
+        <li>Acesso pelo celular, tablet ou computador</li>
+        <li>Não precisa ficar horas procurando receitas na internet</li>
+        <li>Mais criatividade para montar sua ceia</li>
+      </ul>
+    </div>
+    <div class="reveal" style="margin-top:40px">
+      <a class="btn" href="#oferta" data-cta>QUERO SURPREENDER NESTE NATAL 🎄</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. PARA QUEM É ================= -->
+<section class="sec forwho">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="h2">Esse livro foi feito <em>para você</em> se...</h2>
+    </div>
+    <div class="who-grid">
+      <div class="who reveal"><i>🎄</i><div><h3>Você ama o Natal</h3><p>Quer preparar algo especial para a família.</p></div></div>
+      <div class="who reveal"><i>🍰</i><div><h3>Você ama sobremesas</h3><p>Mas está cansado das mesmas opções.</p></div></div>
+      <div class="who reveal"><i>👩‍🍳</i><div><h3>Você gosta de cozinhar</h3><p>E quer descobrir receitas novas.</p></div></div>
+      <div class="who reveal"><i>😩</i><div><h3>Você está cansado da mesmice</h3><p>Todo ano a ceia acaba sendo igual.</p></div></div>
+      <div class="who reveal"><i>👨‍👩‍👧‍👦</i><div><h3>Você quer impressionar a família</h3><p>Com uma mesa bonita e diferente.</p></div></div>
+      <div class="who reveal"><i>⏰</i><div><h3>Você quer praticidade</h3><p>Sem precisar pesquisar dezenas de receitas.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9. DESEJO ================= -->
+<section class="desire">
+  <!-- TROCAR: família reunida ao redor da mesa de Natal (img/familia-ceia.jpg) -->
+  <div class="ph ph--green" data-emoji="👨‍👩‍👧‍👦"><img src="img/familia-ceia.jpg" alt="" loading="lazy"></div>
+  <div class="desire-veil">
+    <div class="wrap narrow center reveal">
+      <h2>Este pode ser o Natal em que alguém vai perguntar:</h2>
+      <blockquote>“Onde você aprendeu essa receita?”</blockquote>
+      <p>Mais do que receitas, você terá ideias para criar momentos especiais ao lado de quem você ama.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10. AVALIAÇÕES ================= -->
+<section class="sec reviews">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="h2">Quem já colocou essas receitas na mesa, <em>aprovou</em> ❤️</h2>
+      <!-- REMOVER este aviso e os selos "Exemplo" quando trocar pelos depoimentos reais -->
+      <div class="ph-note" data-placeholder>⚠️ <span>Depoimentos de exemplo para o layout. Substitua por avaliações reais de clientes (com autorização) antes de publicar.</span></div>
+    </div>
+    <div class="rv-grid" id="avaliacoes"></div>
+    <p class="rv-hint">Deslize para ver mais avaliações 👉</p>
+  </div>
+</section>
+
+<!-- ================= 11. COMPARAÇÃO ================= -->
+<section class="sec compare">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="h2">Quanto tempo você perde <em>procurando receitas?</em></h2>
+    </div>
+    <div class="cmp-grid">
+      <div class="cmp cmp--no reveal">
+        <h3>❌ Sem o livro</h3>
+        <div class="chaos">
+          <span style="--r:-3deg">Google</span><span style="--r:2deg">Pinterest</span><span style="--r:-1deg">Instagram</span><span style="--r:3deg">TikTok</span>
+          <span style="--r:-2deg">Vídeos</span><span style="--r:1deg">Salvar receitas</span><span style="--r:-3deg">Anotar ingredientes</span><span style="--r:2deg">Perder as receitas depois</span>
+        </div>
+        <p class="sum">😵‍💫 Abas abertas, prints perdidos e a ceia chegando...</p>
+      </div>
+      <div class="vs" aria-hidden="true">VS</div>
+      <div class="cmp cmp--yes reveal">
+        <h3>✅ Com +100 Receitas de Natal</h3>
+        <ul>
+          <li><i>🎄</i>Mais de 100 receitas reunidas</li>
+          <li><i>📱</i>Acesso pelo celular</li>
+          <li><i>🍰</i>Sobremesas</li>
+          <li><i>🍗</i>Pratos</li>
+          <li><i>🥗</i>Acompanhamentos</li>
+          <li><i>🎁</i>Receitas especiais</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12–13. OFERTA + URGÊNCIA ================= -->
+<section class="sec offer" id="oferta">
+  <div class="snow" aria-hidden="true" data-snow="16"></div>
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="pill">🎄 Oferta especial de Natal</span>
+      <h2 class="h2" style="margin-top:14px">Leve +100 receitas para <span style="color:var(--gold-light)">transformar sua ceia</span></h2>
+    </div>
+
+    <div class="offer-card reveal">
+      <div class="offer-flag">🎁 PREÇO ESPECIAL DE NATAL</div>
+      <div class="stage">
+        <div class="stage-food"><div class="ph" data-emoji="🍮"><img src="img/hero-mesa.jpg" alt="" loading="lazy"></div></div>
+        <div class="book" aria-hidden="true">
+          <div class="book-inner">
+            <div class="book-spine"></div><div class="book-pages"></div>
+            <div class="book-cover">
+              <div class="bc-top">LIVRO DIGITAL</div>
+              <div class="bc-num">+100</div>
+              <div class="bc-title">Receitas para um Natal <b>Fora do Óbvio</b></div>
+              <div class="bc-photo"><div class="ph ph--berry" data-emoji="🎄"><img src="img/capa.jpg" alt="" loading="lazy"></div></div>
+              <div class="bc-foot">Pratos • Sobremesas • Entradas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="get">
+        <h3>Você recebe:</h3>
+        <ul>
+          <li>+100 Receitas de Natal</li>
+          <li>Receitas de pratos principais</li>
+          <li>Receitas de sobremesas</li>
+          <li>Acompanhamentos</li>
+          <li>Entradas</li>
+          <li>Receitas especiais</li>
+          <li>Acesso digital imediato</li>
+        </ul>
+      </div>
+
+      <div class="price">
+        <div class="from">De <s>R$ 97,00</s></div>
+        <div class="by">POR APENAS</div>
+        <div class="val"><small>R$</small><b>9</b><sup>,90</sup></div>
+        <span class="once">Pagamento único</span>
+      </div>
+
+      <a class="btn btn--pulse" href="#oferta" data-cta>🎄 QUERO MINHAS +100 RECEITAS</a>
+
+      <div class="trust">
+        <div><i>🔒</i>Compra segura</div>
+        <div><i>⚡</i>Acesso imediato</div>
+        <div><i>📱</i>Funciona no celular</div>
+      </div>
+    </div>
+
+    <!-- Contagem real: até a noite de 24/12. Não há prazo inventado para a oferta. -->
+    <div class="countdown reveal" id="countdown">
+      <div class="cd-title">🎄 Faltam para a ceia de Natal</div>
+      <div class="cd-sub">Garanta as receitas com tempo para escolher o cardápio e fazer as compras</div>
+      <div class="cd-boxes" id="cd-boxes">
+        <div class="cd-box"><b data-cd="d">--</b><span>dias</span></div>
+        <div class="cd-box"><b data-cd="h">--</b><span>horas</span></div>
+        <div class="cd-box"><b data-cd="m">--</b><span>min</span></div>
+        <div class="cd-box"><b data-cd="s">--</b><span>seg</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 14. GARANTIA ================= -->
+<section class="sec guarantee">
+  <div class="wrap">
+    <div class="g-card reveal">
+      <div class="g-seal"><div><em>🛡️</em><b>7</b><span>DIAS DE<br>GARANTIA</span></div></div>
+      <div>
+        <h2>Seu risco é <em style="font-style:normal;color:var(--red)">praticamente zero.</em></h2>
+        <p>Você pode acessar o material, conhecer o conteúdo e decidir se ele faz sentido para você dentro do prazo de garantia oferecido.</p>
+        <p><strong style="color:var(--ink)">🛡️ Garantia de 7 dias.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 15. FAQ ================= -->
+<section class="sec faq">
+  <div class="wrap narrow">
+    <div class="center reveal">
+      <h2 class="h2">Perguntas <em>frequentes</em></h2>
+    </div>
+    <div class="faq-list reveal">
+      <details open><summary>Como vou receber as receitas?</summary><p>Após a confirmação do pagamento, você recebe o acesso ao material digital.</p></details>
+      <details><summary>Posso acessar pelo celular?</summary><p>Sim. O material pode ser acessado pelo celular, tablet ou computador.</p></details>
+      <details><summary>Preciso ter experiência na cozinha?</summary><p>Não. As receitas são apresentadas de forma simples e organizada, com ingredientes e passo a passo.</p></details>
+      <details><summary>São receitas apenas de sobremesas?</summary><p>Não. O material reúne sobremesas, pratos principais, acompanhamentos, entradas e outras ideias para o Natal.</p></details>
+      <details><summary>Posso imprimir as receitas?</summary><p>Sim, o material digital pode ser impresso para facilitar o uso na cozinha.</p></details>
+      <details><summary>O acesso é imediato?</summary><p>Sim, após a confirmação do pagamento o acesso é liberado.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 16. CTA FINAL ================= -->
+<section class="final">
+  <div class="lights" aria-hidden="true">
+    <svg viewBox="0 0 1200 30" preserveAspectRatio="none"><path d="M0 4 Q 50 26 100 4 T 200 4 T 300 4 T 400 4 T 500 4 T 600 4 T 700 4 T 800 4 T 900 4 T 1000 4 T 1100 4 T 1200 4" fill="none" stroke="#2b3a31" stroke-width="2"/></svg>
+    <ul>
+      <li style="--c:#FFD166;--y:14px"></li><li style="--c:#5BE38A;--y:20px;--d:.4s"></li><li style="--c:#FFFFFF;--y:14px;--d:.8s"></li>
+      <li style="--c:#FFD166;--y:8px;--d:1.2s"></li><li style="--c:#5BE38A;--y:14px;--d:.2s"></li><li style="--c:#FFFFFF;--y:20px;--d:.6s"></li>
+      <li style="--c:#FFD166;--y:14px;--d:1s"></li><li style="--c:#5BE38A;--y:8px;--d:1.4s"></li><li style="--c:#FFFFFF;--y:14px;--d:.3s"></li>
+      <li style="--c:#FFD166;--y:20px;--d:.7s"></li><li style="--c:#5BE38A;--y:14px;--d:1.1s"></li><li style="--c:#FFFFFF;--y:8px;--d:.5s"></li>
+    </ul>
+  </div>
+  <div class="snow" aria-hidden="true" data-snow="18"></div>
+  <div class="wrap narrow reveal">
+    <h2>🎄 Neste Natal, deixe a mesmice <span style="color:var(--gold-light)">fora da mesa.</span></h2>
+    <p class="sub">Tenha +100 ideias de receitas para preparar uma ceia diferente, deliciosa e inesquecível.</p>
+    <div class="stage">
+      <div class="stage-food"><div class="ph" data-emoji="🥧"><img src="img/mesa-bonita.jpg" alt="" loading="lazy"></div></div>
+      <div class="book" aria-hidden="true">
+        <div class="book-inner">
+          <div class="book-spine"></div><div class="book-pages"></div>
+          <div class="book-cover">
+            <div class="bc-top">LIVRO DIGITAL</div>
+            <div class="bc-num">+100</div>
+            <div class="bc-title">Receitas para um Natal <b>Fora do Óbvio</b></div>
+            <div class="bc-photo"><div class="ph ph--berry" data-emoji="🎄"><img src="img/capa.jpg" alt="" loading="lazy"></div></div>
+            <div class="bc-foot">Pratos • Sobremesas • Entradas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="final-price">
+      <div class="from">De <s>R$ 97,00</s></div>
+      <div class="now"><small>Por apenas</small>R$ 9,90</div>
+    </div>
+    <a class="btn btn--pulse" href="#oferta" data-cta>🎄 QUERO AS +100 RECEITAS AGORA</a>
+    <div class="micro"><span>⚡ Acesso digital imediato</span><span>• 🔒 Compra segura</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>+100 Receitas para um Natal Fora do Óbvio • Produto digital</p>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky" aria-hidden="true">
+  <div class="sp"><s>R$ 97,00</s><b>R$ 9,90</b></div>
+  <a class="btn" href="#oferta" data-cta tabindex="-1">QUERO AS RECEITAS 🎄</a>
+</div>
+
+<script>
+/* ================= CONFIGURAÇÃO ================= */
+/* TROCAR: link do checkout (Kiwify, Hotmart, Cakto, ZuckPay...).
+   Vazio = os botões levam até a seção de oferta. */
+const CHECKOUT_URL = '';
+
+/* Mantém UTMs e ids de clique ao mandar a pessoa para o checkout. */
+const PARAMS_REPASSADOS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','src','sck','fbclid','gclid','ttclid'];
+
+/* ================= receitas (seção 5) ================= */
+const RECEITAS = [
+  ['pave-de-natal',               'Pavê de Natal',                    '🍮', 'ph--choco'],
+  ['rabanada-recheada',           'Rabanada Recheada',                '🍞', 'ph--cream'],
+  ['cheesecake-frutas-vermelhas', 'Cheesecake de Frutas Vermelhas',   '🍰', 'ph--berry'],
+  ['lombo-especial',              'Lombo Especial',                   '🍖', ''],
+  ['frango-assado-natalino',      'Frango Assado Natalino',           '🍗', ''],
+  ['arroz-a-grega-especial',      'Arroz à Grega Especial',           '🍚', 'ph--cream'],
+  ['farofa-crocante',             'Farofa Crocante',                  '🥜', 'ph--cream'],
+  ['salpicao-cremoso',            'Salpicão Cremoso',                 '🥗', 'ph--green'],
+  ['torta-de-chocolate',          'Torta de Chocolate',               '🍫', 'ph--choco'],
+  ['mousse-especial',             'Mousse Especial',                  '🍨', 'ph--choco'],
+  ['sobremesa-de-morango',        'Sobremesa de Morango',             '🍓', 'ph--berry'],
+  ['pudim-especial',              'Pudim Especial',                   '🍮', 'ph--cream'],
+  ['pernil-assado',               'Pernil Assado',                    '🍖', ''],
+  ['batatas-gratinadas',          'Batatas Gratinadas',               '🥔', 'ph--cream'],
+  ['torta-salgada',               'Torta Salgada',                    '🥧', ''],
+  ['brownie-natalino',            'Brownie Natalino',                 '🎄', 'ph--choco'],
+];
+
+/* ================= páginas de amostra (seção 6) ================= */
+const PAGINAS = [
+  { foto:'rabanada-recheada', emoji:'🍞', tom:'ph--cream', cat:'Sobremesas', titulo:'Rabanada Recheada de Doce de Leite',
+    tempo:'30 min', rende:'12 unidades', nivel:'Fácil',
+    ing:['1 pão francês amanhecido grande (ou 6 pães)','1 xícara de doce de leite firme','2 xícaras de leite','3 colheres (sopa) de açúcar','3 ovos batidos','Óleo para fritar','½ xícara de açúcar + 1 colher (sopa) de canela'],
+    prep:['Corte o pão em fatias de 3 cm e faça um corte lateral formando um bolso.','Recheie com doce de leite e aperte as bordas.','Passe no leite adoçado e depois nos ovos batidos.','Frite em óleo quente até dourar e escorra em papel-toalha.','Passe na mistura de açúcar e canela.'],
+    dica:'Use pão do dia anterior: ele absorve o leite sem desmanchar.' },
+  { foto:'lombo-especial', emoji:'🍖', tom:'', cat:'Pratos principais', titulo:'Lombo Assado com Laranja e Mel',
+    tempo:'1h40 + marinada', rende:'8 porções', nivel:'Médio',
+    ing:['1,5 kg de lombo suíno','Suco de 3 laranjas','3 colheres (sopa) de mel','4 dentes de alho amassados','2 colheres (sopa) de mostarda','Alecrim, sal e pimenta','Azeite'],
+    prep:['Misture o suco, o mel, o alho, a mostarda, o sal e a pimenta.','Fure o lombo e deixe marinar por pelo menos 4 horas.','Asse coberto com papel-alumínio a 200 °C por 1 hora.','Retire o papel, regue com a marinada e asse mais 30 a 40 min, até dourar.'],
+    dica:'Fatie só depois de 10 minutos de descanso: o suco fica dentro da carne.' },
+  { foto:'cheesecake-frutas-vermelhas', emoji:'🍰', tom:'ph--berry', cat:'Sobremesas', titulo:'Cheesecake de Frutas Vermelhas',
+    tempo:'1h20 + 4h de geladeira', rende:'10 fatias', nivel:'Médio',
+    ing:['200 g de biscoito maisena','80 g de manteiga derretida','600 g de cream cheese','1 lata de leite condensado','3 ovos','1 colher (sopa) de suco de limão','300 g de frutas vermelhas + ½ xícara de açúcar'],
+    prep:['Triture o biscoito, misture a manteiga e forre o fundo de uma forma de aro removível.','Bata o cream cheese, o leite condensado, os ovos e o limão até ficar liso.','Despeje sobre a base e asse em banho-maria a 160 °C por cerca de 50 min.','Leve as frutas com o açúcar ao fogo por 10 min para fazer a calda.','Gele por 4 horas e cubra com a calda fria.'],
+    dica:'Deixe esfriar no forno desligado com a porta entreaberta: assim não racha.' },
+  { foto:'farofa-crocante', emoji:'🥜', tom:'ph--cream', cat:'Acompanhamentos', titulo:'Farofa Crocante de Castanhas e Bacon',
+    tempo:'25 min', rende:'8 porções', nivel:'Fácil',
+    ing:['200 g de bacon em cubos','3 colheres (sopa) de manteiga','1 cebola picada','2 xícaras de farinha de mandioca flocada','½ xícara de castanha-do-pará picada','½ xícara de uva-passa (opcional)','Salsinha e sal'],
+    prep:['Frite o bacon na própria gordura até ficar crocante.','Junte a manteiga e doure a cebola.','Acrescente a farinha aos poucos, mexendo até tostar levemente.','Desligue o fogo e misture as castanhas, as passas e a salsinha.'],
+    dica:'Toste a farinha em fogo baixo: com pressa ela queima e fica amarga.' },
+  { foto:'salpicao-cremoso', emoji:'🥗', tom:'ph--green', cat:'Entradas', titulo:'Salpicão Cremoso com Maçã Verde',
+    tempo:'40 min', rende:'10 porções', nivel:'Fácil',
+    ing:['2 peitos de frango cozidos e desfiados','1 cenoura ralada','1 maçã verde em cubinhos','1 lata de milho','½ xícara de uva-passa','1 xícara de maionese + 3 colheres de creme de leite','Suco de ½ limão, sal e batata palha'],
+    prep:['Misture o frango, a cenoura, a maçã, o milho e as passas.','Em outra tigela, combine a maionese, o creme de leite e o limão.','Junte tudo, acerte o sal e leve à geladeira por 1 hora.','Cubra com batata palha na hora de servir.'],
+    dica:'Batata palha só no último minuto, senão ela murcha.' },
+  { foto:'pudim-especial', emoji:'🍮', tom:'ph--cream', cat:'Sobremesas', titulo:'Pudim de Leite Lisinho',
+    tempo:'1h30 + 6h de geladeira', rende:'12 fatias', nivel:'Fácil',
+    ing:['1 lata de leite condensado','2 medidas (da lata) de leite','3 ovos','1 xícara de açúcar para a calda'],
+    prep:['Derreta o açúcar em fogo baixo até virar caramelo e forre uma forma com furo central.','Bata no liquidificador o leite condensado, o leite e os ovos.','Despeje na forma e cubra com papel-alumínio.','Asse em banho-maria a 180 °C por cerca de 1h20.','Gele por 6 horas antes de desenformar.'],
+    dica:'Bata pouco: menos bolhas, pudim mais lisinho.' },
+];
+
+/* ================= avaliações (seção 10) — EXEMPLOS ================= */
+/* TROCAR por avaliações reais. Para usar foto: { ..., foto:'img/avaliacoes/mariana.jpg' } */
+const AVALIACOES = [
+  { nome:'Mariana S.',  cor:'#B3132B', texto:'Finalmente consegui sair do básico! Fiz a sobremesa de morango e todo mundo pediu a receita.' },
+  { nome:'Juliana R.',  cor:'#0F3B2E', texto:'Eu sempre fazia as mesmas coisas no Natal. Esse ano consegui montar uma ceia completamente diferente.' },
+  { nome:'Camila M.',   cor:'#A87F2A', texto:'Gostei muito porque tem bastante variedade. Já estou escolhendo o que vou fazer para a ceia.' },
+  { nome:'Fernanda A.', cor:'#7A2E52', texto:'As receitas são bem explicadas e não fiquei perdida durante o preparo.' },
+  { nome:'Patrícia L.', cor:'#1F6F8B', texto:'Comprei principalmente pelas sobremesas e valeu muito a pena.' },
+  { nome:'Renata C.',   cor:'#8A0E21', texto:'Minha família adorou. Já estou pensando em quais receitas vou fazer no próximo Natal.' },
+];
+const AVALIACOES_SAO_EXEMPLO = true; // false quando forem depoimentos reais
+
+/* ================= montagem ================= */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+document.getElementById('receitas').innerHTML = RECEITAS.map(([slug, nome, emoji, tom]) => `
+  <article class="r-card reveal">
+    <div class="ph ${tom}" data-emoji="${emoji}"><img src="img/receitas/${slug}.jpg" alt="${esc(nome)}" loading="lazy"></div>
+    <span class="inside">📖 Dentro do livro</span>
+    <div class="r-cap"><h3>${esc(nome)}</h3></div>
+  </article>`).join('');
+
+document.getElementById('flip').innerHTML = PAGINAS.map((p, i) => `
+  <article class="page" style="--i:${i}" aria-label="Página ${i + 1}: ${esc(p.titulo)}">
+    <div class="pg-photo"><div class="ph ${p.tom}" data-emoji="${p.emoji}"><img src="img/receitas/${p.foto}.jpg" alt="${esc(p.titulo)}" loading="lazy"></div><span class="pg-num">pág. ${[12, 27, 41, 58, 66, 83][i]}</span></div>
+    <div class="pg-body">
+      <span class="pg-cat">${esc(p.cat)}</span>
+      <h3>${esc(p.titulo)}</h3>
+      <div class="pg-meta"><span>⏱ ${esc(p.tempo)}</span><span>🍽 ${esc(p.rende)}</span><span>👩‍🍳 ${esc(p.nivel)}</span></div>
+      <div class="pg-cols">
+        <div><h4>Ingredientes</h4><ul>${p.ing.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+        <div><h4>Modo de preparo</h4><ol>${p.prep.map(x => `<li>${esc(x)}</li>`).join('')}</ol></div>
+      </div>
+      <div class="pg-tip"><b>💡 Dica:</b> ${esc(p.dica)}</div>
+    </div>
+  </article>`).join('');
+
+document.getElementById('avaliacoes').innerHTML = AVALIACOES.map(a => `
+  <article class="rv reveal">
+    ${AVALIACOES_SAO_EXEMPLO ? '<span class="rv-flag" data-placeholder>Exemplo</span>' : ''}
+    <div class="rv-head">
+      ${a.foto ? `<img class="avatar" src="${esc(a.foto)}" alt="" style="object-fit:cover">`
+               : `<span class="avatar" style="--bg:${a.cor}" aria-hidden="true">${esc(a.nome[0])}</span>`}
+      <div><div class="rv-name">${esc(a.nome)}</div><div class="stars" aria-label="5 de 5 estrelas">★★★★★</div></div>
+    </div>
+    <p>“${esc(a.texto)}”</p>
+  </article>`).join('');
+if (!AVALIACOES_SAO_EXEMPLO) document.querySelectorAll('[data-placeholder]').forEach(el => el.remove());
+
+/* ================= links do checkout ================= */
+if (CHECKOUT_URL) {
+  const destino = new URL(CHECKOUT_URL, location.href);
+  const atual = new URLSearchParams(location.search);
+  PARAMS_REPASSADOS.forEach(k => { if (atual.has(k) && !destino.searchParams.has(k)) destino.searchParams.set(k, atual.get(k)); });
+  document.querySelectorAll('[data-cta]').forEach(a => { a.href = destino.toString(); });
+}
+
+/* ================= neve ================= */
+const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!calmo) {
+  document.querySelectorAll('[data-snow]').forEach(box => {
+    const n = +box.dataset.snow;
+    let html = '';
+    for (let i = 0; i < n; i++) {
+      const s = (2 + Math.random() * 4).toFixed(1);
+      html += `<i style="--x:${(Math.random() * 100).toFixed(1)}%;--s:${s}px;--t:${(10 + Math.random() * 14).toFixed(1)}s;--d:-${(Math.random() * 20).toFixed(1)}s;--dx:${(Math.random() * 60 - 30).toFixed(0)}px;opacity:${(.3 + Math.random() * .6).toFixed(2)}"></i>`;
+    }
+    box.innerHTML = html;
+  });
+}
+
+/* ================= revelar ao rolar ================= */
+const revelaveis = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window && !calmo) {
+  const io = new IntersectionObserver(entradas => entradas.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+  revelaveis.forEach(el => io.observe(el));
+} else {
+  revelaveis.forEach(el => el.classList.add('in'));
+}
+
+/* ================= folhear o livro ================= */
+(function () {
+  const paginas = [...document.querySelectorAll('#flip .page')];
+  const prev = document.getElementById('flip-prev');
+  const next = document.getElementById('flip-next');
+  const cont = document.getElementById('flip-count');
+  let atual = 0;
+
+  function mostrar(i) {
+    atual = Math.max(0, Math.min(paginas.length - 1, i));
+    paginas.forEach((p, k) => {
+      p.classList.toggle('flipped', k < atual);
+      p.setAttribute('aria-hidden', k === atual ? 'false' : 'true');
+    });
+    prev.disabled = atual === 0;
+    next.disabled = atual === paginas.length - 1;
+    cont.textContent = `${atual + 1} / ${paginas.length}`;
+  }
+  prev.addEventListener('click', () => mostrar(atual - 1));
+  next.addEventListener('click', () => mostrar(atual + 1));
+
+  const flip = document.getElementById('flip');
+  let x0 = null, y0 = null;
+  flip.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  flip.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) mostrar(atual + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+  flip.addEventListener('click', e => {
+    const r = flip.getBoundingClientRect();
+    mostrar(atual + (e.clientX - r.left > r.width / 2 ? 1 : -1));
+  });
+  mostrar(0);
+})();
+
+/* ================= contagem até a ceia (24/12, 20h) ================= */
+(function () {
+  const caixa = document.getElementById('countdown');
+  const campos = {};
+  caixa.querySelectorAll('[data-cd]').forEach(el => { campos[el.dataset.cd] = el; });
+  const dois = n => String(n).padStart(2, '0');
+
+  function alvo(agora) {
+    const t = new Date(agora.getFullYear(), 11, 24, 20, 0, 0);
+    return agora < t ? t : null;
+  }
+
+  function tique() {
+    const agora = new Date();
+    const t = alvo(agora);
+    if (!t) {
+      // Depois da ceia não existe prazo a contar: mostra só a mensagem de temporada.
+      caixa.innerHTML = '<div class="cd-title">🎄 Oferta especial de Natal</div><div class="cd-done">Boas festas! Aproveite as receitas também no Ano-Novo ✨</div>';
+      return false;
+    }
+    let s = Math.floor((t - agora) / 1000);
+    const d = Math.floor(s / 86400); s %= 86400;
+    const h = Math.floor(s / 3600);  s %= 3600;
+    const m = Math.floor(s / 60);    s %= 60;
+    campos.d.textContent = d; campos.h.textContent = dois(h); campos.m.textContent = dois(m); campos.s.textContent = dois(s);
+    return true;
+  }
+  if (tique()) { const id = setInterval(() => { if (!tique()) clearInterval(id); }, 1000); }
+})();
+
+/* ================= barra fixa no celular ================= */
+(function () {
+  const barra = document.getElementById('sticky');
+  const hero = document.getElementById('topo');
+  const oferta = document.getElementById('oferta');
+  let passouHero = false, naOferta = false;
+  const atualizar = () => {
+    const mostrar = passouHero && !naOferta;
+    barra.classList.toggle('show', mostrar);
+    barra.setAttribute('aria-hidden', mostrar ? 'false' : 'true');
+    barra.querySelector('a').tabIndex = mostrar ? 0 : -1;
+  };
+  if (!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([e]) => { passouHero = !e.isIntersecting; atualizar(); }).observe(hero);
+  new IntersectionObserver(([e]) => { naOferta = e.isIntersecting; atualizar(); }, { threshold: .15 }).observe(oferta);
+})();
+</script>
+</body>
+</html>
