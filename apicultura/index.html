@@ -159,6 +159,17 @@ section{position:relative}
 .jar-stage:active{cursor:grabbing}
 #jar3d{width:100%;height:100%}
 .jar-tag{position:absolute;left:22px;top:22px;padding:8px 14px;border-radius:999px;background:rgba(15,9,4,.6);border:1px solid var(--line);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);backdrop-filter:blur(6px)}
+/* foto real del producto: si img/miel-don-carlos.png existe, reemplaza al frasco 3D */
+.photo-wrap{position:absolute;inset:0;display:none;place-items:center;pointer-events:none;perspective:1000px;animation:float 5s ease-in-out infinite}
+.jar-stage.has-photo .photo-wrap{display:grid}
+.jar-stage.has-photo{cursor:default}
+.jar-stage.has-photo .jar-drag{display:none}
+.product-photo{max-width:70%;max-height:78%;width:auto;height:auto;object-fit:contain;border-radius:18px;
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out;
+  filter:drop-shadow(0 34px 40px rgba(0,0,0,.65)) drop-shadow(0 0 70px rgba(255,160,0,.28))}
+.product-photo.pop{animation:pop .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes float{50%{transform:translateY(-12px)}}
+@keyframes pop{0%{transform:scale(.9) rotateY(-25deg)}100%{transform:none}}
 .jar-drag{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center;white-space:nowrap}
 .varieties{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 26px}
 .var-btn{
@@ -419,6 +430,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid var(--line);padding-top:24px;
   <div class="wrap product-grid">
     <div class="jar-stage reveal" id="jarStage">
       <canvas id="jar3d" aria-label="Frasco de miel en 3D, arrastrá para girarlo" role="img"></canvas>
+      <div class="photo-wrap"><img class="product-photo" id="productPhoto" src="img/miel-don-carlos.png" alt="Miel de abejas Don Carlos" decoding="async"></div>
       <span class="jar-tag">Vista 3D</span>
       <span class="jar-drag">← Arrastrá para girar el frasco →</span>
     </div>
@@ -715,6 +727,21 @@ footer .copy{grid-column:1/-1;border-top:1px solid var(--line);padding-top:24px;
       el.style.transition = '';
       el.style.transform = '';
     });
+  });
+
+  // Foto real del producto: si carga, reemplaza al frasco 3D y se inclina con el mouse
+  var stage = document.getElementById('jarStage'), photo = document.getElementById('productPhoto');
+  var usePhoto = function(){ if(photo.naturalWidth) stage.classList.add('has-photo'); };
+  if(photo.complete) usePhoto(); else photo.addEventListener('load', usePhoto);
+  stage.addEventListener('pointermove', function(e){
+    if(!stage.classList.contains('has-photo')) return;
+    var r = stage.getBoundingClientRect();
+    photo.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 24 + 'deg');
+    photo.style.setProperty('--rx', (.5 - (e.clientY - r.top) / r.height) * 18 + 'deg');
+  });
+  stage.addEventListener('pointerleave', function(){ photo.style.setProperty('--rx', '0deg'); photo.style.setProperty('--ry', '0deg'); });
+  document.querySelectorAll('.var-btn').forEach(function(b){
+    b.addEventListener('click', function(){ photo.classList.remove('pop'); void photo.offsetWidth; photo.classList.add('pop'); });
   });
 
   // Burbuja del botón flotante
@@ -1150,6 +1177,7 @@ function jarScene(){
       rotY += vel * 60 * dt + auto * dt;
     }
     if(spinBoost > 0){ const s = Math.min(spinBoost, dt * 9 * (0.25 + spinBoost / 6)); rotY += s; spinBoost -= s; }
+    jar.visible = !stage.classList.contains('has-photo');
     jar.rotation.y = rotY;
     jar.position.y = reduceMotion ? 0 : Math.sin(t * 1.2) * 0.08;
     jar.rotation.z = reduceMotion ? 0 : Math.sin(t * 0.8) * 0.03;
