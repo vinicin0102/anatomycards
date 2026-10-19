@@ -147,43 +147,42 @@ section{position:relative}
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
-/* ---------- Product 3D ---------- */
-.product{background:
-  radial-gradient(50% 60% at 30% 50%,rgba(255,150,0,.16),transparent 70%),
+/* ---------- Carrusel 3D de productos ---------- */
+.product{overflow:hidden;background:
+  radial-gradient(50% 55% at 50% 55%,rgba(255,150,0,.18),transparent 70%),
   linear-gradient(180deg,var(--bg),var(--bg2));
 }
-.product-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
-.jar-stage{position:relative;aspect-ratio:1/1.05;border-radius:32px;overflow:hidden;
-  background:radial-gradient(70% 60% at 50% 45%,#3a2208 0%,#1a0f05 65%,#120a03 100%);
-  border:1px solid var(--line);cursor:grab;touch-action:pan-y}
-.jar-stage:active{cursor:grabbing}
-#jar3d{width:100%;height:100%}
-.jar-tag{position:absolute;left:22px;top:22px;padding:8px 14px;border-radius:999px;background:rgba(15,9,4,.6);border:1px solid var(--line);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);backdrop-filter:blur(6px)}
-/* foto real del producto: si img/miel-don-carlos.png existe, reemplaza al frasco 3D */
-.photo-wrap{position:absolute;inset:0;display:none;place-items:center;pointer-events:none;perspective:1000px;animation:float 5s ease-in-out infinite}
-.jar-stage.has-photo .photo-wrap{display:grid}
-.jar-stage.has-photo{cursor:default}
-.jar-stage.has-photo .jar-drag{display:none}
-.product-photo{max-width:70%;max-height:78%;width:auto;height:auto;object-fit:contain;border-radius:18px;
-  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out;
-  filter:drop-shadow(0 34px 40px rgba(0,0,0,.65)) drop-shadow(0 0 70px rgba(255,160,0,.28))}
-.product-photo.pop{animation:pop .6s cubic-bezier(.2,.8,.2,1)}
-@keyframes float{50%{transform:translateY(-12px)}}
-@keyframes pop{0%{transform:scale(.9) rotateY(-25deg)}100%{transform:none}}
-.jar-drag{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center;white-space:nowrap}
-.varieties{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 26px}
-.var-btn{
-  display:flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;
-  background:var(--panel);border:1px solid var(--line);color:var(--cream);font:700 15px "Manrope",sans-serif;cursor:pointer;
-  transition:all .25s;
+.product .sec-head{margin-bottom:30px}
+.cf{position:relative;height:600px;perspective:1400px;outline:none;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+#combs3d{position:absolute;inset:-60px 0;width:100%;height:calc(100% + 120px);pointer-events:none}
+.cf-track{position:absolute;inset:0;transform-style:preserve-3d}
+.cf-card{
+  position:absolute;left:50%;top:10px;width:330px;margin-left:-165px;
+  border-radius:26px;overflow:hidden;background:linear-gradient(180deg,#24170a,#150d05);
+  border:1px solid var(--line);box-shadow:0 40px 80px rgba(0,0,0,.55);
+  transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .7s,filter .7s,border-color .4s;
+  cursor:pointer;will-change:transform;
 }
-.var-btn i{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 -3px 6px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.08)}
-.var-btn:hover{border-color:var(--gold)}
-.var-btn[aria-pressed="true"]{background:linear-gradient(180deg,#3b240b,#2a1a0b);border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,184,28,.18)}
-.var-name{font-family:"Fraunces",serif;font-size:40px;font-weight:700;margin-bottom:6px}
-.var-desc{color:var(--muted);min-height:56px;margin-bottom:22px}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
-.chip{padding:8px 14px;border-radius:10px;background:rgba(255,184,28,.08);border:1px solid var(--line);font-size:14px;font-weight:700;color:var(--gold2)}
+.cf-card.is-active{cursor:default;border-color:rgba(255,184,28,.55);box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 70px rgba(255,160,0,.22)}
+.cf-card img{display:block;width:100%;aspect-ratio:1;object-fit:cover;pointer-events:none}
+.cf-info{padding:20px 22px 24px}
+.cf-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.cf-info h3{font-size:25px;margin-bottom:8px}
+.cf-info p{color:var(--muted);font-size:15px;line-height:1.5;min-height:45px;margin-bottom:18px}
+.cf-info .btn{width:100%;padding:14px 18px;font-size:15px;transform:translateY(-3px);box-shadow:0 6px 0 #0e7a3c,0 12px 26px rgba(37,211,102,.3)}
+.cf-info .btn:hover{transform:translateY(-5px)}
+.cf-card:not(.is-active) .cf-info .btn{pointer-events:none}
+.cf-nav{position:absolute;top:200px;z-index:30;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(15,9,4,.75);border:1px solid var(--line);color:var(--gold);cursor:pointer;backdrop-filter:blur(8px);transition:background .2s,transform .2s}
+.cf-nav:hover{background:var(--gold);color:#2a1500;transform:scale(1.08)}
+.cf-nav svg{width:22px;height:22px}
+.cf-prev{left:max(16px,calc(50% - 470px))}
+.cf-prev svg{transform:rotate(180deg)}
+.cf-next{right:max(16px,calc(50% - 470px))}
+.cf-dots{display:flex;justify-content:center;gap:10px;margin-top:6px}
+.cf-dots button{width:12px;height:13px;border:0;padding:0;cursor:pointer;background:rgba(255,184,28,.25);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);transition:background .3s,transform .3s}
+.cf-dots button[aria-current="true"]{background:var(--gold);transform:scale(1.35)}
+.product-cta{text-align:center;margin-top:46px;padding:0 16px}
 
 /* ---------- Why ---------- */
 .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
@@ -352,7 +351,12 @@ footer .copy{grid-column:1/-1;border-top:1px solid var(--line);padding-top:24px;
   footer .wrap{grid-template-columns:1fr}
   .final .btn{width:100%;font-size:18px;padding:20px}
   .wa-bubble{display:none}
-  .var-name{font-size:34px}
+  .cf{height:530px}
+  .cf-card{width:270px;margin-left:-135px}
+  .cf-nav{top:150px;width:46px;height:46px}
+  .cf-prev{left:8px}
+  .cf-next{right:8px}
+  .product-cta .btn{width:100%}
   .btn{white-space:normal;text-align:center}
 }
 /* pantallas verticales: el panal 3D va debajo del texto */
@@ -406,7 +410,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid var(--line);padding-top:24px;
         <a class="btn btn-wa" data-wa="¡Hola Don Carlos! Quiero comprar miel. ¿Qué variedades y presentaciones tienen disponibles?" href="https://wa.me/595984399696">
           <svg><use href="#i-wa"/></svg> Quiero mi miel
         </a>
-        <a class="btn btn-ghost" href="#miel">Ver variedades <svg style="width:18px;height:18px"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#miel">Ver productos <svg style="width:18px;height:18px"><use href="#i-arrow"/></svg></a>
       </div>
       <div class="hero-trust">
         <div><b>2004</b><span>Nuestras primeras<br>colmenas</span></div>
@@ -425,35 +429,65 @@ footer .copy{grid-column:1/-1;border-top:1px solid var(--line);padding-top:24px;
   </div>
 </div></div>
 
-<!-- ================= PRODUCT 3D ================= -->
+<!-- ================= PRODUCTOS (carrusel 3D) ================= -->
 <section class="sec product" id="miel">
-  <div class="wrap product-grid">
-    <div class="jar-stage reveal" id="jarStage">
-      <canvas id="jar3d" aria-label="Frasco de miel en 3D, arrastrá para girarlo" role="img"></canvas>
-      <div class="photo-wrap"><img class="product-photo" id="productPhoto" src="img/miel-don-carlos.png" alt="Miel de abejas Don Carlos" decoding="async"></div>
-      <span class="jar-tag">Vista 3D</span>
-      <span class="jar-drag">← Arrastrá para girar el frasco →</span>
+  <div class="wrap">
+    <div class="sec-head center reveal" style="text-align:center">
+      <span class="eyebrow">Nuestros productos</span>
+      <h2>Elegí tu miel <span class="gold-text">Don Carlos.</span></h2>
+      <p>Clásica para todos los días, gourmet para darte un gusto, medicinal para cuidarte. Tocá el que te guste y pedilo por WhatsApp.</p>
     </div>
-    <div class="reveal">
-      <span class="eyebrow">Nuestras mieles</span>
-      <div class="sec-head" style="margin-bottom:0">
-        <h2>Cada floración, <span class="gold-text">un sabor distinto.</span></h2>
-        <p>Miel cosechada en nuestras propias colmenas, envasada con cuidado y lista para tu mesa, tu negocio o para regalar.</p>
-      </div>
-      <div class="varieties" role="group" aria-label="Elegí la variedad">
-        <button class="var-btn" data-var="0" aria-pressed="true"><i style="background:#ffb52e"></i>Karanda'y</button>
-        <button class="var-btn" data-var="1" aria-pressed="false"><i style="background:#e8890c"></i>Algarrobo</button>
-        <button class="var-btn" data-var="2" aria-pressed="false"><i style="background:#a94e04"></i>Espinillo</button>
-      </div>
-      <div class="var-name gold-text" id="varName">Karanda'y</div>
-      <p class="var-desc" id="varDesc">De los palmares de karanda'y del Bajo Chaco, donde nacieron nuestras primeras colmenas. Clara y luminosa.</p>
-      <div class="chips">
-        <span class="chip">100% pura</span><span class="chip">Sin aditivos</span><span class="chip">De nuestras colmenas</span>
-      </div>
-      <a class="btn btn-wa" id="varCta" data-wa="¡Hola Don Carlos! Quiero pedir miel de Karanda'y. ¿Qué presentaciones y precios tienen?" href="https://wa.me/595984399696">
-        <svg><use href="#i-wa"/></svg> <span>Pedir <span id="varCtaName">Karanda'y</span> por WhatsApp</span>
-      </a>
+  </div>
+  <div class="cf reveal" id="cf" tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Productos Don Carlos">
+    <canvas id="combs3d" aria-hidden="true"></canvas>
+    <div class="cf-track">
+      <article class="cf-card" aria-roledescription="producto">
+        <img src="img/linea-clasica.webp" alt="Línea Clásica Don Carlos: miel de abeja en botellas y pote" width="286" height="286">
+        <div class="cf-info"><span class="cf-tag">Línea Clásica</span><h3>Miel de Abeja</h3><p>Nuestra miel pura de siempre, en botella y en pote. La de todos los días.</p>
+        <a class="btn btn-wa" data-wa="¡Hola Don Carlos! Quiero pedir Miel de Abeja de la Línea Clásica. ¿Qué presentaciones y precios tienen?" href="https://wa.me/595984399696"><svg><use href="#i-wa"/></svg> Pedir por WhatsApp</a></div>
+      </article>
+      <article class="cf-card" aria-roledescription="producto">
+        <img src="img/linea-gourmet.webp" alt="Línea Gourmet Don Carlos: miel con jengibre, con limón y con canela" width="286" height="286">
+        <div class="cf-info"><span class="cf-tag">Línea Gourmet</span><h3>Jengibre · Limón · Canela</h3><p>Miel con jengibre, miel con limón y miel con canela. Sabores para darte un gusto.</p>
+        <a class="btn btn-wa" data-wa="¡Hola Don Carlos! Quiero pedir productos de la Línea Gourmet (miel con jengibre, limón o canela). ¿Precios y disponibilidad?" href="https://wa.me/595984399696"><svg><use href="#i-wa"/></svg> Pedir por WhatsApp</a></div>
+      </article>
+      <article class="cf-card" aria-roledescription="producto">
+        <img src="img/linea-medicinal.webp" alt="Línea Medicinal Don Carlos: miel con eucalipto, polen y miel con propóleo" width="286" height="286">
+        <div class="cf-info"><span class="cf-tag">Línea Medicinal</span><h3>Eucalipto · Polen · Propóleo</h3><p>Miel con eucalipto, polen y miel con propóleo, para acompañarte todo el año.</p>
+        <a class="btn btn-wa" data-wa="¡Hola Don Carlos! Quiero pedir productos de la Línea Medicinal (miel con eucalipto, polen o miel con propóleo). ¿Precios y disponibilidad?" href="https://wa.me/595984399696"><svg><use href="#i-wa"/></svg> Pedir por WhatsApp</a></div>
+      </article>
+      <article class="cf-card" aria-roledescription="producto">
+        <img src="img/linea-polen-jalea.webp" alt="Don Carlos: extracto de propóleo, miel con polen y miel con jalea real" width="286" height="286">
+        <div class="cf-info"><span class="cf-tag">Línea Medicinal</span><h3>Polen · Jalea Real</h3><p>Miel con polen, miel con jalea real y extracto de propóleo.</p>
+        <a class="btn btn-wa" data-wa="¡Hola Don Carlos! Quiero pedir miel con polen, miel con jalea real o extracto de propóleo. ¿Precios y disponibilidad?" href="https://wa.me/595984399696"><svg><use href="#i-wa"/></svg> Pedir por WhatsApp</a></div>
+      </article>
+      <article class="cf-card" aria-roledescription="producto">
+        <img src="img/miel-jengibre.webp" alt="Frasco de Miel con Jengibre Don Carlos" width="286" height="286">
+        <div class="cf-info"><span class="cf-tag">Gourmet</span><h3>Miel con Jengibre</h3><p>Miel pura con el toque picante del jengibre, en frasco de vidrio.</p>
+        <a class="btn btn-wa" data-wa="¡Hola Don Carlos! Quiero pedir Miel con Jengibre. ¿Precio y disponibilidad?" href="https://wa.me/595984399696"><svg><use href="#i-wa"/></svg> Pedir por WhatsApp</a></div>
+      </article>
+      <article class="cf-card" aria-roledescription="producto">
+        <img src="img/apisana.webp" alt="Frasco de Miel de Abejas Apisana Don Carlos" width="286" height="286">
+        <div class="cf-info"><span class="cf-tag">Especial</span><h3>Miel Apisana</h3><p>Nuestra miel de abejas Apisana, en frasco de vidrio. Consultanos por sus beneficios.</p>
+        <a class="btn btn-wa" data-wa="¡Hola Don Carlos! Quiero información y precio de la Miel de Abejas Apisana." href="https://wa.me/595984399696"><svg><use href="#i-wa"/></svg> Pedir por WhatsApp</a></div>
+      </article>
+      <article class="cf-card" aria-roledescription="producto">
+        <img src="img/sachet.webp" alt="Pote de Miel en Sachet Don Carlos, 80 unidades" width="286" height="286">
+        <div class="cf-info"><span class="cf-tag">Práctica</span><h3>Miel en Sachet</h3><p>Pote con 80 sachets. Ideal para oficinas, cafeterías, hoteles y para llevar.</p>
+        <a class="btn btn-wa" data-wa="¡Hola Don Carlos! Quiero pedir Miel en Sachet (pote de 80 unidades). ¿Precio y disponibilidad?" href="https://wa.me/595984399696"><svg><use href="#i-wa"/></svg> Pedir por WhatsApp</a></div>
+      </article>
+      <article class="cf-card" aria-roledescription="producto">
+        <img src="img/propoleo.webp" alt="Gotero de Extracto de Propóleo Don Carlos" width="286" height="286">
+        <div class="cf-info"><span class="cf-tag">De la colmena</span><h3>Extracto de Propóleo</h3><p>Extracto de propóleo en gotero, directo de nuestras colmenas.</p>
+        <a class="btn btn-wa" data-wa="¡Hola Don Carlos! Quiero pedir Extracto de Propóleo. ¿Precio y disponibilidad?" href="https://wa.me/595984399696"><svg><use href="#i-wa"/></svg> Pedir por WhatsApp</a></div>
+      </article>
     </div>
+    <button class="cf-nav cf-prev" type="button" aria-label="Producto anterior"><svg><use href="#i-arrow"/></svg></button>
+    <button class="cf-nav cf-next" type="button" aria-label="Producto siguiente"><svg><use href="#i-arrow"/></svg></button>
+  </div>
+  <div class="cf-dots" id="cfDots" role="group" aria-label="Elegí un producto"></div>
+  <div class="product-cta reveal">
+    <a class="btn btn-gold" data-wa="¡Hola Don Carlos! Quiero el catálogo completo con precios de sus productos." href="https://wa.me/595984399696"><svg><use href="#i-wa"/></svg> Pedir catálogo completo con precios</a>
   </div>
 </section>
 
@@ -729,20 +763,63 @@ footer .copy{grid-column:1/-1;border-top:1px solid var(--line);padding-top:24px;
     });
   });
 
-  // Foto real del producto: si carga, reemplaza al frasco 3D y se inclina con el mouse
-  var stage = document.getElementById('jarStage'), photo = document.getElementById('productPhoto');
-  var usePhoto = function(){ if(photo.naturalWidth) stage.classList.add('has-photo'); };
-  if(photo.complete) usePhoto(); else photo.addEventListener('load', usePhoto);
-  stage.addEventListener('pointermove', function(e){
-    if(!stage.classList.contains('has-photo')) return;
-    var r = stage.getBoundingClientRect();
-    photo.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 24 + 'deg');
-    photo.style.setProperty('--rx', (.5 - (e.clientY - r.top) / r.height) * 18 + 'deg');
+  // Carrusel 3D de productos
+  var cf = document.getElementById('cf');
+  var cards = Array.prototype.slice.call(cf.querySelectorAll('.cf-card'));
+  var dotsEl = document.getElementById('cfDots');
+  var n = cards.length, cur = 0, timer = null;
+  var narrow = matchMedia('(max-width:720px)');
+  var dots = cards.map(function(card, i){
+    var d = document.createElement('button');
+    d.type = 'button';
+    d.setAttribute('aria-label', card.querySelector('h3').textContent);
+    d.addEventListener('click', function(){ go(i); stop(); });
+    dotsEl.appendChild(d);
+    card.addEventListener('click', function(){ if(i !== cur && !justSwiped){ go(i); stop(); } });
+    return d;
   });
-  stage.addEventListener('pointerleave', function(){ photo.style.setProperty('--rx', '0deg'); photo.style.setProperty('--ry', '0deg'); });
-  document.querySelectorAll('.var-btn').forEach(function(b){
-    b.addEventListener('click', function(){ photo.classList.remove('pop'); void photo.offsetWidth; photo.classList.add('pop'); });
+  function layout(){
+    var step = narrow.matches ? 150 : 230;
+    cards.forEach(function(card, i){
+      var o = i - cur;
+      if(o > n / 2) o -= n;
+      if(o < -n / 2) o += n;
+      var a = Math.abs(o);
+      card.style.transform = 'translateX(' + (o * step) + 'px) translateZ(' + (-a * 200) + 'px) rotateY(' + (-o * 32) + 'deg)';
+      card.style.opacity = a > 2 ? 0 : 1;
+      card.style.filter = a ? 'brightness(' + (a > 1 ? .35 : .55) + ')' : 'none';
+      card.style.zIndex = 10 - a;
+      card.style.pointerEvents = a > 2 ? 'none' : '';
+      card.classList.toggle('is-active', !a);
+      card.setAttribute('aria-hidden', a ? 'true' : 'false');
+      card.querySelector('.btn').tabIndex = a ? -1 : 0;
+      dots[i].setAttribute('aria-current', !a);
+    });
+  }
+  function go(i){ cur = (i + n) % n; layout(); }
+  function play(){ if(!timer && !matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(function(){ go(cur + 1); }, 4200); }
+  function stop(){ clearInterval(timer); timer = null; }
+  cf.querySelector('.cf-prev').addEventListener('click', function(){ go(cur - 1); stop(); });
+  cf.querySelector('.cf-next').addEventListener('click', function(){ go(cur + 1); stop(); });
+  cf.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowLeft'){ go(cur - 1); stop(); }
+    if(e.key === 'ArrowRight'){ go(cur + 1); stop(); }
   });
+  cf.addEventListener('mouseenter', stop);
+  cf.addEventListener('mouseleave', play);
+  var sx = null, justSwiped = false;
+  cf.addEventListener('pointerdown', function(e){ sx = e.clientX; });
+  cf.addEventListener('pointerup', function(e){
+    if(sx === null) return;
+    var dx = e.clientX - sx; sx = null;
+    if(Math.abs(dx) > 45){
+      go(cur + (dx < 0 ? 1 : -1)); stop();
+      justSwiped = true; setTimeout(function(){ justSwiped = false; }, 50);
+    }
+  });
+  narrow.addEventListener('change', layout);
+  layout();
+  new IntersectionObserver(function(es){ es[0].isIntersecting ? play() : stop(); }).observe(cf);
 
   // Burbuja del botón flotante
   var bubble = document.getElementById('waBubble');
@@ -1027,177 +1104,61 @@ function heroScene(){
   });
 }
 
-/* ---------------- Frasco de miel 3D ---------------- */
-const VARIETIES = [
-  { name:"Karanda'y", honey:'#ff9a0a', att:'#e06a00', desc:"De los palmares de karanda'y del Bajo Chaco, donde nacieron nuestras primeras colmenas. Clara y luminosa." },
-  { name:'Algarrobo', honey:'#e06e00', att:'#b04800', desc:'De la floración del algarrobo, árbol nativo de nuestra tierra. Dorada, intensa y con mucho cuerpo.' },
-  { name:'Espinillo', honey:'#9a3c02', att:'#5a1c00', desc:'De la floración del espinillo. Ámbar profundo, para quienes buscan una miel con carácter.' }
-];
-
-function labelCanvas(){
-  const c = document.createElement('canvas'); c.width = 1024; c.height = 512;
-  return c;
-}
-function drawLabel(c, name){
-  const g = c.getContext('2d');
-  g.fillStyle = '#f6e9cc'; g.fillRect(0, 0, 1024, 512);
-  g.fillStyle = '#2a1500'; g.fillRect(0, 0, 1024, 26); g.fillRect(0, 486, 1024, 26);
-  g.strokeStyle = '#c98a1a'; g.lineWidth = 4; g.strokeRect(300, 58, 424, 396);
-  // hexágono
-  g.save(); g.translate(512, 140); g.fillStyle = '#ffb81c'; g.beginPath();
-  for(let i = 0; i < 6; i++){ const a = Math.PI / 3 * i + Math.PI / 6; g.lineTo(Math.cos(a) * 46, Math.sin(a) * 46); }
-  g.closePath(); g.fill();
-  g.fillStyle = '#2a1500'; g.beginPath(); g.ellipse(0, 6, 15, 22, 0, 0, Math.PI * 2); g.fill();
-  g.restore();
-  g.textAlign = 'center'; g.fillStyle = '#7a4200';
-  g.font = 'italic 900 34px Fraunces, Georgia, serif'; g.fillText('Don Carlos', 512, 228);
-  g.fillStyle = '#2a1500';
-  g.font = '900 76px Fraunces, Georgia, serif'; g.fillText(name, 512, 316);
-  g.fillStyle = '#7a4200';
-  g.font = '800 30px Manrope, sans-serif'; g.fillText('MIEL  DE  ABEJAS', 512, 372);
-  g.font = '800 22px Manrope, sans-serif'; g.fillText('PRODUCTO  DEL  PARAGUAY', 512, 424);
-}
-
-function jarScene(){
-  const canvas = document.getElementById('jar3d');
-  const stage = document.getElementById('jarStage');
+/* ---------------- Panales flotantes detrás del carrusel ---------------- */
+function combsScene(){
+  const canvas = document.getElementById('combs3d');
   const renderer = makeRenderer(canvas);
   if(!renderer) return;
   const scene = new THREE.Scene();
   scene.environment = envFor(renderer);
-  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-  camera.position.set(0, 0.6, 10.5);
-  camera.lookAt(0, 0.05, 0);
+  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+  camera.position.set(0, 0, 14);
 
   scene.add(new THREE.HemisphereLight(0xfff0d0, 0x2a1200, 0.3));
   const key = new THREE.DirectionalLight(0xffffff, 1.8); key.position.set(-4, 6, 6); scene.add(key);
-  const rim = new THREE.PointLight(0xffa020, 120, 30); rim.position.set(3, 2, -4); scene.add(rim);
+  const rim = new THREE.PointLight(0xffa020, 120, 30); rim.position.set(3, 2, 4); scene.add(rim);
 
-  const jar = new THREE.Group(); scene.add(jar);
-  const V = (x, y) => new THREE.Vector2(x, y);
-
-  // miel (transmisiva: refracta lo que está detrás)
-  const honeyMat = new THREE.MeshPhysicalMaterial({
-    color:VARIETIES[0].honey, roughness:0.1, metalness:0, transmission:0.3, thickness:2.2, ior:1.49,
-    attenuationColor:new THREE.Color(VARIETIES[0].att), attenuationDistance:1.2,
-    clearcoat:1, clearcoatRoughness:0.05, emissive:new THREE.Color(VARIETIES[0].att), emissiveIntensity:0.45, envMapIntensity:0.8
-  });
-  const honeyGeo = new THREE.LatheGeometry([V(0, -1.4), V(0.95, -1.4), V(1.03, -1.32), V(1.06, -1.12), V(1.06, 0.72), V(1.0, 0.8), V(0.6, 0.83), V(0, 0.84)], 64);
-  jar.add(new THREE.Mesh(honeyGeo, honeyMat));
-
-  // vidrio
-  const glassMat = new THREE.MeshPhysicalMaterial({ color:0xfff3d6, roughness:0.02, metalness:0, transparent:true, opacity:0.07, clearcoat:1, clearcoatRoughness:0, envMapIntensity:1.6, side:THREE.FrontSide, depthWrite:false });
-  const glassGeo = new THREE.LatheGeometry([V(0, -1.52), V(1.0, -1.52), V(1.1, -1.44), V(1.14, -1.24), V(1.14, 0.92), V(1.08, 1.1), V(0.9, 1.22), V(0.88, 1.3), V(0.92, 1.34), V(0.92, 1.5), V(0.88, 1.52)], 64);
-  const glass = new THREE.Mesh(glassGeo, glassMat); glass.renderOrder = 2; jar.add(glass);
-
-  // tapa
-  const lidMat = new THREE.MeshStandardMaterial({ color:0xd7a02a, metalness:0.85, roughness:0.28, envMapIntensity:1.3 });
-  const lid = new THREE.Mesh(new THREE.CylinderGeometry(0.98, 0.98, 0.42, 64), lidMat);
-  lid.position.y = 1.64; jar.add(lid);
-  const lidTop = new THREE.Mesh(new THREE.TorusGeometry(0.9, 0.06, 12, 64), lidMat);
-  lidTop.rotation.x = Math.PI / 2; lidTop.position.y = 1.85; jar.add(lidTop);
-  const ridges = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.0, 0.3, 48, 1, true), new THREE.MeshStandardMaterial({ color:0xb7841c, metalness:0.9, roughness:0.4, wireframe:true }));
-  ridges.position.y = 1.62; jar.add(ridges);
-
-  // etiqueta
-  const lc = labelCanvas(); drawLabel(lc, VARIETIES[0].name);
-  const labelTex = new THREE.CanvasTexture(lc); labelTex.colorSpace = THREE.SRGBColorSpace; labelTex.anisotropy = 8;
-  const arc = 2.6;
-  const label = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.155, 1.155, 1.55, 64, 1, true, -arc / 2, arc),
-    new THREE.MeshStandardMaterial({ map:labelTex, roughness:0.75, side:THREE.DoubleSide })
-  );
-  label.position.y = -0.3; jar.add(label);
-  document.fonts && document.fonts.ready.then(() => { drawLabel(lc, current.name); labelTex.needsUpdate = true; });
-
-  // panales flotantes detrás (se ven refractados a través de la miel)
   const chunkShape = hexShape(0.42); chunkShape.holes.push(hexShape(0.34));
   const chunkGeo = new THREE.ExtrudeGeometry(chunkShape, { depth:0.5, bevelEnabled:true, bevelThickness:0.03, bevelSize:0.02, bevelSegments:1 });
   const chunkFillGeo = new THREE.ExtrudeGeometry(hexShape(0.35), { depth:0.35, bevelEnabled:false });
   const chunkMat = new THREE.MeshStandardMaterial({ color:0xb8700f, roughness:0.38, envMapIntensity:0.6 });
   const chunkHoney = new THREE.MeshPhysicalMaterial({ color:0xe86a00, roughness:0.05, clearcoat:1, emissive:0xa04000, emissiveIntensity:0.6, envMapIntensity:0.8 });
-  const chunks = [];
-  [[-2.4, 1.4, -1.6], [2.5, -0.9, -2.0], [-2.1, -1.7, -0.6], [2.2, 1.9, -1.2], [0.4, 2.7, -2.6], [-0.5, -2.6, -2.2]].forEach(([x, y, z], i) => {
+  const spots = [[-7.5, 2.6, -2], [7.2, -2.4, -2.5], [-6.2, -3.2, -1], [6.6, 3.1, -1.5], [-9.5, -0.4, -4], [9.6, 0.6, -4], [-3.6, 4.2, -5], [3.8, -4.4, -5], [0.2, 4.9, -6]];
+  const chunks = spots.map(([x, y, z], i) => {
     const g = new THREE.Group();
     g.add(new THREE.Mesh(chunkGeo, chunkMat));
-    const f = new THREE.Mesh(chunkFillGeo, chunkHoney); g.add(f);
+    if(i % 3 !== 2) g.add(new THREE.Mesh(chunkFillGeo, chunkHoney));
     g.position.set(x, y, z); g.rotation.set(Math.random() * 3, Math.random() * 3, 0);
-    g.userData = { y, sp:0.4 + Math.random() * 0.5, ph:i };
-    scene.add(g); chunks.push(g);
+    g.scale.setScalar(1 + (i % 3) * 0.25);
+    g.userData = { x, y, sp:0.4 + Math.random() * 0.5, ph:i };
+    scene.add(g);
+    return g;
   });
-
-  // sombra suave
-  const sh = document.createElement('canvas'); sh.width = sh.height = 128;
-  const sg = sh.getContext('2d'); const sgr = sg.createRadialGradient(64, 64, 0, 64, 64, 64);
-  sgr.addColorStop(0, 'rgba(0,0,0,.65)'); sgr.addColorStop(1, 'rgba(0,0,0,0)');
-  sg.fillStyle = sgr; sg.fillRect(0, 0, 128, 128);
-  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(4, 4), new THREE.MeshBasicMaterial({ map:new THREE.CanvasTexture(sh), transparent:true, depthWrite:false }));
-  shadow.rotation.x = -Math.PI / 2; shadow.position.y = -1.95; scene.add(shadow);
 
   function resize(){
     const w = canvas.clientWidth, h = canvas.clientHeight;
     renderer.setSize(w, h, false);
     camera.aspect = w / h; camera.updateProjectionMatrix();
+    // en pantallas angostas, acercar los panales al centro para que se vean
+    const k = Math.min(1, camera.aspect / 1.8);
+    chunks.forEach(c => c.position.x = c.userData.x * Math.max(0.42, k));
   }
   new ResizeObserver(resize).observe(canvas); resize();
-
-  // arrastrar para girar
-  let dragging = false, lastX = 0, vel = 0.004, rotY = 0.5, idleAt = 0;
-  stage.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; stage.setPointerCapture(e.pointerId); });
-  stage.addEventListener('pointermove', e => {
-    if(!dragging) return;
-    const dx = e.clientX - lastX; lastX = e.clientX;
-    rotY += dx * 0.01; vel = dx * 0.0008; idleAt = performance.now();
-  });
-  const end = () => { dragging = false; };
-  stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
-
-  // cambio de variedad
-  let current = VARIETIES[0];
-  const targetColor = new THREE.Color(current.honey), targetAtt = new THREE.Color(current.att);
-  const nameEl = document.getElementById('varName'), descEl = document.getElementById('varDesc');
-  const cta = document.getElementById('varCta'), ctaName = document.getElementById('varCtaName');
-  let spinBoost = 0;
-  document.querySelectorAll('.var-btn').forEach(btn => btn.addEventListener('click', () => {
-    current = VARIETIES[+btn.dataset.var];
-    document.querySelectorAll('.var-btn').forEach(b => b.setAttribute('aria-pressed', b === btn));
-    nameEl.textContent = current.name; descEl.textContent = current.desc; ctaName.textContent = current.name;
-    cta.href = window.waLink(`¡Hola Don Carlos! Quiero pedir miel de ${current.name}. ¿Qué presentaciones y precios tienen?`);
-    targetColor.set(current.honey); targetAtt.set(current.att);
-    drawLabel(lc, current.name); labelTex.needsUpdate = true;
-    spinBoost = Math.PI * 2;
-  }));
 
   let last = 0;
   loopWhileVisible(canvas, t => {
     const dt = Math.min(0.05, t - last || 0.016); last = t;
-    if(!dragging){
-      const auto = reduceMotion ? 0 : (performance.now() - idleAt > 1500 ? 0.35 : 0);
-      vel *= 0.95;
-      rotY += vel * 60 * dt + auto * dt;
-    }
-    if(spinBoost > 0){ const s = Math.min(spinBoost, dt * 9 * (0.25 + spinBoost / 6)); rotY += s; spinBoost -= s; }
-    jar.visible = !stage.classList.contains('has-photo');
-    jar.rotation.y = rotY;
-    jar.position.y = reduceMotion ? 0 : Math.sin(t * 1.2) * 0.08;
-    jar.rotation.z = reduceMotion ? 0 : Math.sin(t * 0.8) * 0.03;
-    shadow.scale.setScalar(1 - jar.position.y * 0.6);
-
-    const k = 1 - Math.exp(-dt * 5);
-    honeyMat.color.lerp(targetColor, k);
-    honeyMat.attenuationColor.lerp(targetAtt, k);
-    honeyMat.emissive.lerp(targetAtt, k);
-
+    const m = reduceMotion ? 0 : 1;
     chunks.forEach(c => {
-      c.rotation.x += dt * c.userData.sp * 0.4; c.rotation.y += dt * c.userData.sp * 0.6;
-      c.position.y = c.userData.y + Math.sin(t * c.userData.sp + c.userData.ph) * 0.2;
+      c.rotation.x += dt * c.userData.sp * 0.4 * m; c.rotation.y += dt * c.userData.sp * 0.6 * m;
+      c.position.y = c.userData.y + Math.sin(t * c.userData.sp + c.userData.ph) * 0.3 * m;
     });
     renderer.render(scene, camera);
   });
 }
 
 heroScene();
-jarScene();
+combsScene();
 </script>
 </body>
 </html>
