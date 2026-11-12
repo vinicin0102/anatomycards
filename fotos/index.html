@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foto com Quem Você Ama | Montagem de foto entregue na hora</title>
+<meta name="description" content="Envie sua foto, escolha quem vai aparecer com você — Jesus, Nossa Senhora, um famoso ou alguém querido que já partiu — e receba sua foto pronta. Entrega garantida.">
+<meta name="theme-color" content="#1B2A6B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+
+<!-- Cole aqui o Meta Pixel / UTMify, como na página de arritmias -->
+
+<style>
+:root{
+  --azul:#1B2A6B; --azul-2:#26398A; --azul-claro:#E9EEFF;
+  --ouro:#F5B301; --ouro-2:#E59A00; --ouro-claro:#FFF4D1;
+  --creme:#FFF9EF; --branco:#FFFFFF; --texto:#1E2235; --suave:#5A6078;
+  --verde:#14A44D; --verde-2:#0E8A3E; --vermelho:#E5383B;
+  --borda:#ECE3D0; --sombra:0 10px 30px rgba(27,42,107,.12);
+  --raio:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:'Nunito',system-ui,sans-serif;font-size:19px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+h1,h2,h3{line-height:1.15;margin:0}
+.serif{font-family:'Playfair Display',Georgia,serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+.sec{padding:64px 0}
+.sec-titulo{text-align:center;font-size:clamp(30px,5vw,44px);font-family:'Playfair Display',serif;color:var(--azul);margin-bottom:10px}
+.sec-sub{text-align:center;color:var(--suave);font-size:20px;max-width:680px;margin:0 auto 36px}
+.destaque{color:var(--ouro-2)}
+.sublinha{background:linear-gradient(transparent 62%,#FFE07A 62%);padding:0 4px}
+
+/* ---------- barra topo ---------- */
+.topbar{background:var(--azul);color:#fff;text-align:center;font-weight:800;font-size:16px;padding:10px 12px;letter-spacing:.2px}
+.topbar b{color:var(--ouro)}
+.demo-aviso{background:#7C3AED;color:#fff;text-align:center;font-weight:800;font-size:15px;padding:8px}
+
+/* ---------- botões ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;border:0;border-radius:18px;font-weight:900;text-decoration:none;text-align:center;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:active{transform:scale(.98)}
+.btn-verde{background:linear-gradient(180deg,#1DBF5C,var(--verde-2));color:#fff;font-size:22px;padding:20px 30px;min-height:68px;box-shadow:0 8px 0 #0A6B30,0 14px 28px rgba(20,164,77,.35);text-transform:uppercase;letter-spacing:.3px}
+.btn-verde:hover{background:linear-gradient(180deg,#22C964,var(--verde))}
+.btn-verde:active{box-shadow:0 3px 0 #0A6B30;transform:translateY(5px)}
+.btn-bloco{display:flex;width:100%}
+.pulsa{animation:pulsa 2s infinite}
+@keyframes pulsa{0%,100%{box-shadow:0 8px 0 #0A6B30,0 0 0 0 rgba(29,191,92,.55)}50%{box-shadow:0 8px 0 #0A6B30,0 0 0 16px rgba(29,191,92,0)}}
+.btn-sec{background:#fff;color:var(--azul);border:3px solid var(--azul);font-size:19px;padding:14px 22px;min-height:58px}
+.selos-mini{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin-top:14px;font-size:16px;font-weight:800;color:var(--suave)}
+.selos-mini span{display:inline-flex;align-items:center;gap:6px}
+
+/* ---------- hero ---------- */
+.hero{background:radial-gradient(1200px 500px at 70% -10%,#FFF1C2 0%,transparent 60%),radial-gradient(900px 500px at 0% 100%,#E7ECFF 0%,transparent 60%),var(--creme);padding:40px 0 56px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.etiqueta{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--ouro);color:var(--azul);font-weight:900;border-radius:999px;padding:8px 16px;font-size:16px;box-shadow:var(--sombra)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,5.6vw,60px);color:var(--azul);margin:18px 0 16px}
+.hero h1 em{font-style:italic;color:var(--ouro-2)}
+.hero p.lead{font-size:clamp(20px,2.4vw,23px);color:#3A4060;margin:0 0 26px}
+.hero .lista{list-style:none;padding:0;margin:0 0 28px;display:grid;gap:10px;font-size:20px;font-weight:800}
+.hero .lista li{display:flex;gap:12px;align-items:flex-start}
+.check{flex:none;width:30px;height:30px;border-radius:50%;background:var(--verde);color:#fff;display:grid;place-items:center;font-size:17px;font-weight:900}
+
+.antes-depois{position:relative;display:flex;align-items:center;justify-content:center;gap:4px;min-height:420px}
+.polaroid{background:#fff;padding:12px 12px 46px;border-radius:6px;box-shadow:0 18px 40px rgba(27,42,107,.22);position:relative}
+.polaroid .rotulo{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:'Playfair Display',serif;font-weight:800;font-size:20px;color:var(--azul)}
+.polaroid.antes{width:42%;transform:rotate(-6deg) translateX(18px);z-index:1}
+.polaroid.depois{width:62%;transform:rotate(4deg);z-index:2}
+.foto-ilustra{aspect-ratio:3/4;border-radius:3px;overflow:hidden;position:relative;background:linear-gradient(180deg,#9EC4FF,#FFE3A8)}
+.foto-ilustra svg{width:100%;height:100%;display:block}
+.seta-hero{position:absolute;z-index:3;left:36%;top:44%;background:var(--ouro);color:var(--azul);width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-size:30px;font-weight:900;box-shadow:0 8px 20px rgba(229,154,0,.5);border:4px solid #fff}
+.selo-hero{position:absolute;z-index:4;right:0;top:4%;width:120px;height:120px;border-radius:50%;background:var(--verde);color:#fff;display:grid;place-items:center;text-align:center;font-weight:900;font-size:15px;line-height:1.1;border:5px dashed #fff;box-shadow:0 0 0 5px var(--verde),0 14px 30px rgba(20,164,77,.4);transform:rotate(10deg);padding:10px}
+.selo-hero b{font-size:22px;display:block}
+.nota-ilustra{font-size:13px;color:var(--suave);text-align:center;margin-top:10px}
+
+/* ---------- faixa confiança ---------- */
+.faixa{background:var(--azul);color:#fff}
+.faixa .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding-top:22px;padding-bottom:22px}
+.faixa div{display:flex;align-items:center;gap:12px;font-weight:800;font-size:17px;line-height:1.25}
+.faixa .ic{flex:none;width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:26px}
+
+/* ---------- VSL ---------- */
+.vsl-caixa{max-width:860px;margin:0 auto}
+.vsl{position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:linear-gradient(160deg,#22357F,#13205A);box-shadow:0 24px 60px rgba(27,42,107,.35);border:6px solid #fff;user-select:none}
+.vsl-barras{position:absolute;top:12px;left:14px;right:14px;display:flex;gap:6px;z-index:6}
+.vsl-barras span{flex:1;height:6px;border-radius:6px;background:rgba(255,255,255,.25);overflow:hidden}
+.vsl-barras span i{display:block;height:100%;width:0;background:var(--ouro)}
+.vsl-barras span.feita i{width:100%}
+.cena{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .5s;padding:30px 20px 74px}
+.cena.ativa{opacity:1}
+.vsl-legenda{position:absolute;left:0;right:0;bottom:0;z-index:5;background:linear-gradient(transparent,rgba(5,10,35,.85) 35%);color:#fff;font-weight:900;text-align:center;font-size:clamp(16px,2.6vw,25px);padding:28px 18px 16px;line-height:1.25;min-height:76px}
+.vsl-legenda b{color:var(--ouro)}
+.vsl-passo{position:absolute;top:30px;left:18px;z-index:5;background:var(--ouro);color:var(--azul);font-weight:900;border-radius:999px;padding:4px 14px;font-size:clamp(13px,1.8vw,17px);opacity:0;transition:opacity .3s}
+.vsl-passo.vis{opacity:1}
+.vsl-play{position:absolute;inset:0;z-index:8;border:0;background:radial-gradient(circle at center,rgba(19,32,90,.55),rgba(19,32,90,.88));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.vsl-play .bola{width:clamp(76px,13vw,110px);height:clamp(76px,13vw,110px);border-radius:50%;background:var(--verde);display:grid;place-items:center;box-shadow:0 0 0 12px rgba(29,191,92,.3);animation:respira 1.6s infinite}
+.vsl-play .bola svg{width:44%;margin-left:8%}
+.vsl-play strong{font-size:clamp(20px,3.2vw,30px);font-weight:900}
+.vsl-play small{font-size:clamp(14px,2vw,18px);opacity:.9;font-weight:700}
+@keyframes respira{50%{box-shadow:0 0 0 22px rgba(29,191,92,.08)}}
+.vsl-controles{display:flex;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.vsl-controles button{background:#fff;border:3px solid var(--azul);color:var(--azul);border-radius:14px;font-weight:900;font-size:17px;padding:10px 18px;min-height:52px}
+
+/* elementos das cenas */
+.c-moldura{background:#fff;padding:8px 8px 26px;border-radius:5px;box-shadow:0 14px 30px rgba(0,0,0,.35);width:clamp(120px,26%,220px)}
+.c-titulo{color:#fff;font-family:'Playfair Display',serif;font-size:clamp(20px,3.6vw,36px);text-align:center;font-weight:800;line-height:1.15}
+.c-titulo span{color:var(--ouro)}
+.c-col{display:flex;align-items:center;gap:clamp(14px,4vw,40px)}
+.brilho{position:absolute;font-size:clamp(18px,3vw,30px);animation:pisca 1.4s infinite}
+@keyframes pisca{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+.c-cards{display:flex;gap:clamp(8px,2vw,18px)}
+.c-card{width:clamp(80px,17vw,150px);background:#fff;border-radius:16px;padding:clamp(8px,1.5vw,14px) 6px;text-align:center;font-weight:900;color:var(--azul);font-size:clamp(11px,1.6vw,16px);border:4px solid transparent;position:relative}
+.c-card .em{font-size:clamp(28px,5.5vw,52px);line-height:1.2}
+.cena.ativa .c-card.alvo{animation:seleciona 4.5s forwards}
+@keyframes seleciona{0%,48%{border-color:transparent;transform:scale(1)}55%{transform:scale(.94)}62%,100%{border-color:var(--ouro);transform:scale(1.06);box-shadow:0 0 0 6px rgba(245,179,1,.35)}}
+.c-card .ok{position:absolute;top:-12px;right:-12px;width:32px;height:32px;border-radius:50%;background:var(--verde);color:#fff;display:grid;place-items:center;font-size:18px;opacity:0}
+.cena.ativa .c-card.alvo .ok{animation:aparece .3s 2.8s forwards}
+@keyframes aparece{to{opacity:1}}
+.mao{position:absolute;font-size:clamp(34px,6vw,58px);z-index:4;filter:drop-shadow(0 6px 8px rgba(0,0,0,.4));opacity:0}
+.cena.ativa .mao{animation:maoMove 4.5s forwards}
+@keyframes maoMove{0%{opacity:0;transform:translate(120px,140px)}15%{opacity:1}45%{transform:translate(0,0)}52%{transform:translate(0,0) scale(.85)}58%,100%{transform:translate(0,0) scale(1);opacity:1}}
+.celular{width:clamp(130px,24vw,210px);aspect-ratio:9/17;background:#0B1238;border-radius:28px;padding:10px;box-shadow:0 18px 40px rgba(0,0,0,.45);position:relative}
+.celular .tela{background:#F6F7FB;border-radius:20px;height:100%;overflow:hidden;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;gap:8px}
+.upload-mini{width:86%;aspect-ratio:3/4;border:3px dashed #9AA6D8;border-radius:14px;display:grid;place-items:center;color:var(--azul);font-weight:900;font-size:clamp(10px,1.4vw,14px);text-align:center;position:relative;overflow:hidden;background:#fff}
+.foto-voa{position:absolute;inset:0;transform:translateY(130%)}
+.cena.ativa .foto-voa{animation:voa 1.2s 1.2s cubic-bezier(.2,.8,.2,1.1) forwards}
+@keyframes voa{to{transform:translateY(0)}}
+.tag-ok{background:var(--verde);color:#fff;font-weight:900;border-radius:999px;padding:4px 12px;font-size:clamp(10px,1.4vw,14px);opacity:0}
+.cena.ativa .tag-ok{animation:aparece .4s 2.6s forwards}
+.cena.ativa .revela{animation:revela 2.6s .4s forwards}
+.revela{filter:blur(14px);transform:scale(.9)}
+@keyframes revela{to{filter:blur(0);transform:scale(1)}}
+.badge{background:var(--ouro);color:var(--azul);font-weight:900;border-radius:999px;padding:6px 16px;font-size:clamp(13px,2vw,19px);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.qr{width:clamp(110px,20vw,180px);aspect-ratio:1;background:#fff;border-radius:14px;padding:10px;position:relative}
+.qr-svg,.qr-svg svg{display:block;width:100%;height:100%}
+.carimbo{position:absolute;inset:auto -20px 30% -20px;transform:rotate(-14deg) scale(2.4);opacity:0;background:var(--verde);color:#fff;border:4px solid #fff;border-radius:12px;font-weight:900;text-align:center;font-size:clamp(15px,2.4vw,24px);padding:4px 0;box-shadow:0 10px 20px rgba(0,0,0,.35)}
+.cena.ativa .carimbo{animation:carimba .45s 1.8s cubic-bezier(.3,1.6,.6,1) forwards}
+@keyframes carimba{to{opacity:1;transform:rotate(-14deg) scale(1)}}
+.balao{background:#DCF8C6;border-radius:14px 14px 14px 4px;padding:6px;width:88%;box-shadow:0 2px 4px rgba(0,0,0,.12);opacity:0;transform:translateY(20px)}
+.cena.ativa .balao{animation:sobe .6s .5s forwards}
+@keyframes sobe{to{opacity:1;transform:none}}
+.balao .ft{aspect-ratio:3/4;border-radius:10px;overflow:hidden}
+.balao small{display:block;font-weight:900;color:#0E8A3E;font-size:clamp(9px,1.3vw,13px);text-align:center;padding-top:4px}
+.selo-entrega{width:clamp(96px,17vw,150px);aspect-ratio:1;border-radius:50%;background:var(--ouro);color:var(--azul);display:grid;place-items:center;text-align:center;font-weight:900;font-size:clamp(11px,1.7vw,16px);line-height:1.1;border:4px dashed var(--azul);box-shadow:0 0 0 6px var(--ouro);transform:scale(0) rotate(-30deg)}
+.cena.ativa .selo-entrega{animation:selo .6s 1.6s cubic-bezier(.3,1.6,.6,1) forwards}
+@keyframes selo{to{transform:scale(1) rotate(-8deg)}}
+
+/* ---------- passo a passo ---------- */
+.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:p}
+.passo{background:#fff;border-radius:var(--raio);padding:30px 20px 24px;text-align:center;box-shadow:var(--sombra);position:relative;border:2px solid var(--borda)}
+.passo .num{position:absolute;top:-24px;left:50%;transform:translateX(-50%);width:52px;height:52px;border-radius:50%;background:var(--azul);color:#fff;font-weight:900;font-size:26px;display:grid;place-items:center;border:4px solid var(--creme)}
+.passo .ilus{font-size:64px;line-height:1;margin:14px 0 12px}
+.passo h3{font-size:23px;color:var(--azul);margin-bottom:8px}
+.passo p{margin:0;color:var(--suave);font-size:18px}
+.passo.final{background:var(--verde);border-color:var(--verde);color:#fff}
+.passo.final h3,.passo.final p{color:#fff}
+.passo.final .num{background:var(--ouro);color:var(--azul)}
+.aviso-entrega{margin:34px auto 0;max-width:820px;background:var(--ouro-claro);border:3px dashed var(--ouro-2);border-radius:var(--raio);padding:20px 24px;display:flex;gap:16px;align-items:center;font-size:20px;font-weight:800;color:#5B3B00}
+.aviso-entrega .ic{font-size:44px;flex:none}
+
+/* ---------- criador ---------- */
+.criador{background:linear-gradient(180deg,#fff 0%,var(--azul-claro) 100%);border-top:6px solid var(--ouro)}
+.etapa{background:#fff;border-radius:26px;box-shadow:var(--sombra);padding:28px 24px;margin:0 auto 26px;max-width:860px;border:2px solid var(--borda)}
+.etapa-topo{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.etapa-topo .n{flex:none;width:50px;height:50px;border-radius:50%;background:var(--ouro);color:var(--azul);display:grid;place-items:center;font-weight:900;font-size:24px}
+.etapa-topo h3{font-size:clamp(23px,3.2vw,30px);color:var(--azul)}
+.etapa-topo p{margin:2px 0 0;color:var(--suave);font-size:17px}
+.etapa.ok .etapa-topo .n{background:var(--verde);color:#fff}
+.abas{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.aba{border:3px solid var(--borda);background:#FBF8F1;border-radius:18px;padding:14px 8px;font-weight:900;font-size:18px;color:var(--azul);min-height:78px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1.15}
+.aba .em{font-size:30px}
+.aba[aria-selected="true"]{border-color:var(--azul);background:var(--azul);color:#fff}
+.opcoes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.opcao{position:relative;border:3px solid var(--borda);background:#fff;border-radius:18px;padding:16px 10px 14px;text-align:center;font-weight:900;color:var(--azul);font-size:18px;line-height:1.2;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:transform .12s,border-color .12s}
+.opcao .em{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;font-size:42px;background:radial-gradient(circle at 50% 40%,#FFF7DB,#FFE59A)}
+.opcao .em img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.opcao:hover{transform:translateY(-2px)}
+.opcao[aria-pressed="true"]{border-color:var(--verde);box-shadow:0 0 0 4px rgba(20,164,77,.2);background:#F1FBF4}
+.opcao[aria-pressed="true"]::after{content:"✓";position:absolute;top:-10px;right:-10px;width:34px;height:34px;border-radius:50%;background:var(--verde);color:#fff;display:grid;place-items:center;font-size:20px;border:3px solid #fff}
+.painel-extra{background:#FBF8F1;border-radius:18px;padding:18px;border:2px dashed var(--borda)}
+.campo label{display:block;font-weight:900;color:var(--azul);margin-bottom:6px;font-size:19px}
+.campo input,.campo textarea{width:100%;font:inherit;font-size:20px;padding:15px 16px;border:3px solid #D6D2C6;border-radius:14px;background:#fff;color:var(--texto)}
+.campo input:focus,.campo textarea:focus{outline:none;border-color:var(--azul);box-shadow:0 0 0 4px rgba(27,42,107,.15)}
+.campo small{display:block;color:var(--suave);font-size:16px;margin-top:6px}
+.campo .erro-msg{color:var(--vermelho);font-weight:800;font-size:16px;margin-top:6px;display:none}
+.campo.invalido input{border-color:var(--vermelho)}
+.campo.invalido .erro-msg{display:block}
+.campo + .campo{margin-top:16px}
+
+.upload{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border:4px dashed #9AA6D8;border-radius:22px;background:#F6F8FF;min-height:220px;padding:24px;text-align:center;cursor:pointer;position:relative;transition:background .15s}
+.upload:hover,.upload.arrasta{background:#ECF0FF}
+.upload .em{font-size:58px;line-height:1}
+.upload strong{font-size:23px;color:var(--azul)}
+.upload span{color:var(--suave);font-size:17px}
+.upload input{position:absolute;width:1px;height:1px;opacity:0}
+.upload.tem-foto{border-style:solid;border-color:var(--verde);background:#F1FBF4}
+.upload-preview{display:flex;align-items:center;gap:16px;text-align:left}
+.upload-preview img{width:110px;height:140px;object-fit:cover;border-radius:12px;border:4px solid #fff;box-shadow:var(--sombra)}
+.upload-preview b{display:block;color:var(--verde-2);font-size:21px}
+.upload-preview u{color:var(--azul);font-weight:800;font-size:17px}
+.dicas{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:16px;font-size:16px;font-weight:800}
+.dicas span{background:#F1FBF4;border-radius:12px;padding:8px 10px;color:#0E6B33}
+.dicas span.nao{background:#FFF0F0;color:#B42323}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:3px solid var(--borda);background:#fff;border-radius:999px;padding:12px 18px;font-weight:900;color:var(--azul);font-size:18px;min-height:56px}
+.chip[aria-pressed="true"]{border-color:var(--azul);background:var(--azul);color:#fff}
+.subtitulo{font-weight:900;color:var(--azul);font-size:20px;margin:20px 0 10px}
+details.extra summary{cursor:pointer;font-weight:900;color:var(--azul);font-size:18px;margin-top:20px;list-style:none}
+details.extra summary::before{content:"＋ "}
+details.extra[open] summary::before{content:"－ "}
+.gerar-caixa{max-width:860px;margin:0 auto;text-align:center}
+.erro-geral{display:none;background:#FFF0F0;border:3px solid #F5B5B5;color:#9B1C1C;font-weight:800;border-radius:16px;padding:14px 18px;margin:0 auto 16px;max-width:860px;font-size:18px}
+.erro-geral.vis{display:block}
+
+/* ---------- resultado ---------- */
+.resultado{display:none;max-width:980px;margin:0 auto}
+.resultado.vis{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.quadro{position:relative;background:#fff;padding:14px 14px 60px;border-radius:8px;box-shadow:0 24px 50px rgba(27,42,107,.25);transform:rotate(-1.2deg)}
+.quadro-foto{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:4px;background:#ddd}
+.quadro-foto img{width:100%;height:100%;object-fit:cover;transition:filter .9s,transform .9s;-webkit-user-drag:none;user-select:none;pointer-events:none}
+.quadro.bloqueado .quadro-foto img{filter:blur(16px) saturate(.9);transform:scale(1.06)}
+.quadro .legenda-q{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:800;color:var(--azul)}
+.contador{position:absolute;top:12px;right:12px;z-index:3;background:rgba(10,16,48,.85);color:#fff;border-radius:999px;padding:8px 16px;font-weight:900;font-size:18px;display:flex;align-items:center;gap:8px}
+.contador b{color:var(--ouro);font-size:24px}
+.cadeado{position:absolute;inset:0;z-index:2;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;color:#fff;padding:20px;background:rgba(15,22,60,.35)}
+.quadro.bloqueado .cadeado{display:flex}
+.cadeado .ic{width:84px;height:84px;border-radius:50%;background:var(--ouro);display:grid;place-items:center;font-size:40px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.cadeado strong{font-size:24px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.cadeado span{font-size:17px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.oferta{background:#fff;border-radius:26px;box-shadow:var(--sombra);padding:26px 24px;border:3px solid var(--ouro)}
+.oferta h3{font-size:clamp(25px,3.4vw,32px);color:var(--azul);font-family:'Playfair Display',serif}
+.oferta .preco{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:14px 0 6px}
+.oferta .preco s{color:var(--suave);font-size:22px;font-weight:800}
+.oferta .preco strong{font-size:52px;color:var(--verde-2);font-weight:900;line-height:1}
+.oferta .preco small{font-weight:800;color:var(--suave);font-size:17px}
+.oferta ul{list-style:none;padding:0;margin:16px 0 22px;display:grid;gap:10px;font-weight:800;font-size:19px}
+.oferta li{display:flex;gap:10px;align-items:flex-start}
+.oferta .garante{display:flex;gap:12px;align-items:center;background:var(--ouro-claro);border-radius:16px;padding:12px 14px;margin-top:16px;font-weight:800;font-size:16px;color:#5B3B00}
+.oferta .garante .ic{font-size:34px}
+.link-novo{display:block;margin:16px auto 0;background:none;border:0;color:var(--azul);font-weight:800;font-size:17px;text-decoration:underline}
+.liberada{display:none;max-width:760px;margin:0 auto;text-align:center}
+.liberada.vis{display:block}
+.liberada .quadro{max-width:440px;margin:0 auto 26px;transform:none}
+.liberada h3{font-size:clamp(28px,4vw,40px);color:var(--verde-2);font-family:'Playfair Display',serif;margin-bottom:10px}
+.acoes{display:grid;gap:12px;max-width:480px;margin:0 auto}
+.btn-zap{background:#25D366;color:#fff;font-size:20px;padding:16px 22px;min-height:62px;box-shadow:0 6px 0 #189B4A}
+
+/* ---------- ocasiões / garantia / faq ---------- */
+.ocasioes{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.ocasiao{background:#fff;border-radius:20px;padding:22px 12px;text-align:center;box-shadow:var(--sombra);font-weight:900;color:var(--azul);font-size:18px;line-height:1.25}
+.ocasiao .em{font-size:46px;display:block;margin-bottom:8px}
+.garantia{background:var(--azul);color:#fff;border-radius:30px;padding:40px 30px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;box-shadow:0 24px 60px rgba(27,42,107,.35)}
+.selo-grande{width:200px;height:200px;border-radius:50%;background:var(--ouro);color:var(--azul);display:grid;place-items:center;text-align:center;font-weight:900;line-height:1.05;border:6px dashed var(--azul);box-shadow:0 0 0 8px var(--ouro),0 20px 40px rgba(0,0,0,.35);font-size:18px;padding:18px}
+.selo-grande b{display:block;font-size:44px}
+.garantia h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,40px);margin-bottom:12px}
+.garantia h2 span{color:var(--ouro)}
+.garantia ul{list-style:none;padding:0;margin:0;display:grid;gap:12px;font-size:20px;font-weight:700}
+.garantia li{display:flex;gap:12px}
+.garantia li b{color:var(--ouro)}
+.faq{max-width:820px;margin:0 auto;display:grid;gap:12px}
+.faq details{background:#fff;border-radius:18px;border:2px solid var(--borda);box-shadow:0 4px 14px rgba(27,42,107,.06)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 56px 20px 22px;font-weight:900;font-size:20px;color:var(--azul);position:relative}
+.faq summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:var(--azul-claro);display:grid;place-items:center;font-size:24px}
+.faq details[open] summary::after{content:"−"}
+.faq details p{margin:0;padding:0 22px 22px;font-size:19px;color:#3A4060}
+.cta-final{text-align:center;background:radial-gradient(700px 300px at 50% 0%,#FFF1C2,transparent 70%)}
+.cta-final h2{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,48px);color:var(--azul);margin-bottom:14px}
+footer{background:#10194A;color:#B9C1E6;font-size:15px;padding:34px 0 120px;text-align:center}
+footer p{max-width:760px;margin:0 auto 10px}
+footer a{color:#fff}
+
+/* ---------- fixos ---------- */
+.cta-fixo{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.97);backdrop-filter:blur(6px);padding:10px 14px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -8px 24px rgba(27,42,107,.15);transform:translateY(110%);transition:transform .3s}
+.cta-fixo.vis{transform:none}
+.cta-fixo .btn{font-size:19px;min-height:60px;padding:14px}
+.cta-fixo small{display:block;text-align:center;font-weight:800;color:var(--verde-2);font-size:14px;margin-top:6px}
+.zap-flutua{position:fixed;right:16px;bottom:100px;z-index:41;width:62px;height:62px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.zap-flutua svg{width:34px;height:34px}
+
+/* ---------- loader ---------- */
+.overlay{position:fixed;inset:0;z-index:60;background:rgba(14,21,58,.92);display:none;align-items:center;justify-content:center;padding:20px}
+.overlay.vis{display:flex}
+.loader{background:#fff;border-radius:28px;padding:34px 26px;max-width:480px;width:100%;text-align:center}
+.loader .anel{width:110px;height:110px;margin:0 auto 18px;border-radius:50%;border:10px solid var(--azul-claro);border-top-color:var(--ouro);animation:gira 1s linear infinite;display:grid;place-items:center}
+.loader .anel span{animation:gira 1s linear infinite reverse;font-size:40px}
+@keyframes gira{to{transform:rotate(360deg)}}
+.loader h3{color:var(--azul);font-size:26px;margin-bottom:8px}
+.loader .etapa-txt{font-weight:800;color:var(--suave);min-height:30px;font-size:19px}
+.barra{height:16px;background:var(--azul-claro);border-radius:10px;overflow:hidden;margin:18px 0 10px}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ouro),var(--verde));transition:width .6s}
+.loader small{color:var(--vermelho);font-weight:900;font-size:16px}
+
+/* ---------- modal checkout ---------- */
+.modal{position:fixed;inset:0;z-index:70;background:rgba(14,21,58,.85);display:none;align-items:flex-start;justify-content:center;padding:20px 12px;overflow-y:auto}
+.modal.vis{display:flex}
+.modal-caixa{background:#fff;border-radius:26px;max-width:520px;width:100%;padding:26px 22px;position:relative;margin:auto}
+.modal-fechar{position:absolute;top:12px;right:12px;width:48px;height:48px;border-radius:50%;border:0;background:#F1F1F5;font-size:26px;color:var(--suave)}
+.modal h3{color:var(--azul);font-size:26px;margin:0 50px 6px 0}
+.modal .resumo{display:flex;gap:14px;align-items:center;background:#FBF8F1;border-radius:16px;padding:12px;margin:14px 0 18px}
+.modal .resumo img{width:64px;height:84px;object-fit:cover;border-radius:8px;filter:blur(6px)}
+.modal .resumo b{color:var(--azul);display:block}
+.modal .resumo strong{color:var(--verde-2);font-size:26px}
+.seguro{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;color:var(--suave);font-weight:800;font-size:15px;margin-top:12px}
+.pix-passos{background:var(--azul-claro);border-radius:16px;padding:14px 16px;margin:14px 0;font-size:17px;font-weight:700}
+.pix-passos ol{margin:6px 0 0;padding-left:22px}
+.pix-qr{width:220px;height:220px;margin:8px auto;border:3px solid var(--borda);border-radius:14px;padding:8px;background:#fff}
+.pix-qr img,.pix-qr svg{width:100%;height:100%}
+.copia{width:100%;font:inherit;font-size:14px;padding:12px;border:2px dashed #C8C4B8;border-radius:12px;background:#FBF8F1;resize:none;height:76px;color:var(--suave);margin-top:10px}
+.aguardando{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:900;color:var(--azul);margin-top:16px;font-size:18px}
+.aguardando i{width:14px;height:14px;border-radius:50%;background:var(--ouro);animation:pisca 1s infinite}
+.oculto{display:none !important}
+
+/* ---------- responsivo ---------- */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:16px}
+  .hero{text-align:center;padding-top:26px}
+  .hero .lista{justify-items:center}
+  .hero .lista li{text-align:left}
+  .antes-depois{min-height:auto;margin-top:10px;order:-1}
+  .faixa .wrap{grid-template-columns:1fr 1fr}
+  .passos{grid-template-columns:1fr 1fr;row-gap:44px}
+  .resultado.vis{grid-template-columns:1fr}
+  .ocasioes{grid-template-columns:repeat(3,1fr)}
+  .garantia{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .garantia li{text-align:left}
+}
+@media (max-width:560px){
+  body{font-size:18px}
+  .sec{padding:48px 0}
+  .wrap{padding:0 16px}
+  .antes-depois{max-width:360px;margin-left:auto;margin-right:auto}
+  .selo-hero{width:94px;height:94px;font-size:12px;right:-4px}
+  .selo-hero b{font-size:17px}
+  .seta-hero{width:46px;height:46px;font-size:24px}
+  .faixa div{font-size:15px}
+  .zap-flutua{width:54px;height:54px;right:12px}
+  .faixa .ic{width:40px;height:40px;font-size:22px}
+  .passos{grid-template-columns:1fr}
+  .abas{gap:6px}
+  .aba{font-size:15px;min-height:72px;padding:10px 4px}
+  .opcoes{grid-template-columns:1fr 1fr}
+  .opcao{min-height:140px;font-size:17px}
+  .etapa{padding:22px 16px}
+  .ocasioes{grid-template-columns:1fr 1fr}
+  .btn-verde{font-size:19px;padding:18px 18px}
+  .aviso-entrega{flex-direction:column;text-align:center;font-size:18px}
+  .selo-grande{width:170px;height:170px}
+  .selo-grande b{font-size:36px}
+  .vsl{border-width:4px;border-radius:18px;aspect-ratio:4/5}
+  .c-col{flex-direction:column;gap:14px}
+  .c-moldura{width:40vw}
+  .celular{width:40vw}
+  .cena-final .celular{width:32vw}
+  .c-card{width:25vw}
+  .qr{width:40vw}
+  .selo-entrega{width:25vw}
+  .vsl-legenda{padding:20px 10px 10px;min-height:60px}
+  .cena{padding:26px 10px 60px}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+
+<!-- Ilustrações reaproveitadas (silhuetas). Substitua pelas fotos reais de exemplo assim que tiver. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FB8FF"/><stop offset=".6" stop-color="#DCE8FF"/><stop offset="1" stop-color="#FFE3A8"/></linearGradient>
+    <radialGradient id="luz" cx=".68" cy=".38" r=".5"><stop offset="0" stop-color="#FFF6D0"/><stop offset="1" stop-color="#FFF6D0" stop-opacity="0"/></radialGradient>
+    <symbol id="pessoa" viewBox="0 0 100 130"><circle cx="50" cy="38" r="21"/><path d="M10 130c0-40 18-62 40-62s40 22 40 62z"/></symbol>
+    <symbol id="cena-antes" viewBox="0 0 150 200">
+      <rect width="150" height="200" fill="#E6E9F2"/>
+      <use href="#pessoa" x="25" y="62" width="100" height="138" fill="#4B5A8C"/>
+    </symbol>
+    <symbol id="cena-depois" viewBox="0 0 150 200">
+      <rect width="150" height="200" fill="url(#ceu)"/>
+      <rect width="150" height="200" fill="url(#luz)"/>
+      <g fill="#fff" opacity=".85"><ellipse cx="20" cy="175" rx="40" ry="16"/><ellipse cx="130" cy="180" rx="45" ry="18"/><ellipse cx="75" cy="192" rx="50" ry="14"/></g>
+      <g stroke="#FFD866" stroke-width="2" opacity=".7"><path d="M102 90 L102 10"/><path d="M102 90 L146 28"/><path d="M102 90 L58 28"/><path d="M102 90 L150 70"/><path d="M102 90 L54 70"/></g>
+      <use href="#pessoa" x="58" y="58" width="88" height="128" fill="#FFFFFF" stroke="#E2C674" stroke-width="2.5"/>
+      <path d="M102 120 L102 186" stroke="#E2C674" stroke-width="5"/>
+      <ellipse cx="102" cy="71" rx="18" ry="5" fill="none" stroke="#F5B301" stroke-width="3.5"/>
+      <use href="#pessoa" x="6" y="68" width="88" height="128" fill="#4B5A8C"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="demoAviso" class="demo-aviso oculto">MODO DEMONSTRAÇÃO — nada é cobrado e a prévia é simulada</div>
+<div class="topbar">📦 <b>ENTREGA GARANTIDA</b> • Sua foto pronta em minutos • Pagamento único no PIX</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="topo">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="etiqueta">✨ Presente que emociona de verdade</span>
+      <h1>Tenha uma foto sua ao lado de <em>quem você mais ama</em> e admira</h1>
+      <p class="lead">Jesus, Nossa Senhora, seu artista favorito ou aquela pessoa querida que já partiu. Você envia uma foto sua, escolhe quem vai aparecer com você e <b>recebe a foto pronta, em alta qualidade.</b></p>
+      <ul class="lista">
+        <li><span class="check">✓</span><span>Não precisa saber mexer em nada: é só tocar e enviar</span></li>
+        <li><span class="check">✓</span><span>Você <span class="sublinha">vê a prévia antes de pagar</span></span></li>
+        <li><span class="check">✓</span><span>Entrega garantida, na hora, pronta para imprimir</span></li>
+      </ul>
+      <a href="#criar" class="btn btn-verde pulsa">📸 Quero minha foto agora</a>
+      <div class="selos-mini"><span>🔒 Pagamento seguro</span><span>⚡ Pronta em minutos</span><span>💚 Feito com carinho</span></div>
+    </div>
+
+    <!-- TROCAR: substitua as ilustrações por um ANTES/DEPOIS real (é o que mais vende). -->
+    <div>
+      <div class="antes-depois" aria-label="Exemplo: sua foto antes e a montagem pronta depois">
+        <div class="polaroid antes"><div class="foto-ilustra"><svg><use href="#cena-antes"/></svg></div><div class="rotulo">Sua foto</div></div>
+        <div class="seta-hero">➜</div>
+        <div class="polaroid depois"><div class="foto-ilustra"><svg><use href="#cena-depois"/></svg></div><div class="rotulo">Pronta! ✨</div></div>
+        <div class="selo-hero"><span><b>100%</b>ENTREGA GARANTIDA</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= CONFIANÇA ================= -->
+<section class="faixa" aria-label="Garantias">
+  <div class="wrap">
+    <div><span class="ic">📦</span>Entrega garantida</div>
+    <div><span class="ic">👀</span>Veja a prévia antes de pagar</div>
+    <div><span class="ic">🔁</span>Não gostou? Refazemos grátis</div>
+    <div><span class="ic">🔒</span>PIX 100% seguro</div>
+  </div>
+</section>
+
+<!-- ================= MINI VSL ================= -->
+<section class="sec" id="video">
+  <div class="wrap">
+    <h2 class="sec-titulo">Veja como é <span class="destaque">fácil</span> 👇</h2>
+    <p class="sec-sub">Um vídeo curtinho, de 1 minuto, mostrando tudo passo a passo. Aperte o botão verde e aumente o volume.</p>
+
+    <div class="vsl-caixa">
+      <!-- Para usar um vídeo de verdade, preencha VSL_VIDEO no script lá embaixo. -->
+      <div class="vsl" id="vsl">
+        <div class="vsl-barras" id="vslBarras"></div>
+        <div class="vsl-passo" id="vslPasso"></div>
+
+        <div class="cena" data-passo="" data-fala="Olá! Que tal ter uma foto sua ao lado de Jesus, de Nossa Senhora, de um artista famoso, ou de alguém querido que já partiu? Veja como é fácil." data-legenda="Uma foto sua ao lado de <b>quem você mais ama</b> ❤️">
+          <div class="c-col">
+            <div class="c-moldura" style="transform:rotate(-5deg)"><div class="foto-ilustra"><svg><use href="#cena-depois"/></svg></div></div>
+            <div class="c-titulo">Sua foto com<br><span>quem você admira</span></div>
+          </div>
+          <span class="brilho" style="top:18%;left:14%">✨</span><span class="brilho" style="top:22%;right:16%;animation-delay:.5s">✨</span><span class="brilho" style="bottom:30%;left:46%;animation-delay:.9s">⭐</span>
+        </div>
+
+        <div class="cena" data-passo="Passo 1" data-fala="Primeiro passo: escolha quem vai aparecer na foto com você. É só tocar em cima." data-legenda="<b>1.</b> Escolha quem vai aparecer com você">
+          <div class="c-cards">
+            <div class="c-card alvo"><div class="em"><svg viewBox="0 0 24 24" width="1em" height="1em"><path d="M10 2h4v6h6v4h-6v10h-4V12H4V8h6z" fill="#E59A00" stroke="#9A6400" stroke-width=".6"/></svg></div>Jesus<span class="ok">✓</span></div>
+            <div class="c-card"><div class="em">👑</div>N. Senhora</div>
+            <div class="c-card"><div class="em">🕊️</div>Quem partiu</div>
+          </div>
+          <span class="mao" style="left:calc(50% - clamp(80px,17vw,150px)*1.1);top:52%">👆</span>
+        </div>
+
+        <div class="cena" data-passo="Passo 2" data-fala="Segundo passo: envie uma foto sua. Pode ser do celular mesmo, de frente e com boa luz." data-legenda="<b>2.</b> Envie uma foto sua, do celular mesmo">
+          <div class="c-col">
+            <div class="celular"><div class="tela">
+              <div class="upload-mini">📷<br>Toque para enviar sua foto
+                <div class="foto-voa"><svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><use href="#cena-antes"/></svg></div>
+              </div>
+              <span class="tag-ok">✓ Foto enviada!</span>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="cena" data-passo="Passo 3" data-fala="Terceiro passo: em poucos minutos você já vê a prévia da sua foto pronta. Antes de pagar!" data-legenda="<b>3.</b> Veja a prévia <b>antes de pagar</b>">
+          <div class="c-col">
+            <div class="c-moldura revela" style="width:clamp(130px,28%,230px)"><div class="foto-ilustra"><svg><use href="#cena-depois"/></svg></div></div>
+            <span class="badge">👀 Prévia pronta!</span>
+          </div>
+          <span class="brilho" style="top:20%;left:30%">✨</span><span class="brilho" style="top:60%;right:30%;animation-delay:.6s">✨</span>
+        </div>
+
+        <div class="cena" data-passo="Passo 4" data-fala="Quarto passo: gostou? Pague com PIX, de forma rápida e segura, pelo aplicativo do seu banco." data-legenda="<b>4.</b> Gostou? Pague com <b>PIX</b>, rápido e seguro">
+          <div class="c-col">
+            <div class="qr"><span class="qr-svg"></span><div class="carimbo">PAGO ✓</div></div>
+            <div class="c-titulo" style="font-size:clamp(18px,3vw,30px)">Pague pelo<br><span>app do banco</span></div>
+          </div>
+        </div>
+
+        <div class="cena cena-final" data-passo="Pronto!" data-fala="Pronto! Sua foto em alta qualidade é liberada na hora, para baixar, imprimir e mandar no WhatsApp. A entrega é garantida." data-legenda="Pronto! Sua foto chega <b>na hora</b>. Entrega garantida 📦">
+          <div class="c-col">
+            <div class="celular"><div class="tela" style="background:#E5DDD5;justify-content:flex-end;padding-bottom:16px">
+              <div class="balao"><div class="ft"><svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><use href="#cena-depois"/></svg></div><small>📥 Foto em alta qualidade</small></div>
+            </div></div>
+            <div class="selo-entrega">ENTREGA<br>GARANTIDA<br>✓</div>
+          </div>
+        </div>
+
+        <div class="vsl-legenda" id="vslLegenda">Toque no botão verde para assistir</div>
+        <button class="vsl-play" id="vslPlay" type="button" aria-label="Assistir à explicação">
+          <span class="bola"><svg viewBox="0 0 24 24" fill="#fff"><path d="M6 4l15 8-15 8z"/></svg></span>
+          <strong>Toque para assistir</strong>
+          <small>🔊 1 minuto • com narração</small>
+        </button>
+      </div>
+      <div class="vsl-controles">
+        <button type="button" id="vslPausa">⏸ Pausar</button>
+        <button type="button" id="vslSom">🔊 Som ligado</button>
+        <button type="button" id="vslRepetir">↺ Ver de novo</button>
+      </div>
+      <div style="text-align:center;margin-top:26px"><a href="#criar" class="btn btn-verde">Entendi, quero a minha ➜</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PASSO A PASSO ================= -->
+<section class="sec" id="como-funciona" style="background:#fff">
+  <div class="wrap">
+    <h2 class="sec-titulo">Passo a passo</h2>
+    <p class="sec-sub">São só 4 passos. Se tiver qualquer dúvida, nossa equipe te ajuda pelo WhatsApp.</p>
+    <div class="passos">
+      <div class="passo"><span class="num">1</span><div class="ilus">👆</div><h3>Escolha</h3><p>Toque em quem você quer na foto: Jesus, Nossa Senhora, um famoso ou alguém querido.</p></div>
+      <div class="passo"><span class="num">2</span><div class="ilus">🤳</div><h3>Envie sua foto</h3><p>Uma foto sua, de frente, tirada com o celular mesmo.</p></div>
+      <div class="passo"><span class="num">3</span><div class="ilus">👀</div><h3>Veja a prévia</h3><p>Em poucos minutos aparece a sua foto pronta, antes de pagar.</p></div>
+      <div class="passo final"><span class="num">4</span><div class="ilus">📥</div><h3>Receba na hora</h3><p>Pagou no PIX, a foto em alta qualidade é liberada na mesma tela.</p></div>
+    </div>
+    <div class="aviso-entrega"><span class="ic">📦</span><span>Você <u>vai receber</u> a sua foto. Se algo der errado, nossa equipe resolve pelo WhatsApp, ou devolvemos seu dinheiro.</span></div>
+  </div>
+</section>
+
+<!-- ================= CRIADOR ================= -->
+<section class="sec criador" id="criar">
+  <div class="wrap">
+    <h2 class="sec-titulo">Crie sua foto agora 📸</h2>
+    <p class="sec-sub">Preencha os 3 passos abaixo. A prévia é <b>grátis</b>, e você só paga se gostar.</p>
+
+    <div id="formulario">
+      <!-- Etapa 1 -->
+      <div class="etapa" id="etapa1">
+        <div class="etapa-topo"><span class="n">1</span><div><h3>Quem vai aparecer com você?</h3><p>Toque em uma das opções</p></div></div>
+        <div class="abas" role="tablist">
+          <button class="aba" role="tab" type="button" data-cat="fe" aria-selected="true"><span class="em">🙏</span>Fé e Devoção</button>
+          <button class="aba" role="tab" type="button" data-cat="saudade" aria-selected="false"><span class="em">🕊️</span>Quem já partiu</button>
+          <button class="aba" role="tab" type="button" data-cat="famosos" aria-selected="false"><span class="em">⭐</span>Famosos</button>
+        </div>
+        <div id="painelFe"><div class="opcoes" id="opcoesFe"></div></div>
+        <div id="painelSaudade" class="oculto">
+          <div class="painel-extra">
+            <p style="margin:0 0 14px;font-weight:700">Junte você e aquela pessoa especial que deixou saudade, numa foto nova, para guardar para sempre. 💛</p>
+            <label class="upload" id="upload2">
+              <input type="file" accept="image/*" id="foto2">
+              <span class="em">🖼️</span><strong>Toque aqui para enviar a foto da pessoa querida</strong><span>Pode ser foto antiga ou foto de foto. Quanto mais nítido o rosto, melhor.</span>
+            </label>
+          </div>
+        </div>
+        <div id="painelFamosos" class="oculto">
+          <div class="painel-extra">
+            <div class="campo" id="campoFamoso">
+              <label for="nomeFamoso">Escreva o nome da pessoa famosa</label>
+              <input id="nomeFamoso" maxlength="60" placeholder="Ex.: nome do seu cantor favorito" autocomplete="off">
+              <small>Cantor, cantora, jogador, apresentador… Escreva o nome completo, do jeito que é conhecido.</small>
+              <div class="erro-msg">Escreva o nome da pessoa famosa.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Etapa 2 -->
+      <div class="etapa" id="etapa2">
+        <div class="etapa-topo"><span class="n">2</span><div><h3>Envie uma foto sua</h3><p>Pode ser do celular mesmo</p></div></div>
+        <label class="upload" id="upload1">
+          <input type="file" accept="image/*" id="foto1">
+          <span class="em">📷</span><strong>Toque aqui para escolher sua foto</strong><span>Da galeria ou tire uma agora</span>
+        </label>
+        <div class="dicas">
+          <span>✅ Rosto de frente</span><span>✅ Lugar bem iluminado</span><span>✅ Só você na foto</span>
+          <span class="nao">❌ Óculos escuros</span><span class="nao">❌ Foto tremida</span>
+        </div>
+      </div>
+
+      <!-- Etapa 3 -->
+      <div class="etapa" id="etapa3">
+        <div class="etapa-topo"><span class="n">3</span><div><h3>Como vocês vão aparecer?</h3><p>Já deixamos marcado o mais pedido, mude se quiser</p></div></div>
+        <div class="subtitulo">Pose</div>
+        <div class="chips" id="poses"></div>
+        <div class="subtitulo">Lugar da foto</div>
+        <div class="chips" id="cenarios"></div>
+        <details class="extra">
+          <summary>Quer pedir algum detalhe? (opcional)</summary>
+          <div class="campo" style="margin-top:12px">
+            <textarea id="obs" rows="3" maxlength="200" placeholder="Ex.: com roupa branca, sorrindo, segurando um terço…"></textarea>
+          </div>
+        </details>
+      </div>
+
+      <div class="erro-geral" id="erroGeral"></div>
+      <div class="gerar-caixa">
+        <button class="btn btn-verde btn-bloco pulsa" id="btnGerar" type="button">✨ Ver minha foto pronta</button>
+        <div class="selos-mini"><span>👀 Prévia grátis</span><span>📦 Entrega garantida</span><span>🔒 Seus dados protegidos</span></div>
+      </div>
+    </div>
+
+    <!-- Resultado (prévia de alguns segundos + bloqueio) -->
+    <div class="resultado" id="resultado">
+      <div>
+        <div class="quadro" id="quadro">
+          <div class="quadro-foto">
+            <img id="imgPrevia" alt="Prévia da sua montagem" draggable="false">
+            <div class="contador" id="contador"><span>⏳ Prévia some em</span><b><span id="contadorNum">5</span>s</b></div>
+            <div class="cadeado">
+              <span class="ic">🔒</span>
+              <strong>Sua foto está pronta e guardada!</strong>
+              <span>Libere agora para ver em alta qualidade, sem marca d'água</span>
+            </div>
+          </div>
+          <div class="legenda-q">Sua foto ✨</div>
+        </div>
+      </div>
+      <div class="oferta">
+        <h3>Ficou linda! Sua foto já está pronta 🎉</h3>
+        <div class="preco"><s>De R$ <span class="precoDe">49,90</span></s><strong>R$ <span class="precoPor">19,90</span></strong><small>pagamento único</small></div>
+        <ul>
+          <li><span class="check">✓</span><span>Foto em <b>alta qualidade</b>, sem marca d'água</span></li>
+          <li><span class="check">✓</span><span>Liberada <b>na hora</b>, aqui nesta tela</span></li>
+          <li><span class="check">✓</span><span>Pronta para imprimir, emoldurar e mandar no WhatsApp</span></li>
+          <li><span class="check">✓</span><span>Não gostou? <b>Refazemos grátis</b></span></li>
+        </ul>
+        <button class="btn btn-verde btn-bloco pulsa" id="btnLiberar" type="button">🔓 Liberar minha foto</button>
+        <div class="selos-mini"><span>💠 PIX</span><span>🔒 100% seguro</span><span>📦 Entrega garantida</span></div>
+        <div class="garante"><span class="ic">🛡️</span><span>Garantia total: você recebe sua foto ou devolvemos seu dinheiro.</span></div>
+        <button class="link-novo" id="btnNovo" type="button">Quero tentar com outra foto ou outra pessoa</button>
+      </div>
+    </div>
+
+    <!-- Liberada -->
+    <div class="liberada" id="liberada">
+      <h3>🎉 Sua foto foi liberada!</h3>
+      <p style="font-size:20px;margin:0 0 22px">Obrigado pela confiança! Salve agora no seu celular.</p>
+      <div class="quadro"><div class="quadro-foto"><img id="imgFinal" alt="Sua foto em alta qualidade"></div><div class="legenda-q">Sua foto ✨</div></div>
+      <div class="acoes">
+        <a class="btn btn-verde btn-bloco" id="btnBaixar" href="#" download>📥 Baixar minha foto</a>
+        <button class="btn btn-zap btn-bloco" id="btnCompartilhar" type="button">💬 Mandar no WhatsApp</button>
+        <a class="btn btn-sec btn-bloco" id="btnAjuda" href="#" target="_blank" rel="noopener">Precisa de ajuda? Fale com a gente</a>
+      </div>
+      <p style="color:var(--suave);font-size:16px;margin-top:18px">Dica: guarde esta página. Se fechar sem querer, é só abrir de novo neste mesmo celular que sua foto continua aqui.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OCASIÕES ================= -->
+<section class="sec">
+  <div class="wrap">
+    <h2 class="sec-titulo">Um presente que <span class="destaque">emociona</span></h2>
+    <p class="sec-sub">Para guardar, imprimir, emoldurar ou dar de presente para quem você ama.</p>
+    <div class="ocasioes">
+      <div class="ocasiao"><span class="em">💐</span>Dia das Mães e dos Pais</div>
+      <div class="ocasiao"><span class="em">🎂</span>Aniversário</div>
+      <div class="ocasiao"><span class="em">🕊️</span>Homenagem a quem partiu</div>
+      <div class="ocasiao"><span class="em">🙏</span>Lembrança de fé</div>
+      <div class="ocasiao"><span class="em">🖼️</span>Quadro para a sala</div>
+    </div>
+    <!-- Coloque aqui depoimentos REAIS de clientes (com foto e autorização) assim que tiver. -->
+  </div>
+</section>
+
+<!-- ================= GARANTIA ================= -->
+<section class="sec" id="garantia" style="padding-top:10px">
+  <div class="wrap">
+    <div class="garantia">
+      <div class="selo-grande"><span><b>100%</b>ENTREGA<br>GARANTIDA</span></div>
+      <div>
+        <h2>Você <span>vai receber</span> sua foto. É garantido.</h2>
+        <ul>
+          <li>✅ <span><b>Prévia antes de pagar:</b> você só paga depois de ver como ficou.</span></li>
+          <li>✅ <span><b>Liberação na hora:</b> pagou, a foto aparece na mesma tela para baixar.</span></li>
+          <li>✅ <span><b>Refazemos grátis</b> se você não gostar do resultado.</span></li>
+          <li>✅ <span><b>Atendimento pelo WhatsApp</b> com gente de verdade, se precisar.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec" id="duvidas" style="background:#fff">
+  <div class="wrap">
+    <h2 class="sec-titulo">Perguntas frequentes</h2>
+    <p class="sec-sub">Ficou alguma dúvida? Veja aqui ou chame a gente no WhatsApp.</p>
+    <div class="faq">
+      <details><summary>Como eu recebo a minha foto?</summary><p>Assim que o PIX é confirmado, a foto em alta qualidade aparece na mesma tela, com um botão grande para baixar e outro para mandar no WhatsApp. Não precisa esperar e-mail nem correio.</p></details>
+      <details><summary>Quanto tempo demora?</summary><p>A prévia fica pronta em cerca de 1 minuto. Depois do pagamento no PIX, a liberação é na hora.</p></details>
+      <details><summary>Eu não sou bom com celular. Consigo fazer?</summary><p>Consegue sim! São só 3 toques: escolher quem vai aparecer, enviar sua foto e apertar o botão verde. Se travar em qualquer parte, chame a gente no WhatsApp que ajudamos você.</p></details>
+      <details><summary>E se eu não gostar do resultado?</summary><p>Você vê a prévia antes de pagar. E, mesmo depois de pagar, se não ficar do seu agrado, fale com a gente pelo WhatsApp que refazemos grátis.</p></details>
+      <details><summary>É seguro pagar com PIX aqui?</summary><p>Sim. O PIX é gerado por uma empresa de pagamentos e cai direto na conta. Você paga pelo aplicativo do seu banco, como faz no dia a dia.</p></details>
+      <details><summary>A foto é de verdade?</summary><p>É uma montagem artística, criada com tecnologia a partir da sua foto, para homenagem, lembrança e carinho. Ela fica bem realista, mas não é uma foto tirada no momento.</p></details>
+      <details><summary>Posso imprimir e colocar num quadro?</summary><p>Pode! A foto liberada vem em alta qualidade, boa para imprimir em tamanho de porta-retrato.</p></details>
+      <details><summary>O que vocês fazem com a minha foto?</summary><p>Usamos sua foto só para criar a sua montagem. Ela não é publicada nem compartilhada com ninguém.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="sec cta-final">
+  <div class="wrap">
+    <h2>Sua foto com quem você ama,<br>pronta em minutos ❤️</h2>
+    <p class="sec-sub">Veja a prévia grátis agora. Você só paga se gostar.</p>
+    <a href="#criar" class="btn btn-verde pulsa">📸 Criar minha foto agora</a>
+    <div class="selos-mini"><span>📦 Entrega garantida</span><span>👀 Prévia grátis</span><span>🔁 Refazemos grátis</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Montagens artísticas</b> criadas com inteligência artificial para homenagem, lembrança e entretenimento. As imagens não são fotografias reais e não indicam vínculo, apoio ou autorização das pessoas representadas.</p>
+    <p>Dúvidas? <a href="#" class="linkZap">Fale com a gente no WhatsApp</a></p>
+    <p>© <span id="ano"></span> Foto com Quem Você Ama</p>
+  </div>
+</footer>
+
+<!-- ================= FIXOS ================= -->
+<div class="cta-fixo" id="ctaFixo">
+  <a href="#criar" class="btn btn-verde btn-bloco">📸 Criar minha foto agora</a>
+  <small>📦 Entrega garantida • Prévia grátis</small>
+</div>
+<a class="zap-flutua linkZap" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#fff"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.7 12.7-12.7S23 3 16 3zm0 23.2c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.1 5.1 16 5.1s10.6 4.7 10.6 10.5S21.9 26.2 16 26.2zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 2.8 1.1 3.4.9 4 .8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
+
+<!-- Loader -->
+<div class="overlay" id="loader" role="alertdialog" aria-live="assertive" aria-label="Criando sua foto">
+  <div class="loader">
+    <div class="anel"><span>✨</span></div>
+    <h3>Criando sua foto…</h3>
+    <div class="etapa-txt" id="loaderTxt">Recebendo sua foto</div>
+    <div class="barra"><i id="loaderBarra"></i></div>
+    <small>⚠️ Não feche esta página. Leva cerca de 1 minuto.</small>
+  </div>
+</div>
+
+<!-- Checkout -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+  <div class="modal-caixa">
+    <button class="modal-fechar" id="modalFechar" type="button" aria-label="Fechar">×</button>
+
+    <div id="passoDados">
+      <h3 id="modalTitulo">Falta pouco! 💚</h3>
+      <p style="margin:0;color:var(--suave);font-size:17px">Preencha para gerar o PIX. Seus dados ficam protegidos.</p>
+      <div class="resumo"><img id="resumoImg" alt=""><div><b>Sua foto em alta qualidade</b><strong>R$ <span class="precoPor">19,90</span></strong></div></div>
+      <form id="formDados" novalidate>
+        <div class="campo" data-campo="nome"><label for="cNome">Seu nome completo</label><input id="cNome" name="nome" autocomplete="name" required><div class="erro-msg"></div></div>
+        <div class="campo" data-campo="cpf"><label for="cCpf">CPF</label><input id="cCpf" name="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" required><small>Pedido pelo banco para gerar o PIX.</small><div class="erro-msg"></div></div>
+        <div class="campo" data-campo="email"><label for="cEmail">E-mail</label><input id="cEmail" name="email" type="email" inputmode="email" autocomplete="email" required><div class="erro-msg"></div></div>
+        <div class="campo" data-campo="telefone"><label for="cTel">WhatsApp</label><input id="cTel" name="telefone" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" required><small>Para te ajudarmos se precisar.</small><div class="erro-msg"></div></div>
+        <div class="erro-geral" id="erroModal" style="margin-top:14px"></div>
+        <button class="btn btn-verde btn-bloco" id="btnPix" type="submit" style="margin-top:18px">Gerar PIX ➜</button>
+      </form>
+      <div class="seguro"><span>🔒 Compra segura</span><span>📦 Entrega garantida</span></div>
+    </div>
+
+    <div id="passoPix" class="oculto">
+      <h3>Pague com PIX 💠</h3>
+      <p style="margin:0;color:var(--suave);font-size:17px">Valor: <b style="color:var(--verde-2)">R$ <span class="precoPor">19,90</span></b> • Vence em <b id="expira">20:00</b></p>
+      <div class="pix-passos"><b>Como pagar:</b><ol><li>Toque no botão verde <b>Copiar código</b></li><li>Abra o app do seu banco e vá em <b>PIX</b></li><li>Escolha <b>PIX Copia e Cola</b>, cole e confirme</li></ol></div>
+      <button class="btn btn-verde btn-bloco" id="btnCopiar" type="button">📋 Copiar código PIX</button>
+      <textarea class="copia" id="pixCodigo" readonly aria-label="Código PIX copia e cola"></textarea>
+      <p style="text-align:center;color:var(--suave);font-weight:800;margin:14px 0 0;font-size:16px">Ou leia o QR Code com outro celular:</p>
+      <div class="pix-qr" id="pixQr"></div>
+      <div class="aguardando"><i></i>Aguardando pagamento… pode voltar aqui depois de pagar</div>
+      <button class="btn btn-sec btn-bloco oculto" id="btnSimular" type="button" style="margin-top:14px">Simular pagamento aprovado (demo)</button>
+      <div class="seguro"><span>📦 Sua foto é liberada aqui assim que o PIX cair</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+ * CONFIGURAÇÃO — ajuste aqui
+ * ===================================================================== */
+const API          = 'api';            // pasta dos endpoints PHP (relativa a esta página)
+const PRECO_POR    = '19,90';          // mantenha igual ao config.php (o valor cobrado vem do servidor)
+const PRECO_DE     = '49,90';
+const WHATSAPP     = '5500000000000';  // TROCAR: seu número com DDI+DDD, só dígitos
+const VSL_VIDEO    = '';               // opcional: URL de um .mp4 real para substituir a animação
+
+/* Os ids precisam existir em ACOMPANHANTES no fotos/api/_fotos.php.
+ * Para usar foto/ilustração no lugar do emoji, preencha "img". */
+const CRUZ = '<svg viewBox="0 0 24 24" width="58%" height="58%"><path d="M10 2h4v6h6v4h-6v10h-4V12H4V8h6z" fill="#E59A00" stroke="#9A6400" stroke-width=".6"/></svg>';
+const CATALOGO_FE = [
+  { id: 'jesus',         nome: 'Jesus Cristo',             icone: CRUZ, img: '' },
+  { id: 'aparecida',     nome: 'Nossa Senhora Aparecida',  icone: '👑', img: '' },
+  { id: 'fatima',        nome: 'Nossa Senhora de Fátima',  icone: '🌹', img: '' },
+  { id: 'anjo',          nome: 'Anjo da Guarda',           icone: '👼', img: '' },
+  { id: 'sao_francisco', nome: 'São Francisco de Assis',   icone: '🕊️', img: '' },
+  { id: 'santo_antonio', nome: 'Santo Antônio',            icone: '💐', img: '' },
+  { id: 'sao_jorge',     nome: 'São Jorge',                icone: '🛡️', img: '' },
+];
+const POSES = [
+  { id: 'lado_a_lado', nome: '🧍 Lado a lado' },
+  { id: 'abraco',      nome: '🤗 Abraçados' },
+  { id: 'ombro',       nome: '🤝 Mão no ombro' },
+  { id: 'rezando',     nome: '🙏 Rezando juntos' },
+];
+const CENARIOS = [
+  { id: 'ceu',     nome: '☁️ No céu' },
+  { id: 'igreja',  nome: '⛪ Igreja' },
+  { id: 'jardim',  nome: '🌷 Jardim' },
+  { id: 'casa',    nome: '🏠 Em casa' },
+  { id: 'estudio', nome: '📷 Estúdio' },
+  { id: 'palco',   nome: '🎤 Palco de show' },
+];
+
+/* ===================================================================== */
+const params = new URLSearchParams(location.search);
+const DEMO   = params.has('demo') || location.protocol === 'file:';
+const CHAVE  = 'mf_pedido_v1';
+const $  = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+const estado = { cat: 'fe', acompanhante: 'jesus', pose: 'lado_a_lado', cenario: 'ceu', foto1: null, foto2: null, pedido: null };
+
+/* ---------- textos configuráveis ---------- */
+$$('.precoPor').forEach(e => e.textContent = PRECO_POR);
+$$('.precoDe').forEach(e => e.textContent = PRECO_DE);
+const linkZap = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Olá! Preciso de ajuda com a minha foto.');
+$$('.linkZap').forEach(a => { a.href = linkZap; a.target = '_blank'; a.rel = 'noopener'; });
+$('#btnAjuda').href = linkZap;
+$('#ano').textContent = new Date().getFullYear();
+if (DEMO) $('#demoAviso').classList.remove('oculto');
+
+/* ---------- armazenamento local (o pedido sobrevive a ir no app do banco) ---------- */
+function salvar(dados) { try { localStorage.setItem(CHAVE, JSON.stringify(dados)); } catch (e) {} }
+function carregar() { try { return JSON.parse(localStorage.getItem(CHAVE) || 'null'); } catch (e) { return null; } }
+function limpar() { try { localStorage.removeItem(CHAVE); } catch (e) {} }
+
+/* =====================================================================
+ * MINI VSL animada com narração
+ * ===================================================================== */
+(function vsl() {
+  const caixa = $('#vsl');
+  if (VSL_VIDEO) {
+    caixa.innerHTML = '<video src="' + VSL_VIDEO + '" controls playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000"></video>';
+    $('.vsl-controles').remove();
+    return;
+  }
+  const cenas = $$('#vsl .cena');
+  const barras = $('#vslBarras');
+  cenas.forEach(() => barras.insertAdjacentHTML('beforeend', '<span><i></i></span>'));
+  const fala = 'speechSynthesis' in window;
+  let idx = -1, tocando = false, som = fala, timer = null, inicio = 0, duracaoAtual = 0, anim = null, restante = 0;
+
+  function voz() {
+    const vozes = speechSynthesis.getVoices();
+    return vozes.find(v => /pt[-_]BR/i.test(v.lang) && /google|luciana|francisca|natural/i.test(v.name))
+        || vozes.find(v => /pt[-_]BR/i.test(v.lang)) || vozes.find(v => /^pt/i.test(v.lang));
+  }
+  if (fala) speechSynthesis.onvoiceschanged = () => {};
+
+  function falar(texto) {
+    if (!som || !fala) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(texto);
+    const v = voz(); if (v) u.voice = v;
+    u.lang = 'pt-BR'; u.rate = 0.95; u.pitch = 1.05;
+    speechSynthesis.speak(u);
+  }
+
+  function mostrar(i) {
+    idx = i;
+    cenas.forEach((c, n) => {
+      c.classList.toggle('ativa', n === i);
+      // reinicia animações da cena
+      if (n === i) { c.querySelectorAll('*').forEach(el => { el.style.animation = 'none'; el.offsetHeight; el.style.animation = ''; }); }
+    });
+    [...barras.children].forEach((b, n) => { b.classList.toggle('feita', n < i); b.firstChild.style.width = n < i ? '100%' : '0'; });
+    const c = cenas[i];
+    $('#vslLegenda').innerHTML = c.dataset.legenda;
+    const passo = $('#vslPasso');
+    passo.textContent = c.dataset.passo; passo.classList.toggle('vis', !!c.dataset.passo);
+    const palavras = c.dataset.fala.split(/\s+/).length;
+    duracaoAtual = Math.max(5200, palavras * 400 + 1200);
+    restante = duracaoAtual;
+    falar(c.dataset.fala);
+    rodar();
+  }
+
+  function rodar() {
+    clearTimeout(timer); cancelAnimationFrame(anim);
+    inicio = performance.now();
+    const barra = barras.children[idx].firstChild;
+    const base = 1 - restante / duracaoAtual;
+    const passo = () => {
+      const p = Math.min(1, base + (performance.now() - inicio) / duracaoAtual);
+      barra.style.width = (p * 100) + '%';
+      if (p < 1 && tocando) anim = requestAnimationFrame(passo);
+    };
+    anim = requestAnimationFrame(passo);
+    timer = setTimeout(proxima, restante);
+  }
+
+  function proxima() {
+    // espera a narração terminar antes de trocar de cena
+    if (som && fala && speechSynthesis.speaking) { timer = setTimeout(proxima, 300); return; }
+    if (idx < cenas.length - 1) mostrar(idx + 1);
+    else fim();
+  }
+
+  function fim() {
+    tocando = false;
+    [...barras.children].forEach(b => b.firstChild.style.width = '100%');
+    $('#vslPausa').textContent = '▶ Continuar';
+    const play = $('#vslPlay');
+    play.querySelector('strong').textContent = 'Assistir de novo';
+    play.querySelector('small').textContent = 'Agora é com você: crie sua foto logo abaixo 👇';
+    play.classList.remove('oculto');
+    idx = -1;
+  }
+
+  function play() {
+    $('#vslPlay').classList.add('oculto');
+    tocando = true;
+    $('#vslPausa').textContent = '⏸ Pausar';
+    mostrar(idx < 0 ? 0 : idx);
+  }
+
+  function pausar() {
+    if (idx < 0) return play();
+    if (tocando) {
+      tocando = false;
+      clearTimeout(timer); cancelAnimationFrame(anim);
+      restante = Math.max(800, restante - (performance.now() - inicio));
+      if (fala) speechSynthesis.pause();
+      caixa.querySelectorAll('.cena.ativa *').forEach(el => el.style.animationPlayState = 'paused');
+      $('#vslPausa').textContent = '▶ Continuar';
+    } else {
+      tocando = true;
+      if (fala) speechSynthesis.resume();
+      caixa.querySelectorAll('.cena.ativa *').forEach(el => el.style.animationPlayState = '');
+      $('#vslPausa').textContent = '⏸ Pausar';
+      rodar();
+    }
+  }
+
+  $('#vslPlay').addEventListener('click', play);
+  $('#vslPausa').addEventListener('click', pausar);
+  $('#vslRepetir').addEventListener('click', () => { if (fala) speechSynthesis.cancel(); tocando = true; $('#vslPlay').classList.add('oculto'); $('#vslPausa').textContent = '⏸ Pausar'; mostrar(0); });
+  $('#vslSom').addEventListener('click', () => {
+    som = !som && fala;
+    if (!som && fala) speechSynthesis.cancel();
+    $('#vslSom').textContent = som ? '🔊 Som ligado' : '🔇 Som desligado';
+  });
+  if (!fala) $('#vslSom').textContent = '🔇 Sem áudio neste aparelho';
+  cenas[0].classList.add('ativa');
+  $$('.qr-svg').forEach(e => e.innerHTML = qrFalso());
+})();
+
+/* =====================================================================
+ * CRIADOR
+ * ===================================================================== */
+function montarOpcoes() {
+  $('#opcoesFe').innerHTML = CATALOGO_FE.map(o =>
+    `<button class="opcao" type="button" data-id="${o.id}" aria-pressed="${o.id === estado.acompanhante}">
+       <span class="em">${o.img ? `<img src="${o.img}" alt="">` : o.icone}</span>${o.nome}</button>`).join('');
+  $('#poses').innerHTML = POSES.map(p => `<button class="chip" type="button" data-id="${p.id}" aria-pressed="${p.id === estado.pose}">${p.nome}</button>`).join('');
+  $('#cenarios').innerHTML = CENARIOS.map(p => `<button class="chip" type="button" data-id="${p.id}" aria-pressed="${p.id === estado.cenario}">${p.nome}</button>`).join('');
+}
+montarOpcoes();
+
+function marcar(grupo, id) { $$(grupo + ' [data-id]').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id)); }
+
+$('#opcoesFe').addEventListener('click', e => {
+  const b = e.target.closest('.opcao'); if (!b) return;
+  estado.acompanhante = b.dataset.id; marcar('#opcoesFe', b.dataset.id); atualizarEtapas();
+});
+$('#poses').addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) { estado.pose = b.dataset.id; marcar('#poses', b.dataset.id); } });
+$('#cenarios').addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) { estado.cenario = b.dataset.id; marcar('#cenarios', b.dataset.id); } });
+
+$$('.aba').forEach(aba => aba.addEventListener('click', () => {
+  estado.cat = aba.dataset.cat;
+  $$('.aba').forEach(a => a.setAttribute('aria-selected', a === aba));
+  $('#painelFe').classList.toggle('oculto', estado.cat !== 'fe');
+  $('#painelSaudade').classList.toggle('oculto', estado.cat !== 'saudade');
+  $('#painelFamosos').classList.toggle('oculto', estado.cat !== 'famosos');
+  if (estado.cat === 'fe') {
+    estado.acompanhante = $('#opcoesFe [aria-pressed="true"]')?.dataset.id || 'jesus';
+  } else {
+    estado.acompanhante = estado.cat === 'saudade' ? 'ente' : 'famoso';
+  }
+  // sugestões de cenário por categoria
+  const sugestao = { fe: 'ceu', saudade: 'ceu', famosos: 'palco' }[estado.cat];
+  estado.cenario = sugestao; marcar('#cenarios', sugestao);
+  if (estado.cat !== 'fe' && estado.pose === 'rezando') { estado.pose = 'abraco'; marcar('#poses', 'abraco'); }
+  atualizarEtapas();
+}));
+$('#nomeFamoso').addEventListener('input', () => { $('#campoFamoso').classList.remove('invalido'); atualizarEtapas(); });
+
+/* Reduz a foto no próprio celular antes de enviar: upload rápido, sem estourar limite do servidor
+ * e já com a rotação correta (o navegador aplica a orientação EXIF ao desenhar). */
+function reduzirFoto(arquivo, max = 1600) {
+  return new Promise((ok, falha) => {
+    if (!arquivo || !arquivo.type.startsWith('image/')) return falha(new Error('tipo'));
+    const url = URL.createObjectURL(arquivo);
+    const img = new Image();
+    img.onload = () => {
+      const esc = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.naturalWidth * esc); c.height = Math.round(img.naturalHeight * esc);
+      const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+      c.toBlob(b => b ? ok(b) : falha(new Error('blob')), 'image/jpeg', 0.9);
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); falha(new Error('leitura')); };
+    img.src = url;
+  });
+}
+
+function ligarUpload(inputSel, caixaSel, chave, titulo) {
+  const input = $(inputSel), caixa = $(caixaSel);
+  async function receber(arquivo) {
+    try {
+      const blob = await reduzirFoto(arquivo);
+      estado[chave] = blob;
+      caixa.classList.add('tem-foto');
+      caixa.querySelectorAll(':scope > :not(input)').forEach(n => n.remove());
+      caixa.insertAdjacentHTML('beforeend', `<div class="upload-preview"><img src="${URL.createObjectURL(blob)}" alt=""><div><b>✓ ${titulo}</b><u>Trocar foto</u></div></div>`);
+      erroGeral('');
+      atualizarEtapas();
+    } catch (e) {
+      erroGeral('Não conseguimos abrir essa foto. Tente outra, de preferência tirada com a câmera do celular.');
+    }
+  }
+  input.addEventListener('change', () => input.files[0] && receber(input.files[0]));
+  ['dragenter', 'dragover'].forEach(ev => caixa.addEventListener(ev, e => { e.preventDefault(); caixa.classList.add('arrasta'); }));
+  ['dragleave', 'drop'].forEach(ev => caixa.addEventListener(ev, e => { e.preventDefault(); caixa.classList.remove('arrasta'); }));
+  caixa.addEventListener('drop', e => e.dataTransfer.files[0] && receber(e.dataTransfer.files[0]));
+}
+ligarUpload('#foto1', '#upload1', 'foto1', 'Foto recebida!');
+ligarUpload('#foto2', '#upload2', 'foto2', 'Foto da pessoa querida recebida!');
+
+function etapa1Ok() {
+  if (estado.cat === 'saudade') return !!estado.foto2;
+  if (estado.cat === 'famosos') return $('#nomeFamoso').value.trim().length >= 3;
+  return !!estado.acompanhante;
+}
+function atualizarEtapas() {
+  $('#etapa1').classList.toggle('ok', etapa1Ok());
+  $('#etapa2').classList.toggle('ok', !!estado.foto1);
+  $('#etapa3').classList.add('ok');
+}
+atualizarEtapas();
+
+function erroGeral(msg) { const e = $('#erroGeral'); e.textContent = msg; e.classList.toggle('vis', !!msg); }
+
+/* ---------- loader ---------- */
+let loaderTimer = null;
+function loader(ligar) {
+  const etapas = ['Recebendo sua foto', 'Analisando seu rosto com cuidado', 'Posicionando quem vai aparecer com você', 'Ajustando luz e cores', 'Caprichando nos detalhes', 'Quase pronto…'];
+  clearInterval(loaderTimer);
+  $('#loader').classList.toggle('vis', ligar);
+  document.body.style.overflow = ligar ? 'hidden' : '';
+  if (!ligar) return;
+  let t = 0;
+  $('#loaderBarra').style.width = '3%';
+  loaderTimer = setInterval(() => {
+    t += 1;
+    const p = 95 * (1 - Math.exp(-t / 28));  // avança rápido no começo e desacelera
+    $('#loaderBarra').style.width = p + '%';
+    $('#loaderTxt').textContent = etapas[Math.min(etapas.length - 1, Math.floor(t / 9))];
+  }, 1000);
+}
+
+/* ---------- gerar ---------- */
+$('#btnGerar').addEventListener('click', async () => {
+  erroGeral('');
+  if (estado.cat === 'famosos' && !etapa1Ok()) { $('#campoFamoso').classList.add('invalido'); $('#etapa1').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+  if (estado.cat === 'saudade' && !estado.foto2) { erroGeral('Envie a foto da pessoa querida (passo 1).'); $('#etapa1').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+  if (!estado.foto1) { erroGeral('Falta enviar a sua foto (passo 2).'); $('#etapa2').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+
+  loader(true);
+  try {
+    const dados = DEMO ? await gerarDemo() : await gerarServidor();
+    loader(false);
+    estado.pedido = { pedido: dados.pedido, token: dados.token, previa: dados.previa, criado: Date.now() };
+    salvar(estado.pedido);
+    mostrarResultado(dados.previa, dados.segundos || 5);
+  } catch (e) {
+    loader(false);
+    erroGeral(e.message || 'Não conseguimos criar sua foto agora. Tente de novo em instantes.');
+    $('#erroGeral').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+});
+
+async function gerarServidor() {
+  const fd = new FormData();
+  fd.append('foto', estado.foto1, 'foto.jpg');
+  if (estado.acompanhante === 'ente') fd.append('foto2', estado.foto2, 'foto2.jpg');
+  fd.append('acompanhante', estado.acompanhante);
+  fd.append('nome_famoso', $('#nomeFamoso').value.trim());
+  fd.append('pose', estado.pose);
+  fd.append('cenario', estado.cenario);
+  fd.append('obs', $('#obs').value.trim());
+  let r;
+  try { r = await fetch(API + '/gerar.php', { method: 'POST', body: fd }); }
+  catch (e) { throw new Error('Sua internet parece ter caído. Confira a conexão e tente de novo.'); }
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.erro || 'Não conseguimos criar sua foto agora. Tente de novo em instantes.');
+  return j;
+}
+
+/* ---------- resultado com prévia temporária ---------- */
+let contadorTimer = null;
+function mostrarResultado(previa, segundos, jaVista = false) {
+  $('#formulario').classList.add('oculto');
+  $('#liberada').classList.remove('vis');
+  $('#resultado').classList.add('vis');
+  $('#imgPrevia').src = previa;
+  $('#resumoImg').src = previa;
+  const quadro = $('#quadro');
+  clearInterval(contadorTimer);
+  $('#resultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  if (jaVista) { quadro.classList.add('bloqueado'); $('#contador').classList.add('oculto'); return; }
+
+  quadro.classList.remove('bloqueado');
+  $('#contador').classList.remove('oculto');
+  let s = segundos;
+  $('#contadorNum').textContent = s;
+  contadorTimer = setInterval(() => {
+    s -= 1;
+    $('#contadorNum').textContent = Math.max(0, s);
+    if (s <= 0) {
+      clearInterval(contadorTimer);
+      quadro.classList.add('bloqueado');
+      $('#contador').classList.add('oculto');
+      if (estado.pedido) { estado.pedido.vista = true; salvar(estado.pedido); }
+    }
+  }, 1000);
+}
+$('#imgPrevia').addEventListener('contextmenu', e => e.preventDefault());
+
+$('#btnNovo').addEventListener('click', () => {
+  if (!confirm('Criar uma nova prévia? A foto atual continua disponível só até você criar outra.')) return;
+  limpar(); estado.pedido = null; pararConsulta();
+  $('#resultado').classList.remove('vis');
+  $('#formulario').classList.remove('oculto');
+  $('#criar').scrollIntoView({ behavior: 'smooth' });
+});
+
+/* =====================================================================
+ * CHECKOUT PIX
+ * ===================================================================== */
+function mascararCpf(v) { return v.replace(/\D/g, '').slice(0, 11).replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2'); }
+function mascararTel(v) { const d = v.replace(/\D/g, '').slice(0, 11); return d.length <= 10 ? d.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{4})(\d)/, '$1-$2') : d.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2'); }
+$('#cCpf').addEventListener('input', e => e.target.value = mascararCpf(e.target.value));
+$('#cTel').addEventListener('input', e => e.target.value = mascararTel(e.target.value));
+$$('#formDados input').forEach(i => i.addEventListener('input', () => i.closest('.campo').classList.remove('invalido')));
+
+function cpfValido(c) {
+  c = c.replace(/\D/g, '');
+  if (c.length !== 11 || /^(\d)\1{10}$/.test(c)) return false;
+  for (let t = 9; t < 11; t++) { let s = 0; for (let i = 0; i < t; i++) s += c[i] * (t + 1 - i); if (((10 * s) % 11) % 10 != c[t]) return false; }
+  return true;
+}
+function rastreio() {
+  const d = {};
+  ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term', 'gclid', 'ttclid', 'fbclid', 'src', 'sck'].forEach(k => { const v = params.get(k); if (v) d[k] = v; });
+  const ck = n => (document.cookie.split('; ').find(c => c.startsWith(n + '=')) || '').split('=').slice(1).join('=');
+  if (ck('_fbc')) d.fbc = decodeURIComponent(ck('_fbc'));
+  if (ck('_fbp')) d.fbp = decodeURIComponent(ck('_fbp'));
+  return d;
+}
+
+function abrirModal(passo) {
+  $('#modal').classList.add('vis');
+  document.body.style.overflow = 'hidden';
+  $('#passoDados').classList.toggle('oculto', passo !== 'dados');
+  $('#passoPix').classList.toggle('oculto', passo !== 'pix');
+  $('#btnSimular').classList.toggle('oculto', !DEMO);
+}
+function fecharModal() { $('#modal').classList.remove('vis'); document.body.style.overflow = ''; }
+$('#modalFechar').addEventListener('click', fecharModal);
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') fecharModal(); });
+
+$('#btnLiberar').addEventListener('click', () => {
+  if (estado.pedido?.pix && estado.pedido.pix.expira > Date.now()) { mostrarPix(estado.pedido.pix); return; }
+  abrirModal('dados');
+  setTimeout(() => $('#cNome').focus(), 50);
+});
+
+function marcarErroCampo(nome, msg) { const c = $(`.campo[data-campo="${nome}"]`); c.classList.add('invalido'); c.querySelector('.erro-msg').textContent = msg; }
+
+$('#formDados').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, dados = { nome: f.nome.value.trim(), cpf: f.cpf.value, email: f.email.value.trim(), telefone: f.telefone.value };
+  $$('#formDados .campo').forEach(c => c.classList.remove('invalido'));
+  $('#erroModal').classList.remove('vis');
+  let ok = true;
+  if (dados.nome.split(/\s+/).length < 2) { marcarErroCampo('nome', 'Escreva nome e sobrenome.'); ok = false; }
+  if (!cpfValido(dados.cpf)) { marcarErroCampo('cpf', 'CPF inválido. Confira os números.'); ok = false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(dados.email)) { marcarErroCampo('email', 'E-mail inválido.'); ok = false; }
+  if (dados.telefone.replace(/\D/g, '').length < 10) { marcarErroCampo('telefone', 'Coloque o DDD + número.'); ok = false; }
+  if (!ok) { f.querySelector('.invalido input')?.focus(); return; }
+
+  const btn = $('#btnPix'); btn.disabled = true; btn.textContent = 'Gerando PIX…';
+  try {
+    let pix;
+    if (DEMO) {
+      await new Promise(r => setTimeout(r, 900));
+      pix = { qrcode: '00020126580014br.gov.bcb.pix0136DEMONSTRACAO-SEM-COBRANCA5204000053039865406' + PRECO_POR.replace(',', '.') + '5802BR5925FOTO COM QUEM VOCE AMA6009SAO PAULO', qrcode_image: '', expiracao: 1200 };
+    } else {
+      const r = await fetch(API + '/pix.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...dados, pedido: estado.pedido.pedido, token: estado.pedido.token, rastreio: rastreio() }) });
+      const j = await r.json().catch(() => ({}));
+      if (j.pago) { return verificar(); }
+      if (!r.ok) {
+        if (j.campos) Object.entries(j.campos).forEach(([k, v]) => marcarErroCampo(k, v));
+        throw new Error(j.erro || 'Não foi possível gerar o PIX agora.');
+      }
+      pix = j;
+    }
+    estado.pedido.pix = { qrcode: pix.qrcode, qrcode_image: pix.qrcode_image, expira: Date.now() + (pix.expiracao || 1200) * 1000 };
+    salvar(estado.pedido);
+    if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', { value: parseFloat(PRECO_POR.replace(',', '.')), currency: 'BRL' });
+    mostrarPix(estado.pedido.pix);
+  } catch (err) {
+    $('#erroModal').textContent = err.message; $('#erroModal').classList.add('vis');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Gerar PIX ➜';
+  }
+});
+
+let expiraTimer = null, consultaTimer = null;
+function mostrarPix(pix) {
+  abrirModal('pix');
+  $('#pixCodigo').value = pix.qrcode || '';
+  const qr = $('#pixQr');
+  if (pix.qrcode_image) {
+    const src = /^data:|^https?:/.test(pix.qrcode_image) ? pix.qrcode_image : 'data:image/png;base64,' + pix.qrcode_image;
+    qr.innerHTML = `<img src="${src}" alt="QR Code PIX">`;
+    qr.classList.remove('oculto');
+  } else if (DEMO) {
+    qr.innerHTML = qrFalso();
+  } else {
+    qr.classList.add('oculto');
+  }
+  clearInterval(expiraTimer);
+  const tick = () => {
+    const s = Math.max(0, Math.round((pix.expira - Date.now()) / 1000));
+    $('#expira').textContent = String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+    if (s <= 0) { clearInterval(expiraTimer); delete estado.pedido.pix; salvar(estado.pedido); $('#expira').textContent = 'expirado — feche e gere outro'; }
+  };
+  tick(); expiraTimer = setInterval(tick, 1000);
+  if (!DEMO) agendarConsulta(4);
+}
+
+$('#btnCopiar').addEventListener('click', async () => {
+  const campo = $('#pixCodigo');
+  try { await navigator.clipboard.writeText(campo.value); }
+  catch (e) { campo.select(); document.execCommand('copy'); }
+  const b = $('#btnCopiar'); b.textContent = '✅ Código copiado! Agora cole no app do banco';
+  setTimeout(() => b.textContent = '📋 Copiar código PIX', 5000);
+});
+
+function pararConsulta() { clearTimeout(consultaTimer); }
+function agendarConsulta(seg) { pararConsulta(); consultaTimer = setTimeout(verificar, seg * 1000); }
+
+async function verificar() {
+  if (!estado.pedido) return;
+  try {
+    const r = await fetch(`${API}/status.php?pedido=${estado.pedido.pedido}&token=${estado.pedido.token}`, { cache: 'no-store' });
+    if (r.status === 404) { limpar(); return; }
+    const j = await r.json();
+    if (j.pago) return liberar(j.foto, j.baixar);
+    if (estado.pedido.pix) agendarConsulta(j.proxima_consulta || 5);
+  } catch (e) { if (estado.pedido?.pix) agendarConsulta(8); }
+}
+// Ao voltar do app do banco, confere na hora.
+document.addEventListener('visibilitychange', () => { if (!document.hidden && estado.pedido?.pix && !DEMO) verificar(); });
+
+function liberar(foto, baixar) {
+  pararConsulta(); clearInterval(expiraTimer);
+  fecharModal();
+  estado.pedido.pago = true; estado.pedido.foto = foto; estado.pedido.baixar = baixar; delete estado.pedido.pix;
+  salvar(estado.pedido);
+  if (typeof fbq === 'function' && !estado.pedido.pixel) { fbq('track', 'Purchase', { value: parseFloat(PRECO_POR.replace(',', '.')), currency: 'BRL' }); estado.pedido.pixel = true; salvar(estado.pedido); }
+  $('#formulario').classList.add('oculto');
+  $('#resultado').classList.remove('vis');
+  $('#liberada').classList.add('vis');
+  $('#imgFinal').src = foto;
+  $('#btnBaixar').href = baixar;
+  $('#liberada').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+$('#btnCompartilhar').addEventListener('click', async () => {
+  try {
+    const blob = await (await fetch(estado.pedido.foto)).blob();
+    const arq = new File([blob], 'minha-foto.jpg', { type: 'image/jpeg' });
+    if (navigator.canShare && navigator.canShare({ files: [arq] })) {
+      await navigator.share({ files: [arq], title: 'Minha foto' });
+      return;
+    }
+  } catch (e) { if (e.name === 'AbortError') return; }
+  alert('Para mandar no WhatsApp: toque em "Baixar minha foto", depois abra o WhatsApp, toque no clipe 📎 e escolha a foto na galeria.');
+});
+
+/* =====================================================================
+ * MODO DEMONSTRAÇÃO (?demo=1) — simula a geração sem gastar nada
+ * ===================================================================== */
+function desenharDemo(marca) {
+  return new Promise(ok => {
+    const c = document.createElement('canvas'); c.width = 600; c.height = 800;
+    const ctx = c.getContext('2d');
+    const g = ctx.createLinearGradient(0, 0, 0, 800); g.addColorStop(0, '#8FB8FF'); g.addColorStop(.6, '#E3ECFF'); g.addColorStop(1, '#FFE3A8');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, 600, 800);
+    const luz = ctx.createRadialGradient(410, 260, 10, 410, 260, 320); luz.addColorStop(0, 'rgba(255,246,208,1)'); luz.addColorStop(1, 'rgba(255,246,208,0)');
+    ctx.fillStyle = luz; ctx.fillRect(0, 0, 600, 800);
+    // acompanhante (silhueta clara com auréola)
+    ctx.fillStyle = '#F7F3E8'; ctx.beginPath(); ctx.arc(410, 290, 70, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(270, 800); ctx.bezierCurveTo(270, 520, 340, 400, 410, 400); ctx.bezierCurveTo(480, 400, 550, 520, 550, 800); ctx.fill();
+    ctx.strokeStyle = '#F5B301'; ctx.lineWidth = 9; ctx.beginPath(); ctx.ellipse(410, 205, 58, 16, 0, 0, Math.PI * 2); ctx.stroke();
+    const img = new Image();
+    img.onload = () => {
+      // foto da cliente em formato oval à esquerda
+      ctx.save(); ctx.beginPath(); ctx.ellipse(200, 470, 160, 230, 0, 0, Math.PI * 2); ctx.clip();
+      const esc = Math.max(320 / img.width, 460 / img.height);
+      ctx.drawImage(img, 200 - img.width * esc / 2, 470 - img.height * esc / 2, img.width * esc, img.height * esc);
+      ctx.restore();
+      ctx.lineWidth = 8; ctx.strokeStyle = '#fff'; ctx.beginPath(); ctx.ellipse(200, 470, 160, 230, 0, 0, Math.PI * 2); ctx.stroke();
+      if (marca) {
+        ctx.save(); ctx.translate(300, 400); ctx.rotate(-0.5);
+        ctx.font = '900 46px Nunito, sans-serif'; ctx.textAlign = 'center';
+        for (let y = -700; y < 700; y += 150) for (let x = -700; x < 700; x += 420) {
+          ctx.fillStyle = 'rgba(0,0,0,.18)'; ctx.fillText('PRÉVIA', x + 3, y + 3);
+          ctx.fillStyle = 'rgba(255,255,255,.6)'; ctx.fillText('PRÉVIA', x, y);
+        }
+        ctx.restore();
+      }
+      ok(c.toDataURL('image/jpeg', .85));
+    };
+    img.src = URL.createObjectURL(estado.foto1);
+  });
+}
+function qrFalso() {
+  const n = 25; let r = ''; let semente = 7;
+  const rnd = () => (semente = (semente * 9301 + 49297) % 233280) / 233280;
+  const olho = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="#111"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="#111"/>`;
+  for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+    const canto = (x < 8 && y < 8) || (x > n - 9 && y < 8) || (x < 8 && y > n - 9);
+    if (!canto && rnd() > 0.52) r += `<rect x="${x}" y="${y}" width="1" height="1" fill="#111"/>`;
+  }
+  return `<svg viewBox="-1 -1 ${n + 2} ${n + 2}" shape-rendering="crispEdges">${r}${olho(0, 0)}${olho(n - 7, 0)}${olho(0, n - 7)}</svg>`;
+}
+async function gerarDemo() {
+  await new Promise(r => setTimeout(r, 4000));
+  return { pedido: 'demo', token: 'demo', previa: await desenharDemo(true), segundos: 5 };
+}
+$('#btnSimular').addEventListener('click', async () => {
+  const final = estado.foto1 ? await desenharDemo(false) : estado.pedido.previa;
+  liberar(final, final);
+});
+
+/* =====================================================================
+ * Retomar pedido (ex.: a pessoa saiu para o app do banco e voltou)
+ * ===================================================================== */
+(function retomar() {
+  const p = carregar();
+  if (!p || DEMO || Date.now() - p.criado > 3 * 24 * 3600 * 1000) { if (p && !DEMO) limpar(); return; }
+  estado.pedido = p;
+  if (p.pago && p.foto) { liberar(p.foto, p.baixar); return; }
+  mostrarResultado(p.previa, 5, true);
+  if (p.pix && p.pix.expira > Date.now()) mostrarPix(p.pix);
+  else verificar();
+})();
+
+/* ---------- botão fixo no celular ---------- */
+const ctaFixo = $('#ctaFixo');
+const alvos = { hero: $('#topo'), criar: $('#criar') };
+let vendoHero = true, vendoCriar = false;
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.target === alvos.hero) vendoHero = e.isIntersecting; if (e.target === alvos.criar) vendoCriar = e.isIntersecting; });
+  ctaFixo.classList.toggle('vis', !vendoHero && !vendoCriar);
+}, { threshold: 0.05 });
+obs.observe(alvos.hero); obs.observe(alvos.criar);
+</script>
+</body>
+</html>

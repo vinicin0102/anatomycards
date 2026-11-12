@@ -6,3 +6,6 @@ node_modules/
 # credenciais — nunca versionar
 api/config.php
 storage/
+
+# credenciais da loja de fotos
+fotos/api/config.php
