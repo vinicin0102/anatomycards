@@ -11,7 +11,8 @@ api/diagnostico.php      checagem da integração (protegido por token)
 tools/testar-webhook.php testa a validação de assinatura do webhook (CLI)
 api/_bootstrap.php       validação, CORS e chamada autenticada à API
 api/config.example.php   modelo de configuração
-storage/                 log de pagamentos (não versionado)
+storage/                 log de pagamentos e conteúdo da VSL (não versionado)
+vsl/                     página de VSL + painel de administração (ver abaixo)
 ```
 
 ## Configuração
@@ -155,3 +156,67 @@ A ZuckPay responde **429 após 5 tentativas em 30 minutos**. Por isso:
    um limite por IP para evitar geração de cobranças em massa.
 5. **Desativar o diagnóstico** — depois de resolver, apague `api/diagnostico.php`
    ou deixe `debug_token` vazio (assim ele responde 404).
+
+## Página de VSL (`vsl/`)
+
+Página de vídeo de vendas com fundo preto: logo no topo, selo, título, vídeo,
+botão de compra com atraso opcional e depoimentos de clientes. Tudo é editado
+pelo painel em `/vsl/admin.php`, sem mexer no código.
+
+```
+vsl/index.php            página pública
+vsl/admin.php            painel (protegido por senha)
+vsl/_lib.php             leitura/gravação, uploads e player
+vsl/config.example.php   modelo da senha do painel
+vsl/uploads/             logo, vídeo e fotos enviados (não versionado)
+storage/vsl.json         conteúdo salvo pelo painel
+```
+
+### Senha do painel
+
+Gere o hash **no servidor** e cole em `vsl/config.php` (copie do
+`config.example.php`), ou defina a variável `VSL_ADMIN_PASSWORD_HASH`:
+
+```bash
+php -r 'echo password_hash("SUA_SENHA_AQUI", PASSWORD_DEFAULT), PHP_EOL;'
+```
+
+Sem senha configurada o painel só mostra essas instruções.
+
+### O que o painel edita
+
+- **Marca**: nome e logo (JPG, PNG, WEBP ou GIF).
+- **Topo**: selo, título e linha de apoio.
+- **Vídeo**: link (YouTube, Vimeo, `.mp4` direto ou link de player), envio de
+  arquivo MP4/WEBM, ou o código de embed do VTurb/Panda. Formato 9:16, 4:5,
+  1:1 ou 16:9.
+- **Botão de compra**: texto, link do checkout, cor e atraso em segundos. Com
+  vídeo próprio o atraso conta o tempo assistido; com YouTube/players externos
+  conta o tempo de página aberta. Quem já viu o botão volta a vê-lo direto.
+- **Depoimentos**: nome, cidade, estrelas, texto, foto do cliente e imagem
+  extra; adicionar, excluir e reordenar.
+- **Rodapé**: dados da empresa e aviso legal.
+- **Avançado**: código no `<head>` (Meta Pixel, UTMify, Google Tag).
+
+### Vídeos grandes
+
+O envio de vídeo respeita `upload_max_filesize` e `post_max_size` do PHP
+(o painel mostra o limite atual). Se o arquivo passar do limite, nada é salvo
+e o painel avisa. Para VSL, hospedar no VTurb/Panda e colar o código costuma
+carregar mais rápido que servir o MP4 do próprio servidor.
+
+### Segurança
+
+- Login com `password_verify`, sessão `HttpOnly`/`SameSite=Strict`, token CSRF
+  em todos os formulários e bloqueio de 15 min após 5 senhas erradas por IP.
+- Uploads conferidos pelo **conteúdo** (finfo), não pela extensão; nome do
+  arquivo gerado no servidor; SVG não é aceito. `vsl/uploads/.htaccess`
+  impede execução de scripts nessa pasta.
+- Arquivos trocados ou removidos no painel são apagados do disco.
+- Links do botão e do vídeo só aceitam `http(s)://`.
+- `vsl/.htaccess` bloqueia `_lib.php` e `config.php`; `storage/` recebe um
+  `.htaccess` de bloqueio na primeira gravação. Em **Nginx** essas regras não
+  valem: negue `/storage/`, `/vsl/config.php`, `/vsl/_lib.php` e scripts em
+  `/vsl/uploads/` na configuração do servidor.
+- O código de embed e o código do `<head>` são impressos como estão: só quem
+  tem a senha do painel consegue alterá-los.

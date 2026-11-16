@@ -1,0 +1,6 @@
+# Arquivos internos do painel não podem ser abertos pelo navegador.
+<FilesMatch "^(_lib\.php|config\.php|config\.example\.php)$">
+    Require all denied
+</FilesMatch>
+Options -Indexes
+DirectoryIndex index.php

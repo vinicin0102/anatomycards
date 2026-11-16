@@ -6,3 +6,6 @@ node_modules/
 # credenciais — nunca versionar
 api/config.php
 storage/
+vsl/config.php
+vsl/uploads/*
+!vsl/uploads/.htaccess
